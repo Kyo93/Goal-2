@@ -18,10 +18,9 @@
 
 - Unconfirmed master-data rows ignored as facts: 102
 - Sites without confirmed master-data mapping: 14
-- Alert hosts without confirmed master-data mapping: 33
+- Alert hosts without confirmed master-data mapping: 173
 - Incidents missing RCA: 2
 - Incidents missing preventive action: 35
-- No incident-to-Zabbix timeline correlations matched the current exports
 - No direct site-explicit ticket correlations matched confirmed incidents
 
 ## Rejected Rows

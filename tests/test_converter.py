@@ -67,6 +67,25 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(fpt["alert_count"], 2)
         self.assertIn("<value>", fpt["problem_signature"])
 
+    def test_zabbix_adapter_reads_multi_csv_exports_and_deduplicates_overlap(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            export_dir = Path(temporary) / "Export zabbix"
+            export_dir.mkdir()
+            header = '"Severity","Time","Recovery time","Status","Host","Problem","Duration","Ack","Actions","Tags"\n'
+            duplicate = '"High","2026-06-03 03:11:37 PM","2026-06-03 03:12:07 PM","RESOLVED","VNMMS2-FPT-FMS-45.119.218.130","Unavailable by ICMP ping","30s","No","Actions (2)","Application: Status"\n'
+            unique = '"Warning","2026-06-03 03:10:37 PM","2026-06-03 03:10:52 PM","RESOLVED","VNMMSB-FPT-FMS-45.119.218.130","High ICMP ping loss","15s","No","Actions (2)","Application: Status"\n'
+            (export_dir / "part-a.csv").write_text(header + duplicate, encoding="utf-8")
+            (export_dir / "part-b.csv").write_text(header + duplicate + unique, encoding="utf-8")
+
+            result = load_zabbix_alerts(export_dir)
+
+        self.assertEqual(result.input_rows, 3)
+        self.assertEqual(len(result.records), 2)
+        self.assertEqual(result.duplicate_rows, 1)
+        self.assertEqual(len(result.rejected_rows), 0)
+        self.assertEqual(result.records[0]["seen_at"], "2026-06-03T15:11:37")
+        self.assertIn("part-a.csv#csv:row-2", result.records[0]["source_ref"])
+
     def test_problem_signature_replaces_dynamic_values(self):
         signature = normalize_problem_signature(
             "FPT Download Gi2/0/3>100M,Current:115.17 Mbps"
@@ -173,6 +192,103 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(incident["responsibility_domain"], "ISP")
         self.assertEqual(signal["event_type"], "ZABBIX_ALERT_PATTERN")
         self.assertEqual(signal["related_incident_ids"], ["INC-3"])
+
+    def test_operational_timeline_uses_event_level_alert_overlap(self):
+        incidents = [
+            {
+                "incident_id": "INC-MDN",
+                "source_ref": "incident.xlsx#main:row-10",
+                "started_at": "2026-05-10T13:20:00",
+                "resolved_at": "2026-05-10T17:50:00",
+                "site_code": "MDN",
+                "incident_type": "Others",
+                "description": "Local segment issue.",
+                "root_cause": "The issue belongs to Shopee's local segment.",
+                "resolution_status": "RESOLVED",
+            },
+            {
+                "incident_id": "INC-MBD",
+                "source_ref": "incident.xlsx#main:row-11",
+                "started_at": "2026-05-29T12:20:00",
+                "resolved_at": "2026-05-30T15:48:00",
+                "site_code": "MBD",
+                "incident_type": "Fiber optic cable failure",
+                "description": "Fiber attenuation near customer site.",
+                "root_cause": "Fiber attenuation on the cable section.",
+                "resolution_status": "RESOLVED",
+            },
+        ]
+        alerts = [
+            {
+                "alert_id": "ALT-MDN-1",
+                "source_ref": "zabbix.csv#csv:row-2",
+                "seen_at": "2026-05-05T09:39:20",
+                "recovered_at": "2026-05-05T09:40:20",
+                "status": "RESOLVED",
+                "severity": "High",
+                "host": "VNMMDN-VSSPM01",
+                "site_code": "MDN",
+                "problem": "HTTP Monitoring",
+                "problem_signature": "http monitoring",
+                "duration": "1m",
+                "ack": "No",
+                "actions": "UNKNOWN",
+                "domain": "UNKNOWN",
+                "component": "UNKNOWN",
+                "scope": "UNKNOWN",
+                "tags": "{}",
+                "evidence_label": "SOURCE FACT",
+            },
+            {
+                "alert_id": "ALT-MDN-2",
+                "source_ref": "zabbix.csv#csv:row-3",
+                "seen_at": "2026-05-30T15:31:20",
+                "recovered_at": "2026-05-30T15:32:20",
+                "status": "RESOLVED",
+                "severity": "High",
+                "host": "VNMMDN-VSSPM01",
+                "site_code": "MDN",
+                "problem": "HTTP Monitoring",
+                "problem_signature": "http monitoring",
+                "duration": "1m",
+                "ack": "No",
+                "actions": "UNKNOWN",
+                "domain": "UNKNOWN",
+                "component": "UNKNOWN",
+                "scope": "UNKNOWN",
+                "tags": "{}",
+                "evidence_label": "SOURCE FACT",
+            },
+            {
+                "alert_id": "ALT-MBD-1",
+                "source_ref": "zabbix.csv#csv:row-4",
+                "seen_at": "2026-05-29T11:05:04",
+                "recovered_at": "2026-05-30T15:42:34",
+                "status": "RESOLVED",
+                "severity": "High",
+                "host": "VNMMBD-PE-FPT-42.116.48.97",
+                "site_code": "MBD",
+                "problem": "Unavailable by ICMP ping",
+                "problem_signature": "unavailable by icmp ping",
+                "duration": "1d 4h 37m 30s",
+                "ack": "No",
+                "actions": "UNKNOWN",
+                "domain": "UNKNOWN",
+                "component": "UNKNOWN",
+                "scope": "UNKNOWN",
+                "tags": "{}",
+                "evidence_label": "SOURCE FACT",
+            },
+        ]
+        patterns = group_alert_patterns(alerts)
+
+        timeline = build_operational_timeline(incidents, patterns, [], alerts=alerts)
+
+        mdn = next(event for event in timeline if event["event_id"] == "EVT-INC-MDN")
+        mbd = next(event for event in timeline if event["event_id"] == "EVT-INC-MBD")
+
+        self.assertEqual(mdn["related_alert_pattern_ids"], [])
+        self.assertEqual(mbd["related_alert_pattern_ids"], ["ALP-CDCB1323E9CB"])
 
     def test_operational_stories_render_sequence_conclusion_and_explicit_gaps(self):
         incidents = [
@@ -401,17 +517,19 @@ class SuppliedRawDataIntegrationTest(unittest.TestCase):
         incidents = load_incidents(
             raw_dir / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
         )
-        alerts = load_zabbix_alerts(raw_dir / "zbx_problems_export.xlsx")
+        alerts = load_zabbix_alerts(raw_dir / "Export zabbix")
         tickets = load_issue_tickets(raw_dir / "IssueReport.xlsx")
         recurrence = group_incident_recurrence(incidents.records)
+        alert_patterns = group_alert_patterns(alerts.records)
         timeline = build_operational_timeline(
             incidents.records,
-            group_alert_patterns(alerts.records),
+            alert_patterns,
             tickets.records,
+            alerts=alerts.records,
         )
 
         self.assertEqual(len(incidents.records), 52)
-        self.assertEqual(len(alerts.records), 1000)
+        self.assertEqual(len(alerts.records), 10425)
         self.assertEqual(len(tickets.records), 923)
         self.assertEqual(sum(ticket["comment_count"] for ticket in tickets.records), 2652)
 
@@ -431,14 +549,31 @@ class SuppliedRawDataIntegrationTest(unittest.TestCase):
         )
         self.assertEqual(ms2["incident_count"], 16)
         self.assertEqual(xas["incident_count"], 4)
-        self.assertEqual(len(timeline), 128)
+        self.assertEqual(len(alert_patterns), 352)
+        self.assertEqual(len(timeline), 404)
         self.assertEqual(
             sum(event["event_type"] == "CONFIRMED_INCIDENT" for event in timeline),
             52,
         )
         self.assertEqual(
             sum(event["event_type"] == "ZABBIX_ALERT_PATTERN" for event in timeline),
-            76,
+            352,
+        )
+        may_incidents = {
+            event["event_id"]: event["related_alert_pattern_ids"]
+            for event in timeline
+            if event["event_type"] == "CONFIRMED_INCIDENT"
+            and event["started_at"].startswith("2026-05")
+        }
+        self.assertEqual(
+            may_incidents["EVT-INC-51"],
+            [],
+            "MDN long-running alert patterns should not match without event overlap.",
+        )
+        self.assertEqual(may_incidents["EVT-INC-53"], ["ALP-21A98CCEA4A6"])
+        self.assertEqual(
+            may_incidents["EVT-INC-54"],
+            ["ALP-6E01E457377C", "ALP-C031A95EC809", "ALP-CDCB1323E9CB"],
         )
 
 

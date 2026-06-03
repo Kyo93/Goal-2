@@ -14,20 +14,19 @@
 ## Source Profile
 
 - Confirmed incidents: `52`
-- Raw Zabbix alerts: `1000`
-- Operational stories: `128`
+- Raw Zabbix alerts: `10425`
+- Operational stories: `404`
 - Unique tickets: `923`
 - Issue-report comment rows: `2652`
 - Confirmed incident period: `2025-12-01T07:35:00` to `2026-05-29T12:20:00`
-- Raw alert period: `2026-05-12T17:34:13` to `2026-05-19T16:32:36`
+- Raw alert period: `2026-04-01T00:11:08` to `2026-05-31T23:58:34`
 - Ticket evidence period: `2026-05-01T06:35:37` to `2026-05-19T17:54:47`
 
 ## Data Quality Warnings
 
 - Unconfirmed master-data rows ignored as facts: 102
 - Sites without confirmed master-data mapping: 14
-- Alert hosts without confirmed master-data mapping: 33
+- Alert hosts without confirmed master-data mapping: 173
 - Incidents missing RCA: 2
 - Incidents missing preventive action: 35
-- No incident-to-Zabbix timeline correlations matched the current exports
 - No direct site-explicit ticket correlations matched confirmed incidents

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -18,6 +19,7 @@ OUTPUT_FILE = OUTPUT_DIR / "it-operations-master-data-template.xlsx"
 
 INCIDENT_FILE = RAW_DIR / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
 ZABBIX_FILE = RAW_DIR / "zbx_problems_export.xlsx"
+ZABBIX_EXPORT_DIR = RAW_DIR / "Export zabbix"
 ISSUE_FILE = RAW_DIR / "IssueReport.xlsx"
 
 STATUS_VALUES = ["CONFIRMED", "NEEDS_REVIEW", "DRAFT", "REJECTED"]
@@ -168,8 +170,25 @@ def extract_incident_seed():
 
 
 def extract_zabbix_seed():
-    workbook = load_workbook(ZABBIX_FILE, read_only=True, data_only=True)
-    rows = normalized_rows(workbook.worksheets[0])
+    if ZABBIX_EXPORT_DIR.exists():
+        rows = []
+        for path in sorted(ZABBIX_EXPORT_DIR.glob("*.csv"), key=lambda item: item.name.lower()):
+            with path.open("r", encoding="utf-8-sig", newline="") as handle:
+                reader = csv.reader(handle)
+                file_rows = [
+                    ["" if value is None else str(value).strip() for value in row]
+                    for row in reader
+                ]
+            if not file_rows:
+                continue
+            if not rows:
+                rows.extend(file_rows)
+            else:
+                rows.extend(file_rows[1:])
+    else:
+        workbook = load_workbook(ZABBIX_FILE, read_only=True, data_only=True)
+        rows = normalized_rows(workbook.worksheets[0])
+        workbook.close()
     headers = rows[0]
     data = rows[1:]
     index = {header: position for position, header in enumerate(headers)}
@@ -183,9 +202,14 @@ def extract_zabbix_seed():
             "descriptions": set(),
         }
     )
+    seen_rows = set()
     for row in data:
+        dedupe_key = tuple(row[index[header]] for header in headers)
+        if dedupe_key in seen_rows:
+            continue
+        seen_rows.add(dedupe_key)
         host_name = row[index["Host"]]
-        match = re.match(r"^VNM([A-Z]{3})", host_name)
+        match = re.match(r"^VNM([A-Z0-9]{3})", host_name)
         host = hosts[host_name]
         host["site_code"] = match.group(1) if match else ""
         host["alert_count"] += 1

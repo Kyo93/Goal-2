@@ -1,0 +1,114 @@
+{
+  "may_incidents": 5,
+  "may_incidents_by_site": {
+    "XAS": 2,
+    "MDN": 1,
+    "SWS": 1,
+    "MBD": 1
+  },
+  "matched_incidents_30min_same_site": 2,
+  "unmatched_incidents_30min_same_site": 3,
+  "summary": [
+    {
+      "incident_id": "INC-50",
+      "site": "XAS",
+      "site_name": "XAS - Warehosue - Xuyen A",
+      "start": "2026-05-01T02:00",
+      "end": "2026-05-01T11:20",
+      "isp": "CMC",
+      "type": "Fiber optic cable failure",
+      "severity": "Major",
+      "same_site_alerts_in_window": 0,
+      "same_site_alerts_month": 0,
+      "any_site_alerts_in_window": 141,
+      "examples": [],
+      "root": "Cable break cause by fire"
+    },
+    {
+      "incident_id": "INC-51",
+      "site": "MDN",
+      "site_name": "MDN - Mega SOC - Da Nang",
+      "start": "2026-05-10T13:20",
+      "end": "2026-05-10T17:50",
+      "isp": "FPT",
+      "type": "Others",
+      "severity": "Moderate",
+      "same_site_alerts_in_window": 0,
+      "same_site_alerts_month": 19,
+      "any_site_alerts_in_window": 85,
+      "examples": [],
+      "root": "The issue belongs to Shopee's local segment."
+    },
+    {
+      "incident_id": "INC-52",
+      "site": "XAS",
+      "site_name": "XAS - Warehosue - Xuyen A",
+      "start": "2026-05-26T21:37",
+      "end": "2026-05-27T00:20",
+      "isp": "CMC",
+      "type": "Fiber optic cable failure",
+      "severity": "Major",
+      "same_site_alerts_in_window": 0,
+      "same_site_alerts_month": 0,
+      "any_site_alerts_in_window": 38,
+      "examples": [],
+      "root": "Cable Fire incident"
+    },
+    {
+      "incident_id": "INC-53",
+      "site": "SWS",
+      "site_name": "SWS - SOC - SW (Vinh Long)",
+      "start": "2026-05-27T00:04",
+      "end": "2026-05-27T01:00",
+      "isp": "FPT",
+      "type": "Fiber optic cable failure",
+      "severity": "Moderate",
+      "same_site_alerts_in_window": 1,
+      "same_site_alerts_month": 9,
+      "any_site_alerts_in_window": 24,
+      "examples": [
+        {
+          "started_at_local": "2026-05-27T00:48:18+07:00",
+          "host": "VNMSWS-PSSJP1",
+          "problem_signature": "windows: host has been restarted (uptime < <value>)",
+          "duration_text": "6m 30s"
+        }
+      ],
+      "root": "Suy hao cáp hạ tầng"
+    },
+    {
+      "incident_id": "INC-54",
+      "site": "MBD",
+      "site_name": "MBD - Mega SOC - Binh Duong",
+      "start": "2026-05-29T12:20",
+      "end": "2026-05-30T15:48",
+      "isp": "FPT",
+      "type": "Fiber optic cable failure",
+      "severity": "Major",
+      "same_site_alerts_in_window": 3,
+      "same_site_alerts_month": 41,
+      "any_site_alerts_in_window": 207,
+      "examples": [
+        {
+          "started_at_local": "2026-05-29T11:05:04+07:00",
+          "host": "VNMMBD-PE-FPT-42.116.48.97",
+          "problem_signature": "unavailable by icmp ping",
+          "duration_text": "1d 4h 37m 30s"
+        },
+        {
+          "started_at_local": "2026-05-20T05:56:35+07:00",
+          "host": "VNMMBD-VSDHC02",
+          "problem_signature": "windows: zabbix agent is not available (or nodata for <value>)",
+          "duration_text": "13d 8h 53m 33s"
+        },
+        {
+          "started_at_local": "2026-05-20T05:33:11+07:00",
+          "host": "VNMMBD-VSDHC02",
+          "problem_signature": "windows: active checks are not available",
+          "duration_text": "13d 9h 17m"
+        }
+      ],
+      "root": "Fiber attenuation on the cable section ted approximately 360 meters from the customer site."
+    }
+  ]
+}

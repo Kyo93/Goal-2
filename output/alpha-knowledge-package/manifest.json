@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T09:52:13.866205Z",
+  "generated_at": "2026-06-03T10:54:41.020391Z",
   "inputs": [
     {
       "filename": "it-operations-master-data-template.xlsx",
@@ -17,25 +17,31 @@
       "sha256": "694e47edd2deea258dcf84a8536ef88741bdd9317a780f90fd02e4dec1336381"
     },
     {
-      "filename": "zbx_problems_export.xlsx",
+      "filename": "Export zabbix/zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv",
       "input_type": "raw_export",
-      "sha256": "c588e741a14793bc82ed4055d295b6ce4e99c61c6df48a9905a47642e968e153"
+      "sha256": "c5cc16cb59d6fcf6ae918c282305847b06f3c47e7ffb576cd0292823c2dc347e"
+    },
+    {
+      "filename": "Export zabbix/zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv",
+      "input_type": "raw_export",
+      "sha256": "c992f8aa2ff7f3873ac432b0ac47a046df4448c8192d342e1c01a09238125526"
     }
   ],
   "package_version": "1.2.0",
   "source_profile": {
     "aggregated_ticket_comment_count": 2652,
-    "alert_patterns": 76,
-    "alert_period_end": "2026-05-19T16:32:36",
-    "alert_period_start": "2026-05-12T17:34:13",
+    "alert_patterns": 352,
+    "alert_period_end": "2026-05-31T23:58:34",
+    "alert_period_start": "2026-04-01T00:11:08",
+    "duplicate_alert_rows": 0,
     "incident_form_rows": 52,
     "incident_period_end": "2026-05-29T12:20:00",
     "incident_period_start": "2025-12-01T07:35:00",
     "issue_comment_rows": 2652,
-    "normalized_alert_rows": 1000,
+    "normalized_alert_rows": 10425,
     "normalized_incidents": 52,
     "normalized_tickets": 923,
-    "operational_timeline_events": 128,
+    "operational_timeline_events": 404,
     "recurrence_patterns": 27,
     "rejected_alert_rows": 0,
     "rejected_comment_rows": 0,
@@ -44,28 +50,27 @@
     "responsibility_incidents_inhouse": 3,
     "responsibility_incidents_isp": 42,
     "responsibility_incidents_unknown": 6,
-    "signal_assessment_noise_review": 37,
-    "signal_assessment_related_to_incident": 0,
-    "signal_assessment_unconfirmed": 39,
-    "signal_assessment_user_impact": 0,
+    "signal_assessment_noise_review": 232,
+    "signal_assessment_related_to_incident": 20,
+    "signal_assessment_unconfirmed": 96,
+    "signal_assessment_user_impact": 4,
     "ticket_period_end": "2026-05-19T17:54:47",
     "ticket_period_start": "2026-05-01T06:35:37",
     "timeline_confirmed_incident_events": 52,
-    "timeline_zabbix_pattern_events": 76,
+    "timeline_zabbix_pattern_events": 352,
     "user_impact_incidents_confirmed": 0,
     "user_impact_incidents_estimated": 5,
     "user_impact_incidents_no_evidence": 47,
-    "zabbix_rows": 1000
+    "zabbix_rows": 10425
   },
   "upload_allowed": true,
   "validation_status": "PASS",
   "warnings": [
     "Unconfirmed master-data rows ignored as facts: 102",
     "Sites without confirmed master-data mapping: 14",
-    "Alert hosts without confirmed master-data mapping: 33",
+    "Alert hosts without confirmed master-data mapping: 173",
     "Incidents missing RCA: 2",
     "Incidents missing preventive action: 35",
-    "No incident-to-Zabbix timeline correlations matched the current exports",
     "No direct site-explicit ticket correlations matched confirmed incidents"
   ]
 }

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import re
@@ -17,6 +18,7 @@ PACKAGE_VERSION = "1.2.0"
 ISSUE_REPORT_FILENAME = "IssueReport.xlsx"
 INCIDENT_REPORT_FILENAME = "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
 ZABBIX_FILENAME = "zbx_problems_export.xlsx"
+ZABBIX_EXPORT_DIRNAME = "Export zabbix"
 
 ISSUE_REQUIRED_COLUMNS = {
     "itcenter.ticket.comment.created_at",
@@ -63,6 +65,25 @@ ZABBIX_REQUIRED_COLUMNS = {
     "Tags",
 }
 
+ZABBIX_NORMALIZED_REQUIRED_COLUMNS = {
+    "event_id",
+    "started_at_local",
+    "recovered_at_local",
+    "status",
+    "severity",
+    "host",
+    "site_code",
+    "problem_raw",
+    "problem_signature",
+    "duration_text",
+    "acknowledged",
+    "action_count",
+    "domain",
+    "component",
+    "scope",
+    "tags_json",
+}
+
 MARKDOWN_FILENAMES = [
     "00_report_context.md",
     "01_executive_summary.md",
@@ -80,6 +101,7 @@ class AdapterResult:
     records: list[dict[str, Any]]
     input_rows: int
     skipped_blank_rows: int = 0
+    duplicate_rows: int = 0
     rejected_rows: list[dict[str, Any]] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
@@ -131,6 +153,7 @@ def parse_datetime(value: Any) -> datetime:
         "%Y-%m-%dT%H:%M:%S.%f",
         "%Y-%m-%dT%H:%M:%S",
         "%Y-%m-%d %H:%M:%S",
+        "%Y-%m-%d %I:%M:%S %p",
         "%Y-%m-%d",
     ]
     try:
@@ -188,6 +211,18 @@ def _load_sheet(path: Path, sheet_name: str | None = None):
     loaded_sheet_name = worksheet.title
     workbook.close()
     return loaded_sheet_name, headers, raw_rows[1:]
+
+
+def _load_csv_rows(path: Path):
+    if not path.exists():
+        raise FileNotFoundError(f"Input file not found: {path}")
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.reader(handle)
+        raw_rows = list(reader)
+    if not raw_rows:
+        raise ValueError(f"No rows found in {path.name}")
+    headers = [normalize_header(value) for value in raw_rows[0]]
+    return "csv", headers, raw_rows[1:]
 
 
 def _validate_columns(path: Path, sheet_name: str, headers: list[str], required: set[str]):
@@ -283,7 +318,12 @@ def load_incidents(path: Path) -> AdapterResult:
                 "evidence_label": "SOURCE FACT",
             }
         )
-    return AdapterResult(records, input_rows, skipped_blank_rows, rejected_rows)
+    return AdapterResult(
+        records=records,
+        input_rows=input_rows,
+        skipped_blank_rows=skipped_blank_rows,
+        rejected_rows=rejected_rows,
+    )
 
 
 def load_issue_tickets(path: Path) -> AdapterResult:
@@ -357,7 +397,12 @@ def load_issue_tickets(path: Path) -> AdapterResult:
             }
         )
         records.append(ticket)
-    return AdapterResult(records, input_rows, skipped_blank_rows, rejected_rows)
+    return AdapterResult(
+        records=records,
+        input_rows=input_rows,
+        skipped_blank_rows=skipped_blank_rows,
+        rejected_rows=rejected_rows,
+    )
 
 
 def parse_tags(value: Any) -> dict[str, list[str]]:
@@ -369,6 +414,27 @@ def parse_tags(value: Any) -> dict[str, list[str]]:
         if tag_value not in tags[key]:
             tags[key].append(tag_value)
     return dict(tags)
+
+
+def parse_tags_json(value: Any) -> dict[str, list[str]]:
+    text = clean_text(value)
+    if not text:
+        return {}
+    try:
+        payload = json.loads(text)
+    except json.JSONDecodeError:
+        return parse_tags(text)
+    if not isinstance(payload, dict):
+        return {}
+    tags: dict[str, list[str]] = {}
+    for key, raw_values in payload.items():
+        if isinstance(raw_values, list):
+            values = [clean_text(item) for item in raw_values if clean_text(item)]
+        else:
+            values = [clean_text(raw_values)] if clean_text(raw_values) else []
+        if values:
+            tags[clean_text(key)] = values
+    return tags
 
 
 def normalize_problem_signature(problem: Any) -> str:
@@ -388,57 +454,138 @@ def normalize_problem_signature(problem: Any) -> str:
     return text
 
 
-def load_zabbix_alerts(path: Path) -> AdapterResult:
+def _load_zabbix_sources(path: Path) -> list[tuple[Path, str, list[str], list[Iterable[Any]]]]:
+    if path.is_dir():
+        csv_paths = sorted(path.glob("*.csv"), key=lambda item: item.name.lower())
+        if not csv_paths:
+            raise FileNotFoundError(f"No CSV files found in Zabbix export directory: {path}")
+        normalized_paths = [
+            csv_path
+            for csv_path in csv_paths
+            if csv_path.name.lower().startswith("zbx_problems_normalized_")
+        ]
+        if normalized_paths:
+            csv_paths = normalized_paths
+        return [
+            (csv_path, *_load_csv_rows(csv_path))
+            for csv_path in csv_paths
+        ]
     sheet_name, headers, rows = _load_sheet(path)
-    _validate_columns(path, sheet_name, headers, ZABBIX_REQUIRED_COLUMNS)
+    return [(path, sheet_name, headers, rows)]
+
+
+def load_zabbix_alerts(path: Path) -> AdapterResult:
+    sources = _load_zabbix_sources(path)
     records: list[dict[str, Any]] = []
     rejected_rows: list[dict[str, Any]] = []
     skipped_blank_rows = 0
     input_rows = 0
+    duplicate_rows = 0
+    seen_rows: set[tuple[str, ...]] = set()
 
-    for row_number, values in enumerate(rows, start=2):
-        if _is_blank_row(values):
-            skipped_blank_rows += 1
-            continue
-        input_rows += 1
-        row = _row_dict(headers, values)
-        reference = source_ref(path.name, sheet_name, row_number)
-        try:
-            seen_at = parse_datetime(row["Time"])
-            recovered_at = (
-                parse_datetime(row["Recovery time"])
-                if clean_text(row["Recovery time"])
-                else None
-            )
-        except ValueError as error:
-            rejected_rows.append({"source_ref": reference, "reason": str(error)})
-            continue
-        host = clean_text(row["Host"]) or "UNKNOWN"
-        problem = clean_text(row["Problem"]) or "UNKNOWN"
-        tags = parse_tags(row["Tags"])
-        records.append(
-            {
-                "alert_id": f"ALT-{row_number}",
-                "source_ref": reference,
-                "seen_at": iso_datetime(seen_at),
-                "recovered_at": iso_datetime(recovered_at),
-                "status": clean_text(row["Status"]) or "UNKNOWN",
-                "severity": clean_text(row["Severity"]) or "UNKNOWN",
-                "host": host,
-                "site_code": derive_site_code_from_host(host),
-                "problem": problem,
-                "problem_signature": normalize_problem_signature(problem),
-                "duration": clean_text(row["Duration"]) or "UNKNOWN",
-                "ack": clean_text(row["Ack"]) or "UNKNOWN",
-                "actions": clean_text(row["Actions"]) or "UNKNOWN",
-                "domain": ",".join(tags.get("class", [])) or "UNKNOWN",
-                "component": ",".join(tags.get("component", [])) or "UNKNOWN",
-                "scope": ",".join(tags.get("scope", [])) or "UNKNOWN",
-                "tags": json.dumps(tags, ensure_ascii=False, sort_keys=True),
-                "evidence_label": "SOURCE FACT",
-            }
-        )
-    return AdapterResult(records, input_rows, skipped_blank_rows, rejected_rows)
+    for source_path, sheet_name, headers, rows in sources:
+        header_set = set(headers)
+        is_normalized = ZABBIX_NORMALIZED_REQUIRED_COLUMNS.issubset(header_set)
+        if not is_normalized:
+            _validate_columns(source_path, sheet_name, headers, ZABBIX_REQUIRED_COLUMNS)
+        for row_number, values in enumerate(rows, start=2):
+            if _is_blank_row(values):
+                skipped_blank_rows += 1
+                continue
+            input_rows += 1
+            row = _row_dict(headers, values)
+            reference = source_ref(source_path.name, sheet_name, row_number)
+            if is_normalized:
+                dedupe_key = ("normalized", clean_text(row.get("event_id")))
+            else:
+                dedupe_key = tuple(clean_text(row.get(header)) for header in sorted(ZABBIX_REQUIRED_COLUMNS))
+            if dedupe_key in seen_rows:
+                duplicate_rows += 1
+                continue
+            seen_rows.add(dedupe_key)
+            if is_normalized:
+                try:
+                    seen_at = parse_datetime(row["started_at_local"])
+                    recovered_at = (
+                        parse_datetime(row["recovered_at_local"])
+                        if clean_text(row["recovered_at_local"])
+                        else None
+                    )
+                except ValueError as error:
+                    rejected_rows.append({"source_ref": reference, "reason": str(error)})
+                    continue
+                host = clean_text(row["host"]) or "UNKNOWN"
+                problem = clean_text(row["problem_raw"]) or "UNKNOWN"
+                tags = parse_tags_json(row["tags_json"])
+                action_count = clean_text(row["action_count"])
+                records.append(
+                    {
+                        "alert_id": f"ALT-ZBX-{clean_text(row['event_id'])}",
+                        "source_ref": reference,
+                        "seen_at": iso_datetime(seen_at),
+                        "recovered_at": iso_datetime(recovered_at),
+                        "status": clean_text(row["status"]) or "UNKNOWN",
+                        "severity": clean_text(row["severity"]) or "UNKNOWN",
+                        "host": host,
+                        "site_code": clean_text(row["site_code"]) or derive_site_code_from_host(host),
+                        "problem": problem,
+                        "problem_signature": clean_text(row["problem_signature"])
+                        or normalize_problem_signature(problem),
+                        "duration": clean_text(row["duration_text"]) or "UNKNOWN",
+                        "ack": "Yes" if clean_text(row["acknowledged"]).lower() == "true" else "No",
+                        "actions": f"Actions ({action_count})" if action_count and action_count != "0" else "UNKNOWN",
+                        "domain": clean_text(row["domain"]) or ",".join(tags.get("class", [])) or "UNKNOWN",
+                        "component": clean_text(row["component"])
+                        or ",".join(tags.get("component", []))
+                        or "UNKNOWN",
+                        "scope": clean_text(row["scope"]) or ",".join(tags.get("scope", [])) or "UNKNOWN",
+                        "tags": json.dumps(tags, ensure_ascii=False, sort_keys=True),
+                        "evidence_label": clean_text(row.get("evidence_label")) or "SOURCE FACT",
+                    }
+                )
+            else:
+                try:
+                    seen_at = parse_datetime(row["Time"])
+                    recovered_at = (
+                        parse_datetime(row["Recovery time"])
+                        if clean_text(row["Recovery time"])
+                        else None
+                    )
+                except ValueError as error:
+                    rejected_rows.append({"source_ref": reference, "reason": str(error)})
+                    continue
+                host = clean_text(row["Host"]) or "UNKNOWN"
+                problem = clean_text(row["Problem"]) or "UNKNOWN"
+                tags = parse_tags(row["Tags"])
+                records.append(
+                    {
+                        "alert_id": f"ALT-{stable_hash(source_path.name, row_number)}",
+                        "source_ref": reference,
+                        "seen_at": iso_datetime(seen_at),
+                        "recovered_at": iso_datetime(recovered_at),
+                        "status": clean_text(row["Status"]) or "UNKNOWN",
+                        "severity": clean_text(row["Severity"]) or "UNKNOWN",
+                        "host": host,
+                        "site_code": derive_site_code_from_host(host),
+                        "problem": problem,
+                        "problem_signature": normalize_problem_signature(problem),
+                        "duration": clean_text(row["Duration"]) or "UNKNOWN",
+                        "ack": clean_text(row["Ack"]) or "UNKNOWN",
+                        "actions": clean_text(row["Actions"]) or "UNKNOWN",
+                        "domain": ",".join(tags.get("class", [])) or "UNKNOWN",
+                        "component": ",".join(tags.get("component", [])) or "UNKNOWN",
+                        "scope": ",".join(tags.get("scope", [])) or "UNKNOWN",
+                        "tags": json.dumps(tags, ensure_ascii=False, sort_keys=True),
+                        "evidence_label": "SOURCE FACT",
+                    }
+                )
+    return AdapterResult(
+        records=records,
+        input_rows=input_rows,
+        skipped_blank_rows=skipped_blank_rows,
+        duplicate_rows=duplicate_rows,
+        rejected_rows=rejected_rows,
+    )
 
 
 def _join_unique(values: Iterable[str]) -> str:
@@ -579,6 +726,57 @@ def _time_windows_overlap(
     return left_start_at - buffer <= right_end_at and right_start_at <= left_end_at + buffer
 
 
+def _alert_pattern_id_for_record(alert: dict[str, Any]) -> str:
+    return f"ALP-{stable_hash(alert['host'], alert['problem_signature'])}"
+
+
+def _alert_event_overlaps_incident(
+    incident: dict[str, Any], alert: dict[str, Any], buffer_minutes: int
+) -> bool:
+    if alert["site_code"] != incident["site_code"]:
+        return False
+    alert_end = alert.get("recovered_at") or incident.get("resolved_at") or incident["started_at"]
+    return _time_windows_overlap(
+        incident["started_at"],
+        incident.get("resolved_at") or incident["started_at"],
+        alert["seen_at"],
+        alert_end,
+        buffer_minutes,
+    )
+
+
+def _related_alert_pattern_ids(
+    incident: dict[str, Any],
+    alert_patterns: list[dict[str, Any]],
+    buffer_minutes: int,
+    alerts: list[dict[str, Any]] | None = None,
+) -> list[str]:
+    if alerts is None:
+        return sorted(
+            pattern["alert_pattern_id"]
+            for pattern in alert_patterns
+            if pattern["site_code"] == incident["site_code"]
+            and _time_windows_overlap(
+                incident["started_at"],
+                incident.get("resolved_at") or incident["started_at"],
+                pattern["first_seen_at"],
+                pattern["last_seen_at"],
+                buffer_minutes,
+            )
+        )
+
+    known_pattern_ids = {pattern["alert_pattern_id"] for pattern in alert_patterns}
+    return sorted(
+        {
+            pattern_id
+            for alert in alerts
+            if _alert_event_overlaps_incident(incident, alert, buffer_minutes)
+            for pattern_id in [_alert_pattern_id_for_record(alert)]
+            if pattern_id in known_pattern_ids
+        }
+    )
+
+
 def _text_contains_site_code(record: dict[str, Any], site_code: str) -> bool:
     if not site_code or site_code == "UNKNOWN":
         return False
@@ -616,23 +814,15 @@ def build_operational_timeline(
     alert_patterns: list[dict[str, Any]],
     tickets: list[dict[str, Any]],
     buffer_minutes: int = 60,
+    alerts: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     related_incidents_by_alert: defaultdict[str, list[str]] = defaultdict(list)
     events: list[dict[str, Any]] = []
 
     for incident in incidents:
-        related_alerts = [
-            pattern["alert_pattern_id"]
-            for pattern in alert_patterns
-            if pattern["site_code"] == incident["site_code"]
-            and _time_windows_overlap(
-                incident["started_at"],
-                incident["resolved_at"],
-                pattern["first_seen_at"],
-                pattern["last_seen_at"],
-                buffer_minutes,
-            )
-        ]
+        related_alerts = _related_alert_pattern_ids(
+            incident, alert_patterns, buffer_minutes, alerts
+        )
         for alert_pattern_id in related_alerts:
             related_incidents_by_alert[alert_pattern_id].append(incident["incident_id"])
         related_tickets = [
@@ -835,8 +1025,12 @@ def build_operational_stories(
     tickets: list[dict[str, Any]],
     recurrence: list[dict[str, Any]],
     buffer_minutes: int = 60,
+    alerts: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     related_incidents_by_alert: defaultdict[str, list[str]] = defaultdict(list)
+    alert_patterns_by_id = {
+        pattern["alert_pattern_id"]: pattern for pattern in alert_patterns
+    }
     recurrence_by_incident = {
         incident_id: pattern
         for pattern in recurrence
@@ -846,16 +1040,11 @@ def build_operational_stories(
 
     for incident in incidents:
         related_alerts = [
-            pattern
-            for pattern in alert_patterns
-            if pattern["site_code"] == incident["site_code"]
-            and _time_windows_overlap(
-                incident["started_at"],
-                incident["resolved_at"],
-                pattern["first_seen_at"],
-                pattern["last_seen_at"],
-                buffer_minutes,
+            alert_patterns_by_id[pattern_id]
+            for pattern_id in _related_alert_pattern_ids(
+                incident, alert_patterns, buffer_minutes, alerts
             )
+            if pattern_id in alert_patterns_by_id
         ]
         for pattern in related_alerts:
             related_incidents_by_alert[pattern["alert_pattern_id"]].append(
@@ -1145,7 +1334,8 @@ def build_validation_report(
             "zabbix row reconciliation",
             source_profile.get("zabbix_rows", 0),
             source_profile.get("normalized_alert_rows", 0)
-            + source_profile.get("rejected_alert_rows", 0),
+            + source_profile.get("rejected_alert_rows", 0)
+            + source_profile.get("duplicate_alert_rows", 0),
         ),
         (
             "issue comment reconciliation",
@@ -1598,11 +1788,15 @@ def build_knowledge_package(
 
     issue_path = raw_dir / ISSUE_REPORT_FILENAME
     incident_path = raw_dir / INCIDENT_REPORT_FILENAME
-    zabbix_path = raw_dir / ZABBIX_FILENAME
+    zabbix_file_path = raw_dir / ZABBIX_FILENAME
+    zabbix_export_dir = raw_dir / ZABBIX_EXPORT_DIRNAME
+    zabbix_path = zabbix_export_dir if zabbix_export_dir.exists() else zabbix_file_path
     inputs = [issue_path, incident_path, zabbix_path]
     for input_path in inputs:
         if not input_path.exists():
             raise FileNotFoundError(f"Input file not found: {input_path}")
+        if input_path.is_dir() and not any(input_path.glob("*.csv")):
+            raise FileNotFoundError(f"No CSV files found in input directory: {input_path}")
     if master_data_path is not None:
         master_data_path = Path(master_data_path)
         if not master_data_path.exists():
@@ -1617,7 +1811,7 @@ def build_knowledge_package(
     recurrence = group_incident_recurrence(incidents.records)
     alert_patterns = group_alert_patterns(alerts.records)
     operational_stories = build_operational_stories(
-        incidents.records, alert_patterns, tickets.records, recurrence
+        incidents.records, alert_patterns, tickets.records, recurrence, alerts=alerts.records
     )
     incident_stories = [
         story
@@ -1647,6 +1841,9 @@ def build_knowledge_package(
     )
     warnings = [
         f"Rejected source rows: {len(rejected_rows)}" if rejected_rows else "",
+        f"Duplicate Zabbix rows ignored after multi-export merge: {alerts.duplicate_rows}"
+        if alerts.duplicate_rows
+        else "",
         f"Unconfirmed master-data rows ignored as facts: {master_data['unconfirmed_rows']}"
         if master_data["unconfirmed_rows"]
         else "",
@@ -1673,6 +1870,7 @@ def build_knowledge_package(
         "zabbix_rows": alerts.input_rows,
         "normalized_alert_rows": len(alerts.records),
         "rejected_alert_rows": len(alerts.rejected_rows),
+        "duplicate_alert_rows": alerts.duplicate_rows,
         "issue_comment_rows": tickets.input_rows,
         "aggregated_ticket_comment_count": sum(
             record["comment_count"] for record in tickets.records
@@ -1754,23 +1952,34 @@ def build_knowledge_package(
     ]
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    manifest_inputs = [
+        {
+            "filename": path.name,
+            "input_type": "master_data"
+            if master_data_path is not None and path == master_data_path
+            else "raw_export",
+            "sha256": sha256_file(path),
+        }
+        for path in sorted(
+            [path for path in inputs if path.is_file()]
+            + ([master_data_path] if master_data_path is not None else [])
+        )
+    ]
+    if zabbix_path.is_dir():
+        manifest_inputs.extend(
+            {
+                "filename": f"{zabbix_path.name}/{path.name}",
+                "input_type": "raw_export",
+                "sha256": sha256_file(path),
+            }
+            for path in sorted(zabbix_path.glob("*.csv"), key=lambda item: item.name.lower())
+        )
     manifest = {
         "package_version": PACKAGE_VERSION,
         "generated_at": generated_at,
         "upload_allowed": report["upload_allowed"],
         "validation_status": report["status"],
-        "inputs": [
-            {
-                "filename": path.name,
-                "input_type": "master_data"
-                if master_data_path is not None and path == master_data_path
-                else "raw_export",
-                "sha256": sha256_file(path),
-            }
-            for path in sorted(
-                inputs + ([master_data_path] if master_data_path is not None else [])
-            )
-        ],
+        "inputs": manifest_inputs,
         "source_profile": source_profile,
         "warnings": warnings,
     }

@@ -3,20 +3,20 @@
 ## Deterministic KPIs
 
 - Confirmed incidents: `52`
-- Raw Zabbix alerts before grouping: `1000`
-- Alert patterns after grouping: `76`
-- Operational stories: `128`
+- Raw Zabbix alerts before grouping: `10425`
+- Alert patterns after grouping: `352`
+- Operational stories: `404`
 - Unique tickets: `923`
 - Issue-report comment rows: `2652`
 
 ## Operational Story Coverage
 
 - Confirmed-incident stories: `52`
-- Monitoring-signal stories: `76`
-- Signals related to confirmed incidents: `0`
-- Signals with direct user-impact evidence: `0`
-- Signals needing noise or threshold review: `37`
-- Unconfirmed monitoring signals: `39`
+- Monitoring-signal stories: `352`
+- Signals related to confirmed incidents: `20`
+- Signals with direct user-impact evidence: `4`
+- Signals needing noise or threshold review: `232`
+- Unconfirmed monitoring signals: `96`
 
 ## Confirmed Incident Responsibility Classification
 
@@ -56,23 +56,23 @@
 
 ## High-Volume Alert Patterns
 
-- `ALP-86E60C0C5C83` VNMCCW-PNWSW01 | fpt download gi2/0/3><value>,current:<value> mbps: `171` raw alerts
-- `ALP-8251DC672F11` VNMCCW-PNASW011 | switch 1 - inlet temp sensor, green : temperature is above warning threshold: >50: `109` raw alerts
-- `ALP-B7EAE4BAAD66` VNMCCW-PNASW05 | switch 1 - inlet temp sensor, green : temperature is above warning threshold: >50: `79` raw alerts
-- `ALP-079F1ABCD016` VNMSNT-UPSF2201 | apc ups: unacceptable input frequency (out of range <value> for <value>): `70` raw alerts
-- `ALP-810793E3F806` VNMCCW-PNASW04 | switch 2 - inlet temp sensor, green : temperature is above warning threshold: >50: `70` raw alerts
-- `ALP-24CD7EE7CAA3` VNMCCW-PNASW04 | switch 3 - inlet temp sensor, green : temperature is above warning threshold: >50: `60` raw alerts
-- `ALP-6725C5E8CE6D` VNMCCW-PNWSW01 | fpt upload gi2/0/3><value>,current:<value> mbps: `55` raw alerts
-- `ALP-DDE7801896DE` VNMCCW-PNWSW01 | vnpt download gi1/0/1><value>,current:<value> mbps: `41` raw alerts
-- `ALP-FA12954E19C4` VNMCCW-PNWSW01 | vnpt upload gi1/0/1><value>,current:<value> mbps: `29` raw alerts
-- `ALP-DBDD4F005911` VNMCCW-PNASW11 | switch 2 - inlet temp sensor, green : temperature is above warning threshold: >50: `26` raw alerts
-- `ALP-901B0D90D8D2` VNMCCW-PNWLC01 | s-retail-pda-number of users: 251: `23` raw alerts
-- `ALP-461D468B1691` VNMCPL-FPT-Google | high icmp ping response time: `22` raw alerts
-- `ALP-18D37040131C` VNMCPL-GNL-Google | high icmp ping response time: `21` raw alerts
-- `ALP-667DFE8635E4` VNMCPL-NETNAM1-Google | high icmp ping response time: `21` raw alerts
-- `ALP-74CBD0380FB3` VNMCCW-PNASW0202 | switch 1 - inlet temp sensor, green : temperature is above warning threshold: >50: `21` raw alerts
-- `ALP-7C40C8ED034D` VNMCPL-NETNAM2-Google | high icmp ping response time: `20` raw alerts
-- `ALP-BAE939D95D9C` VNMCCW-PNASW04 | switch 1 - inlet temp sensor, green : temperature is above warning threshold: >50: `17` raw alerts
-- `ALP-29C13EBF308E` VNMCCW-PNASW05 | switch 2 - inlet temp sensor, green : temperature is above warning threshold: >50: `14` raw alerts
-- `ALP-7C1A2BB86139` VNMCCW-PNASW11 | switch 1 - inlet temp sensor, green : temperature is above warning threshold: >50: `11` raw alerts
-- `ALP-AE10DD3DBB85` VNMRVF-UPS01 | apc ups: unacceptable input frequency (out of range <value> for <value>): `10` raw alerts
+- `ALP-24B71D258D3E` VNMMSH-VSDHC01 | windows: high cpu utilization (over 90% for <value>): `1525` raw alerts
+- `ALP-079F1ABCD016` VNMSNT-UPSF2201 | apc ups: unacceptable input frequency (out of range <value> for <value>): `536` raw alerts
+- `ALP-8C45EBECE8B9` VNMSNT-VSSPM01 | git http monitoring: `521` raw alerts
+- `ALP-9D95052D0965` VNMCPL-VSSPM04 | git http monitoring: `499` raw alerts
+- `ALP-77CAA12D786F` VNMSGN-VSSPM02 | git http monitoring: `494` raw alerts
+- `ALP-7B851AF85826` VNMCPL-VSSPM03 | git http monitoring: `483` raw alerts
+- `ALP-E08CEB52B684` VNMCPL-VSSPM02 | git http monitoring: `472` raw alerts
+- `ALP-1DA83526E8C0` VNMSNT-VSSPM02 | git http monitoring: `468` raw alerts
+- `ALP-22F4B209BB36` VNMSGN-VSEMS01 | git http monitoring: `460` raw alerts
+- `ALP-FE28092FA2A4` VNMSGN-VSSPM03 | git http monitoring: `455` raw alerts
+- `ALP-551CCB8820FE` VNMSNT-VSEMS01 | git http monitoring: `413` raw alerts
+- `ALP-557802E2665D` VNMSNT-VSSPM03 | git http monitoring: `389` raw alerts
+- `ALP-550ED7DB3F47` VNMSGN-VSSPM01 | git http monitoring: `347` raw alerts
+- `ALP-460C038618E4` VNMCPL-VSSPM01 | git http monitoring: `265` raw alerts
+- `ALP-80599BC38B81` VNMSNT-VSSPM04 | git http monitoring: `232` raw alerts
+- `ALP-B1488C926411` VNMMSH-VSSPM01 | linux: load average is too high (per cpu load over 0.75 for <value>): `156` raw alerts
+- `ALP-F5572970729B` VNMMDN-VSSPM01 | http monitoring: `123` raw alerts
+- `ALP-A0947B93EBA0` VNMMDN-VSEMS01 | http monitoring: `122` raw alerts
+- `ALP-B8C29BDC1FFA` VNMMDN-VSSPM02 | http monitoring: `101` raw alerts
+- `ALP-AE10DD3DBB85` VNMRVF-UPS01 | apc ups: unacceptable input frequency (out of range <value> for <value>): `67` raw alerts
