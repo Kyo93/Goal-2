@@ -1,0 +1,22 @@
+{
+  "initiative": "it-operations-intelligence-poc",
+  "objective": "Build operational stories so Alpha can explain selected periods as ordered milestones, distinguish monitoring noise-review candidates from incident-related signals, report user impact evidence, and classify responsibility as INHOUSE, ISP, EXTERNAL, or UNKNOWN.",
+  "phase": "ready-for-alpha-build",
+  "tasks_file": "openspec/changes/it-operations-intelligence-poc/tasks.md",
+  "next_actions": [
+    "Open docs/build-on-alpha-intelligence.md and create the internal Alpha Knowledge Expert",
+    "Upload the eight generated Markdown documents from output/alpha-knowledge-package only after confirming validation_report.status=PASS",
+    "Create the Alpha Super Agent, attach the Expert, enable Inspect Mode, and execute the documented validation prompts"
+  ],
+  "constraints": [
+    "Do not build a local dashboard, database, or custom chat application",
+    "Do not describe raw alerts as confirmed incidents",
+    "Start date-range questions from 02_operational_timeline.md",
+    "Treat correlation as investigation context, not proof of RCA or user impact",
+    "Require site, overlapping time window, and issue relevance before correlating a ticket",
+    "Compute statistics deterministically in Python rather than relying on RAG counting",
+    "Treat master-data rows as authoritative only when review_status=CONFIRMED",
+    "Keep the Alpha Super Agent read-only",
+    "Do not upload a generated package into Alpha unless validation_report.status=PASS"
+  ]
+}
