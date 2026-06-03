@@ -1,8 +1,3 @@
-# Local/raw data and generated packages may contain internal operational data or PII.
-RawData/
-output/
-input/*.xlsx
-
 # Python caches and local tooling state.
 __pycache__/
 *.py[cod]
