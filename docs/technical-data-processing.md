@@ -8,7 +8,7 @@ Alpha Knowledge Package. Nguồn triển khai chính nằm trong
 ## 1. Mục tiêu pipeline
 
 Pipeline đọc ba raw export trong `01-RawData/`, tùy chọn đọc master data trong
-`input/it-operations-master-data-template.xlsx`, sau đó sinh package tại
+`03-Data clean logic/reference doc/it-operations-master-data-template.xlsx`, sau đó sinh package tại
 `02-Output/alpha-knowledge-package/`.
 
 Nguyên tắc xử lý quan trọng:
@@ -482,7 +482,7 @@ ticket_period_end = 2026-05-19T17:54:47
 Optional input:
 
 ```text
-input/it-operations-master-data-template.xlsx
+03-Data clean logic/reference doc/it-operations-master-data-template.xlsx
 ```
 
 Adapter:

@@ -14,7 +14,7 @@ from openpyxl.worksheet.table import Table, TableStyleInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "01-RawData"
-OUTPUT_DIR = ROOT / "input"
+OUTPUT_DIR = ROOT / "03-Data clean logic" / "reference doc"
 OUTPUT_FILE = OUTPUT_DIR / "it-operations-master-data-template.xlsx"
 
 INCIDENT_FILE = (

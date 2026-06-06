@@ -25,7 +25,7 @@ Add a CLI:
 ```powershell
 python scripts/build_alpha_knowledge_package.py `
   --raw-dir 01-RawData `
-  --master-data input/it-operations-master-data-template.xlsx `
+  --master-data "03-Data clean logic/reference doc/it-operations-master-data-template.xlsx" `
   --output-dir 02-Output/alpha-knowledge-package
 ```
 

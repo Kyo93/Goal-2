@@ -32,10 +32,10 @@ python -m pip install -r requirements.txt
 
 Converter vẫn hỗ trợ fallback Zabbix Excel `01-RawData/zbx_problems_export.xlsx` nếu không có thư mục `Export zabbix/`.
 
-Input tùy chọn:
+Reference data tùy chọn:
 
 ```text
-input/it-operations-master-data-template.xlsx
+03-Data clean logic/reference doc/it-operations-master-data-template.xlsx
 ```
 
 Chỉ row có `review_status=CONFIRMED` trong master data được coi là fact. Các row `NEEDS_REVIEW`, `DRAFT`, hoặc `REJECTED` không được dùng làm mapping chính thức.
@@ -45,15 +45,15 @@ Chỉ row có `review_status=CONFIRMED` trong master data được coi là fact.
 ```powershell
 python scripts\build_alpha_knowledge_package.py `
   --raw-dir 01-RawData `
-  --master-data input\it-operations-master-data-template.xlsx `
   --output-dir 02-Output\alpha-knowledge-package
 ```
 
-Có thể bỏ `--master-data` khi chưa có workbook đã review:
+Nếu đã review workbook và có row `CONFIRMED`, có thể truyền thêm:
 
 ```powershell
 python scripts\build_alpha_knowledge_package.py `
   --raw-dir 01-RawData `
+  --master-data "03-Data clean logic\reference doc\it-operations-master-data-template.xlsx" `
   --output-dir 02-Output\alpha-knowledge-package
 ```
 

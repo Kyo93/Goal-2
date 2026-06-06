@@ -28,9 +28,16 @@ python -m pip install -r requirements.txt
 
 python scripts\build_alpha_knowledge_package.py `
   --raw-dir 01-RawData `
-  --master-data input\it-operations-master-data-template.xlsx `
   --output-dir 02-Output\alpha-knowledge-package
 ```
+
+Optional reviewed reference data lives at:
+
+```text
+03-Data clean logic/reference doc/it-operations-master-data-template.xlsx
+```
+
+Only pass it as `--master-data` after relevant rows are reviewed and marked `CONFIRMED`.
 
 Chỉ upload Markdown lên Alpha Knowledge khi:
 

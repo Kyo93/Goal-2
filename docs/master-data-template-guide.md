@@ -2,7 +2,7 @@
 
 ## File
 
-Use `input/it-operations-master-data-template.xlsx`.
+Use `03-Data clean logic/reference doc/it-operations-master-data-template.xlsx`.
 
 The workbook was seeded from:
 
