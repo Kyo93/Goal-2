@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import re
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Any
 
 import requests
@@ -22,6 +24,7 @@ DEFAULT_PAGE = 1
 DEFAULT_PAGE_SIZE = 1000
 DEFAULT_INCLUDE_ROWS = True
 DEFAULT_INCLUDE_ACTION_COUNT = False
+DEFAULT_IMPACT_ONLY = False
 DEFAULT_VERIFY_SSL = False
 DEFAULT_TIMEOUT_SECONDS = 30
 DEFAULT_RETRY_TOTAL = 3
@@ -37,6 +40,40 @@ SEVERITY_TO_ID = {
 }
 ID_TO_SEVERITY = {str(value): key.title() for key, value in SEVERITY_TO_ID.items()}
 BANGKOK_TZ = timezone(timedelta(hours=7))
+
+NORMALIZED_CSV_FIELDS = [
+    "event_id",
+    "r_event_id",
+    "trigger_id",
+    "source",
+    "host_group",
+    "host_group_id",
+    "export_month",
+    "exported_at_local",
+    "severity",
+    "severity_id",
+    "status",
+    "acknowledged",
+    "host",
+    "host_id",
+    "site_code",
+    "problem_raw",
+    "problem_signature",
+    "opdata",
+    "started_at_local",
+    "started_at_utc",
+    "recovered_at_local",
+    "recovered_at_utc",
+    "duration_seconds",
+    "duration_text",
+    "action_count",
+    "domain",
+    "component",
+    "scope",
+    "tags_text",
+    "tags_json",
+    "evidence_label",
+]
 
 
 class ZabbixToolError(RuntimeError):
@@ -174,6 +211,78 @@ def _normalize_problem_signature(problem: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _impact_family(row: dict[str, Any]) -> str:
+    signature = str(row.get("problem_signature", "")).lower()
+    host = str(row.get("host", "")).lower()
+    component = str(row.get("component", "")).lower()
+    domain = str(row.get("domain", "")).lower()
+    joined = " ".join([signature, host, component, domain])
+    if "http monitoring" in signature:
+        return "HTTP monitoring"
+    if any(
+        term in joined
+        for term in [
+            "icmp",
+            "unavailable",
+            "unreachable",
+            "interface down",
+            "link down",
+            "port down",
+            "packet loss",
+            "latency",
+            " is down",
+            "down!",
+            "gateway",
+            "tunnel",
+            "vpn",
+            "bgp",
+        ]
+    ):
+        return "Network reachability"
+    if any(term in joined for term in ["ups", "battery", "frequency", "power"]):
+        return "Power/UPS"
+    if any(term in joined for term in ["active checks", "zabbix agent", "nodata"]):
+        return "Zabbix agent/active check"
+    if any(term in joined for term in ["restarted", "uptime"]):
+        return "Host restart/uptime"
+    if any(term in joined for term in ["cpu", "memory", "disk", "filesystem", "space"]):
+        return "Resource/capacity"
+    return "Other"
+
+
+def _is_impact_candidate(row: dict[str, Any]) -> bool:
+    family = _impact_family(row)
+    duration_seconds = int(row.get("duration_seconds") or 0)
+    severity_id = int(row.get("severity_id") or 0)
+    if family in {"Network reachability", "Power/UPS"}:
+        return True
+    if family == "HTTP monitoring":
+        return duration_seconds >= 300 or severity_id >= 4
+    if family in {"Zabbix agent/active check", "Host restart/uptime"}:
+        return True
+    if family == "Resource/capacity":
+        return duration_seconds >= 1800 or severity_id >= 5
+    return False
+
+
+def _write_normalized_csv(rows: list[dict[str, Any]], output_csv: str | Path) -> str:
+    path = Path(output_csv)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=NORMALIZED_CSV_FIELDS, extrasaction="ignore")
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(
+                {
+                    key: json.dumps(value, ensure_ascii=False, sort_keys=True)
+                    if isinstance(value, (dict, list))
+                    else value
+                    for key, value in row.items()
+                }
+            )
+    return str(path)
+
+
 def _tag_map(tags: list[dict[str, Any]]) -> dict[str, list[str]]:
     result: dict[str, list[str]] = {}
     for item in tags or []:
@@ -255,6 +364,8 @@ def _main_impl(
     page_size: int = DEFAULT_PAGE_SIZE,
     include_rows: bool = DEFAULT_INCLUDE_ROWS,
     include_action_count: bool = DEFAULT_INCLUDE_ACTION_COUNT,
+    impact_only: bool = DEFAULT_IMPACT_ONLY,
+    output_csv: str | None = None,
     verify_ssl: bool = DEFAULT_VERIFY_SSL,
     timeout_seconds: int = DEFAULT_TIMEOUT_SECONDS,
     retry_total: int = DEFAULT_RETRY_TOTAL,
@@ -283,6 +394,8 @@ def _main_impl(
     page_size = int(raw_payload.get("page_size", page_size))
     include_rows = _to_bool(raw_payload.get("include_rows", include_rows))
     include_action_count = _to_bool(raw_payload.get("include_action_count", include_action_count))
+    impact_only = _to_bool(raw_payload.get("impact_only", impact_only))
+    output_csv = raw_payload.get("output_csv") or raw_payload.get("output_file") or output_csv
     verify_ssl = _to_bool(raw_payload.get("verify_ssl", verify_ssl))
     timeout_seconds = int(raw_payload.get("timeout_seconds", timeout_seconds))
     retry_total = int(raw_payload.get("retry_total", retry_total))
@@ -336,10 +449,15 @@ def _main_impl(
 
     exported_at_local = datetime.now(tz=BANGKOK_TZ).isoformat(timespec="seconds")
     rows = [_normalize_event(event, host_group, group_id, month, recovery_by_id, exported_at_local) for event in events]
+    unfiltered_total_rows = len(rows)
+    if impact_only:
+        rows = [row for row in rows if _is_impact_candidate(row)]
     total_rows = len(rows)
     start_index = (page - 1) * page_size if page_size else 0
     end_index = start_index + page_size if page_size else total_rows
     paged_rows = rows[start_index:end_index] if include_rows else []
+
+    csv_path = _write_normalized_csv(rows, output_csv) if output_csv else ""
 
     return {
         "ok": True,
@@ -351,6 +469,8 @@ def _main_impl(
             "period_start_local": period_start,
             "period_end_local": period_end,
             "severities": severities,
+            "impact_only": impact_only,
+            "unfiltered_total_rows": unfiltered_total_rows,
             "total_rows": total_rows,
             "resolved_rows": sum(1 for row in rows if row["status"] == "RESOLVED"),
             "problem_rows": sum(1 for row in rows if row["status"] == "PROBLEM"),
@@ -361,6 +481,7 @@ def _main_impl(
             "truncated": include_rows and end_index < total_rows,
             "next_page": page + 1 if include_rows and end_index < total_rows else None,
             "include_action_count": include_action_count,
+            "output_csv": csv_path,
             "verify_ssl": verify_ssl,
             "retry_total": retry_total,
             "retry_backoff_seconds": retry_backoff_seconds,
@@ -387,6 +508,8 @@ def _cli() -> int:
     parser.add_argument("--page-size", type=int, default=DEFAULT_PAGE_SIZE)
     parser.add_argument("--no-rows", action="store_true")
     parser.add_argument("--include-action-count", action="store_true")
+    parser.add_argument("--impact-only", action="store_true")
+    parser.add_argument("--output-csv", default="")
     parser.add_argument("--verify-ssl", action="store_true")
     parser.add_argument("--timeout-seconds", type=int, default=DEFAULT_TIMEOUT_SECONDS)
     parser.add_argument("--retry-total", type=int, default=DEFAULT_RETRY_TOTAL)
@@ -402,6 +525,8 @@ def _cli() -> int:
         page_size=args.page_size,
         include_rows=not args.no_rows,
         include_action_count=args.include_action_count,
+        impact_only=args.impact_only,
+        output_csv=args.output_csv or None,
         verify_ssl=args.verify_ssl,
         timeout_seconds=args.timeout_seconds,
         retry_total=args.retry_total,

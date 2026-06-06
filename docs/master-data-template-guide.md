@@ -6,9 +6,9 @@ Use `input/it-operations-master-data-template.xlsx`.
 
 The workbook was seeded from:
 
-- `RawData/IssueReport.xlsx`
-- `RawData/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx`
-- `RawData/zbx_problems_export.xlsx`
+- `01-RawData/Ticket/IssueReport.xlsx`
+- `01-RawData/ISP Incident Report/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx`
+- `01-RawData/zbx_problems_export.xlsx`
 
 Seed values are not automatically authoritative. Confirm each row before the PoC treats it as master data.
 

@@ -24,9 +24,9 @@ Add a CLI:
 
 ```powershell
 python scripts/build_alpha_knowledge_package.py `
-  --raw-dir RawData `
+  --raw-dir 01-RawData `
   --master-data input/it-operations-master-data-template.xlsx `
-  --output-dir output/alpha-knowledge-package
+  --output-dir 02-Output/alpha-knowledge-package
 ```
 
 The master-data argument is optional. Only rows with `review_status=CONFIRMED` affect factual mappings.
@@ -164,7 +164,7 @@ Compute in Python:
 Generate:
 
 ```text
-output/alpha-knowledge-package/
+02-Output/alpha-knowledge-package/
   manifest.json
   validation_report.json
   validation_report.md

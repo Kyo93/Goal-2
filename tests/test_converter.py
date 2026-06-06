@@ -25,6 +25,7 @@ from itops_alpha.converter import (  # noqa: E402
     load_issue_tickets,
     load_zabbix_alerts,
     normalize_problem_signature,
+    query_operational_timeline,
     source_ref,
 )
 
@@ -193,6 +194,195 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(signal["event_type"], "ZABBIX_ALERT_PATTERN")
         self.assertEqual(signal["related_incident_ids"], ["INC-3"])
 
+        query = query_operational_timeline(
+            timeline,
+            site_code="ccw",
+            from_at="2026-05-19T16:00:00",
+            to_at="2026-05-19T16:50:00",
+        )
+        self.assertEqual(query["matched_event_count"], 2)
+        self.assertEqual(
+            query["counts_by_episode_type"],
+            {"CONFIRMED_INCIDENT": 1, "ZABBIX_ALERT_PATTERN": 1},
+        )
+        self.assertEqual(
+            [record["event_id"] for record in query["records"]],
+            ["EVT-INC-3", "EVT-ALP-MATCH"],
+        )
+
+    def test_operational_timeline_query_excludes_non_overlapping_ranges(self):
+        timeline = [
+            {
+                "episode_id": "OPS-INC-1",
+                "episode_type": "CONFIRMED_INCIDENT",
+                "started_at": "2026-05-19T10:00:00",
+                "ended_at": "2026-05-19T11:00:00",
+                "site_code": "MS2",
+            },
+            {
+                "episode_id": "OPS-INC-2",
+                "episode_type": "CONFIRMED_INCIDENT",
+                "started_at": "2026-05-19T10:30:00",
+                "ended_at": "UNKNOWN",
+                "site_code": "SNT",
+            },
+        ]
+
+        same_site = query_operational_timeline(
+            timeline,
+            site_code="MS2",
+            from_at="2026-05-19T10:30:00",
+            to_at="2026-05-19T12:00:00",
+        )
+        wrong_site = query_operational_timeline(
+            timeline,
+            site_code="SNT",
+            from_at="2026-05-19T11:30:00",
+            to_at="2026-05-19T12:00:00",
+        )
+
+        self.assertEqual(same_site["matched_event_count"], 1)
+        self.assertEqual(wrong_site["matched_event_count"], 0)
+
+    def test_operational_timeline_query_uses_monitoring_milestones_not_long_pattern_span(self):
+        timeline = [
+            {
+                "episode_id": "OPS-ALP-OLD",
+                "episode_type": "MONITORING_SIGNAL",
+                "started_at": "2026-04-01T00:00:00",
+                "ended_at": "2026-05-27T04:30:00",
+                "site_code": "SWS",
+                "milestones": [
+                    {
+                        "at": "2026-04-01T00:00:00",
+                        "type": "ZABBIX_DETECTED",
+                        "message": "Old alert.",
+                    },
+                    {
+                        "at": "2026-05-27T04:30:00",
+                        "type": "SIGNAL_RECOVERED",
+                        "message": "Recovered outside query.",
+                    },
+                ],
+            },
+            {
+                "episode_id": "OPS-ALP-MATCH",
+                "episode_type": "MONITORING_SIGNAL",
+                "started_at": "2026-04-29T19:33:48",
+                "ended_at": "2026-05-27T00:54:48",
+                "site_code": "SWS",
+                "milestones": [
+                    {
+                        "at": "2026-05-27T00:48:18",
+                        "type": "ALERTS_GROUPED",
+                        "message": "Grouped raw alerts.",
+                    }
+                ],
+            },
+        ]
+
+        query = query_operational_timeline(
+            timeline,
+            site_code="SWS",
+            from_at="2026-05-27T00:00:00",
+            to_at="2026-05-27T02:00:00",
+        )
+
+        self.assertEqual(query["matched_event_count"], 1)
+        self.assertEqual(query["records"][0]["episode_id"], "OPS-ALP-MATCH")
+
+    def test_operational_timeline_query_summarizes_zabbix_patterns_by_family(self):
+        raw_alerts = [
+            {
+                "alert_id": "ZBX-NET-OLD",
+                "source_ref": "zabbix.csv#row-1",
+                "seen_at": "2026-04-30T23:50:00",
+                "recovered_at": "2026-04-30T23:55:00",
+                "status": "RESOLVED",
+                "site_code": "CPL",
+                "host": "VNMCPL-PNWFW01",
+                "severity": "High",
+                "problem": "VNMCPL-PNWFW01 is down!",
+                "problem_signature": "vnmcpl-pnwfw01 is down!",
+                "domain": "network",
+                "component": "firewall",
+                "scope": "connectivity",
+            },
+            {
+                "alert_id": "ZBX-NET-1",
+                "source_ref": "zabbix.csv#row-2",
+                "seen_at": "2026-05-17T16:38:17",
+                "recovered_at": "2026-05-17T16:41:19",
+                "status": "RESOLVED",
+                "site_code": "CPL",
+                "host": "VNMCPL-PNWFW01",
+                "severity": "High",
+                "problem": "VNMCPL-PNWFW01 is down!",
+                "problem_signature": "vnmcpl-pnwfw01 is down!",
+                "domain": "network",
+                "component": "firewall",
+                "scope": "connectivity",
+            },
+            {
+                "alert_id": "ZBX-NET-2",
+                "source_ref": "zabbix.csv#row-3",
+                "seen_at": "2026-05-17T16:39:05",
+                "recovered_at": "2026-05-17T16:41:04",
+                "status": "RESOLVED",
+                "site_code": "CPL",
+                "host": "VNMCPL-PNWFW01",
+                "severity": "High",
+                "problem": "VNMCPL-PNWFW01 is down!",
+                "problem_signature": "vnmcpl-pnwfw01 is down!",
+                "domain": "network",
+                "component": "firewall",
+                "scope": "connectivity",
+            },
+            {
+                "alert_id": "ZBX-HTTP-1",
+                "source_ref": "zabbix.csv#row-4",
+                "seen_at": "2026-05-31T06:01:40",
+                "recovered_at": "2026-05-31T06:07:40",
+                "status": "RESOLVED",
+                "site_code": "CPL",
+                "host": "VNMCPL-VSSPM01",
+                "severity": "Warning",
+                "problem": "Jira HTTP monitoring",
+                "problem_signature": "jira http monitoring",
+                "domain": "application",
+                "component": "http",
+                "scope": "service",
+            },
+        ]
+        stories = build_operational_stories(
+            incidents=[],
+            alert_patterns=group_alert_patterns(raw_alerts),
+            tickets=[],
+            recurrence=[],
+            alerts=raw_alerts,
+        )
+
+        query = query_operational_timeline(
+            stories,
+            site_code="CPL",
+            from_at="2026-05-01T00:00:00",
+            to_at="2026-06-01T00:00:00",
+        )
+
+        self.assertEqual(query["matched_event_count"], 2)
+        self.assertEqual(query["monitoring_family_summary"][0]["pattern_family"], "Network reachability")
+        self.assertEqual(query["monitoring_family_summary"][0]["query_alert_count"], 2)
+        self.assertEqual(query["monitoring_family_summary"][0]["investigation_priorities"], ["HIGH"])
+        self.assertEqual(query["monitoring_family_summary"][1]["pattern_family"], "HTTP monitoring")
+        network_record = next(
+            record
+            for record in query["records"]
+            if record["problem_signature"] == "vnmcpl-pnwfw01 is down!"
+        )
+        self.assertEqual(network_record["query_alert_count"], 2)
+        self.assertEqual(network_record["query_first_seen_at"], "2026-05-17T16:38:17")
+        self.assertEqual(network_record["query_last_seen_at"], "2026-05-17T16:39:05")
+
     def test_operational_timeline_uses_event_level_alert_overlap(self):
         incidents = [
             {
@@ -290,6 +480,90 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(mdn["related_alert_pattern_ids"], [])
         self.assertEqual(mbd["related_alert_pattern_ids"], ["ALP-CDCB1323E9CB"])
 
+    def test_operational_story_uses_matching_alert_event_not_pattern_first_seen(self):
+        incidents = [
+            {
+                "incident_id": "INC-53",
+                "source_ref": "incident.xlsx#main:row-53",
+                "submitted_at": "2026-05-27T08:25:02",
+                "started_at": "2026-05-27T00:04:00",
+                "resolved_at": "2026-05-27T01:00:00",
+                "site_code": "SWS",
+                "isp": "FPT",
+                "incident_type": "Fiber optic cable failure",
+                "description": "Fiber attenuation.",
+                "root_cause": "Suy hao cap ha tang",
+                "resolution_status": "RESOLVED",
+            }
+        ]
+        alerts = [
+            {
+                "alert_id": "ALT-OLD",
+                "source_ref": "zabbix.csv#csv:row-10",
+                "seen_at": "2026-04-29T19:33:48",
+                "recovered_at": "2026-04-29T19:40:48",
+                "status": "RESOLVED",
+                "severity": "High",
+                "host": "VNMSWS-PSSJP1",
+                "site_code": "SWS",
+                "problem": "Windows: Host has been restarted (uptime < 10m)",
+                "problem_signature": "windows: host has been restarted (uptime < <value>)",
+                "duration": "7m",
+                "ack": "No",
+                "actions": "UNKNOWN",
+                "domain": "os",
+                "component": "system",
+                "scope": "notice",
+                "tags": "{}",
+                "evidence_label": "SOURCE FACT",
+            },
+            {
+                "alert_id": "ALT-MATCH",
+                "source_ref": "zabbix.csv#csv:row-1001",
+                "seen_at": "2026-05-27T00:48:18",
+                "recovered_at": "2026-05-27T00:54:48",
+                "status": "RESOLVED",
+                "severity": "High",
+                "host": "VNMSWS-PSSJP1",
+                "site_code": "SWS",
+                "problem": "Windows: Host has been restarted (uptime < 10m)",
+                "problem_signature": "windows: host has been restarted (uptime < <value>)",
+                "duration": "6m 30s",
+                "ack": "No",
+                "actions": "UNKNOWN",
+                "domain": "os",
+                "component": "system",
+                "scope": "notice",
+                "tags": "{}",
+                "evidence_label": "SOURCE FACT",
+            },
+        ]
+        patterns = group_alert_patterns(alerts)
+        stories = build_operational_stories(
+            incidents,
+            patterns,
+            tickets=[],
+            recurrence=[],
+            alerts=alerts,
+        )
+
+        incident_story = next(story for story in stories if story["episode_id"] == "OPS-INC-53")
+        zabbix_milestones = [
+            milestone
+            for milestone in incident_story["milestones"]
+            if milestone["type"] == "ZABBIX_CONTEXT"
+        ]
+
+        self.assertEqual(incident_story["signal_assessment"], "TIME_ALIGNED_CONTEXT_ONLY")
+        self.assertEqual(incident_story["related_alert_pattern_ids"], [])
+        self.assertEqual(
+            incident_story["contextual_alert_pattern_ids"],
+            [patterns[0]["alert_pattern_id"]],
+        )
+        self.assertEqual(len(zabbix_milestones), 1)
+        self.assertEqual(zabbix_milestones[0]["at"], "2026-05-27T00:48:18")
+        self.assertNotIn("2026-04-29", zabbix_milestones[0]["message"])
+
     def test_operational_stories_render_sequence_conclusion_and_explicit_gaps(self):
         incidents = [
             {
@@ -350,6 +624,113 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(signal["signal_assessment"], "RELATED_TO_CONFIRMED_INCIDENT")
         self.assertIn("Zabbix detected", signal["milestones"][0]["message"])
         self.assertIn("Grouped 2 raw alerts", " ".join(item["message"] for item in signal["milestones"]))
+
+    def test_fiber_incident_keeps_unrelated_same_window_zabbix_as_context_only(self):
+        incidents = [
+            {
+                "incident_id": "INC-53",
+                "source_ref": "incident.xlsx#main:row-53",
+                "submitted_at": "2026-05-27T08:25:02",
+                "started_at": "2026-05-27T00:04:00",
+                "resolved_at": "2026-05-27T01:00:00",
+                "site_code": "SWS",
+                "isp": "VNPT",
+                "incident_type": "Fiber optic cable failure",
+                "description": "Service degradation caused by fiber infrastructure attenuation.",
+                "root_cause": "Suy hao cáp hạ tầng.",
+                "resolution_status": "RESOLVED",
+            }
+        ]
+        raw_alerts = [
+            {
+                "alert_id": "ZBX-1",
+                "source_ref": "zabbix.csv#row-2",
+                "seen_at": "2026-05-27T00:48:18",
+                "recovered_at": "2026-05-27T00:54:48",
+                "status": "RESOLVED",
+                "site_code": "SWS",
+                "host": "VNMSWS-PSSJP1",
+                "severity": "Warning",
+                "problem": "Windows: Host has been restarted (uptime < 10m)",
+                "problem_signature": "windows: host has been restarted (uptime < <value>)",
+                "domain": "server",
+                "component": "windows",
+                "scope": "host",
+            }
+        ]
+        alert_patterns = group_alert_patterns(raw_alerts)
+        pattern_id = alert_patterns[0]["alert_pattern_id"]
+
+        stories = build_operational_stories(
+            incidents, alert_patterns, tickets=[], recurrence=[], alerts=raw_alerts
+        )
+        incident = next(story for story in stories if story["episode_id"] == "OPS-INC-53")
+        signal = next(story for story in stories if story["episode_id"] == f"OPS-{pattern_id}")
+
+        self.assertEqual(incident["signal_assessment"], "TIME_ALIGNED_CONTEXT_ONLY")
+        self.assertEqual(incident["evidence_coverage"], "INCIDENT FORM + ZABBIX CONTEXT")
+        self.assertEqual(incident["related_alert_pattern_ids"], [])
+        self.assertEqual(incident["supporting_alert_pattern_ids"], [])
+        self.assertEqual(incident["contextual_alert_pattern_ids"], [pattern_id])
+        self.assertIn("does not directly support", incident["zabbix_relevance_basis"])
+        context_milestone = next(
+            milestone
+            for milestone in incident["milestones"]
+            if milestone["type"] == "ZABBIX_CONTEXT"
+        )
+        self.assertEqual(context_milestone["at"], "2026-05-27T00:48:18")
+        self.assertEqual(signal["signal_assessment"], "TIME_ALIGNED_CONTEXT_ONLY")
+        self.assertEqual(signal["related_incident_ids"], [])
+        self.assertEqual(signal["contextual_incident_ids"], ["INC-53"])
+        self.assertEqual(signal["supporting_alert_pattern_ids"], [])
+        self.assertEqual(signal["contextual_alert_pattern_ids"], [pattern_id])
+
+    def test_fiber_incident_keeps_network_relevant_zabbix_as_supporting_evidence(self):
+        incidents = [
+            {
+                "incident_id": "INC-54",
+                "source_ref": "incident.xlsx#main:row-54",
+                "submitted_at": "2026-05-28T08:00:00",
+                "started_at": "2026-05-28T00:10:00",
+                "resolved_at": "2026-05-28T01:00:00",
+                "site_code": "MBD",
+                "isp": "VNPT",
+                "incident_type": "Fiber optic cable failure",
+                "description": "MBD users lost connectivity due to fiber cable failure.",
+                "root_cause": "Fiber optic cable failure.",
+                "resolution_status": "RESOLVED",
+            }
+        ]
+        raw_alerts = [
+            {
+                "alert_id": "ZBX-2",
+                "source_ref": "zabbix.csv#row-3",
+                "seen_at": "2026-05-28T00:12:00",
+                "recovered_at": "2026-05-28T00:50:00",
+                "status": "RESOLVED",
+                "site_code": "MBD",
+                "host": "VNMMBD-PNWRT01",
+                "severity": "High",
+                "problem": "Unavailable by ICMP ping",
+                "problem_signature": "unavailable by icmp ping",
+                "domain": "network",
+                "component": "wan",
+                "scope": "connectivity",
+            }
+        ]
+        alert_patterns = group_alert_patterns(raw_alerts)
+        pattern_id = alert_patterns[0]["alert_pattern_id"]
+
+        stories = build_operational_stories(
+            incidents, alert_patterns, tickets=[], recurrence=[], alerts=raw_alerts
+        )
+        incident = next(story for story in stories if story["episode_id"] == "OPS-INC-54")
+
+        self.assertEqual(incident["signal_assessment"], "RELATED_TO_CONFIRMED_INCIDENT")
+        self.assertEqual(incident["evidence_coverage"], "ZABBIX + INCIDENT FORM")
+        self.assertEqual(incident["related_alert_pattern_ids"], [pattern_id])
+        self.assertEqual(incident["supporting_alert_pattern_ids"], [pattern_id])
+        self.assertEqual(incident["contextual_alert_pattern_ids"], [])
 
     def test_monitoring_story_does_not_claim_user_impact_from_unrelated_same_site_ticket(self):
         stories = build_operational_stories(
@@ -419,6 +800,7 @@ class ConverterTest(unittest.TestCase):
             )
             required = {
                 "manifest.json",
+                "operational_timeline.json",
                 "validation_report.json",
                 "validation_report.md",
                 "00_report_context.md",
@@ -439,6 +821,14 @@ class ConverterTest(unittest.TestCase):
             self.assertIn(
                 "master_data.xlsx",
                 {item["filename"] for item in manifest["inputs"]},
+            )
+            timeline_payload = json.loads(
+                (output_dir / "operational_timeline.json").read_text("utf-8")
+            )
+            self.assertEqual(timeline_payload["record_type"], "OPERATIONAL_TIMELINE_COLLECTION")
+            self.assertEqual(
+                timeline_payload["record_count"],
+                package["source_profile"]["operational_timeline_events"],
             )
             workbook = load_workbook(output_dir / "normalized_data.xlsx", read_only=True)
             self.assertEqual(
@@ -461,12 +851,17 @@ class ConverterTest(unittest.TestCase):
             workbook.close()
             timeline_text = (output_dir / "02_operational_timeline.md").read_text("utf-8")
             self.assertIn("# Operational Timeline", timeline_text)
+            self.assertIn("record_type: OPERATIONAL_TIMELINE_EVENT", timeline_text)
+            self.assertIn("site_code:", timeline_text)
             self.assertIn("CONFIRMED_INCIDENT", timeline_text)
             self.assertIn("MONITORING_SIGNAL", timeline_text)
             self.assertIn("### Timeline", timeline_text)
             self.assertIn("### Conclusion", timeline_text)
             self.assertIn("Evidence coverage", timeline_text)
             self.assertIn("Investigation gaps", timeline_text)
+            alert_patterns_text = (output_dir / "04_alert_patterns.md").read_text("utf-8")
+            self.assertIn("Site Pattern Family Summary", alert_patterns_text)
+            self.assertIn("Individual Alert Patterns", alert_patterns_text)
             self.assertIn("Incidents missing RCA", quality_text)
             self.assertIn("Sites without confirmed master-data mapping", quality_text)
 
@@ -493,6 +888,7 @@ class ConverterTest(unittest.TestCase):
                 )
             for filename in [
                 "manifest.json",
+                "operational_timeline.json",
                 "validation_report.json",
                 "validation_report.md",
                 "00_report_context.md",
@@ -513,12 +909,14 @@ class ConverterTest(unittest.TestCase):
 
 class SuppliedRawDataIntegrationTest(unittest.TestCase):
     def test_supplied_raw_data_matches_known_counts_and_patterns(self):
-        raw_dir = ROOT / "RawData"
+        raw_dir = ROOT / "01-RawData"
         incidents = load_incidents(
-            raw_dir / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
+            raw_dir
+            / "ISP Incident Report"
+            / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
         )
         alerts = load_zabbix_alerts(raw_dir / "Export zabbix")
-        tickets = load_issue_tickets(raw_dir / "IssueReport.xlsx")
+        tickets = load_issue_tickets(raw_dir / "Ticket" / "IssueReport.xlsx")
         recurrence = group_incident_recurrence(incidents.records)
         alert_patterns = group_alert_patterns(alerts.records)
         timeline = build_operational_timeline(

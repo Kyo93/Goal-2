@@ -8,9 +8,9 @@ Lệnh build:
 
 ```powershell
 python scripts\build_alpha_knowledge_package.py `
-  --raw-dir RawData `
+  --raw-dir 01-RawData `
   --master-data input\it-operations-master-data-template.xlsx `
-  --output-dir output\alpha-knowledge-package
+  --output-dir 02-Output\alpha-knowledge-package
 ```
 
 ## Automated Gate
@@ -81,8 +81,8 @@ Confirmed-incident user-impact evidence:
 | Status | Incident count |
 | --- | ---: |
 | `CONFIRMED` | 0 |
-| `ESTIMATED` | 5 |
-| `NO_EVIDENCE` | 47 |
+| `POTENTIAL_IMPACT` | 5 |
+| `NO_DIRECT_EVIDENCE` | 47 |
 
 The current raw exports produce no conservative incident-to-Zabbix or direct
 site-explicit ticket correlations. The generated package reports both limitations

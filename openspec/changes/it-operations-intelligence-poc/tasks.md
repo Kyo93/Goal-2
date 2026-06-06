@@ -82,7 +82,7 @@
 ## 5. Sample Package and Documentation
 
 - [x] 5.1 Generate the Alpha-ready sample package from the supplied raw exports.
-  - Output: `output/alpha-knowledge-package/`.
+  - Output: `02-Output/alpha-knowledge-package/`.
 
 - [x] 5.2 Add a local converter usage guide.
   - Explain regeneration, optional master data, output files, and common validation failures.
@@ -97,14 +97,14 @@
 
 The following steps require an internal Alpha Intelligence account and are documented in `docs/build-on-alpha-intelligence.md`.
 
-- [ ] 6.1 Create the `IT Operations Historical Intelligence` Knowledge Expert.
+- [x] 6.1 Create the `IT Operations Historical Intelligence` Knowledge Expert.
   - Upload generated Markdown files manually for the PoC.
 
-- [ ] 6.2 Create the `IT Operations Investigation Assistant` Super Agent.
+- [x] 6.2 Create the `IT Operations Investigation Assistant` Super Agent.
   - Attach the Expert and apply the instruction template in `specs/alpha-super-agent-setup.md`.
   - Use Inspect Mode during validation.
 
-- [ ] 6.3 Run validation prompts.
+- [x] 6.3 Run validation prompts.
   - Confirm the agent distinguishes incidents from alerts.
   - Confirm it cites retrieved record IDs and states limitations.
 
@@ -114,7 +114,9 @@ The following steps require an internal Alpha Intelligence account and are docum
 - [x] 7.2 Generate the sample package from a clean output directory.
 - [x] 7.3 Verify the sample package against expected counts.
 - [x] 7.4 Confirm `validation_report.md` status is `PASS` before Alpha upload.
-- [ ] 7.5 Record any Alpha-side limitations discovered during validation.
+- [x] 7.5 Record any Alpha-side limitations discovered during validation.
+  - Alpha-side validation passed for the six required prompts.
+  - No blocker was reported before moving to processing-tool automation.
 
 ## 8. Timeline-First Investigation Upgrade
 

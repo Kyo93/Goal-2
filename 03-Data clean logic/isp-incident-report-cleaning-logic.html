@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ISP Incident Report Data Cleaning Logic</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #5d697f;
+      --line: #d8deea;
+      --blue: #2557a7;
+      --green: #1b7a53;
+      --amber: #a96700;
+      --red: #a73737;
+      --slate: #334155;
+      --code: #0f172a;
+      --soft-blue: #eaf1ff;
+      --soft-green: #e8f6ef;
+      --soft-amber: #fff3dc;
+      --soft-red: #fdecec;
+      --soft-slate: #eef2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+    }
+
+    header {
+      padding: 28px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 8px 0 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 900px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 6px 6px 0;
+      border: 1px solid transparent;
+    }
+
+    .tag.source {
+      background: var(--soft-green);
+      color: var(--green);
+      border-color: #b9dfcd;
+    }
+
+    .tag.computed {
+      background: var(--soft-blue);
+      color: var(--blue);
+      border-color: #cadcff;
+    }
+
+    .tag.warn {
+      background: var(--soft-amber);
+      color: var(--amber);
+      border-color: #f0d4a1;
+    }
+
+    .tag.stop {
+      background: var(--soft-red);
+      color: var(--red);
+      border-color: #f2c8c8;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 8px;
+    }
+
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 128px;
+      position: relative;
+    }
+
+    .step::after {
+      content: ">";
+      position: absolute;
+      right: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .step:last-child::after {
+      content: "";
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 14px 0 22px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3fb;
+      color: #22304b;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    pre {
+      background: var(--code);
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 14px;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 12px 0 20px;
+    }
+
+    code {
+      color: #0f3b76;
+      background: #eef4ff;
+      border: 1px solid #d7e5ff;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      border: 0;
+      padding: 0;
+    }
+
+    .note {
+      border-left: 4px solid var(--blue);
+      background: var(--soft-blue);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .warning {
+      border-left: 4px solid var(--amber);
+      background: var(--soft-amber);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .decision {
+      border-left: 4px solid var(--green);
+      background: var(--soft-green);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .grid.two,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .step::after {
+        content: "";
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>ISP Incident Report Data Cleaning Logic</h1>
+      <p class="subtitle">
+        Tài liệu mô tả cách xử lý ISP Incident Report trong Alpha Intelligent:
+        từ raw Google Sheet/CSV/XLSX thành confirmed incident records, Markdown file
+        <strong>02_confirmed_incidents.md</strong>, và JSON sạch để connector/query workflow dùng về sau.
+      </p>
+    </header>
+
+    <section>
+      <h2>1. Vai trò của ISP Incident Report</h2>
+      <div class="decision">
+        <strong>ISP Incident Report là source of truth cho confirmed incident.</strong>
+        Nếu một sự kiện nằm trong ISP Incident Report hợp lệ, nó được coi là
+        <code>CONFIRMED_INCIDENT</code>. Zabbix alert và ITcenter ticket chỉ bổ sung context hoặc user evidence,
+        không tự thay thế nguồn xác nhận này.
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Confirmed incident</h3>
+          <p>Nguồn chính để xác định incident thật, thời điểm bắt đầu, thời điểm khôi phục, loại lỗi và RCA.</p>
+        </div>
+        <div class="card">
+          <h3>Evidence priority</h3>
+          <p>Khi thiếu/mâu thuẫn dữ liệu, ưu tiên ISP Incident Report, sau đó ITcenter Ticket, rồi Zabbix Alert.</p>
+        </div>
+        <div class="card">
+          <h3>Knowledge-ready</h3>
+          <p>Output Markdown dùng để upload Knowledge, còn JSON dùng cho connector và query workflow.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Luồng xử lý</h2>
+      <div class="flow" aria-label="ISP incident processing flow">
+        <div class="step">
+          <strong>1. Raw source</strong>
+          Google Sheet CSV, uploaded CSV, hoặc XLSX form response.
+        </div>
+        <div class="step">
+          <strong>2. Header mapping</strong>
+          Chuẩn hóa header và map alias về schema chuẩn.
+        </div>
+        <div class="step">
+          <strong>3. Row validation</strong>
+          Parse date/time, site, RCA, severity; reject row lỗi datetime.
+        </div>
+        <div class="step">
+          <strong>4. Normalize</strong>
+          Sinh <code>CONFIRMED_INCIDENT</code> records với evidence/source_ref.
+        </div>
+        <div class="step">
+          <strong>5. Render output</strong>
+          Trả JSON, Markdown, và file payload <code>02_confirmed_incidents.md</code>.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Input contract</h2>
+      <p>Alpha node nhận một trong hai dạng input:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Dạng dữ liệu</th>
+            <th>Khi dùng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>incident_report_body</code></td>
+            <td>CSV body từ HTTP/Google Sheet export</td>
+            <td>Khi Alpha tải Google Sheet dưới dạng CSV.</td>
+          </tr>
+          <tr>
+            <td><code>incident_report_file</code></td>
+            <td>CSV/XLSX uploaded file hoặc file path</td>
+            <td>Khi user upload file vào Alpha workflow.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        Nếu HTTP body là HTML/login page, processor phải trả lỗi rõ:
+        <code>HTTP body looks like HTML/login page; expected CSV export</code>.
+        Không được xử lý HTML thành incident.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Required columns</h2>
+      <p>Các cột sau là schema bắt buộc của incident report:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Vai trò</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Timestamp</code></td><td>Form submission time, dùng làm <code>submitted_at</code>.</td></tr>
+          <tr><td><code>ISP</code></td><td>Provider liên quan, dùng trong recurrence key và context.</td></tr>
+          <tr><td><code>SITE / Location</code></td><td>Parse thành <code>site_code</code> và <code>site_name</code>.</td></tr>
+          <tr><td><code>Incident DATE</code>, <code>Incident TIME</code></td><td>Ghép thành <code>started_at</code>.</td></tr>
+          <tr><td><code>Reporter</code></td><td>Người báo cáo hoặc form reporter.</td></tr>
+          <tr><td><code>Incindent Type</code></td><td>Loại incident. Giữ cả typo gốc để match form hiện tại.</td></tr>
+          <tr><td><code>Severity</code></td><td>Mức độ incident theo form.</td></tr>
+          <tr><td><code>Incident description</code></td><td>Mô tả ngắn sự kiện.</td></tr>
+          <tr><td><code>Initial Cause</code></td><td>Nguyên nhân ban đầu, giữ field riêng.</td></tr>
+          <tr><td><code>Troubleshooting actions</code></td><td>Hành động xử lý.</td></tr>
+          <tr><td><code>Root Cause</code></td><td>RCA, dùng để phân loại responsibility domain.</td></tr>
+          <tr><td><code>Incident resolution date</code>, <code>Incident resolution time</code></td><td>Ghép thành <code>resolved_at</code>.</td></tr>
+          <tr><td><code>Measures to prevent recurrence of incidents (if any)</code></td><td>Preventive action nếu có.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. Header alias logic</h2>
+      <p>
+        Processor dùng hàm normalize header: lower-case, trim, bỏ ký tự không phải chữ/số.
+        Nhờ vậy các biến thể như <code>site/location</code>, <code>site / location</code>,
+        <code>incident date</code> vẫn được map về cột chuẩn.
+      </p>
+
+      <pre><code>_normalize_header("SITE / Location") -> "sitelocation"
+HEADER_ALIASES["sitelocation"] -> "SITE / Location"</code></pre>
+
+      <div class="note">
+        Form hiện tại có typo <code>Incindent Type</code>. Processor cố ý giữ alias này
+        để không làm hỏng compatibility với Google Sheet đang chạy.
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Row validation và reject rules</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Trường hợp</th>
+            <th>Xử lý</th>
+            <th>Lý do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Blank row</td>
+            <td>Tăng <code>skipped_blank_rows</code></td>
+            <td>Không phải incident.</td>
+          </tr>
+          <tr>
+            <td>Missing header</td>
+            <td>Return error <code>No header row found</code></td>
+            <td>Không thể map schema.</td>
+          </tr>
+          <tr>
+            <td>Missing required columns</td>
+            <td>Return error với danh sách cột thiếu</td>
+            <td>Không xử lý thiếu schema bắt buộc.</td>
+          </tr>
+          <tr>
+            <td>Invalid incident date/time</td>
+            <td>Append vào <code>rejected_rows</code></td>
+            <td>Không có <code>started_at</code> thì không query timeline được.</td>
+          </tr>
+          <tr>
+            <td>Invalid resolution date/time</td>
+            <td>Append vào <code>rejected_rows</code></td>
+            <td>Tránh tạo duration/resolution sai.</td>
+          </tr>
+          <tr>
+            <td>Minimal content all blank/UNKNOWN</td>
+            <td>Skip row</td>
+            <td>Tránh tạo incident rỗng.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>7. Normalized incident record</h2>
+      <p>Mỗi row hợp lệ tạo ra một record <code>CONFIRMED_INCIDENT</code>.</p>
+      <pre><code>{
+  "record_type": "CONFIRMED_INCIDENT",
+  "incident_id": "INC-3",
+  "source_ref": "google_sheet_csv:row-3",
+  "submitted_at": "2025-12-03T20:16:57",
+  "started_at": "2025-12-03T19:18:00",
+  "resolved_at": "2025-12-03T19:26:00",
+  "duration_minutes": 8,
+  "site_code": "MS2",
+  "site_name": "Mega SOC - Cu Chi",
+  "isp": "VNPT",
+  "reporter": "Dang Quoc Binh",
+  "incident_type": "High latency",
+  "severity": "Minor",
+  "resolution_status": "RESOLVED",
+  "responsibility_domain": "ISP",
+  "responsibility_basis": "RCA keyword rule: routing",
+  "evidence_label": "SOURCE FACT",
+  "evidence_note": "Incident row 3"
+}</code></pre>
+
+      <div class="note">
+        <code>evidence_label</code> của raw incident row luôn là <code>SOURCE FACT</code>.
+        Các field tính toán như <code>duration_minutes</code> hoặc <code>responsibility_domain</code>
+        cần được hiểu là computed từ source row, không phải user/ticket confirmation.
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Field transformation rules</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Output field</th>
+            <th>Logic</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>incident_id</code></td>
+            <td><code>INC-{row_idx}</code></td>
+            <td>Ổn định theo row number trong sheet/export.</td>
+          </tr>
+          <tr>
+            <td><code>source_ref</code></td>
+            <td><code>google_sheet_csv:row-{row_idx}</code> hoặc <code>{file}:{sheet}#row:{row_idx}</code></td>
+            <td>Dùng để cite nguồn.</td>
+          </tr>
+          <tr>
+            <td><code>started_at</code></td>
+            <td>Ghép <code>Incident DATE</code> + <code>Incident TIME</code></td>
+            <td>Bắt buộc.</td>
+          </tr>
+          <tr>
+            <td><code>resolved_at</code></td>
+            <td>Ghép resolution date/time nếu có</td>
+            <td>Không có thì <code>resolution_status = UNKNOWN</code>.</td>
+          </tr>
+          <tr>
+            <td><code>duration_minutes</code></td>
+            <td>Floor số phút giữa <code>resolved_at</code> và <code>started_at</code>, không âm</td>
+            <td>Ví dụ 8 phút.</td>
+          </tr>
+          <tr>
+            <td><code>site_code</code>, <code>site_name</code></td>
+            <td>Split từ <code>SITE / Location</code></td>
+            <td>Hỗ trợ format <code>MS2 - Mega SOC</code>, <code>MS2 Mega SOC</code>.</td>
+          </tr>
+          <tr>
+            <td><code>description</code></td>
+            <td>Incident description + reporter + submitted timestamp</td>
+            <td><code>Initial Cause</code> không merge vào description nữa, giữ field riêng.</td>
+          </tr>
+          <tr>
+            <td><code>recurrence_key</code></td>
+            <td><code>site_code|isp|incident_type</code> lower-case</td>
+            <td>Dùng để group recurrence sau này.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>9. Responsibility domain classification</h2>
+      <p>
+        <code>responsibility_domain</code> được tính từ <code>Root Cause</code> bằng keyword rule.
+        Đây là phân loại hỗ trợ điều tra, không thay thế RCA gốc.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th>Keyword examples</th>
+            <th>Ví dụ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag computed">ISP</span></td>
+            <td><code>routing</code>, <code>uplink</code>, <code>fiber</code>, <code>cable</code>, <code>provider</code>, <code>vnpt</code>, <code>fpt</code>, <code>cmc</code></td>
+            <td>International routing fluctuations, fiber cable issue.</td>
+          </tr>
+          <tr>
+            <td><span class="tag computed">INHOUSE</span></td>
+            <td><code>local segment</code>, <code>internal</code>, <code>switch</code>, <code>firewall</code>, <code>configuration</code>, <code>wifi controller</code></td>
+            <td>Internal switch/firewall/config issue.</td>
+          </tr>
+          <tr>
+            <td><span class="tag computed">EXTERNAL</span></td>
+            <td><code>electricity</code>, <code>utility</code>, <code>power supply</code>, <code>third-party</code></td>
+            <td>Power/utility related outage.</td>
+          </tr>
+          <tr>
+            <td><span class="tag warn">UNKNOWN</span></td>
+            <td>Không có keyword hoặc RCA blank/unknown</td>
+            <td>Không đủ dữ liệu để classify.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>10. Output contract</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Machine-readable output</h3>
+          <ul>
+            <li><code>json_text</code>: JSON string cho SuperAgent/tool chaining.</li>
+            <li><code>json_result</code>: object chứa records/rejected rows.</li>
+            <li><code>summary</code>: count và upload readiness.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Knowledge-ready output</h3>
+          <ul>
+            <li><code>markdown</code>: nội dung Markdown.</li>
+            <li><code>confirmed_incidents_file</code>: file-like payload tên <code>02_confirmed_incidents.md</code>.</li>
+            <li>Không trả path string thay cho file content.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Summary fields</h3>
+      <pre><code>{
+  "ok": true,
+  "input_rows": 54,
+  "record_count": 54,
+  "rejected_row_count": 0,
+  "skipped_blank_rows": 1,
+  "reconciliation_passed": true,
+  "upload_ready": true
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>11. Markdown file safety</h2>
+      <p>
+        Alpha từng gặp lỗi khi trả dict/path string làm file upload. Vì vậy processor phải trả
+        <code>BytesIO</code> file-like object cho <code>confirmed_incidents_file</code>.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Safety rule</th>
+            <th>Lý do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Write temp file <code>02_confirmed_incidents.md</code></td>
+            <td>Traceability và verify file size.</td>
+          </tr>
+          <tr>
+            <td>Return <code>io.BytesIO(md_bytes)</code></td>
+            <td>Đảm bảo upload node nhận đúng content, không nhận wrapper text nhỏ.</td>
+          </tr>
+          <tr>
+            <td>Set <code>bio.name = "02_confirmed_incidents.md"</code></td>
+            <td>Giúp uploader nhận đúng filename.</td>
+          </tr>
+          <tr>
+            <td>Validate payload byte length</td>
+            <td>Chặn lỗi silent tiny/missing Markdown file.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        Không thay đổi phần <code>_make_markdown_file()</code> nếu không test lại upload Knowledge.
+        Đây là đoạn bảo vệ quan trọng nhất cho file <code>02_confirmed_incidents.md</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2>12. Alpha workflow setup</h2>
+      <p>Workflow hiện tại:</p>
+      <pre><code>Start
+-> Tải Google Sheet / upload file
+-> Chuẩn hóa incident report
+-> Kết quả chuẩn hóa</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Node</th>
+            <th>Input</th>
+            <th>Output cần map</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tải Google Sheet</td>
+            <td>CSV export URL hoặc uploaded file</td>
+            <td><code>body</code> hoặc <code>file</code></td>
+          </tr>
+          <tr>
+            <td>Chuẩn hóa incident report</td>
+            <td><code>incident_report_body</code> hoặc <code>incident_report_file</code></td>
+            <td><code>json_text</code>, <code>markdown</code>, <code>confirmed_incidents_file</code>, <code>summary</code></td>
+          </tr>
+          <tr>
+            <td>Kết quả chuẩn hóa</td>
+            <td>Outputs từ Code Executor</td>
+            <td>Hiển thị JSON/Markdown và lưu file vào Knowledge nếu cần.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>13. Validation checklist</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Expected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Sheet/CSV parse được</td>
+            <td><code>summary.ok = true</code></td>
+          </tr>
+          <tr>
+            <td>Record count baseline</td>
+            <td>Hiện tại Google Sheet mới: <code>record_count = 54</code>, <code>rejected_row_count = 0</code>.</td>
+          </tr>
+          <tr>
+            <td>Required downstream fields</td>
+            <td>Có <code>record_type</code>, <code>duration_minutes</code>, <code>responsibility_domain</code>, <code>evidence_label</code>, <code>source_ref</code>.</td>
+          </tr>
+          <tr>
+            <td>Evidence label</td>
+            <td><code>evidence_label = SOURCE FACT</code>, <code>evidence_note = Incident row N</code>.</td>
+          </tr>
+          <tr>
+            <td>Markdown upload file</td>
+            <td><code>confirmed_incidents_file.name = 02_confirmed_incidents.md</code> và payload byte length bằng Markdown byte length.</td>
+          </tr>
+          <tr>
+            <td>Knowledge upload</td>
+            <td>File lưu lên Knowledge không bị tiny wrapper, mở ra thấy incident records đầy đủ.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>14. Cách SuperAgent nên hiểu ISP Incident Report</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Claim</th>
+            <th>Được phép nói</th>
+            <th>Không được nói</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Incident existence</td>
+            <td>Có confirmed incident nếu nằm trong ISP Incident Report hợp lệ.</td>
+            <td>Không cần Zabbix để xác nhận incident đã tồn tại.</td>
+          </tr>
+          <tr>
+            <td>RCA</td>
+            <td>Dùng <code>root_cause</code> từ incident form và cite source_ref.</td>
+            <td>Không tự tạo RCA mới từ Zabbix/ticket.</td>
+          </tr>
+          <tr>
+            <td>User impact</td>
+            <td>Chỉ nói confirmed nếu có ticket/user evidence hoặc field explicit.</td>
+            <td>Không suy user impact chỉ từ incident type.</td>
+          </tr>
+          <tr>
+            <td>Responsibility</td>
+            <td>Nói là computed classification từ RCA keyword rule.</td>
+            <td>Không coi là hợp đồng/SLA attribution nếu RCA không đủ rõ.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>15. Files liên quan</h2>
+      <ul>
+        <li><code>docs/alpha-incident-processor-node.py</code>: Code Executor node cho Alpha.</li>
+        <li><code>02-Output/alpha-knowledge-package/02_confirmed_incidents.md</code>: Markdown Knowledge output.</li>
+        <li><code>openspec/changes/alpha-processing-tool/tasks.md</code>: Checklist build trên Alpha.</li>
+        <li><code>docs/alpha-workflow-architecture.md</code>: Kiến trúc tổng thể processing/query/Knowledge/SuperAgent.</li>
+      </ul>
+
+      <p class="small">
+        Last updated for current project logic. Keep this document aligned with the Alpha Code Executor node
+        whenever the incident schema or Markdown file generation behavior changes.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

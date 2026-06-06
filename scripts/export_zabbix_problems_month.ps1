@@ -15,7 +15,7 @@ param(
   [string[]]$Severities = @("High", "Disaster"),
 
   [Parameter(Mandatory = $false)]
-  [string]$OutputDir = "Goal-2\RawData\Export zabbix",
+  [string]$OutputDir = "Goal-2\01-RawData\Export zabbix",
 
   [Parameter(Mandatory = $false)]
   [switch]$SkipCertificateCheck

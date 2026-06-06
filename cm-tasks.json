@@ -1,22 +1,20 @@
 {
-  "initiative": "it-operations-intelligence-poc",
-  "objective": "Build operational stories so Alpha can explain selected periods as ordered milestones, distinguish monitoring noise-review candidates from incident-related signals, report user impact evidence, and classify responsibility as INHOUSE, ISP, EXTERNAL, or UNKNOWN.",
-  "phase": "ready-for-alpha-build",
-  "tasks_file": "openspec/changes/it-operations-intelligence-poc/tasks.md",
+  "initiative": "alpha-processing-tool",
+  "objective": "Build Alpha processing and query workflows that normalize ISP Incident Report, Zabbix, and ITcenter sources, connect them into an operational timeline, and let SuperAgent answer exact site/time-range questions from deterministic tool results.",
+  "phase": "alpha-zabbix-processing-next",
+  "tasks_file": "openspec/changes/alpha-processing-tool/tasks.md",
   "next_actions": [
-    "Open docs/build-on-alpha-intelligence.md and create the internal Alpha Knowledge Expert",
-    "Upload the eight generated Markdown documents from output/alpha-knowledge-package only after confirming validation_report.status=PASS",
-    "Create the Alpha Super Agent, attach the Expert, enable Inspect Mode, and execute the documented validation prompts"
+    "Build and validate the Clean Rawdata - Zabbix workflow on Alpha using uploaded impact-focused Zabbix CSV/XLSX exports",
+    "Validate CPL May 2026 Zabbix pattern-family counts through the query workflow/tool",
+    "Build the Clean Rawdata - ITcenter workflow after Zabbix processing is stable"
   ],
   "constraints": [
-    "Do not build a local dashboard, database, or custom chat application",
-    "Do not describe raw alerts as confirmed incidents",
-    "Start date-range questions from 02_operational_timeline.md",
-    "Treat correlation as investigation context, not proof of RCA or user impact",
-    "Require site, overlapping time window, and issue relevance before correlating a ticket",
-    "Compute statistics deterministically in Python rather than relying on RAG counting",
-    "Treat master-data rows as authoritative only when review_status=CONFIRMED",
-    "Keep the Alpha Super Agent read-only",
-    "Do not upload a generated package into Alpha unless validation_report.status=PASS"
+    "Do not describe raw Zabbix alerts as confirmed incidents",
+    "Use ISP Incident Report as the source of truth for confirmed incident existence, RCA, resolution status, and responsibility domain",
+    "Use ITcenter tickets as direct user-impact evidence when available",
+    "Use Zabbix as monitoring context unless correlation is explicitly supported by timing, site, and signal relevance",
+    "For exact site/time-range answers, use the query workflow/tool instead of counting Knowledge fragments",
+    "Do not upload JSON files to Alpha Knowledge; upload validated Markdown only",
+    "Do not refresh Alpha Knowledge unless validation_status=PASS and upload_allowed=true"
   ]
 }

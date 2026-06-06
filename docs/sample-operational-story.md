@@ -25,7 +25,7 @@ Selected period: `2026-05-10`
 
 Conclusion:
 - Episode type: CONFIRMED_INCIDENT
-- User impact: ESTIMATED
+- User impact: POTENTIAL_IMPACT
 - Responsibility domain: INHOUSE
 - Resolution status: RESOLVED
 - Evidence coverage: INCIDENT FORM

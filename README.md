@@ -1,33 +1,69 @@
 # IT Operations Knowledge Package for Alpha Intelligence
 
-MVP này chuyển đổi ba file Excel raw thành bộ tài liệu chuẩn để upload vào Alpha Intelligence. Python chịu trách nhiệm tính toán và kiểm tra dữ liệu; Alpha Knowledge Expert và Super Agent chịu trách nhiệm truy xuất và trả lời linh hoạt.
+Project này chuẩn hóa 3 nguồn dữ liệu vận hành để Alpha Intelligent có thể trả lời câu hỏi theo site và khoảng thời gian:
 
-## Bắt Đầu Nhanh
+- ISP Incident Report: confirmed incidents, RCA, resolution, responsibility domain.
+- ITcenter Ticket: direct user/ticket evidence.
+- Zabbix Alert: monitoring signal, telemetry, recurrence, and technical context.
 
-1. Đọc [hướng dẫn chạy converter](docs/build-alpha-knowledge-package.md).
-2. Kiểm tra `output/alpha-knowledge-package/validation_report.md`.
-3. Chỉ khi report có `Status: PASS` và `Upload allowed: YES`, làm theo [hướng dẫn build trên Alpha](docs/build-on-alpha-intelligence.md).
-4. Dùng [biên bản kiểm chứng sample package](docs/sample-package-validation.md) làm baseline đối soát.
-5. Đọc [sample operational story](docs/sample-operational-story.md) để xem câu trả
-   lời theo khoảng thời gian và giới hạn coverage của raw exports hiện tại.
+Python xử lý phần deterministic như normalize, group, correlate, validate. Alpha Knowledge và SuperAgent dùng kết quả đã chuẩn hóa để giải thích cho người vận hành.
 
-## Lệnh Build
+## Folder Chính
+
+```text
+01-RawData/              Raw exports dùng làm input local
+02-Output/               Package, audit files, processed outputs
+03-Data clean logic/     Tài liệu HTML mô tả logic làm sạch từng source
+docs/                    Runbook, Alpha prompt, processor node code, architecture notes
+openspec/                Plan/spec triển khai Alpha processing tool
+scripts/                 Local helper scripts
+src/                     Converter và processing/query tool code
+tests/                   Unit/integration tests
+```
+
+## Build Local Package
 
 ```powershell
 python -m pip install -r requirements.txt
 
 python scripts\build_alpha_knowledge_package.py `
-  --raw-dir RawData `
+  --raw-dir 01-RawData `
   --master-data input\it-operations-master-data-template.xlsx `
-  --output-dir output\alpha-knowledge-package
+  --output-dir 02-Output\alpha-knowledge-package
 ```
 
-## Phạm Vi MVP
+Chỉ upload Markdown lên Alpha Knowledge khi:
 
-- Có: chuẩn hóa raw data, giữ source lineage, thống kê deterministic, audit workbook, validation gate, Markdown cho Alpha Knowledge Expert.
-- Trục điều tra chính: `02_operational_timeline.md`, kể operational story theo
-  milestones, conclusion, evidence coverage, gaps, responsibility domain và
-  user-impact status.
-- Không có: dashboard local, database, realtime sync, upload Alpha tự động, hoặc AI tự sửa dữ liệu nguồn.
+```text
+02-Output/alpha-knowledge-package/validation_report.md
+Status: PASS
+Upload allowed: YES
+```
 
-Hai file HTML trong `docs/` là tài liệu ý tưởng từ phase trước. Chúng được giữ lại để tham khảo nhưng không phải kiến trúc MVP hiện tại.
+## Alpha Processing Tool
+
+Plan hiện tại nằm ở:
+
+```text
+openspec/changes/alpha-processing-tool/tasks.md
+```
+
+Tài liệu kiến trúc chính:
+
+```text
+docs/alpha-workflow-architecture.md
+docs/alpha-processing-tool-runbook.md
+```
+
+Tài liệu logic làm sạch dữ liệu:
+
+```text
+03-Data clean logic/isp-incident-report-cleaning-logic.html
+03-Data clean logic/zabbix-data-cleaning-logic.html
+```
+
+## Test
+
+```powershell
+python -m unittest discover -s tests -v
+```

@@ -8,7 +8,7 @@ running the converter.
 Open:
 
 ```text
-output/alpha-knowledge-package/normalized_data.xlsx
+02-Output/alpha-knowledge-package/normalized_data.xlsx
 ```
 
 Use these sheets:
@@ -30,14 +30,14 @@ Use these sheets:
 Raw:
 
 ```text
-RawData/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
+01-RawData/ISP Incident Report/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
 ```
 
 Processed views:
 
 ```text
-output/alpha-knowledge-package/02_confirmed_incidents.md
-output/alpha-knowledge-package/03_recurrence_patterns.md
+02-Output/alpha-knowledge-package/02_confirmed_incidents.md
+02-Output/alpha-knowledge-package/03_recurrence_patterns.md
 normalized_data.xlsx -> confirmed_incidents
 normalized_data.xlsx -> recurrence_patterns
 ```
@@ -47,13 +47,13 @@ normalized_data.xlsx -> recurrence_patterns
 Raw:
 
 ```text
-RawData/zbx_problems_export.xlsx
+01-RawData/zbx_problems_export.xlsx
 ```
 
 Processed views:
 
 ```text
-output/alpha-knowledge-package/04_alert_patterns.md
+02-Output/alpha-knowledge-package/04_alert_patterns.md
 normalized_data.xlsx -> alert_patterns
 ```
 
@@ -62,13 +62,13 @@ normalized_data.xlsx -> alert_patterns
 Raw:
 
 ```text
-RawData/IssueReport.xlsx
+01-RawData/Ticket/IssueReport.xlsx
 ```
 
 Processed views:
 
 ```text
-output/alpha-knowledge-package/05_ticket_impact.md
+02-Output/alpha-knowledge-package/05_ticket_impact.md
 normalized_data.xlsx -> ticket_evidence
 ```
 
@@ -77,7 +77,7 @@ normalized_data.xlsx -> ticket_evidence
 Open:
 
 ```text
-output/alpha-knowledge-package/02_operational_timeline.md
+02-Output/alpha-knowledge-package/02_operational_timeline.md
 ```
 
 or:

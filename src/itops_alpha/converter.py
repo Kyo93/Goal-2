@@ -14,11 +14,13 @@ from typing import Any, Iterable
 from openpyxl import Workbook, load_workbook
 
 
-PACKAGE_VERSION = "1.2.0"
+PACKAGE_VERSION = "1.3.0"
 ISSUE_REPORT_FILENAME = "IssueReport.xlsx"
 INCIDENT_REPORT_FILENAME = "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
 ZABBIX_FILENAME = "zbx_problems_export.xlsx"
 ZABBIX_EXPORT_DIRNAME = "Export zabbix"
+INCIDENT_REPORT_DIRNAME = "ISP Incident Report"
+ISSUE_REPORT_DIRNAME = "Ticket"
 
 ISSUE_REQUIRED_COLUMNS = {
     "itcenter.ticket.comment.created_at",
@@ -592,6 +594,73 @@ def _join_unique(values: Iterable[str]) -> str:
     return ",".join(sorted({value for value in values if value and value != "UNKNOWN"})) or "UNKNOWN"
 
 
+def _classify_alert_pattern_family(pattern: dict[str, Any]) -> str:
+    signature = clean_text(pattern.get("problem_signature")).lower()
+    host = clean_text(pattern.get("host")).lower()
+    component = clean_text(pattern.get("component")).lower()
+    domain = clean_text(pattern.get("domain")).lower()
+    joined = " ".join([signature, host, component, domain])
+    if "http monitoring" in signature:
+        return "HTTP monitoring"
+    if any(term in joined for term in ["icmp", "unavailable", "unreachable", " is down", "down!"]):
+        return "Network reachability"
+    if any(term in joined for term in ["active checks", "zabbix agent", "nodata"]):
+        return "Zabbix agent/active check"
+    if any(term in joined for term in ["restarted", "uptime"]):
+        return "Host restart/uptime"
+    if any(term in joined for term in ["ups", "battery", "frequency", "power"]):
+        return "Power/UPS"
+    return "Other"
+
+
+def _alert_investigation_priority(pattern: dict[str, Any], family: str) -> str:
+    signature = clean_text(pattern.get("problem_signature")).lower()
+    host = clean_text(pattern.get("host")).lower()
+    alert_count = int(pattern.get("alert_count") or 0)
+    if family == "Network reachability":
+        if alert_count > 1 or "fw" in host or "sw" in host or "down" in signature:
+            return "HIGH"
+        return "MEDIUM"
+    if family == "HTTP monitoring":
+        return "MEDIUM" if alert_count >= 10 else "LOW"
+    if family in {"Zabbix agent/active check", "Host restart/uptime"}:
+        return "LOW"
+    if family == "Power/UPS":
+        return "HIGH"
+    return "LOW"
+
+
+def _alert_why_it_matters(pattern: dict[str, Any], family: str) -> str:
+    host = clean_text(pattern.get("host"))
+    signature = clean_text(pattern.get("problem_signature"))
+    if family == "Network reachability":
+        return (
+            f"{host} reported `{signature}`. This can indicate short connectivity loss, "
+            "device/path flap, or monitoring-path instability and should be checked before HTTP-only noise."
+        )
+    if family == "HTTP monitoring":
+        return (
+            f"{host} reported `{signature}`. This usually means application/service probe thresholds "
+            "were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts."
+        )
+    if family == "Zabbix agent/active check":
+        return (
+            f"{host} reported `{signature}`. This points to monitoring-agent availability rather than "
+            "confirmed user impact unless supported by ticket or incident evidence."
+        )
+    if family == "Host restart/uptime":
+        return (
+            f"{host} reported `{signature}`. This is host-health context and should not be treated "
+            "as service impact without another source."
+        )
+    if family == "Power/UPS":
+        return (
+            f"{host} reported `{signature}`. This may indicate power/UPS instability and deserves "
+            "facility or device-side verification."
+        )
+    return f"{host} reported `{signature}`. Treat as monitoring context until corroborated."
+
+
 def group_alert_patterns(alerts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     grouped: defaultdict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     for alert in alerts:
@@ -600,30 +669,44 @@ def group_alert_patterns(alerts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     patterns = []
     for (host, signature), records in grouped.items():
         records = sorted(records, key=lambda record: (record["seen_at"], record["source_ref"]))
-        patterns.append(
-            {
-                "alert_pattern_id": f"ALP-{stable_hash(host, signature)}",
-                "source_refs": [record["source_ref"] for record in records],
-                "first_seen_at": records[0]["seen_at"],
-                "last_seen_at": records[-1]["seen_at"],
-                "last_recovered_at": max(
-                    (record["recovered_at"] for record in records if record["recovered_at"]),
-                    default="",
-                ),
-                "alert_count": len(records),
-                "resolved_count": sum(record["status"] == "RESOLVED" for record in records),
-                "open_count": sum(record["status"] != "RESOLVED" for record in records),
-                "host": host,
-                "site_code": records[0]["site_code"],
-                "severity": _join_unique(record["severity"] for record in records),
-                "problem_signature": signature,
-                "domain": _join_unique(record["domain"] for record in records),
-                "component": _join_unique(record["component"] for record in records),
-                "scope": _join_unique(record["scope"] for record in records),
-                "assessment": "RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT",
-                "evidence_label": "COMPUTED FACT",
-            }
+        pattern = {
+            "alert_pattern_id": f"ALP-{stable_hash(host, signature)}",
+            "source_refs": [record["source_ref"] for record in records],
+            "first_seen_at": records[0]["seen_at"],
+            "last_seen_at": records[-1]["seen_at"],
+            "last_recovered_at": max(
+                (record["recovered_at"] for record in records if record["recovered_at"]),
+                default="",
+            ),
+            "alert_count": len(records),
+            "resolved_count": sum(record["status"] == "RESOLVED" for record in records),
+            "open_count": sum(record["status"] != "RESOLVED" for record in records),
+            "host": host,
+            "site_code": records[0]["site_code"],
+            "severity": _join_unique(record["severity"] for record in records),
+            "problem_signature": signature,
+            "domain": _join_unique(record["domain"] for record in records),
+            "component": _join_unique(record["component"] for record in records),
+            "scope": _join_unique(record["scope"] for record in records),
+            "observations": [
+                {
+                    "seen_at": record["seen_at"],
+                    "recovered_at": record["recovered_at"],
+                    "status": record["status"],
+                    "severity": record["severity"],
+                    "source_ref": record["source_ref"],
+                }
+                for record in records
+            ],
+            "assessment": "RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT",
+            "evidence_label": "COMPUTED FACT",
+        }
+        pattern["pattern_family"] = _classify_alert_pattern_family(pattern)
+        pattern["investigation_priority"] = _alert_investigation_priority(
+            pattern, pattern["pattern_family"]
         )
+        pattern["why_it_matters"] = _alert_why_it_matters(pattern, pattern["pattern_family"])
+        patterns.append(pattern)
     return sorted(patterns, key=lambda pattern: (-pattern["alert_count"], pattern["alert_pattern_id"]))
 
 
@@ -777,6 +860,148 @@ def _related_alert_pattern_ids(
     )
 
 
+def _related_alert_events(
+    incident: dict[str, Any],
+    alerts: list[dict[str, Any]] | None,
+    buffer_minutes: int,
+) -> list[dict[str, Any]]:
+    if alerts is None:
+        return []
+    events = []
+    for alert in alerts:
+        if not _alert_event_overlaps_incident(incident, alert, buffer_minutes):
+            continue
+        events.append(
+            {
+                **alert,
+                "alert_pattern_id": _alert_pattern_id_for_record(alert),
+            }
+        )
+    return sorted(events, key=lambda alert: (alert["seen_at"], alert["alert_id"]))
+
+
+NETWORK_INCIDENT_TERMS = {
+    "bandwidth",
+    "cable",
+    "cap",
+    "cáp",
+    "connectivity",
+    "fiber",
+    "fibre",
+    "internet",
+    "latency",
+    "link",
+    "loss",
+    "packet",
+    "provider",
+    "routing",
+    "transit",
+    "uplink",
+    "wan",
+}
+
+NETWORK_ALERT_TERMS = {
+    "bandwidth",
+    "bgp",
+    "download",
+    "icmp",
+    "interface",
+    "latency",
+    "link",
+    "loss",
+    "packet",
+    "ping",
+    "port",
+    "unavailable",
+    "unreachable",
+    "uplink",
+    "upload",
+}
+
+POWER_INCIDENT_TERMS = {"ats", "battery", "electricity", "frequency", "power", "ups"}
+POWER_ALERT_TERMS = {"battery", "frequency", "power", "ups"}
+
+LOCAL_INCIDENT_TERMS = {
+    "access point",
+    "controller",
+    "firewall",
+    "junos",
+    "linecard",
+    "local segment",
+    "switch",
+    "wifi",
+}
+LOCAL_ALERT_TERMS = {
+    "access point",
+    "controller",
+    "firewall",
+    "junos",
+    "linecard",
+    "switch",
+    "temperature",
+    "wifi",
+}
+
+
+def _text_has_any(text: str, terms: set[str]) -> bool:
+    return any(term in text for term in terms)
+
+
+def _alert_supports_incident(
+    incident: dict[str, Any],
+    alert: dict[str, Any],
+) -> tuple[bool, str]:
+    incident_text = clean_text(
+        " ".join(
+            [
+                incident.get("incident_type", ""),
+                incident.get("description", ""),
+                incident.get("root_cause", ""),
+            ]
+        )
+    ).lower()
+    alert_text = clean_text(
+        " ".join(
+            [
+                alert.get("problem_signature", ""),
+                alert.get("problem", ""),
+                alert.get("domain", ""),
+                alert.get("component", ""),
+                alert.get("scope", ""),
+            ]
+        )
+    ).lower()
+
+    if _text_has_any(incident_text, NETWORK_INCIDENT_TERMS):
+        if _text_has_any(alert_text, NETWORK_ALERT_TERMS):
+            return True, "network/fiber incident with network-relevant alert signature"
+        return (
+            False,
+            "same-site/time alert exists, but its signature does not directly support a network/fiber RCA",
+        )
+
+    if _text_has_any(incident_text, POWER_INCIDENT_TERMS):
+        if _text_has_any(alert_text, POWER_ALERT_TERMS):
+            return True, "power incident with power-relevant alert signature"
+        return (
+            False,
+            "same-site/time alert exists, but its signature does not directly support a power RCA",
+        )
+
+    if _text_has_any(incident_text, LOCAL_INCIDENT_TERMS):
+        if _text_has_any(alert_text, LOCAL_ALERT_TERMS):
+            return True, "local infrastructure incident with matching infrastructure alert signature"
+        return (
+            False,
+            "same-site/time alert exists, but its signature does not directly support the local RCA",
+        )
+
+    return (
+        True,
+        "no specific semantic relevance rule matched; preserving same-site/time alert as supporting context",
+    )
+
+
 def _text_contains_site_code(record: dict[str, Any], site_code: str) -> bool:
     if not site_code or site_code == "UNKNOWN":
         return False
@@ -843,9 +1068,9 @@ def build_operational_timeline(
         user_impact_status = (
             "CONFIRMED"
             if related_tickets
-            else "ESTIMATED"
+            else "POTENTIAL_IMPACT"
             if _estimated_user_impact(incident["description"])
-            else "NO_EVIDENCE"
+            else "NO_DIRECT_EVIDENCE"
         )
         correlation_basis = (
             f"Same-site buffered time-window correlation ({buffer_minutes} minutes); "
@@ -1004,7 +1229,23 @@ def _related_tickets(
     ]
 
 
-def _evidence_coverage(has_zabbix: bool, has_incident: bool, has_ticket: bool) -> str:
+def _evidence_coverage(
+    has_zabbix: bool,
+    has_incident: bool,
+    has_ticket: bool,
+    has_zabbix_context: bool = False,
+) -> str:
+    if has_zabbix_context and not has_zabbix and has_incident:
+        labels = ["INCIDENT FORM", "ZABBIX CONTEXT"]
+        if has_ticket:
+            labels.append("TICKET")
+        return " + ".join(labels)
+    if has_zabbix_context and has_zabbix and not has_incident:
+        labels = ["ZABBIX", "INCIDENT CONTEXT"]
+        if has_ticket:
+            labels.append("TICKET")
+        return " + ".join(labels)
+
     labels = []
     if has_zabbix:
         labels.append("ZABBIX")
@@ -1028,6 +1269,7 @@ def build_operational_stories(
     alerts: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     related_incidents_by_alert: defaultdict[str, list[str]] = defaultdict(list)
+    contextual_incidents_by_alert: defaultdict[str, list[str]] = defaultdict(list)
     alert_patterns_by_id = {
         pattern["alert_pattern_id"]: pattern for pattern in alert_patterns
     }
@@ -1039,15 +1281,60 @@ def build_operational_stories(
     stories: list[dict[str, Any]] = []
 
     for incident in incidents:
-        related_alerts = [
-            alert_patterns_by_id[pattern_id]
-            for pattern_id in _related_alert_pattern_ids(
+        related_alert_events = _related_alert_events(incident, alerts, buffer_minutes)
+        supporting_alert_events: list[dict[str, Any]] = []
+        contextual_alert_events: list[dict[str, Any]] = []
+        relevance_basis_by_pattern: dict[str, str] = {}
+        for alert_event in related_alert_events:
+            supports_incident, basis = _alert_supports_incident(incident, alert_event)
+            relevance_basis_by_pattern.setdefault(alert_event["alert_pattern_id"], basis)
+            if supports_incident:
+                supporting_alert_events.append(alert_event)
+            else:
+                contextual_alert_events.append(alert_event)
+
+        if related_alert_events:
+            supporting_alert_pattern_ids = sorted(
+                {
+                    alert_event["alert_pattern_id"]
+                    for alert_event in supporting_alert_events
+                    if alert_event["alert_pattern_id"] in alert_patterns_by_id
+                }
+            )
+            contextual_alert_pattern_ids = sorted(
+                {
+                    alert_event["alert_pattern_id"]
+                    for alert_event in contextual_alert_events
+                    if alert_event["alert_pattern_id"] in alert_patterns_by_id
+                }
+            )
+        else:
+            supporting_alert_pattern_ids = _related_alert_pattern_ids(
                 incident, alert_patterns, buffer_minutes, alerts
             )
+            contextual_alert_pattern_ids = []
+            for pattern_id in supporting_alert_pattern_ids:
+                pattern = alert_patterns_by_id.get(pattern_id)
+                if pattern:
+                    relevance_basis_by_pattern[pattern_id] = (
+                        "pattern-level same-site/time correlation; no raw alert event was available"
+                    )
+        related_alerts = [
+            alert_patterns_by_id[pattern_id]
+            for pattern_id in supporting_alert_pattern_ids
+            if pattern_id in alert_patterns_by_id
+        ]
+        contextual_alerts = [
+            alert_patterns_by_id[pattern_id]
+            for pattern_id in contextual_alert_pattern_ids
             if pattern_id in alert_patterns_by_id
         ]
         for pattern in related_alerts:
             related_incidents_by_alert[pattern["alert_pattern_id"]].append(
+                incident["incident_id"]
+            )
+        for pattern in contextual_alerts:
+            contextual_incidents_by_alert[pattern["alert_pattern_id"]].append(
                 incident["incident_id"]
             )
         related_tickets = _related_tickets(
@@ -1070,9 +1357,9 @@ def build_operational_stories(
         user_impact_status = (
             "CONFIRMED"
             if related_tickets
-            else "ESTIMATED"
+            else "POTENTIAL_IMPACT"
             if _estimated_user_impact(incident["description"])
-            else "NO_EVIDENCE"
+            else "NO_DIRECT_EVIDENCE"
         )
         milestones = [
             {
@@ -1089,17 +1376,52 @@ def build_operational_stories(
                 "message": f"Confirmed RCA recorded: {incident['root_cause']}",
             },
         ]
-        for pattern in related_alerts:
-            milestones.append(
-                {
-                    "at": pattern["first_seen_at"],
-                    "type": "ZABBIX_DETECTED",
-                    "message": (
-                        f"Zabbix detected {pattern['problem_signature']} at "
-                        f"{pattern['host']} ({pattern['alert_pattern_id']})."
-                    ),
-                }
-            )
+        if supporting_alert_events:
+            first_event_by_pattern: dict[str, dict[str, Any]] = {}
+            for alert_event in supporting_alert_events:
+                first_event_by_pattern.setdefault(alert_event["alert_pattern_id"], alert_event)
+            for alert_event in first_event_by_pattern.values():
+                milestones.append(
+                    {
+                        "at": alert_event["seen_at"],
+                        "type": "ZABBIX_DETECTED",
+                        "message": (
+                            f"Zabbix detected {alert_event['problem_signature']} at "
+                            f"{alert_event['host']} ({alert_event['alert_pattern_id']}) "
+                            "within the incident correlation window."
+                        ),
+                    }
+                )
+        if contextual_alert_events:
+            first_context_event_by_pattern: dict[str, dict[str, Any]] = {}
+            for alert_event in contextual_alert_events:
+                first_context_event_by_pattern.setdefault(
+                    alert_event["alert_pattern_id"], alert_event
+                )
+            for alert_event in first_context_event_by_pattern.values():
+                milestones.append(
+                    {
+                        "at": alert_event["seen_at"],
+                        "type": "ZABBIX_CONTEXT",
+                        "message": (
+                            f"Zabbix context only: {alert_event['problem_signature']} at "
+                            f"{alert_event['host']} ({alert_event['alert_pattern_id']}) "
+                            "overlapped the incident window but does not directly support the incident RCA/type."
+                        ),
+                    }
+                )
+        elif not related_alert_events:
+            for pattern in related_alerts:
+                milestones.append(
+                    {
+                        "at": pattern["first_seen_at"],
+                        "type": "ZABBIX_DETECTED",
+                        "message": (
+                            f"Zabbix detected {pattern['problem_signature']} at "
+                            f"{pattern['host']} ({pattern['alert_pattern_id']})."
+                        ),
+                    }
+                )
         for ticket in related_tickets:
             milestones.append(
                 {
@@ -1126,8 +1448,26 @@ def build_operational_stories(
             if recurrence_pattern
             else "1 confirmed incident"
         )
+        if related_alerts:
+            zabbix_correlation_status = "RELATED_TO_CONFIRMED_INCIDENT"
+        elif contextual_alerts:
+            zabbix_correlation_status = "TIME_ALIGNED_CONTEXT_ONLY"
+        else:
+            zabbix_correlation_status = "NO_MATCHING_ZABBIX_SIGNAL"
+        zabbix_relevance_basis = (
+            "; ".join(
+                f"{pattern_id}: {basis}"
+                for pattern_id, basis in sorted(relevance_basis_by_pattern.items())
+            )
+            if relevance_basis_by_pattern
+            else "No same-site Zabbix signal matched this incident window."
+        )
         gaps = []
-        if not related_alerts:
+        if contextual_alerts and not related_alerts:
+            gaps.append(
+                "Only time-aligned Zabbix context was found; no alert signature directly supported the incident RCA/type."
+            )
+        elif not related_alerts:
             gaps.append("No same-site Zabbix signal matched this incident window.")
         if not related_tickets:
             gaps.append("No direct site-explicit ticket matched this incident window.")
@@ -1142,11 +1482,9 @@ def build_operational_stories(
                 "site_code": incident["site_code"],
                 "headline": f"{incident['site_code']} | {incident['incident_type']}",
                 "milestones": _ordered_milestones(milestones),
-                "signal_assessment": (
-                    "RELATED_TO_CONFIRMED_INCIDENT"
-                    if related_alerts
-                    else "NO_MATCHING_ZABBIX_SIGNAL"
-                ),
+                "signal_assessment": zabbix_correlation_status,
+                "zabbix_correlation_status": zabbix_correlation_status,
+                "zabbix_relevance_basis": zabbix_relevance_basis,
                 "user_impact_status": user_impact_status,
                 "responsibility_domain": responsibility_domain,
                 "responsibility_basis": responsibility_basis,
@@ -1154,10 +1492,19 @@ def build_operational_stories(
                 "resolution_status": incident["resolution_status"],
                 "recurrence_summary": recurrence_summary,
                 "evidence_coverage": _evidence_coverage(
-                    bool(related_alerts), True, bool(related_tickets)
+                    bool(related_alerts),
+                    True,
+                    bool(related_tickets),
+                    has_zabbix_context=bool(contextual_alerts),
                 ),
                 "investigation_gaps": gaps or ["None."],
                 "related_incident_ids": [incident["incident_id"]],
+                "supporting_alert_pattern_ids": sorted(
+                    pattern["alert_pattern_id"] for pattern in related_alerts
+                ),
+                "contextual_alert_pattern_ids": sorted(
+                    pattern["alert_pattern_id"] for pattern in contextual_alerts
+                ),
                 "related_alert_pattern_ids": sorted(
                     pattern["alert_pattern_id"] for pattern in related_alerts
                 ),
@@ -1168,8 +1515,18 @@ def build_operational_stories(
         )
 
     for pattern in alert_patterns:
+        pattern_family = clean_text(pattern.get("pattern_family")) or _classify_alert_pattern_family(pattern)
+        investigation_priority = clean_text(
+            pattern.get("investigation_priority")
+        ) or _alert_investigation_priority(pattern, pattern_family)
+        why_it_matters = clean_text(pattern.get("why_it_matters")) or _alert_why_it_matters(
+            pattern, pattern_family
+        )
         related_incident_ids = sorted(
             related_incidents_by_alert[pattern["alert_pattern_id"]]
+        )
+        contextual_incident_ids = sorted(
+            contextual_incidents_by_alert[pattern["alert_pattern_id"]]
         )
         related_tickets = _related_tickets(
             tickets,
@@ -1187,6 +1544,8 @@ def build_operational_stories(
         )
         if related_incident_ids:
             assessment = "RELATED_TO_CONFIRMED_INCIDENT"
+        elif contextual_incident_ids:
+            assessment = "TIME_ALIGNED_CONTEXT_ONLY"
         elif related_tickets:
             assessment = "USER_IMPACT_SIGNAL"
         elif pattern["alert_count"] > 1:
@@ -1237,7 +1596,11 @@ def build_operational_stories(
                 }
             )
         gaps = []
-        if not related_incident_ids:
+        if contextual_incident_ids and not related_incident_ids:
+            gaps.append(
+                "Only time-aligned incident context matched this monitoring signal; the alert signature did not directly support the incident RCA/type."
+            )
+        elif not related_incident_ids:
             gaps.append("No confirmed incident matched this monitoring-signal window.")
         if not related_tickets:
             gaps.append("No direct site-explicit ticket matched this monitoring-signal window.")
@@ -1249,8 +1612,21 @@ def build_operational_stories(
                 "ended_at": pattern["last_recovered_at"] or pattern["last_seen_at"],
                 "site_code": pattern["site_code"],
                 "headline": f"{pattern['site_code']} | {pattern['host']} | {pattern['problem_signature']}",
+                "host": pattern["host"],
+                "problem_signature": pattern["problem_signature"],
+                "pattern_family": pattern_family,
+                "investigation_priority": investigation_priority,
+                "why_it_matters": why_it_matters,
                 "milestones": _ordered_milestones(milestones),
                 "signal_assessment": assessment,
+                "zabbix_correlation_status": assessment,
+                "zabbix_relevance_basis": (
+                    "Monitoring signal is time-aligned with a confirmed incident, but semantic rules did not treat the alert signature as supporting evidence."
+                    if contextual_incident_ids and not related_incident_ids
+                    else "Monitoring signal directly supported by same-site/time confirmed incident correlation."
+                    if related_incident_ids
+                    else "No same-site confirmed incident correlation found."
+                ),
                 "user_impact_status": "CONFIRMED" if related_tickets else "UNKNOWN",
                 "responsibility_domain": "UNKNOWN",
                 "responsibility_basis": "Raw alert pattern cannot establish responsibility",
@@ -1260,17 +1636,334 @@ def build_operational_stories(
                 ),
                 "recurrence_summary": f"{pattern['alert_count']} raw alerts in grouped pattern",
                 "evidence_coverage": _evidence_coverage(
-                    True, bool(related_incident_ids), bool(related_tickets)
+                    True,
+                    bool(related_incident_ids),
+                    bool(related_tickets),
+                    has_zabbix_context=bool(contextual_incident_ids),
                 ),
                 "investigation_gaps": gaps or ["None."],
                 "related_incident_ids": related_incident_ids,
+                "contextual_incident_ids": contextual_incident_ids,
+                "supporting_alert_pattern_ids": (
+                    [pattern["alert_pattern_id"]] if related_incident_ids else []
+                ),
+                "contextual_alert_pattern_ids": (
+                    [pattern["alert_pattern_id"]]
+                    if contextual_incident_ids and not related_incident_ids
+                    else []
+                ),
                 "related_alert_pattern_ids": [pattern["alert_pattern_id"]],
                 "related_ticket_ids": sorted(ticket["ticket_id"] for ticket in related_tickets),
                 "source_refs": pattern["source_refs"],
+                "observations": pattern.get("observations", []),
                 "evidence_label": "COMPUTED FACT",
             }
         )
     return sorted(stories, key=lambda story: (story["started_at"], story["episode_id"]))
+
+
+def build_operational_timeline_payload(
+    stories: list[dict[str, Any]], generated_at: str | None = None
+) -> dict[str, Any]:
+    return {
+        "schema_version": "1.0",
+        "record_type": "OPERATIONAL_TIMELINE_COLLECTION",
+        "source_type": "operational_timeline",
+        "generated_at": generated_at or "",
+        "record_count": len(stories),
+        "records": stories,
+    }
+
+
+def _query_window_end(story: dict[str, Any]) -> str:
+    ended_at = clean_text(story.get("ended_at"))
+    return ended_at if ended_at and ended_at != "UNKNOWN" else story["started_at"]
+
+
+def _timeline_record_type(story: dict[str, Any]) -> str:
+    return clean_text(story.get("episode_type") or story.get("event_type")) or "UNKNOWN"
+
+
+def _point_in_query_window(at: str, from_iso: str, to_iso: str) -> bool:
+    if not clean_text(at) or at == "UNKNOWN":
+        return False
+    return _time_windows_overlap(from_iso, to_iso, at, at, buffer_minutes=0)
+
+
+def _query_observations(
+    story: dict[str, Any],
+    from_iso: str,
+    to_iso: str,
+) -> list[dict[str, Any]]:
+    observations = story.get("observations") or []
+    return [
+        observation
+        for observation in observations
+        if _point_in_query_window(clean_text(observation.get("seen_at")), from_iso, to_iso)
+    ]
+
+
+def _story_matches_query_window(
+    story: dict[str, Any],
+    from_iso: str,
+    to_iso: str,
+) -> bool:
+    record_type = _timeline_record_type(story)
+    if record_type == "MONITORING_SIGNAL" and story.get("observations"):
+        return bool(_query_observations(story, from_iso, to_iso))
+    if record_type == "MONITORING_SIGNAL" and story.get("milestones"):
+        return any(
+            _point_in_query_window(milestone["at"], from_iso, to_iso)
+            for milestone in story["milestones"]
+            if clean_text(milestone.get("at")) and milestone["at"] != "UNKNOWN"
+        )
+    return _time_windows_overlap(
+        from_iso,
+        to_iso,
+        story["started_at"],
+        _query_window_end(story),
+        buffer_minutes=0,
+    )
+
+
+PRIORITY_RANK = {"HIGH": 0, "MEDIUM": 1, "LOW": 2, "UNKNOWN": 3}
+
+
+def _query_milestones(
+    story: dict[str, Any],
+    from_iso: str,
+    to_iso: str,
+) -> list[dict[str, Any]]:
+    return [
+        milestone
+        for milestone in story.get("milestones", [])
+        if _point_in_query_window(clean_text(milestone.get("at")), from_iso, to_iso)
+    ]
+
+
+def _enrich_query_record(
+    story: dict[str, Any],
+    from_iso: str,
+    to_iso: str,
+) -> dict[str, Any]:
+    record = dict(story)
+    observations = _query_observations(story, from_iso, to_iso)
+    record.pop("observations", None)
+    if _timeline_record_type(story) != "MONITORING_SIGNAL":
+        return record
+
+    query_milestones = _query_milestones(story, from_iso, to_iso)
+    if observations:
+        seen_values = [observation["seen_at"] for observation in observations]
+        recovered_values = [
+            observation["recovered_at"]
+            for observation in observations
+            if clean_text(observation.get("recovered_at"))
+        ]
+        record.update(
+            {
+                "query_alert_count": len(observations),
+                "query_count_basis": "raw Zabbix observations with seen_at inside the requested window",
+                "query_first_seen_at": min(seen_values),
+                "query_last_seen_at": max(seen_values),
+                "query_last_recovered_at": max(recovered_values) if recovered_values else "",
+                "query_source_refs": [
+                    observation["source_ref"] for observation in observations[:20]
+                ],
+                "query_source_ref_count": len(observations),
+                "query_observations": observations[:20],
+            }
+        )
+    else:
+        record.update(
+            {
+                "query_alert_count": None,
+                "query_count_basis": "raw observations were not available; matched by timeline milestone",
+                "query_first_seen_at": query_milestones[0]["at"] if query_milestones else story["started_at"],
+                "query_last_seen_at": query_milestones[-1]["at"] if query_milestones else _query_window_end(story),
+                "query_last_recovered_at": "",
+                "query_source_refs": story.get("source_refs", [])[:20],
+                "query_source_ref_count": len(story.get("source_refs", [])),
+                "query_observations": [],
+            }
+        )
+    return record
+
+
+def _monitoring_summary_base(records: list[dict[str, Any]], group_key: str) -> list[dict[str, Any]]:
+    grouped: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
+    for record in records:
+        if _timeline_record_type(record) != "MONITORING_SIGNAL":
+            continue
+        key = clean_text(record.get(group_key)) or "UNKNOWN"
+        grouped[key].append(record)
+
+    summaries: list[dict[str, Any]] = []
+    for key, items in grouped.items():
+        counts = [
+            int(item["query_alert_count"])
+            for item in items
+            if isinstance(item.get("query_alert_count"), int)
+        ]
+        first_seen = [
+            item["query_first_seen_at"]
+            for item in items
+            if clean_text(item.get("query_first_seen_at"))
+        ]
+        last_seen = [
+            item["query_last_seen_at"]
+            for item in items
+            if clean_text(item.get("query_last_seen_at"))
+        ]
+        priorities = sorted(
+            {clean_text(item.get("investigation_priority")) or "UNKNOWN" for item in items},
+            key=lambda priority: PRIORITY_RANK.get(priority, 99),
+        )
+        summaries.append(
+            {
+                group_key: key,
+                "pattern_count": len(items),
+                "query_alert_count": sum(counts) if counts else None,
+                "query_count_basis": (
+                    "sum of raw Zabbix observations in the requested window"
+                    if counts
+                    else "raw observation count unavailable"
+                ),
+                "first_seen_at": min(first_seen) if first_seen else "UNKNOWN",
+                "last_seen_at": max(last_seen) if last_seen else "UNKNOWN",
+                "assessments": sorted(
+                    {clean_text(item.get("signal_assessment")) or "UNKNOWN" for item in items}
+                ),
+                "investigation_priorities": priorities,
+                "sample_hosts": sorted(
+                    {
+                        clean_text(item.get("host"))
+                        for item in items
+                        if clean_text(item.get("host"))
+                    }
+                )[:10],
+                "sample_signatures": sorted(
+                    {
+                        clean_text(item.get("problem_signature"))
+                        for item in items
+                        if clean_text(item.get("problem_signature"))
+                    }
+                )[:10],
+                "example_episode_ids": [
+                    clean_text(item.get("episode_id"))
+                    for item in sorted(
+                        items,
+                        key=lambda item: (
+                            PRIORITY_RANK.get(clean_text(item.get("investigation_priority")), 99),
+                            -(item.get("query_alert_count") or 0),
+                            clean_text(item.get("episode_id")),
+                        ),
+                    )[:8]
+                ],
+                "why_it_matters": clean_text(items[0].get("why_it_matters")),
+            }
+        )
+    return sorted(
+        summaries,
+        key=lambda item: (
+            min(
+                (PRIORITY_RANK.get(priority, 99) for priority in item["investigation_priorities"]),
+                default=99,
+            ),
+            -(item["query_alert_count"] or 0),
+            item[group_key],
+        ),
+    )
+
+
+def query_operational_timeline(
+    stories: list[dict[str, Any]],
+    site_code: str,
+    from_at: str,
+    to_at: str,
+) -> dict[str, Any]:
+    requested_site = clean_text(site_code).upper()
+    from_dt = parse_datetime(from_at)
+    to_dt = parse_datetime(to_at)
+    if to_dt < from_dt:
+        raise ValueError("to_at must be greater than or equal to from_at")
+
+    from_iso = from_dt.isoformat(timespec="seconds")
+    to_iso = to_dt.isoformat(timespec="seconds")
+    records = [
+        story
+        for story in stories
+        if clean_text(story.get("site_code")).upper() == requested_site
+        and _story_matches_query_window(story, from_iso, to_iso)
+    ]
+    records = [_enrich_query_record(story, from_iso, to_iso) for story in records]
+    counts = Counter(_timeline_record_type(story) for story in records)
+    monitoring_family_summary = _monitoring_summary_base(records, "pattern_family")
+    monitoring_pattern_summary = _monitoring_summary_base(records, "problem_signature")
+    return {
+        "ok": True,
+        "record_type": "OPERATIONAL_TIMELINE_QUERY_RESULT",
+        "evidence_label": "COMPUTED FACT",
+        "query": {
+            "site_code": requested_site,
+            "from_at": from_iso,
+            "to_at": to_iso,
+        },
+        "match_rule": (
+            "Same-site confirmed incidents use event-window overlap. Monitoring-signal "
+            "stories use milestone timestamps when available, so long-running grouped "
+            "patterns do not imply continuous impact. UNKNOWN ended_at is treated as started_at. "
+            "This filter is deterministic and does not infer RCA or user impact."
+        ),
+        "matched_event_count": len(records),
+        "counts_by_episode_type": dict(sorted(counts.items())),
+        "monitoring_family_summary": monitoring_family_summary,
+        "monitoring_pattern_summary": monitoring_pattern_summary,
+        "answer_contract": {
+            "audience": "middle-management operations reader",
+            "required_sections": [
+                "Management summary",
+                "What happened",
+                "Impact and evidence",
+                "Operational conclusion",
+                "Follow-up / gaps",
+            ],
+            "style_rules": [
+                "Lead with the operational takeaway, not evidence labels.",
+                "Keep the answer concise: 2-4 short paragraphs or 5-8 bullets.",
+                "Use plain language before technical labels.",
+                "Mention record IDs/source references only in a compact evidence line.",
+                "Explain CONFIRMED_INCIDENT and MONITORING_SIGNAL in business-readable language.",
+                "Explain NO_DIRECT_EVIDENCE as missing direct ticket/user evidence, not as proof of no impact.",
+                "Explain POTENTIAL_IMPACT as possible impact without direct ticket/user confirmation.",
+                "For Zabbix-alert questions, answer by pattern family and problem signature before listing episode IDs.",
+                "Prioritize investigation using pattern family, investigation_priority, query_alert_count, and whether multiple hosts fired together.",
+                "When monitoring_family_summary exists, use it as the primary answer source. Treat individual OPS-ALP records as supporting evidence only.",
+                "Do not list more than 3 individual Zabbix episode IDs in the main body unless the user explicitly asks for all records.",
+                "Do not answer a complete site/month Zabbix summary from individual records alone. Use monitoring_family_summary and monitoring_pattern_summary.",
+                "Never say 'at least 1 alert' when summary counts are available.",
+                "For incomplete data, prioritize ISP Incident Report for confirmed incident/RCA/status, ITcenter ticket for direct user impact, and Zabbix for monitoring context.",
+                "If sources conflict, state the conflict instead of silently merging them.",
+                "Do not infer RCA, user impact, or ownership beyond provided fields.",
+                "Do not end with a generic follow-up offer.",
+            ],
+            "preferred_answer_shape": (
+                "Trong khoảng [from_at] đến [to_at], site [site_code] ghi nhận [count] "
+                "sự kiện vận hành. [Nêu sự kiện chính, thời điểm, đã khôi phục chưa, "
+                "RCA/domain nếu có evidence]. [Nêu Zabbix/ticket evidence tìm thấy hoặc "
+                "không tìm thấy, giải thích impact]. Kết luận vận hành: [điều đã xác nhận] "
+                "và [gap/follow-up cụ thể]."
+            ),
+            "zabbix_alert_answer_shape": (
+                "Trong khoảng [from_at] đến [to_at], site [site_code] ghi nhận [pattern_count] "
+                "Zabbix monitoring patterns. Nhóm đáng chú ý nhất là [pattern_family/signature] "
+                "vì [why_it_matters], xuất hiện trên [hosts] trong khoảng [first] đến [last]. "
+                "Nêu nhóm HTTP/noise nếu nhiều nhưng ít ý nghĩa điều tra; ưu tiên network/firewall/ICMP "
+                "nếu có. Nếu không có confirmed incident/ticket khớp trực tiếp, user impact vẫn là UNKNOWN."
+            ),
+        },
+        "records": records,
+    }
 
 
 def load_confirmed_master_data(path: Path | None) -> dict[str, Any]:
@@ -1450,12 +2143,49 @@ def _render_context(profile: dict[str, int], warnings: list[str]) -> str:
 
 - Raw alerts are evidence, not confirmed incidents.
 - Use statistics exactly as provided in this package. Do not count retrieved fragments.
-- Distinguish `SOURCE FACT`, `COMPUTED FACT`, `ESTIMATED`, `AI INFERENCE`, and `UNKNOWN`.
+- Distinguish `SOURCE FACT`, `COMPUTED FACT`, `POTENTIAL_IMPACT`, `AI INFERENCE`, `NO_DIRECT_EVIDENCE`, and `UNKNOWN`.
 - Cite record IDs and source references.
 - Never invent RCA, affected users, resolution status, or preventive actions.
 - Start date-range investigations with `02_operational_timeline.md`.
 - Treat timeline correlation as context, not proof of RCA or user impact.
+- Same-site/time Zabbix correlation is not enough to prove support for an incident RCA.
+  Treat semantically unrelated alerts as `TIME_ALIGNED_CONTEXT_ONLY`.
+- Evidence priority for incomplete or conflicting data:
+  1. ISP Incident Report for confirmed incident existence, start/end time, RCA,
+     resolution status, ISP/provider, and responsibility domain.
+  2. ITcenter ticket for direct user evidence, affected scope, business/user
+     symptoms, escalation, and impact confirmation.
+  3. Zabbix Alert for monitoring signals, telemetry, timing context, recurrence,
+     and technical symptoms.
+- Do not ignore lower-priority evidence. Use it to add context, confirm timing, or expose gaps.
+- If sources conflict, state the conflict and cite record IDs/source references.
+- For user impact, direct ITcenter ticket/user evidence outranks incident description.
+  Zabbix alone cannot confirm user impact.
+- For Zabbix-alert questions, answer by pattern family and problem signature before listing episode IDs.
+- For Zabbix-alert questions, prioritize investigation using `pattern_family`,
+  `investigation_priority`, query alert count, query first/last seen time, and whether
+  multiple hosts fired together.
+- For site/date-range questions, do not answer from arbitrary retrieved fragments.
+  Prefer the deterministic query workflow/result. If no query result is available,
+  retrieve `02_operational_timeline.md` and `04_alert_patterns.md` summary sections
+  before answering.
+- If only individual `OPS-ALP-*` records are retrieved for a Zabbix-alert question,
+  state that the context is incomplete and ask to run or refresh the query. Do not
+  claim a complete monthly/site summary from partial records.
+- Never say "at least 1 alert" for a complete site/month alert summary unless the
+  retrieved context is explicitly partial. Use exact counts only from
+  `monitoring_family_summary`, `monitoring_pattern_summary`, or `Site Pattern Family Summary`.
 - Distinguish responsibility domains: `INHOUSE`, `ISP`, `EXTERNAL`, and `UNKNOWN`.
+- For date-range site questions, write a middle-management brief with:
+  management summary, what happened, impact and evidence, operational conclusion,
+  and follow-up/gaps.
+- Lead with the operational takeaway and use plain language before technical labels.
+- Keep date-range site answers concise: 2-4 short paragraphs or 5-8 bullets.
+- Do not return only raw fields such as `matched_event_count`, `related_ticket_ids`, or `evidence_coverage`.
+- Do not over-expose audit labels such as `SOURCE FACT`, `COMPUTED FACT`, or `NO_MATCHING_ZABBIX_SIGNAL`
+  unless they are needed to explain evidence quality.
+- Explain `NO_DIRECT_EVIDENCE` as missing direct ticket/user evidence, not proof that no user was affected.
+- Explain `POTENTIAL_IMPACT` as possible impact without direct ticket/user confirmation.
 
 ## Source Profile
 
@@ -1494,6 +2224,7 @@ def _render_executive_summary(
         f"- Confirmed-incident stories: `{profile['timeline_confirmed_incident_events']}`",
         f"- Monitoring-signal stories: `{profile['timeline_zabbix_pattern_events']}`",
         f"- Signals related to confirmed incidents: `{profile['signal_assessment_related_to_incident']}`",
+        f"- Signals time-aligned as context only: `{profile['signal_assessment_context_only']}`",
         f"- Signals with direct user-impact evidence: `{profile['signal_assessment_user_impact']}`",
         f"- Signals needing noise or threshold review: `{profile['signal_assessment_noise_review']}`",
         f"- Unconfirmed monitoring signals: `{profile['signal_assessment_unconfirmed']}`",
@@ -1508,8 +2239,8 @@ def _render_executive_summary(
         "## Confirmed Incident User-Impact Evidence",
         "",
         f"- `CONFIRMED`: `{profile['user_impact_incidents_confirmed']}`",
-        f"- `ESTIMATED`: `{profile['user_impact_incidents_estimated']}`",
-        f"- `NO_EVIDENCE`: `{profile['user_impact_incidents_no_evidence']}`",
+        f"- `POTENTIAL_IMPACT`: `{profile['user_impact_incidents_potential_impact']}`",
+        f"- `NO_DIRECT_EVIDENCE`: `{profile['user_impact_incidents_no_direct_evidence']}`",
         "",
         "## Top Incident Recurrence Patterns",
         "",
@@ -1544,9 +2275,27 @@ def _render_operational_timeline(stories: list[dict[str, Any]]) -> str:
     for story in stories:
         lines.extend(
             [
-                f"## {story['episode_id']} | {story['started_at']} | {story['episode_type']}",
+                f"## {story['episode_id']} | {story['site_code']} | {story['started_at']} | {story['episode_type']}",
                 "",
                 f"**{_escape_markdown(story['headline'])}**",
+                "",
+                "```yaml",
+                "record_type: OPERATIONAL_TIMELINE_EVENT",
+                f"episode_id: {story['episode_id']}",
+                f"episode_type: {story['episode_type']}",
+                f"site_code: {story['site_code']}",
+                f"started_at: {story['started_at']}",
+                f"ended_at: {story['ended_at']}",
+                f"signal_assessment: {story['signal_assessment']}",
+                f"zabbix_correlation_status: {story.get('zabbix_correlation_status', story['signal_assessment'])}",
+                f"pattern_family: {story.get('pattern_family', 'UNKNOWN')}",
+                f"investigation_priority: {story.get('investigation_priority', 'UNKNOWN')}",
+                f"user_impact_status: {story['user_impact_status']}",
+                f"responsibility_domain: {story['responsibility_domain']}",
+                f"resolution_status: {story['resolution_status']}",
+                f"evidence_coverage: {story['evidence_coverage']}",
+                f"evidence_label: {story['evidence_label']}",
+                "```",
                 "",
                 "### Timeline",
                 "",
@@ -1563,6 +2312,11 @@ def _render_operational_timeline(stories: list[dict[str, Any]]) -> str:
                 "",
                 f"- Episode type: `{story['episode_type']}`",
                 f"- Signal assessment: `{story['signal_assessment']}`",
+                f"- Zabbix correlation status: `{story.get('zabbix_correlation_status', story['signal_assessment'])}`",
+                f"- Zabbix relevance basis: {_escape_markdown(story.get('zabbix_relevance_basis', 'UNKNOWN'))}",
+                f"- Pattern family: `{story.get('pattern_family', 'UNKNOWN')}`",
+                f"- Investigation priority: `{story.get('investigation_priority', 'UNKNOWN')}`",
+                f"- Why it matters: {_escape_markdown(story.get('why_it_matters', 'UNKNOWN'))}",
                 f"- User impact: `{story['user_impact_status']}`",
                 f"- Responsibility domain: `{story['responsibility_domain']}`",
                 f"- Responsibility basis: {_escape_markdown(story['responsibility_basis'])}",
@@ -1583,10 +2337,144 @@ def _render_operational_timeline(stories: list[dict[str, Any]]) -> str:
                 "",
                 f"- Evidence label: `{story['evidence_label']}`",
                 f"- Related incident IDs: `{', '.join(story['related_incident_ids']) or 'NONE'}`",
+                f"- Contextual incident IDs: `{', '.join(story.get('contextual_incident_ids', [])) or 'NONE'}`",
+                f"- Supporting alert pattern IDs: `{', '.join(story.get('supporting_alert_pattern_ids', [])) or 'NONE'}`",
+                f"- Contextual alert pattern IDs: `{', '.join(story.get('contextual_alert_pattern_ids', [])) or 'NONE'}`",
                 f"- Related alert pattern IDs: `{', '.join(story['related_alert_pattern_ids']) or 'NONE'}`",
                 f"- Related ticket IDs: `{', '.join(story['related_ticket_ids']) or 'NONE'}`",
                 f"- Source references: `{'; '.join(story['source_refs'][:20])}`",
                 f"- Source reference count: `{len(story['source_refs'])}`",
+                "",
+            ]
+        )
+    return "\n".join(lines)
+
+
+def _render_operational_query_result(result: dict[str, Any]) -> str:
+    query = result["query"]
+    lines = [
+        "# Operational Timeline Query Result",
+        "",
+        "```yaml",
+        "record_type: OPERATIONAL_TIMELINE_QUERY_RESULT",
+        f"site_code: {query['site_code']}",
+        f"from_at: {query['from_at']}",
+        f"to_at: {query['to_at']}",
+        f"matched_event_count: {result['matched_event_count']}",
+        f"evidence_label: {result['evidence_label']}",
+        "```",
+        "",
+        f"Match rule: {result['match_rule']}",
+        "",
+        "## How To Answer",
+        "",
+        "- Write for a middle-management operations reader, not as a raw JSON/field dump.",
+        "- Lead with the operational takeaway: what happened, duration, recovery, and owner/domain if supported.",
+        "- Keep it concise: 2-4 short paragraphs or 5-8 bullets.",
+        "- Use plain language before technical labels; keep IDs/source references in a compact evidence line.",
+        "- Separate confirmed incidents from monitoring signals, but explain both in business-readable language.",
+        "- Explain missing Zabbix/ticket evidence as a limitation, not as proof of no impact.",
+        "- For Zabbix-alert questions, answer by pattern family and problem signature before listing episode IDs.",
+        "- Prioritize investigation using pattern family, investigation priority, query alert count, and whether multiple hosts fired together.",
+        "- When Monitoring Pattern Family Summary exists, use it as the primary answer source. Treat individual OPS-ALP records as supporting evidence only.",
+        "- Do not list more than 3 individual Zabbix episode IDs in the main body unless the user explicitly asks for all records.",
+        "- Do not answer a complete site/month Zabbix summary from individual records alone. Use Monitoring Pattern Family Summary and Monitoring Problem Signature Summary.",
+        "- Never say 'at least 1 alert' when summary counts are available.",
+        "- For incomplete data, use this evidence priority: ISP Incident Report for confirmed incident/RCA/status, ITcenter ticket for direct user impact, Zabbix for monitoring context.",
+        "- If sources conflict, state the conflict instead of silently merging them.",
+        "- End with concrete follow-up/gaps, not a generic offer.",
+        "",
+        "Preferred final-answer shape:",
+        "",
+        "```text",
+        "Trong khoảng [from_at] đến [to_at], site [site_code] ghi nhận [count] sự kiện vận hành.",
+        "[Nêu sự kiện chính, thời điểm, đã khôi phục chưa, RCA/domain nếu có evidence.]",
+        "[Nêu Zabbix/ticket evidence tìm thấy hoặc không tìm thấy, giải thích impact.]",
+        "Kết luận vận hành: [điều đã xác nhận] và [gap/follow-up cụ thể].",
+        "```",
+        "",
+        "Preferred Zabbix-alert answer shape:",
+        "",
+        "```text",
+        "Trong khoảng [from_at] đến [to_at], site [site_code] ghi nhận [pattern_count] Zabbix monitoring patterns.",
+        "Nhóm đáng chú ý nhất là [pattern_family/signature] vì [why_it_matters], xuất hiện trên [hosts] trong khoảng [first] đến [last].",
+        "Nêu nhóm HTTP/noise nếu nhiều nhưng ít ý nghĩa điều tra; ưu tiên network/firewall/ICMP nếu có.",
+        "Nếu không có confirmed incident/ticket khớp trực tiếp, user impact vẫn là UNKNOWN.",
+        "```",
+        "",
+    ]
+    if result.get("monitoring_family_summary"):
+        lines.extend(["## Monitoring Pattern Family Summary", ""])
+        for item in result["monitoring_family_summary"]:
+            count = (
+                str(item["query_alert_count"])
+                if item.get("query_alert_count") is not None
+                else "UNKNOWN"
+            )
+            lines.extend(
+                [
+                    f"- `{item['pattern_family']}`: `{item['pattern_count']}` patterns, `{count}` query alerts, priority `{', '.join(item['investigation_priorities'])}`.",
+                    f"  Signatures: `{', '.join(item['sample_signatures']) or 'UNKNOWN'}`",
+                    f"  Hosts: `{', '.join(item['sample_hosts']) or 'UNKNOWN'}`",
+                    f"  Window: `{item['first_seen_at']}` to `{item['last_seen_at']}`",
+                    f"  Why it matters: {_escape_markdown(item.get('why_it_matters') or 'UNKNOWN')}",
+                ]
+            )
+        lines.append("")
+
+    if result.get("monitoring_pattern_summary"):
+        lines.extend(["## Monitoring Problem Signature Summary", ""])
+        for item in result["monitoring_pattern_summary"][:15]:
+            count = (
+                str(item["query_alert_count"])
+                if item.get("query_alert_count") is not None
+                else "UNKNOWN"
+            )
+            lines.extend(
+                [
+                    f"- `{item['problem_signature']}`: `{item['pattern_count']}` patterns, `{count}` query alerts, priority `{', '.join(item['investigation_priorities'])}`.",
+                    f"  Hosts: `{', '.join(item['sample_hosts']) or 'UNKNOWN'}`",
+                    f"  Episodes: `{', '.join(item['example_episode_ids']) or 'UNKNOWN'}`",
+                    f"  Window: `{item['first_seen_at']}` to `{item['last_seen_at']}`",
+                ]
+            )
+        lines.append("")
+
+    if not result["records"]:
+        lines.extend(["No matching operational events were found.", ""])
+        return "\n".join(lines)
+
+    for story in result["records"]:
+        record_id = clean_text(story.get("episode_id") or story.get("event_id"))
+        record_type = _timeline_record_type(story)
+        headline = clean_text(story.get("headline") or story.get("summary"))
+        related_incidents = story.get("related_incident_ids", [])
+        contextual_incidents = story.get("contextual_incident_ids", [])
+        supporting_alerts = story.get("supporting_alert_pattern_ids", [])
+        contextual_alerts = story.get("contextual_alert_pattern_ids", [])
+        related_alerts = story.get("related_alert_pattern_ids", [])
+        related_tickets = story.get("related_ticket_ids", [])
+        lines.extend(
+            [
+                f"## {record_id} | {story['site_code']} | {story['started_at']} | {record_type}",
+                "",
+                f"- Headline: {_escape_markdown(headline)}",
+                f"- Window: `{story['started_at']}` to `{story['ended_at']}`",
+                f"- Signal assessment: `{story.get('signal_assessment', 'UNKNOWN')}`",
+                f"- Zabbix correlation status: `{story.get('zabbix_correlation_status', story.get('signal_assessment', 'UNKNOWN'))}`",
+                f"- Pattern family: `{story.get('pattern_family', 'UNKNOWN')}`",
+                f"- Investigation priority: `{story.get('investigation_priority', 'UNKNOWN')}`",
+                f"- Query alert count: `{story.get('query_alert_count', 'UNKNOWN')}`",
+                f"- Query alert window: `{story.get('query_first_seen_at', 'UNKNOWN')}` to `{story.get('query_last_seen_at', 'UNKNOWN')}`",
+                f"- User impact: `{story.get('user_impact_status', 'UNKNOWN')}`",
+                f"- Evidence coverage: `{story.get('evidence_coverage', 'UNKNOWN')}`",
+                f"- Why it matters: {_escape_markdown(story.get('why_it_matters', 'UNKNOWN'))}",
+                f"- Related incidents: `{', '.join(related_incidents) or 'NONE'}`",
+                f"- Contextual incidents: `{', '.join(contextual_incidents) or 'NONE'}`",
+                f"- Supporting alert patterns: `{', '.join(supporting_alerts) or 'NONE'}`",
+                f"- Contextual alert patterns: `{', '.join(contextual_alerts) or 'NONE'}`",
+                f"- Related alert patterns: `{', '.join(related_alerts) or 'NONE'}`",
+                f"- Related tickets: `{', '.join(related_tickets) or 'NONE'}`",
                 "",
             ]
         )
@@ -1636,8 +2524,99 @@ def _render_recurrence(patterns: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
+def _alert_site_family_summaries(patterns: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: defaultdict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for pattern in patterns:
+        site_code = clean_text(pattern.get("site_code")) or "UNKNOWN"
+        family = clean_text(pattern.get("pattern_family")) or "UNKNOWN"
+        grouped[(site_code, family)].append(pattern)
+
+    summaries: list[dict[str, Any]] = []
+    for (site_code, family), records in grouped.items():
+        priorities = sorted(
+            {clean_text(record.get("investigation_priority")) or "UNKNOWN" for record in records},
+            key=lambda priority: PRIORITY_RANK.get(priority, 99),
+        )
+        top_signatures = sorted(
+            {
+                clean_text(record.get("problem_signature"))
+                for record in records
+                if clean_text(record.get("problem_signature"))
+            }
+        )[:10]
+        high_priority_records = [
+            record
+            for record in records
+            if clean_text(record.get("investigation_priority")) == "HIGH"
+        ]
+        example_ids = [
+            record["alert_pattern_id"]
+            for record in sorted(
+                high_priority_records or records,
+                key=lambda record: (
+                    PRIORITY_RANK.get(clean_text(record.get("investigation_priority")), 99),
+                    -int(record.get("alert_count") or 0),
+                    record["alert_pattern_id"],
+                ),
+            )[:8]
+        ]
+        summaries.append(
+            {
+                "site_code": site_code,
+                "pattern_family": family,
+                "pattern_count": len(records),
+                "raw_alert_count": sum(int(record.get("alert_count") or 0) for record in records),
+                "investigation_priorities": priorities,
+                "sample_hosts": sorted(
+                    {
+                        clean_text(record.get("host"))
+                        for record in records
+                        if clean_text(record.get("host"))
+                    }
+                )[:12],
+                "sample_signatures": top_signatures,
+                "example_alert_pattern_ids": example_ids,
+            }
+        )
+    return sorted(
+        summaries,
+        key=lambda item: (
+            item["site_code"],
+            min(
+                (PRIORITY_RANK.get(priority, 99) for priority in item["investigation_priorities"]),
+                default=99,
+            ),
+            -(item["raw_alert_count"] or 0),
+            item["pattern_family"],
+        ),
+    )
+
+
 def _render_alert_patterns(patterns: list[dict[str, Any]]) -> str:
     lines = ["# Raw Zabbix Alert Patterns", "", "> Alert pattern is not a confirmed incident.", ""]
+    lines.extend(
+        [
+            "## Site Pattern Family Summary",
+            "",
+            "> Use this section first for Zabbix-alert questions. Individual alert patterns are evidence details, not the primary answer shape.",
+            "",
+        ]
+    )
+    for summary in _alert_site_family_summaries(patterns):
+        lines.extend(
+            [
+                f"### {summary['site_code']} | {summary['pattern_family']}",
+                "",
+                f"- Pattern count: `{summary['pattern_count']}`",
+                f"- Raw alert count across full export: `{summary['raw_alert_count']}`",
+                f"- Investigation priorities: `{', '.join(summary['investigation_priorities']) or 'UNKNOWN'}`",
+                f"- Sample signatures: `{', '.join(summary['sample_signatures']) or 'UNKNOWN'}`",
+                f"- Sample hosts: `{', '.join(summary['sample_hosts']) or 'UNKNOWN'}`",
+                f"- Example alert pattern IDs: `{', '.join(summary['example_alert_pattern_ids']) or 'UNKNOWN'}`",
+                "",
+            ]
+        )
+    lines.extend(["## Individual Alert Patterns", ""])
     for pattern in patterns:
         refs = pattern["source_refs"]
         lines.extend(
@@ -1647,6 +2626,9 @@ def _render_alert_patterns(patterns: list[dict[str, Any]]) -> str:
                 f"- Evidence label: `{pattern['evidence_label']}`",
                 f"- Assessment: `{pattern['assessment']}`",
                 f"- Problem signature: `{pattern['problem_signature']}`",
+                f"- Pattern family: `{pattern.get('pattern_family', 'UNKNOWN')}`",
+                f"- Investigation priority: `{pattern.get('investigation_priority', 'UNKNOWN')}`",
+                f"- Why it matters: {_escape_markdown(pattern.get('why_it_matters', 'UNKNOWN'))}",
                 f"- Raw alert count: `{pattern['alert_count']}`",
                 f"- Resolved alerts: `{pattern['resolved_count']}`",
                 f"- Open alerts: `{pattern['open_count']}`",
@@ -1786,8 +2768,16 @@ def build_knowledge_package(
     output_dir = Path(output_dir)
     generated_at = generated_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
-    issue_path = raw_dir / ISSUE_REPORT_FILENAME
-    incident_path = raw_dir / INCIDENT_REPORT_FILENAME
+    def resolve_raw_path(filename: str, *subdirs: str) -> Path:
+        candidates = [raw_dir / filename]
+        candidates.extend(raw_dir / subdir / filename for subdir in subdirs)
+        for candidate in candidates:
+            if candidate.exists():
+                return candidate
+        return candidates[0]
+
+    issue_path = resolve_raw_path(ISSUE_REPORT_FILENAME, ISSUE_REPORT_DIRNAME)
+    incident_path = resolve_raw_path(INCIDENT_REPORT_FILENAME, INCIDENT_REPORT_DIRNAME)
     zabbix_file_path = raw_dir / ZABBIX_FILENAME
     zabbix_export_dir = raw_dir / ZABBIX_EXPORT_DIRNAME
     zabbix_path = zabbix_export_dir if zabbix_export_dir.exists() else zabbix_file_path
@@ -1890,6 +2880,10 @@ def build_knowledge_package(
             story["signal_assessment"] == "RELATED_TO_CONFIRMED_INCIDENT"
             for story in monitoring_stories
         ),
+        "signal_assessment_context_only": sum(
+            story["signal_assessment"] == "TIME_ALIGNED_CONTEXT_ONLY"
+            for story in monitoring_stories
+        ),
         "signal_assessment_user_impact": sum(
             story["signal_assessment"] == "USER_IMPACT_SIGNAL"
             for story in monitoring_stories
@@ -1917,11 +2911,11 @@ def build_knowledge_package(
         "user_impact_incidents_confirmed": sum(
             story["user_impact_status"] == "CONFIRMED" for story in incident_stories
         ),
-        "user_impact_incidents_estimated": sum(
-            story["user_impact_status"] == "ESTIMATED" for story in incident_stories
+        "user_impact_incidents_potential_impact": sum(
+            story["user_impact_status"] == "POTENTIAL_IMPACT" for story in incident_stories
         ),
-        "user_impact_incidents_no_evidence": sum(
-            story["user_impact_status"] == "NO_EVIDENCE" for story in incident_stories
+        "user_impact_incidents_no_direct_evidence": sum(
+            story["user_impact_status"] == "NO_DIRECT_EVIDENCE" for story in incident_stories
         ),
         "incident_period_start": min(
             (record["started_at"] for record in incidents.records), default="UNKNOWN"
@@ -1985,6 +2979,10 @@ def build_knowledge_package(
     }
     _write_json(output_dir / "manifest.json", manifest)
     _write_json(output_dir / "validation_report.json", report)
+    _write_json(
+        output_dir / "operational_timeline.json",
+        build_operational_timeline_payload(operational_stories, generated_at=generated_at),
+    )
     (output_dir / "validation_report.md").write_text(
         _render_validation_markdown(report), encoding="utf-8"
     )

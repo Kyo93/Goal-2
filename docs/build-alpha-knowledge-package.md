@@ -18,14 +18,19 @@ python -m pip install -r requirements.txt
 
 ## Input Bắt Buộc
 
-Đặt ba file đúng tên trong `RawData/`:
+Đặt raw files theo cấu trúc thư mục hiện tại:
 
 ```text
-RawData/
-  IssueReport.xlsx
-  SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
-  zbx_problems_export.xlsx
+01-RawData/
+  ISP Incident Report/
+    SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
+  Ticket/
+    IssueReport.xlsx
+  Export zabbix/
+    *.csv
 ```
+
+Converter vẫn hỗ trợ fallback Zabbix Excel `01-RawData/zbx_problems_export.xlsx` nếu không có thư mục `Export zabbix/`.
 
 Input tùy chọn:
 
@@ -39,23 +44,23 @@ Chỉ row có `review_status=CONFIRMED` trong master data được coi là fact.
 
 ```powershell
 python scripts\build_alpha_knowledge_package.py `
-  --raw-dir RawData `
+  --raw-dir 01-RawData `
   --master-data input\it-operations-master-data-template.xlsx `
-  --output-dir output\alpha-knowledge-package
+  --output-dir 02-Output\alpha-knowledge-package
 ```
 
 Có thể bỏ `--master-data` khi chưa có workbook đã review:
 
 ```powershell
 python scripts\build_alpha_knowledge_package.py `
-  --raw-dir RawData `
-  --output-dir output\alpha-knowledge-package
+  --raw-dir 01-RawData `
+  --output-dir 02-Output\alpha-knowledge-package
 ```
 
 ## Output
 
 ```text
-output/alpha-knowledge-package/
+02-Output/alpha-knowledge-package/
   manifest.json
   validation_report.json
   validation_report.md
@@ -91,7 +96,7 @@ investigation context, not proof of RCA or user impact.
 Mở:
 
 ```text
-output/alpha-knowledge-package/validation_report.md
+02-Output/alpha-knowledge-package/validation_report.md
 ```
 
 Chỉ upload khi có cả hai dòng:
@@ -122,7 +127,7 @@ XAS | CMC | Fiber optic cable failure = 4 confirmed incidents
 
 ## Refresh Dữ Liệu
 
-1. Thay ba file trong `RawData/` bằng export mới, giữ đúng filename.
+1. Thay file trong các subfolder tương ứng của `01-RawData/`, giữ đúng filename/schema.
 2. Review và cập nhật master data nếu có mapping mới.
 3. Chạy lại converter.
 4. Kiểm tra `validation_report.md`.

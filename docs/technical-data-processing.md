@@ -7,9 +7,9 @@ Alpha Knowledge Package. Nguồn triển khai chính nằm trong
 
 ## 1. Mục tiêu pipeline
 
-Pipeline đọc ba raw export trong `RawData/`, tùy chọn đọc master data trong
+Pipeline đọc ba raw export trong `01-RawData/`, tùy chọn đọc master data trong
 `input/it-operations-master-data-template.xlsx`, sau đó sinh package tại
-`output/alpha-knowledge-package/`.
+`02-Output/alpha-knowledge-package/`.
 
 Nguyên tắc xử lý quan trọng:
 
@@ -27,16 +27,16 @@ Nguyên tắc xử lý quan trọng:
 ## 2. Luồng tổng quát
 
 ```text
-RawData/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
+01-RawData/ISP Incident Report/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
   -> load_incidents()
   -> confirmed_incidents
   -> group_incident_recurrence()
 
-RawData/zbx_problems_export.xlsx
+01-RawData/zbx_problems_export.xlsx
   -> load_zabbix_alerts()
   -> group_alert_patterns()
 
-RawData/IssueReport.xlsx
+01-RawData/Ticket/IssueReport.xlsx
   -> load_issue_tickets()
   -> ticket_evidence
 
@@ -125,7 +125,7 @@ bằng ISO seconds, ví dụ `2026-05-19T16:32:36`.
 Raw file:
 
 ```text
-RawData/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
+01-RawData/ISP Incident Report/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
 ```
 
 Adapter:
@@ -246,13 +246,13 @@ Top recurrence hiện tại:
 Raw input cũ:
 
 ```text
-RawData/zbx_problems_export.xlsx
+01-RawData/zbx_problems_export.xlsx
 ```
 
 Raw input mới khi Zabbix phải download nhiều lần vì giới hạn 1000 dòng:
 
 ```text
-RawData/Export zabbix/*.csv
+01-RawData/Export zabbix/*.csv
 ```
 
 Adapter:
@@ -261,9 +261,9 @@ Adapter:
 load_zabbix_alerts()
 ```
 
-Nếu `RawData/Export zabbix/` tồn tại, `build_knowledge_package()` ưu tiên thư
+Nếu `01-RawData/Export zabbix/` tồn tại, `build_knowledge_package()` ưu tiên thư
 mục này và đọc toàn bộ `*.csv` theo thứ tự tên file. Nếu thư mục không tồn tại,
-converter fallback về file Excel `RawData/zbx_problems_export.xlsx`.
+converter fallback về file Excel `01-RawData/zbx_problems_export.xlsx`.
 
 Với Excel, converter đọc worksheet đầu tiên, hiện là:
 
@@ -373,7 +373,7 @@ Khi đọc nhiều CSV, converter dedupe các row trùng hệt nhau giữa các 
 theo 10 cột Zabbix bắt buộc. Duplicate row tăng `duplicate_rows`, không tạo
 alert record mới, và được tính vào validation reconciliation.
 
-Với raw snapshot hiện tại trong `RawData/Export zabbix/`:
+Với raw snapshot hiện tại trong `01-RawData/Export zabbix/`:
 
 ```text
 input_rows = 6454
@@ -403,7 +403,7 @@ Top alert patterns hiện tại:
 Raw file:
 
 ```text
-RawData/IssueReport.xlsx
+01-RawData/Ticket/IssueReport.xlsx
 ```
 
 Adapter:
@@ -580,10 +580,10 @@ Relevance matching dùng:
 Incident story:
 
 - `CONFIRMED` nếu có related ticket.
-- `ESTIMATED` nếu không có ticket nhưng description chứa keyword như `user`,
+- `POTENTIAL_IMPACT` nếu không có ticket nhưng description chứa keyword như `user`,
   `impact`, `affected`, `service interruption`, `service disruption`,
   `service is down`, `outage`.
-- `NO_EVIDENCE` nếu không có bằng chứng user impact.
+- `NO_DIRECT_EVIDENCE` nếu không có bằng chứng user impact trực tiếp.
 
 Monitoring signal story:
 
@@ -627,8 +627,8 @@ signal_assessment_user_impact = 4
 signal_assessment_noise_review = 171
 signal_assessment_unconfirmed = 157
 user_impact_incidents_confirmed = 0
-user_impact_incidents_estimated = 5
-user_impact_incidents_no_evidence = 47
+user_impact_incidents_potential_impact = 5
+user_impact_incidents_no_direct_evidence = 47
 ```
 
 Evidence coverage hiện tại:

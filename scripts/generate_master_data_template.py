@@ -13,14 +13,16 @@ from openpyxl.worksheet.table import Table, TableStyleInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RAW_DIR = ROOT / "RawData"
+RAW_DIR = ROOT / "01-RawData"
 OUTPUT_DIR = ROOT / "input"
 OUTPUT_FILE = OUTPUT_DIR / "it-operations-master-data-template.xlsx"
 
-INCIDENT_FILE = RAW_DIR / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
+INCIDENT_FILE = (
+    RAW_DIR / "ISP Incident Report" / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
+)
 ZABBIX_FILE = RAW_DIR / "zbx_problems_export.xlsx"
 ZABBIX_EXPORT_DIR = RAW_DIR / "Export zabbix"
-ISSUE_FILE = RAW_DIR / "IssueReport.xlsx"
+ISSUE_FILE = RAW_DIR / "Ticket" / "IssueReport.xlsx"
 
 STATUS_VALUES = ["CONFIRMED", "NEEDS_REVIEW", "DRAFT", "REJECTED"]
 CRITICALITY_VALUES = ["critical", "high", "normal", "low"]

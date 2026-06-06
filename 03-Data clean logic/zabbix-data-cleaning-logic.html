@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zabbix Data Cleaning Logic</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #5d697f;
+      --line: #d8deea;
+      --blue: #2557a7;
+      --green: #1b7a53;
+      --amber: #a96700;
+      --red: #a73737;
+      --slate: #334155;
+      --code: #0f172a;
+      --soft-blue: #eaf1ff;
+      --soft-green: #e8f6ef;
+      --soft-amber: #fff3dc;
+      --soft-red: #fdecec;
+      --soft-slate: #eef2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+    }
+
+    header {
+      padding: 28px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 8px 0 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 880px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 6px 6px 0;
+      border: 1px solid transparent;
+    }
+
+    .tag.high {
+      background: var(--soft-red);
+      color: var(--red);
+      border-color: #f2c8c8;
+    }
+
+    .tag.medium {
+      background: var(--soft-amber);
+      color: var(--amber);
+      border-color: #f0d4a1;
+    }
+
+    .tag.low {
+      background: var(--soft-slate);
+      color: var(--slate);
+      border-color: #d7dde8;
+    }
+
+    .tag.keep {
+      background: var(--soft-green);
+      color: var(--green);
+      border-color: #b9dfcd;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 8px;
+    }
+
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 128px;
+      position: relative;
+    }
+
+    .step::after {
+      content: ">";
+      position: absolute;
+      right: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .step:last-child::after {
+      content: "";
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 14px 0 22px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3fb;
+      color: #22304b;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    pre {
+      background: var(--code);
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 14px;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 12px 0 20px;
+    }
+
+    code {
+      color: #0f3b76;
+      background: #eef4ff;
+      border: 1px solid #d7e5ff;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      border: 0;
+      padding: 0;
+    }
+
+    .note {
+      border-left: 4px solid var(--blue);
+      background: var(--soft-blue);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .warning {
+      border-left: 4px solid var(--amber);
+      background: var(--soft-amber);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .decision {
+      border-left: 4px solid var(--green);
+      background: var(--soft-green);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .grid.two,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .step::after {
+        content: "";
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Zabbix Data Cleaning Logic</h1>
+      <p class="subtitle">
+        Tài liệu mô tả cách lấy và xử lý dữ liệu Zabbix cho Alpha Intelligent theo hướng
+        chỉ giữ các monitoring signal có khả năng gây lỗi vận hành, giảm nhiễu từ full log,
+        và tạo output ổn định cho workflow <strong>Clean Rawdata - Zabbix</strong>.
+      </p>
+    </header>
+
+    <section>
+      <h2>1. Quyết định kiến trúc</h2>
+      <div class="decision">
+        <strong>Alpha không connect trực tiếp đến Zabbix nội bộ.</strong>
+        Zabbix API pull chạy ở máy local/VPN có quyền truy cập Zabbix. Kết quả là file CSV/XLSX
+        đã normalize, sau đó upload vào Alpha để process tương tự ISP Incident Report.
+      </div>
+
+      <div class="flow" aria-label="Zabbix processing flow">
+        <div class="step">
+          <strong>1. Local/VPN</strong>
+          Gọi Zabbix API bằng token. Không ghi token vào source code hoặc tài liệu.
+        </div>
+        <div class="step">
+          <strong>2. Pull events</strong>
+          Lấy trigger problem events bằng <code>event.get</code>, không lấy raw history/log.
+        </div>
+        <div class="step">
+          <strong>3. Impact filter</strong>
+          Chỉ giữ Tier 1, Tier 2 và context tối thiểu của Tier 3.
+        </div>
+        <div class="step">
+          <strong>4. Upload file</strong>
+          Upload CSV/XLSX normalized vào Alpha workflow.
+        </div>
+        <div class="step">
+          <strong>5. Alpha process</strong>
+          Tạo <code>zabbix_alerts.json</code>, <code>alert_patterns.json</code> và Markdown summary.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Tại sao không lấy full log?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Vấn đề</h3>
+          <p>Zabbix có rất nhiều event lặp, recovery, probe timeout ngắn, agent health và resource warning.</p>
+        </div>
+        <div class="card">
+          <h3>Rủi ro</h3>
+          <p>Nếu upload full log, SuperAgent dễ retrieve nhầm fragment và trả lời không nhất quán.</p>
+        </div>
+        <div class="card">
+          <h3>Giải pháp</h3>
+          <p>Pull problem events, filter impact-only, sau đó group theo pattern để trả lời theo hướng vận hành.</p>
+        </div>
+      </div>
+
+      <div class="warning">
+        <strong>Không dùng <code>history.get</code> cho use case này.</strong>
+        History data phù hợp cho metric trend, không phù hợp để build operational incident context.
+        Use case hiện tại cần trigger problem events có thời điểm bắt đầu, recovery, severity, host, site và signature.
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Nguồn dữ liệu cần lấy</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nguồn</th>
+            <th>Nên dùng</th>
+            <th>Không nên dùng</th>
+            <th>Lý do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Zabbix API</td>
+            <td><code>event.get</code> với trigger problem events</td>
+            <td><code>history.get</code>, raw log quá rộng</td>
+            <td>Cần problem/recovery timeline, không cần metric samples dày đặc.</td>
+          </tr>
+          <tr>
+            <td>Severity</td>
+            <td><code>Average,High,Disaster</code></td>
+            <td>Information/Warning mặc định</td>
+            <td>Giảm noise nhưng vẫn giữ Average để không bỏ lỡ network/firewall đặt severity thấp hơn.</td>
+          </tr>
+          <tr>
+            <td>Host group</td>
+            <td><code>All VNM</code> hoặc group vận hành cần phân tích</td>
+            <td>Toàn bộ Zabbix không phân scope</td>
+            <td>Giữ dữ liệu đúng phạm vi report.</td>
+          </tr>
+          <tr>
+            <td>Time range</td>
+            <td>Theo tháng hoặc cửa sổ user hỏi</td>
+            <td>Không giới hạn thời gian</td>
+            <td>Query theo thời gian cần count chính xác và có thể tái lập.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. Tier lọc impact-only</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Nhóm</th>
+            <th>Ví dụ signature</th>
+            <th>Quyết định</th>
+            <th>Ý nghĩa vận hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag high">Tier 1</span></td>
+            <td>Network reachability</td>
+            <td>
+              <code>unavailable by icmp ping</code>,
+              <code>interface down</code>,
+              <code>firewall is down</code>,
+              <code>packet loss</code>,
+              <code>latency</code>,
+              <code>BGP/VPN/tunnel down</code>
+            </td>
+            <td><span class="tag keep">Giữ luôn</span></td>
+            <td>Có thể phản ánh mất kết nối, thiết bị down, path flap hoặc ISP/uplink issue.</td>
+          </tr>
+          <tr>
+            <td><span class="tag medium">Tier 2</span></td>
+            <td>HTTP monitoring</td>
+            <td>
+              <code>git http monitoring</code>,
+              <code>jira http monitoring</code>,
+              <code>itcenter http monitoring</code>,
+              <code>confluence http monitoring</code>
+            </td>
+            <td>
+              Giữ nếu <code>duration_seconds &gt;= 300</code> hoặc <code>severity_id &gt;= 4</code>.
+            </td>
+            <td>Hữu ích nhưng dễ là threshold/probe timeout; cần group và đối chiếu incident/ticket.</td>
+          </tr>
+          <tr>
+            <td><span class="tag low">Tier 3</span></td>
+            <td>Context kỹ thuật tối thiểu</td>
+            <td>
+              <code>active checks are not available</code>,
+              <code>host has been restarted</code>,
+              <code>uptime</code>
+            </td>
+            <td><span class="tag keep">Giữ làm context</span></td>
+            <td>Không chứng minh user impact, nhưng giúp điều tra host/monitoring health.</td>
+          </tr>
+          <tr>
+            <td><span class="tag low">Tier 3</span></td>
+            <td>Resource/capacity</td>
+            <td>
+              <code>high cpu utilization</code>,
+              <code>memory</code>,
+              <code>disk</code>,
+              <code>filesystem space</code>
+            </td>
+            <td>
+              Giữ nếu <code>duration_seconds &gt;= 1800</code> hoặc <code>severity_id = 5</code>.
+            </td>
+            <td>Tránh ngập noise từ resource warning ngắn; chỉ giữ signal đủ nặng/kéo dài.</td>
+          </tr>
+          <tr>
+            <td><span class="tag high">Tier 1/3</span></td>
+            <td>Power/UPS</td>
+            <td>
+              <code>UPS</code>,
+              <code>battery</code>,
+              <code>input frequency</code>,
+              <code>power</code>
+            </td>
+            <td><span class="tag keep">Giữ luôn</span></td>
+            <td>Có thể ảnh hưởng facility/site, cần giữ để đối chiếu incident hoặc ticket.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. Logic trong script local pull</h2>
+      <p>
+        File script: <code>scripts/zabbix_data_pull_tool.py</code>.
+        Chế độ impact-only bật bằng flag <code>--impact-only</code>.
+      </p>
+
+      <h3>Command mẫu</h3>
+      <pre><code>cd C:\Users\Ocean\Documents\VibeCode\Goal2\Goal-2
+
+$env:ZABBIX_TOKEN = "&lt;token&gt;"
+
+python scripts\zabbix_data_pull_tool.py `
+  --month 2026-05 `
+  --host-group "All VNM" `
+  --severities "Average,High,Disaster" `
+  --impact-only `
+  --output-csv 02-Output\zabbix_exports\zbx_problems_impact_All_VNM_2026-05.csv</code></pre>
+
+      <h3>Pseudocode lọc impact-only</h3>
+      <pre><code>family = classify(problem_signature, host, component, domain)
+
+if family in ["Network reachability", "Power/UPS"]:
+    keep
+
+elif family == "HTTP monitoring":
+    keep if duration_seconds &gt;= 300 or severity_id &gt;= 4
+
+elif family in ["Zabbix agent/active check", "Host restart/uptime"]:
+    keep as technical context
+
+elif family == "Resource/capacity":
+    keep if duration_seconds &gt;= 1800 or severity_id == 5
+
+else:
+    drop</code></pre>
+
+      <div class="note">
+        <strong>Token handling:</strong> không hardcode token trong file HTML, script, hoặc OpenSpec.
+        Dùng environment variable <code>ZABBIX_TOKEN</code> hoặc secret parameter khi chạy local.
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Output CSV để upload Alpha</h2>
+      <p>
+        File CSV output là normalized data, không phải full log. Đây là input cho workflow
+        <strong>Clean Rawdata - Zabbix</strong> trên Alpha.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Ý nghĩa</th>
+            <th>Dùng cho</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>event_id</code>, <code>trigger_id</code></td>
+            <td>ID từ Zabbix</td>
+            <td>Deduplicate và evidence reference.</td>
+          </tr>
+          <tr>
+            <td><code>host</code>, <code>host_id</code>, <code>site_code</code></td>
+            <td>Host và site liên quan</td>
+            <td>Query theo site và mapping timeline.</td>
+          </tr>
+          <tr>
+            <td><code>problem_raw</code>, <code>problem_signature</code></td>
+            <td>Tên alert gốc và signature đã normalize</td>
+            <td>Group pattern, phân loại family.</td>
+          </tr>
+          <tr>
+            <td><code>started_at_local</code>, <code>recovered_at_local</code></td>
+            <td>Thời điểm phát sinh và recovery</td>
+            <td>Filter theo khoảng thời gian user hỏi.</td>
+          </tr>
+          <tr>
+            <td><code>severity</code>, <code>severity_id</code>, <code>duration_seconds</code></td>
+            <td>Mức độ và thời lượng</td>
+            <td>Filter impact-only và priority.</td>
+          </tr>
+          <tr>
+            <td><code>domain</code>, <code>component</code>, <code>scope</code>, <code>tags_json</code></td>
+            <td>Tag/context từ Zabbix</td>
+            <td>Phân loại network, power, service, agent, resource.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>7. Logic trong Alpha Zabbix Processor</h2>
+      <p>
+        File code: <code>docs/alpha-zabbix-processor-node.py</code>.
+        Node này nhận <code>zabbix_export_file</code> hoặc <code>zabbix_export_body</code>.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Output JSON</h3>
+          <ul>
+            <li><code>zabbix_alerts.json</code>: từng alert/event đã normalize.</li>
+            <li><code>alert_patterns.json</code>: group theo host + problem signature.</li>
+            <li><code>summary</code>: count, duplicate, rejected, upload readiness.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Field pattern bắt buộc</h3>
+          <ul>
+            <li><code>pattern_family</code></li>
+            <li><code>investigation_priority</code></li>
+            <li><code>signal_assessment</code></li>
+            <li><code>why_it_matters</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Phân loại pattern_family</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>pattern_family</th>
+            <th>Rule nhận diện</th>
+            <th>Priority mặc định</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Network reachability</td>
+            <td>ICMP, unavailable, unreachable, down, packet loss, latency, gateway, VPN, BGP</td>
+            <td>HIGH nếu firewall/switch/down hoặc lặp; MEDIUM nếu đơn lẻ.</td>
+          </tr>
+          <tr>
+            <td>HTTP monitoring</td>
+            <td><code>http monitoring</code></td>
+            <td>MEDIUM nếu alert_count &gt;= 10, ngược lại LOW.</td>
+          </tr>
+          <tr>
+            <td>Zabbix agent/active check</td>
+            <td>active checks, zabbix agent, nodata</td>
+            <td>LOW</td>
+          </tr>
+          <tr>
+            <td>Host restart/uptime</td>
+            <td>restarted, uptime</td>
+            <td>LOW</td>
+          </tr>
+          <tr>
+            <td>Power/UPS</td>
+            <td>UPS, battery, frequency, power</td>
+            <td>HIGH</td>
+          </tr>
+          <tr>
+            <td>Resource/capacity</td>
+            <td>CPU, memory, disk, filesystem, space</td>
+            <td>LOW</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>8. Cách SuperAgent nên hiểu Zabbix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Loại evidence</th>
+            <th>Cách diễn giải</th>
+            <th>Không được nói</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Zabbix-only</td>
+            <td>Monitoring signal hoặc technical context.</td>
+            <td>Không gọi là confirmed incident.</td>
+          </tr>
+          <tr>
+            <td>Network reachability</td>
+            <td>Ưu tiên điều tra vì có thể liên quan connectivity/device/path issue.</td>
+            <td>Không tự kết luận user impact nếu không có ticket/incident.</td>
+          </tr>
+          <tr>
+            <td>HTTP monitoring</td>
+            <td>Probe/threshold signal; cần group theo pattern và xem có repeated/multi-host không.</td>
+            <td>Không coi mọi HTTP probe timeout là service outage.</td>
+          </tr>
+          <tr>
+            <td>Agent/restart/resource</td>
+            <td>Context kỹ thuật cho host/monitoring health.</td>
+            <td>Không dùng làm proof RCA cho fiber/cable/routing incident.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>9. Checklist trước khi upload vào Alpha</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Expected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>File CSV tồn tại</td>
+            <td><code>02-Output\zabbix_exports\zbx_problems_impact_All_VNM_2026-05.csv</code></td>
+          </tr>
+          <tr>
+            <td>Không phải full log</td>
+            <td>Được tạo bằng <code>--impact-only</code>.</td>
+          </tr>
+          <tr>
+            <td>Không hardcode token</td>
+            <td>Token được truyền qua environment variable hoặc secret parameter.</td>
+          </tr>
+          <tr>
+            <td>Alpha processor parse được</td>
+            <td><code>summary.ok = true</code>, <code>rejected_row_count = 0</code>.</td>
+          </tr>
+          <tr>
+            <td>Pattern output đầy đủ</td>
+            <td>Có <code>pattern_family</code>, <code>investigation_priority</code>, <code>signal_assessment</code>.</td>
+          </tr>
+          <tr>
+            <td>Zabbix không thành incident</td>
+            <td><code>assessment</code> vẫn là monitoring signal, không phải confirmed incident.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>10. Gợi ý vận hành ban đầu</h2>
+      <div class="note">
+        Bắt đầu với tháng 5/2026, host group <code>All VNM</code>, severity
+        <code>Average,High,Disaster</code>, và bật <code>--impact-only</code>.
+        Sau khi upload Alpha và test CPL, mới quyết định có cần siết HTTP monitoring hoặc resource/capacity thêm không.
+      </div>
+      <p class="small">
+        Last updated for the current project logic. Related files:
+        <code>scripts/zabbix_data_pull_tool.py</code>,
+        <code>docs/alpha-zabbix-processor-node.py</code>,
+        <code>openspec/changes/alpha-processing-tool/tasks.md</code>.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
