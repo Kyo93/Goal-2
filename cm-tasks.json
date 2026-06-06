@@ -1,11 +1,11 @@
 {
   "initiative": "alpha-processing-tool",
-  "objective": "Build Alpha processing and query workflows that normalize ISP Incident Report, Zabbix, and ITcenter sources, connect them into an operational timeline, and let SuperAgent answer exact site/time-range questions from deterministic tool results.",
+  "objective": "Manually build Alpha processing and query workflows that normalize ISP Incident Report, Zabbix, and ITcenter sources, connect them into an operational timeline, and let SuperAgent answer exact site/time-range questions from deterministic workflow results.",
   "phase": "alpha-zabbix-processing-next",
   "tasks_file": "openspec/changes/alpha-processing-tool/tasks.md",
   "next_actions": [
     "Build and validate the Clean Rawdata - Zabbix workflow on Alpha using uploaded impact-focused Zabbix CSV/XLSX exports",
-    "Validate CPL May 2026 Zabbix pattern-family counts through the query workflow/tool",
+    "Validate CPL May 2026 Zabbix pattern-family counts through the Alpha query workflow",
     "Build the Clean Rawdata - ITcenter workflow after Zabbix processing is stable"
   ],
   "constraints": [
@@ -13,7 +13,8 @@
     "Use ISP Incident Report as the source of truth for confirmed incident existence, RCA, resolution status, and responsibility domain",
     "Use ITcenter tickets as direct user-impact evidence when available",
     "Use Zabbix as monitoring context unless correlation is explicitly supported by timing, site, and signal relevance",
-    "For exact site/time-range answers, use the query workflow/tool instead of counting Knowledge fragments",
+    "For exact site/time-range answers, use the Alpha query workflow instead of counting Knowledge fragments",
+    "Do not require Alpha to connect to this repository through API/external-tool integration",
     "Do not upload JSON files to Alpha Knowledge; upload validated Markdown only",
     "Do not refresh Alpha Knowledge unless validation_status=PASS and upload_allowed=true"
   ]

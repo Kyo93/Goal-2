@@ -10,12 +10,13 @@ Muc tieu chinh:
 - Ket noi 3 source de tao operational timeline.
 - Cho SuperAgent tra loi dung cac cau hoi theo site va khoang thoi gian.
 - Khong de SuperAgent tu dem, tu group, hoac tu suy luan tu cac fragment Knowledge/RAG.
+- Build thu cong tren Alpha; khong can Alpha connect toi repo/project nay bang API.
 
 Cong thuc kien truc:
 
 ```text
 Processing workflows = lam sach du lieu
-Query workflow/tool = tinh toan dung theo filter
+Query workflow = tinh toan dung theo filter
 Knowledge Markdown = ngu canh va rule dien giai
 SuperAgent = viet cau tra loi cho nguoi doc
 ```
@@ -27,6 +28,21 @@ Tool tinh dung
 Knowledge hieu dung
 SuperAgent noi dung
 ```
+
+## Che do build da chot
+
+```text
+Repo nay = blueprint + processor code + local verification baseline.
+Alpha = noi build workflow thu cong bang Code Executor/workflow nodes.
+Khong can API integration tu Alpha ve repo nay.
+```
+
+He qua thuc te:
+
+- Copy code tu `docs/alpha-incident-processor-node.py` vao Alpha Code Executor cho ISP.
+- Copy code tu `docs/alpha-zabbix-processor-node.py` vao Alpha Code Executor cho Zabbix.
+- Workflow connector/query duoc tao truc tiep tren Alpha bang cac node va contract trong tai lieu nay.
+- Local scripts trong repo chi dung de test baseline, build thu, hoac tao file raw/processed mau.
 
 ## Tong quan kien truc
 
@@ -83,6 +99,7 @@ Alpha khong connect truc tiep den Zabbix noi bo.
 Zabbix API pull phai chay ben ngoai Alpha tren may/co network truy cap duoc Zabbix.
 Ket qua pull la normalized CSV/XLSX file.
 File nay duoc upload vao Alpha de workflow Clean Rawdata - Zabbix process tiep.
+Alpha cung khong can connect toi repo nay bang API; processor code duoc copy vao Code Executor node.
 ```
 
 Local/VPN pull command mau:
@@ -165,7 +182,7 @@ Vai tro:
 - Tao Markdown de upload Knowledge.
 - Tao `operational_timeline.json` de query chinh xac.
 
-### 3. Query workflow/tool
+### 3. Query workflow
 
 Day la workflow quan trong nhat de SuperAgent tra loi dung cau hoi theo thoi gian.
 
@@ -242,11 +259,11 @@ Output nen la JSON ngan, da filter va group san:
 
 SuperAgent se dung JSON nay de viet cau tra loi.
 
-## Khi nao dung Knowledge va khi nao dung tool
+## Khi nao dung Knowledge va khi nao dung Query workflow
 
-### Dung tool khi user hoi theo filter
+### Dung Query workflow khi user hoi theo filter
 
-Bat buoc dung Query workflow/tool neu cau hoi co mot trong cac pattern sau:
+Bat buoc dung Query workflow neu cau hoi co mot trong cac pattern sau:
 
 ```text
 Trong khoang thoi gian A den B, site C co gi xay ra?
@@ -515,7 +532,7 @@ Zabbix alert: unavailable by icmp ping / interface down / packet loss
 
 ## Fallback neu Query workflow chua san sang
 
-Neu chua tao duoc Query workflow/tool tren Alpha:
+Neu chua tao duoc Query workflow tren Alpha:
 
 1. SuperAgent co the tra loi tu Knowledge Markdown.
 2. Bat dau voi `04_alert_patterns.md` -> `Site Pattern Family Summary`.

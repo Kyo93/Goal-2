@@ -3,15 +3,15 @@
 ## Kiến Trúc Được Chốt
 
 ```text
-3 raw Excel files
-  -> local Python converter
-  -> validated Markdown knowledge package
+3 raw sources
+  -> manual Alpha processing workflows / local converter baseline
+  -> validated Markdown knowledge package + workflow outputs
   -> Alpha Knowledge Expert
   -> Alpha Super Agent
   -> evidence-backed investigation answers
 ```
 
-Python tính số liệu. Alpha truy xuất và giải thích. Không yêu cầu chạy Python bên trong Alpha Workflow cho MVP.
+Deterministic Python logic tính số liệu. Với hướng hiện tại, processor code được copy thủ công vào Alpha Code Executor/workflow nodes; repo này không cần được Alpha gọi qua API. Alpha Knowledge giữ vai trò context/fallback, còn exact site/time-range counts nên đến từ workflow result khi có.
 
 ## Bước 0: Kiểm Tra Package
 
@@ -209,7 +209,7 @@ Trong Inspect Mode, kiểm tra:
 4. Chờ indexing hoàn tất.
 5. Chạy lại sáu prompt validation.
 
-MVP chưa tự động sync hoặc upload qua API Alpha.
+MVP chưa tự động sync hoặc upload qua API Alpha. Đây là quyết định có chủ ý: build workflow thủ công trên Alpha, upload raw/Markdown thủ công khi cần, và dùng repo này làm source of truth cho code/contract.
 
 ## Timeline-First Validation
 

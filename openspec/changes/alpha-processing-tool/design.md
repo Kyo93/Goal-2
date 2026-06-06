@@ -1,27 +1,30 @@
-# Design: Alpha Processing and Query Tools for ISP Report Automation
+# Design: Manual Alpha Processing and Query Workflows for ISP Report Automation
 
 ## Context and Technical Approach
 
-The existing converter remains the source of truth for deterministic processing. Alpha should orchestrate the processing and explain the validated output, but it should not count raw spreadsheet rows or infer confirmed incidents from alert fragments.
+The existing converter remains the source of truth for deterministic processing. Alpha workflows should be built manually from the processor-node code and contracts in this repository. Alpha does not need to connect back to this repository through an API.
 
-The architecture now has two separate tool types:
+Alpha should orchestrate the processing inside Alpha and explain the validated output, but it should not count raw spreadsheet rows or infer confirmed incidents from alert fragments.
+
+The architecture now has two separate workflow types:
 
 ```text
-Processing tools = normalize raw source data
-Query tool       = filter/group the normalized timeline for user questions
-Knowledge files  = context and explanation rules
-SuperAgent       = management-ready answer writer
+Processing workflows = normalize raw source data
+Query workflow       = filter/group the normalized timeline for user questions
+Knowledge files      = context and explanation rules
+SuperAgent           = management-ready answer writer
 ```
 
-For site/time-range questions, the SuperAgent must call the query tool first. Knowledge retrieval alone is not stable enough for exact counting, month filtering, or Zabbix pattern grouping.
+For site/time-range questions, the SuperAgent should call the Alpha query workflow first when that workflow is available. Knowledge retrieval alone is not stable enough for exact counting, month filtering, or Zabbix pattern grouping.
 
-The processing tool is a staged wrapper around:
+The local code is a verification baseline and copy source for Alpha Code Executor nodes:
 
 ```text
 scripts/build_alpha_knowledge_package.py
 src/itops_alpha/converter.py
-scripts/run_alpha_processing_tool.py
-src/itops_alpha/processing_tool.py
+scripts/zabbix_data_pull_tool.py
+docs/alpha-incident-processor-node.py
+docs/alpha-zabbix-processor-node.py
 ```
 
 ## Proposed Flow
@@ -46,15 +49,15 @@ For user investigations:
 
 ```text
 User question with site/time range
-  -> SuperAgent calls Query IT Ops Timeline
-  -> query tool reads operational_timeline.json or equivalent normalized timeline state
-  -> query tool returns filtered JSON
-  -> SuperAgent explains the tool result
+  -> SuperAgent calls Query IT Ops Timeline workflow inside Alpha
+  -> query workflow reads operational_timeline.json or equivalent normalized timeline state
+  -> query workflow returns filtered JSON
+  -> SuperAgent explains the workflow result
 ```
 
-The processing flow builds data. The query flow answers filtered questions.
+The processing flow builds data. The query flow answers filtered questions. Both are manually built on Alpha; neither requires an API connection from Alpha to this repository.
 
-## Tool Contract
+## Workflow Contract
 
 ### Stage 1: Incident Processor
 
@@ -199,7 +202,7 @@ normalized_data.xlsx
 operational_timeline.json
 ```
 
-`operational_timeline.json` is not a Knowledge upload target. It is machine-readable state for the query workflow/tool.
+`operational_timeline.json` is not a Knowledge upload target. It is machine-readable state for the query workflow.
 
 ## Guardrails
 
@@ -208,8 +211,8 @@ operational_timeline.json
 - Incident form remains the only source of confirmed incidents.
 - Ticket evidence remains user-impact evidence only.
 - Master data is factual only when `review_status=CONFIRMED`.
-- Tool output must include enough counts for Alpha-side sanity checks.
-- Time-range answers must use the query tool when available.
+- Workflow output must include enough counts for Alpha-side sanity checks.
+- Time-range answers must use the query workflow when available.
 - Knowledge-only answers must not claim exact time-range counts unless those counts are explicitly present in retrieved documents.
 - Same-site/time Zabbix correlation is context only unless the alert signature supports the incident type or RCA.
 - Zabbix-only alerts must remain `MONITORING_SIGNAL`, not confirmed incidents.
@@ -217,9 +220,8 @@ operational_timeline.json
 
 ## Verification
 
-- Run the three processors against the current sample files.
-- Run the connector against processed source JSON.
-- Run the full CLI against the current supplied raw files.
+- Run the local converter against the current supplied raw files.
+- Run the Alpha processor-node code manually in Alpha for ISP/Zabbix workflow validation.
 - Compare source profile with the existing validated package.
 - Confirm `validation_status = PASS` and `upload_allowed = true`.
 - Refresh Alpha Knowledge Expert with the generated Markdown.

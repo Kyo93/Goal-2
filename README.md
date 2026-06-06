@@ -15,9 +15,9 @@ Python xử lý phần deterministic như normalize, group, correlate, validate.
 02-Output/               Package, audit files, processed outputs
 03-Data clean logic/     Tài liệu HTML mô tả logic làm sạch từng source
 docs/                    Runbook, Alpha prompt, processor node code, architecture notes
-openspec/                Plan/spec triển khai Alpha processing tool
+openspec/                Plan/spec triển khai manual Alpha workflows
 scripts/                 Local helper scripts
-src/                     Converter và processing/query tool code
+src/                     Converter và deterministic baseline code
 tests/                   Unit/integration tests
 ```
 
@@ -40,7 +40,7 @@ Status: PASS
 Upload allowed: YES
 ```
 
-## Alpha Processing Tool
+## Manual Alpha Build
 
 Plan hiện tại nằm ở:
 
@@ -52,8 +52,9 @@ Tài liệu kiến trúc chính:
 
 ```text
 docs/alpha-workflow-architecture.md
-docs/alpha-processing-tool-runbook.md
 ```
+
+Repo này không cần được Alpha gọi qua API. Khi build trên Alpha, copy processor code từ `docs/alpha-*-processor-node.py` vào Code Executor/workflow nodes, upload raw files, rồi nối các workflow theo contract trong tài liệu kiến trúc.
 
 Tài liệu logic làm sạch dữ liệu:
 

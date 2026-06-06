@@ -4,10 +4,12 @@ Use this file as the execution tracker for building the Alpha processing and que
 
 When a step is completed on Alpha, update the checkbox from `[ ]` to `[x]` and add a short verification note under that step.
 
+Build mode: manual Alpha build. This repository is the source of processor code, contracts, docs, and local verification baselines. Alpha does not need to connect to this repository through an API.
+
 ## 1. Architecture and Contract
 
 - [x] 1.1 Freeze the architecture decision.
-  - Decision: use separate processing workflows, a connector workflow, and a query workflow/tool.
+  - Decision: use separate processing workflows, a connector workflow, and an Alpha query workflow.
   - Reference: `docs/alpha-workflow-architecture.md`.
 
 - [x] 1.2 Keep deterministic logic outside the SuperAgent.
@@ -18,21 +20,27 @@ When a step is completed on Alpha, update the checkbox from `[ ]` to `[x]` and a
 
 - [x] 1.4 Define Knowledge vs tool responsibility.
   - Knowledge Markdown is for context and explanation.
-  - Query tool is for exact site/time-range counts and grouping.
+  - Query workflow is for exact site/time-range counts and grouping.
 
-## 2. Local Tool Baseline
+- [x] 1.5 Freeze manual Alpha build mode.
+  - Decision: build workflows manually in Alpha using Code Executor/workflow nodes.
+  - Decision: do not require Alpha to call this repository through API/external-tool integration.
 
-- [x] 2.1 Add source-specific processor commands.
-  - Verify: incident, Zabbix, and ticket sources each generate canonical JSON locally.
+## 2. Local Verification Baseline
 
-- [x] 2.2 Add connector command for processed sources.
-  - Verify: connector reads canonical JSON and generates the Alpha package.
+- [x] 2.1 Keep local converter baseline.
+  - Verify: `scripts/build_alpha_knowledge_package.py` and `src/itops_alpha/converter.py` still build the validated package locally.
+  - Purpose: local verification baseline, not an API service for Alpha.
 
-- [x] 2.3 Return machine-readable processing status.
-  - Verify: response includes `ok`, `validation_status`, `upload_allowed`, `source_profile`, `warnings`, `knowledge_files`, and `audit_files`.
+- [x] 2.2 Keep Alpha processor-node code as copy source.
+  - Verify: `docs/alpha-incident-processor-node.py` is the ISP Code Executor source.
+  - Verify: `docs/alpha-zabbix-processor-node.py` is the Zabbix Code Executor source.
 
-- [x] 2.4 Add query timeline command locally.
-  - Verify: query accepts `site_code`, `from_at`, `to_at`, and `source_scope`.
+- [x] 2.3 Keep deterministic package validation.
+  - Verify: local package response includes `validation_status`, `upload_allowed`, and `source_profile`.
+
+- [x] 2.4 Keep deterministic query behavior covered by tests.
+  - Verify: local tests cover site/time-range filtering and Zabbix family summaries.
 
 - [x] 2.5 Validate local Zabbix site/month query.
   - Verify expected CPL May 2026 result:
@@ -144,8 +152,9 @@ When a step is completed on Alpha, update the checkbox from `[ ]` to `[x]` and a
 
 ## 6. SuperAgent Integration
 
-- [ ] 6.1 Expose `Query IT Ops Timeline` as a SuperAgent-callable tool.
+- [ ] 6.1 Expose `Query IT Ops Timeline` as a SuperAgent-callable Alpha workflow.
   - Verify: SuperAgent can pass `site_code`, `from_at`, `to_at`, and `source_scope` into the workflow.
+  - No requirement for SuperAgent/Alpha to call this repository through API.
 
 - [ ] 6.2 Update SuperAgent prompt.
   - Required rule: for site/time-range questions, call the query workflow first.
