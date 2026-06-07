@@ -35,14 +35,14 @@ upload_allowed = true
 | Metric | Count |
 | --- | ---: |
 | Confirmed incidents | 52 |
-| Raw Zabbix alerts | 1000 |
-| Alert patterns | 76 |
-| Unique tickets | 923 |
-| Issue comment rows | 2652 |
+| Raw Zabbix alerts | 5199 |
+| Alert patterns | 365 |
+| Unique tickets | 2681 |
+| Issue comment rows | 9525 |
 | Incident recurrence patterns | 27 |
-| Operational stories | 128 |
+| Operational stories | 417 |
 | Timeline confirmed-incident events | 52 |
-| Timeline Zabbix-pattern events | 76 |
+| Timeline Zabbix-pattern events | 365 |
 | Rejected incident rows | 0 |
 | Rejected alert rows | 0 |
 | Rejected ticket-comment rows | 0 |
@@ -53,18 +53,22 @@ Các invariant incident, Zabbix, và issue-comment reconciliation đều `PASS`.
 
 | Markdown | `##` sections | Source-reference sections |
 | --- | ---: | ---: |
-| `02_operational_timeline.md` | 129 including usage section | 128 |
+| `02_operational_timeline.md` | 418 including usage section | 417 |
 | `02_confirmed_incidents.md` | 52 | 52 |
 | `03_recurrence_patterns.md` | 27 | 27 |
-| `04_alert_patterns.md` | 76 | 76 |
-| `05_ticket_impact.md` | 923 | 923 |
+| `04_alert_patterns.md` | 367 | 365 |
+| `05_ticket_impact.md` | 2681 | 2681 |
+| `05_ticket_impact_index.md` | 2 | 0 |
+| `05_ticket_impact_2026_04.md` | 1561 | 1561 |
+| `05_ticket_impact_2026_05.md` | 1282 | 1282 |
+| `05_ticket_impact_2026_06.md` | 500 | 500 |
 
 Tất cả Markdown đọc được bằng UTF-8 và không phát hiện mojibake marker.
 
 ## Operational Story Audit
 
 `02_operational_timeline.md` is now the primary date-range investigation entry point.
-The audit workbook contains an `operational_timeline` sheet with `128` story rows.
+The audit workbook contains an `operational_timeline` sheet with `417` story rows.
 Every story includes `Timeline`, `Conclusion`, and `Investigation gaps`.
 
 Confirmed-incident responsibility classification:

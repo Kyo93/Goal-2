@@ -62,13 +62,15 @@ normalized_data.xlsx -> alert_patterns
 Raw:
 
 ```text
-01-RawData/Ticket/IssueReport.xlsx
+01-RawData/Ticket/*.csv
 ```
 
 Processed views:
 
 ```text
 02-Output/alpha-knowledge-package/05_ticket_impact.md
+02-Output/alpha-knowledge-package/05_ticket_impact_index.md
+02-Output/alpha-knowledge-package/05_ticket_impact_YYYY_MM.md
 normalized_data.xlsx -> ticket_evidence
 ```
 
@@ -103,11 +105,11 @@ Current counts:
 
 ```text
 confirmed incidents: 52
-raw Zabbix alerts: 1000
-grouped Zabbix alert patterns: 76
-unique tickets: 923
-ticket comment rows: 2652
-operational stories: 128
+raw Zabbix alerts: 5199
+grouped Zabbix alert patterns: 365
+unique tickets: 2681
+ticket comment rows: 9525
+operational stories: 417
 ```
 
 Current cross-source result:

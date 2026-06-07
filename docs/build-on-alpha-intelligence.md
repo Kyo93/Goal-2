@@ -42,7 +42,7 @@ Trong Alpha Intelligence:
 IT Operations Historical Intelligence
 ```
 
-4. Upload đúng tám file:
+4. Upload đúng bộ Markdown package:
 
 ```text
 00_report_context.md
@@ -52,12 +52,14 @@ IT Operations Historical Intelligence
 03_recurrence_patterns.md
 04_alert_patterns.md
 05_ticket_impact.md
+05_ticket_impact_index.md
+05_ticket_impact_YYYY_MM.md
 06_data_quality.md
 ```
 
 5. Chờ hệ thống hoàn tất ingest/indexing trước khi test retrieval.
 
-Ưu tiên upload đủ tám file trong cùng một lần refresh để summary và evidence detail không lệch version.
+Ưu tiên upload bộ summary/timeline/alert và `05_ticket_impact_index.md` trong cùng một lần refresh. Ticket detail có thể upload theo monthly partition liên quan đến câu hỏi nếu Alpha giới hạn dung lượng.
 
 ## Bước 2: Tạo Super Agent
 
@@ -72,7 +74,7 @@ IT Operations Investigation Assistant
 4. Bật Inspect Mode trong giai đoạn validation để kiểm tra Expert đã được gọi và evidence nào được truy xuất.
 5. Nếu UI cho phép chỉnh sampling, dùng temperature thấp, khoảng `0.1` đến `0.2`, để câu trả lời vận hành ổn định hơn.
 
-Tên menu hoặc nút có thể thay đổi theo version UI Alpha. Giữ đúng hai quan hệ bắt buộc: Super Agent phải attach Expert, và Expert phải ingest đủ tám Markdown.
+Tên menu hoặc nút có thể thay đổi theo version UI Alpha. Giữ đúng hai quan hệ bắt buộc: Super Agent phải attach Expert, và Expert phải ingest đúng bộ Markdown cùng version.
 
 ## Bước 3: Thêm Instruction
 
@@ -187,7 +189,7 @@ Chạy lần lượt:
 
 | Prompt | Kết quả tối thiểu cần thấy |
 | --- | --- |
-| `How many confirmed incidents are in this package?` | Trả lời `52`, không dùng `1000` raw alerts làm incident count. |
+| `How many confirmed incidents are in this package?` | Trả lời `52`, không dùng `5199` raw alerts làm incident count. |
 | `Which incident pattern recurs most often?` | Có `REC-C20AAAEB5882`, `MS2 | VNPT | High latency`, count `16`. |
 | `Was the MS2 recurring issue permanently fixed?` | Dẫn evidence và nói rõ giới hạn nếu preventive action hoặc evidence chưa đủ. Không tự kết luận dứt điểm. |
 | `How many Zabbix alerts are confirmed incidents?` | Phân biệt alert evidence với confirmed incident; không tự chuyển đổi alert thành incident. |
@@ -205,7 +207,7 @@ Trong Inspect Mode, kiểm tra:
 
 1. Chạy lại converter local.
 2. Chỉ tiếp tục nếu validation report là `PASS`.
-3. Trong Expert, thay bộ tám Markdown cũ bằng bộ mới theo cùng một version refresh.
+3. Trong Expert, thay bộ Markdown cũ bằng bộ mới theo cùng một version refresh; với ticket detail, thay index và các monthly partitions cần dùng.
 4. Chờ indexing hoàn tất.
 5. Chạy lại sáu prompt validation.
 
@@ -231,7 +233,7 @@ For a selected time range, verify that the agent:
 - `33` alert host chưa có master-data mapping `CONFIRMED`.
 - `35` incident thiếu preventive action.
 - `2` incident thiếu RCA.
-- `05_ticket_impact.md` lớn khoảng `1.1 MB`. Nếu UI Alpha áp upload limit hoặc retrieval ticket detail không ổn định, phase tiếp theo nên chia file ticket theo batch nhưng giữ nguyên record heading và lineage.
+- Ticket detail đã được chia theo monthly partitions: `05_ticket_impact_index.md` + `05_ticket_impact_YYYY_MM.md`. Dùng index trước, sau đó upload/retrieve tháng liên quan để tránh vượt giới hạn dung lượng Alpha.
 
 ## Tài Liệu Alpha Chính Thức
 

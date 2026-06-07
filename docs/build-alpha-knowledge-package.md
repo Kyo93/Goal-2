@@ -25,7 +25,8 @@ python -m pip install -r requirements.txt
   ISP Incident Report/
     SEA - Corp IT- ILL- Incident Report   (Responses).xlsx
   Ticket/
-    IssueReport.xlsx
+    *.csv
+    # monthly CSV partitions; legacy IssueReport.xlsx remains a fallback
   Export zabbix/
     *.csv
 ```
@@ -71,11 +72,15 @@ python scripts\build_alpha_knowledge_package.py `
   03_recurrence_patterns.md
   04_alert_patterns.md
   05_ticket_impact.md
+  05_ticket_impact_index.md
+  05_ticket_impact_YYYY_MM.md
   06_data_quality.md
   normalized_data.xlsx
 ```
 
-- Upload vào Alpha: tám file Markdown, bao gồm `02_operational_timeline.md`.
+Ticket detail co the upload theo tung monthly partition neu Alpha bi gioi han dung luong; dung `05_ticket_impact_index.md` de chon file thang lien quan.
+
+- Upload vào Alpha: bộ Markdown package, bao gồm `02_operational_timeline.md`, `05_ticket_impact_index.md`, và monthly ticket partitions cần cho retrieval.
 - Giữ để audit local: `manifest.json`, hai file `validation_report.*`, và `normalized_data.xlsx`.
 
 ## Timeline-First Investigation
@@ -118,9 +123,10 @@ Với sample raw hiện tại, baseline là:
 
 ```text
 confirmed incidents = 52
-raw Zabbix alerts = 1000
-unique tickets = 923
-issue comment rows = 2652
+raw Zabbix alerts = 5199
+unique tickets = 2681
+issue comment rows = 9525
+ticket partitions = 3
 MS2 | VNPT | High latency = 16 confirmed incidents
 XAS | CMC | Fiber optic cable failure = 4 confirmed incidents
 ```
@@ -132,7 +138,7 @@ XAS | CMC | Fiber optic cable failure = 4 confirmed incidents
 3. Chạy lại converter.
 4. Kiểm tra `validation_report.md`.
 5. Spot-check `normalized_data.xlsx`.
-6. Chỉ khi status là `PASS`, cập nhật tám Markdown trong Knowledge Expert.
+6. Chỉ khi status là `PASS`, cập nhật bộ Markdown trong Knowledge Expert; ticket detail có thể cập nhật theo monthly partitions liên quan.
 
 ## Cảnh Báo Thường Gặp
 

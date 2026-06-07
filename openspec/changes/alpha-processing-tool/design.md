@@ -24,18 +24,20 @@ scripts/build_alpha_knowledge_package.py
 src/itops_alpha/converter.py
 scripts/zabbix_data_pull_tool.py
 docs/alpha-incident-processor-node.py
-docs/alpha-zabbix-processor-node.py
+04-Alpha workflow scripts/clean-rawdata-zabbix/alpha-zabbix-processor-node-lite.py
+04-Alpha workflow scripts/clean-rawdata-zabbix/alpha-zabbix-processor-node.py
+04-Alpha workflow scripts/clean-rawdata-zabbix/alpha-zabbix-merge-node.py
 ```
 
 ## Proposed Flow
 
 ```text
 Incident report raw export -> Incident Processor -> confirmed_incidents.json
-Zabbix export file         -> Zabbix Processor   -> zabbix_alerts.json + alert_patterns.json
+Zabbix export file         -> Zabbix Processor   -> alert_patterns.json + 04_alert_patterns.md + knowledge_file
 Issue report raw export    -> Ticket Processor   -> ticket_evidence.json
 
 confirmed_incidents.json
-+ zabbix_alerts.json
++ optional zabbix_alerts.json
 + alert_patterns.json
 + ticket_evidence.json
   -> Connector / correlation engine
@@ -83,8 +85,10 @@ file is uploaded to this processor.
 
 Output:
 
-- `zabbix_alerts.json`
 - `alert_patterns.json`
+- `04_alert_patterns.md`
+- `knowledge_file`
+- optional `zabbix_alerts.json` for future full-record connector mode
 
 ### Stage 3: Ticket Processor
 
@@ -179,7 +183,7 @@ Required:
 - `knowledge_files`
 - `audit_files`
 
-The wrapper must expose the eight Markdown files as the Knowledge Expert inputs:
+The wrapper must expose the Markdown package files as the Knowledge Expert inputs:
 
 ```text
 00_report_context.md
@@ -189,6 +193,8 @@ The wrapper must expose the eight Markdown files as the Knowledge Expert inputs:
 03_recurrence_patterns.md
 04_alert_patterns.md
 05_ticket_impact.md
+05_ticket_impact_index.md
+05_ticket_impact_YYYY_MM.md
 06_data_quality.md
 ```
 
@@ -222,6 +228,7 @@ operational_timeline.json
 
 - Run the local converter against the current supplied raw files.
 - Run the Alpha processor-node code manually in Alpha for ISP/Zabbix workflow validation.
+- Zabbix Alpha verify 2026-06-07: `04_alert_patterns.md` generated and uploaded through `knowledge_file`; `record_count = 5199`, `alert_pattern_count = 365`, `site_family_sections = 50`, `validation_status = PASS`.
 - Compare source profile with the existing validated package.
 - Confirm `validation_status = PASS` and `upload_allowed = true`.
 - Refresh Alpha Knowledge Expert with the generated Markdown.

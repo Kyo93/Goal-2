@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITCenter Ticket Data Cleaning Logic</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #5d697f;
+      --line: #d8deea;
+      --blue: #2557a7;
+      --green: #1b7a53;
+      --amber: #a96700;
+      --red: #a73737;
+      --slate: #334155;
+      --code: #0f172a;
+      --soft-blue: #eaf1ff;
+      --soft-green: #e8f6ef;
+      --soft-amber: #fff3dc;
+      --soft-red: #fdecec;
+      --soft-slate: #eef2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+    }
+
+    header {
+      padding: 28px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 8px 0 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 900px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 6px 6px 0;
+      border: 1px solid transparent;
+    }
+
+    .tag.keep {
+      background: var(--soft-green);
+      color: var(--green);
+      border-color: #b9dfcd;
+    }
+
+    .tag.warn {
+      background: var(--soft-amber);
+      color: var(--amber);
+      border-color: #f0d4a1;
+    }
+
+    .tag.stop {
+      background: var(--soft-red);
+      color: var(--red);
+      border-color: #f2c8c8;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 8px;
+    }
+
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 128px;
+      position: relative;
+    }
+
+    .step::after {
+      content: ">";
+      position: absolute;
+      right: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .step:last-child::after {
+      content: "";
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 14px 0 22px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3fb;
+      color: #22304b;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    pre {
+      background: var(--code);
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 14px;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 12px 0 20px;
+    }
+
+    code {
+      color: #0f3b76;
+      background: #eef4ff;
+      border: 1px solid #d7e5ff;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      border: 0;
+      padding: 0;
+    }
+
+    .note {
+      border-left: 4px solid var(--blue);
+      background: var(--soft-blue);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .warning {
+      border-left: 4px solid var(--amber);
+      background: var(--soft-amber);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .decision {
+      border-left: 4px solid var(--green);
+      background: var(--soft-green);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .grid.two,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .step::after {
+        content: "";
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>ITCenter Ticket Data Cleaning Logic</h1>
+      <p class="subtitle">
+        Tài liệu này giải thích script local đang làm gì với raw export từ ITCenter:
+        gom comment-level rows thành ticket evidence, giữ ticket như bằng chứng user impact,
+        và tạo dữ liệu đầu vào cho workflow <strong>Clean Rawdata - ITcenter</strong>.
+      </p>
+    </header>
+
+    <section>
+      <h2>1. Vai trò trong pipeline</h2>
+      <div class="decision">
+        <strong>ITCenter ticket là direct user evidence, không phải confirmed incident.</strong>
+        Ticket giúp trả lời câu hỏi có người dùng/bộ phận nào bị ảnh hưởng, có symptom gì,
+        và có bằng chứng trực tiếp nào khớp với incident hoặc monitoring signal hay không.
+      </div>
+
+      <div class="flow" aria-label="ITCenter ticket processing flow">
+        <div class="step">
+          <strong>1. Raw export</strong>
+          Đọc các monthly CSV trong <code>01-RawData/Ticket/*.csv</code>.
+        </div>
+        <div class="step">
+          <strong>2. Validate cột</strong>
+          Kiểm tra 14 cột ITCenter bắt buộc.
+        </div>
+        <div class="step">
+          <strong>3. Parse comment</strong>
+          Mỗi row là một ticket comment, có timestamp và ticket id.
+        </div>
+        <div class="step">
+          <strong>4. Group ticket</strong>
+          Gom nhiều comment rows theo <code>itcenter.ticket.id</code>.
+        </div>
+        <div class="step">
+          <strong>5. Output evidence</strong>
+          Tạo aggregate, index, và monthly Markdown <code>05_ticket_impact_YYYY_MM.md</code>.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Local script đang dùng phần nào?</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phần</th>
+            <th>Giá trị hiện tại</th>
+            <th>Ý nghĩa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Raw file</td>
+            <td><code>01-RawData/Ticket/*.csv</code></td>
+            <td>Monthly CSV exports từ ITCenter. Legacy <code>IssueReport.xlsx</code> chỉ còn là fallback.</td>
+          </tr>
+          <tr>
+            <td>Adapter local</td>
+            <td><code>load_issue_tickets()</code> trong <code>src/itops_alpha/converter.py</code></td>
+            <td>Hàm đọc, validate, reject row lỗi, group comment thành ticket.</td>
+          </tr>
+          <tr>
+            <td>Sheet được đọc</td>
+            <td><code>Untitled Discover session (1) (</code></td>
+            <td>Converter đọc worksheet đầu tiên. Workbook có thêm <code>Sheet1</code> nhưng sheet này không được dùng.</td>
+          </tr>
+          <tr>
+            <td>Package output</td>
+            <td><code>05_ticket_impact.md</code>, <code>05_ticket_impact_index.md</code>, <code>05_ticket_impact_YYYY_MM.md</code></td>
+            <td>Aggregate ticket evidence, index theo tháng, và monthly partitions để giảm file size cho Alpha.</td>
+          </tr>
+          <tr>
+            <td>Evidence priority</td>
+            <td>ITCenter đứng sau ISP Incident Report, trước Zabbix Alert</td>
+            <td>Ticket là bằng chứng trực tiếp về user impact, còn Zabbix chỉ là monitoring signal.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. Cột bắt buộc</h2>
+      <p>
+        Nếu thiếu một trong các cột dưới đây, local converter sẽ fail ở bước validate schema.
+      </p>
+      <pre><code>itcenter.ticket.id
+itcenter.ticket.created_at
+itcenter.ticket.full_title
+itcenter.ticket.category_en_name
+itcenter.ticket.classification_name
+itcenter.ticket.service_recipient.user.business_unit
+itcenter.ticket.service_recipient.user.entity_name
+itcenter.ticket.location_full_name
+itcenter.ticket.comment.created_by.user.email
+itcenter.ticket.comment.text
+itcenter.ticket.comment.updated_at
+itcenter.ticket.comment.created_at
+itcenter.ticket.service_recipient.user.office_display
+itcenter.ticket.subclassification_name</code></pre>
+
+      <div class="warning">
+        <strong>Raw export là comment-level, không phải ticket-level.</strong>
+        Một ticket có thể có nhiều rows vì mỗi comment/chat message là một dòng riêng.
+        Vì vậy script không đếm row thành ticket; script phải group theo <code>itcenter.ticket.id</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Logic clean và group</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Bước</th>
+            <th>Script làm gì</th>
+            <th>Kết quả</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag keep">Read row</span></td>
+            <td>Bỏ qua blank row, tăng <code>input_rows</code> cho row có dữ liệu.</td>
+            <td>Chỉ tính comment rows thật.</td>
+          </tr>
+          <tr>
+            <td><span class="tag warn">Parse time</span></td>
+            <td>Parse <code>itcenter.ticket.created_at</code>, <code>itcenter.ticket.comment.created_at</code>, và <code>itcenter.ticket.comment.updated_at</code>.</td>
+            <td>Dùng ticket created time làm mốc impact chính; comment time làm activity/detail.</td>
+          </tr>
+          <tr>
+            <td><span class="tag warn">Check id</span></td>
+            <td>Clean <code>itcenter.ticket.id</code>.</td>
+            <td>Reject row nếu ticket id trống.</td>
+          </tr>
+          <tr>
+            <td><span class="tag keep">Group</span></td>
+            <td>Dùng <code>grouped.setdefault(ticket_id, ...)</code> để gom comment rows cùng ticket.</td>
+            <td>Một ticket id chỉ tạo một record.</td>
+          </tr>
+          <tr>
+            <td><span class="tag keep">Preserve refs</span></td>
+            <td>Lưu <code>source_refs</code> cho tất cả comment rows thuộc ticket.</td>
+            <td>Có audit trail quay lại raw row.</td>
+          </tr>
+          <tr>
+            <td><span class="tag keep">Summarize</span></td>
+            <td>Join tối đa 3 comment đầu tiên thành <code>comments_summary</code>.</td>
+            <td>Knowledge có context ngắn, không cần expose toàn bộ chat dài ở summary chính.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Pseudocode</h3>
+      <pre><code>for each nonblank row:
+    ticket_created_at = parse_datetime(row["itcenter.ticket.created_at"])
+    comment_at = parse_datetime(row["itcenter.ticket.comment.created_at"])
+    comment_updated_at = parse_datetime(row["itcenter.ticket.comment.updated_at"])
+    ticket_id = clean_text(row["itcenter.ticket.id"])
+
+    if comment_at invalid:
+        reject row
+    if ticket_id empty:
+        reject row
+
+    ticket = grouped.setdefault(ticket_id, first_seen_ticket_metadata)
+    ticket.source_refs.append("&lt;csv-file&gt;:row-&lt;n&gt;")
+    ticket.source_files.add(csv_file_name)
+    ticket.ticket_created_times.append(ticket_created_at)
+    ticket.comment_times.append(comment_at)
+    ticket.comment_updated_times.append(comment_updated_at)
+    ticket.comments.append(comment_text)
+
+for each ticket_id:
+    ticket_created_at = min(ticket_created_times)
+    first_comment_at = min(comment_times)
+    last_comment_at = max(comment_times)
+    last_activity_at = max(comment_times + comment_updated_times)
+    evidence_started_at = ticket_created_at or first_comment_at
+    partition_months = months from comment_times
+    comment_count = len(comment_times)
+    comments_summary = " | ".join(first 3 non-empty comments)
+    impact_evidence = title
+    evidence_label = "SOURCE FACT"</code></pre>
+    </section>
+
+    <section>
+      <h2>5. Output ticket record</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Output field</th>
+            <th>Cách tạo</th>
+            <th>Dùng để làm gì</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ticket_id</code></td>
+            <td>Raw <code>itcenter.ticket.id</code></td>
+            <td>Định danh ticket.</td>
+          </tr>
+          <tr>
+            <td><code>source_refs</code></td>
+            <td>Tất cả raw comment rows thuộc ticket</td>
+            <td>Audit trail và citation.</td>
+          </tr>
+          <tr>
+            <td><code>ticket_created_at</code>, <code>evidence_started_at</code></td>
+            <td>Earliest raw ticket created time; fallback về first comment nếu thiếu</td>
+            <td>Mốc chính để xác định thời điểm user/business bắt đầu bị ảnh hưởng.</td>
+          </tr>
+          <tr>
+            <td><code>category</code>, <code>classification</code>, <code>title</code></td>
+            <td>Lấy từ row đầu tiên gặp của ticket</td>
+            <td>Mô tả vấn đề ticket.</td>
+          </tr>
+          <tr>
+            <td><code>entity_name</code>, <code>location_full_name</code>, <code>office_display</code>, <code>subclassification</code></td>
+            <td>Lấy từ service recipient/location fields mới</td>
+            <td>Tăng khả năng xác định scope/site/office bị ảnh hưởng.</td>
+          </tr>
+          <tr>
+            <td><code>business_unit</code>, <code>comment_author_domains</code></td>
+            <td>Lấy từ service recipient và comment author email domain</td>
+            <td>Cho biết affected business scope và nguồn trao đổi trong ticket.</td>
+          </tr>
+          <tr>
+            <td><code>source_files</code>, <code>partition_months</code></td>
+            <td>Lấy từ tên CSV và tháng của comment activity</td>
+            <td>Chia nhỏ Knowledge theo tháng nhưng vẫn giữ lineage đầy đủ.</td>
+          </tr>
+          <tr>
+            <td><code>first_comment_at</code>, <code>last_comment_at</code>, <code>last_activity_at</code></td>
+            <td>Min/max timestamp của comment rows và comment update rows</td>
+            <td>Dùng để match activity window với incident/Zabbix.</td>
+          </tr>
+          <tr>
+            <td><code>comment_count</code></td>
+            <td>Số comment rows đã gom</td>
+            <td>Reconciliation và độ dày bằng chứng.</td>
+          </tr>
+          <tr>
+            <td><code>comments_summary</code></td>
+            <td>3 comment đầu tiên, nối bằng <code> | </code></td>
+            <td>Context ngắn cho Knowledge.</td>
+          </tr>
+          <tr>
+            <td><code>impact_evidence</code></td>
+            <td>Bằng <code>title</code></td>
+            <td>Signal chính để đọc user impact.</td>
+          </tr>
+          <tr>
+            <td><code>evidence_label</code></td>
+            <td><code>SOURCE FACT</code></td>
+            <td>Đánh dấu đây là dữ liệu nguồn, không phải inference.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>6. Snapshot hiện tại</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Raw comments</h3>
+          <p><code>input_rows = 9525</code></p>
+          <p class="small">Mỗi row là một comment/chat entry.</p>
+        </div>
+        <div class="card">
+          <h3>Unique tickets</h3>
+          <p><code>normalized_tickets = 2681</code></p>
+          <p class="small">Sau khi group theo ticket id.</p>
+        </div>
+        <div class="card">
+          <h3>Rejected rows</h3>
+          <p><code>rejected_comment_rows = 0</code></p>
+          <p class="small">Không có row lỗi timestamp hoặc thiếu ticket id trong snapshot này.</p>
+        </div>
+      </div>
+
+      <pre><code>issue_comment_rows = 9525
+aggregated_ticket_comment_count = 9525
+normalized_tickets = 2681
+rejected_comment_rows = 0
+skipped_blank_rows = 0
+ticket_partition_count = 3
+ticket_period_start = 2025-07-31T04:43:41
+ticket_period_end = 2026-06-07T10:30:16
+ticket_activity_period_start = 2026-04-01T10:48:19
+ticket_activity_period_end = 2026-06-07T10:30:16</code></pre>
+
+      <div class="decision">
+        <strong>Reconciliation rule:</strong>
+        <code>issue_comment_rows = aggregated_ticket_comment_count + rejected_comment_rows</code>.
+        Với snapshot hiện tại: <code>9525 = 9525 + 0</code>, nên phần ticket pass reconciliation.
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Ticket được dùng để correlate như thế nào?</h2>
+      <p>
+        Trong connector local, ticket chỉ được coi là bằng chứng impact khi có dấu hiệu match trực tiếp.
+        Script không tự biến mọi ticket cùng ngày thành incident evidence.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Use case</th>
+            <th>Rule chính</th>
+            <th>Ý nghĩa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Incident với ticket</td>
+            <td>Ticket text/title/evidence chứa site code dạng token độc lập và time window overlap với incident buffer.</td>
+            <td>Có thể nâng user impact từ <code>NO_DIRECT_EVIDENCE</code> lên <code>CONFIRMED</code>.</td>
+          </tr>
+          <tr>
+            <td>Zabbix với ticket</td>
+            <td>Ticket phải match site code, overlap time, và có relevance text đủ gần với alert/incident context.</td>
+            <td>Có thể tạo <code>USER_IMPACT_SIGNAL</code>, nhưng vẫn không biến Zabbix thành confirmed incident.</td>
+          </tr>
+          <tr>
+            <td>Không match ticket</td>
+            <td>Không có direct site-explicit ticket khớp.</td>
+            <td>User impact là <code>UNKNOWN</code> hoặc <code>NO_DIRECT_EVIDENCE</code>, không được kết luận là không có user affected.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        <strong>Cẩn thận với suy luận quá tay.</strong>
+        Ticket là evidence mạnh hơn Zabbix cho user impact, nhưng vẫn cần match site/time/relevance.
+        Ticket không khớp trực tiếp thì chỉ là dữ liệu nền, không phải bằng chứng impact cho incident cụ thể.
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Hướng build Alpha ITCenter node</h2>
+      <p>
+        Khi build workflow <strong>Clean Rawdata - ITcenter</strong> trên Alpha,
+        nên mirror logic local trước, sau đó mới thêm file output giống ISP/Zabbix.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Input nên nhận</h3>
+          <ul>
+            <li><code>issue_report_files</code> hoặc từng <code>issue_report_body</code> theo monthly CSV</li>
+            <li><code>source_label</code> / file name cho mỗi partition</li>
+            <li><code>return_markdown = true</code> cho bước upload Knowledge</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Output nên trả</h3>
+          <ul>
+            <li><code>ticket_evidence_text</code> hoặc JSON compact</li>
+            <li><code>ticket_evidence_result</code></li>
+            <li><code>markdown</code> aggregate</li>
+            <li><code>partition_markdowns</code> theo tháng</li>
+            <li><code>partition_index_markdown</code></li>
+            <li><code>knowledge_file</code></li>
+            <li><code>knowledge_filename = 05_ticket_impact.md</code>, <code>05_ticket_impact_index.md</code>, hoặc <code>05_ticket_impact_YYYY_MM.md</code></li>
+            <li><code>summary</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Validation tối thiểu</h3>
+      <pre><code>summary.ok == true
+summary.input_rows == 9525
+summary.normalized_tickets == 2681
+summary.rejected_comment_rows == 0
+summary.ticket_partition_count == 3
+summary.reconciliation_passed == true
+summary.upload_ready == true
+knowledge_file.name ends with .md</code></pre>
+    </section>
+  </main>
+</body>
+</html>

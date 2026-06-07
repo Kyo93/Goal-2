@@ -57,6 +57,69 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(ticket["comment_count"], 2)
         self.assertEqual(len(ticket["source_refs"]), 2)
 
+    def test_issue_adapter_reads_monthly_csv_partitions_and_preserves_ticket_created_at(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            ticket_dir = Path(temporary) / "Ticket"
+            ticket_dir.mkdir()
+            header = ",".join(
+                [
+                    "itcenter.ticket.id",
+                    "itcenter.ticket.created_at",
+                    "itcenter.ticket.full_title",
+                    "itcenter.ticket.category_en_name",
+                    "itcenter.ticket.classification_name",
+                    "itcenter.ticket.service_recipient.user.business_unit",
+                    "itcenter.ticket.service_recipient.user.entity_name",
+                    "itcenter.ticket.location_full_name",
+                    "itcenter.ticket.comment.created_by.user.email",
+                    "itcenter.ticket.comment.text",
+                    "itcenter.ticket.comment.updated_at",
+                    "itcenter.ticket.comment.created_at",
+                    "itcenter.ticket.service_recipient.user.office_display",
+                    "itcenter.ticket.subclassification_name",
+                ]
+            )
+            (ticket_dir / "tickets_2026_05.csv").write_text(
+                "\n".join(
+                    [
+                        header,
+                        '"TKT-100","May 1, 2026 @ 08:00:00.000","CPL VPN issue","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","user@example.com","User reported CPL access issue","May 1, 2026 @ 08:25:00.000","May 1, 2026 @ 08:20:00.000","VN > Hanoi > Capital Place","VPN"',
+                        '"TKT-100","May 1, 2026 @ 08:00:00.000","CPL VPN issue","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","agent@itcenter.sea.com","IT replied","May 1, 2026 @ 09:00:00.000","May 1, 2026 @ 09:00:00.000","VN > Hanoi > Capital Place","VPN"',
+                        '"TKT-200","May 2, 2026 @ 10:00:00.000","Printer issue","Issue Report","Equipment","SPX","SPX Express","SPX - HCM HUB","user@example.com","Printer broken","May 2, 2026 @ 10:10:00.000","May 2, 2026 @ 10:05:00.000","HCM Mega SOC","Printer"',
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            (ticket_dir / "tickets_2026_06.csv").write_text(
+                "\n".join(
+                    [
+                        header,
+                        '"TKT-100","May 1, 2026 @ 08:00:00.000","CPL VPN issue","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","agent@itcenter.sea.com","Follow-up in June","Jun 1, 2026 @ 09:10:00.000","Jun 1, 2026 @ 09:05:00.000","VN > Hanoi > Capital Place","VPN"',
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            result = load_issue_tickets(ticket_dir)
+
+        self.assertEqual(result.input_rows, 4)
+        self.assertEqual(len(result.records), 2)
+        self.assertEqual(sum(record["comment_count"] for record in result.records), 4)
+        ticket = next(record for record in result.records if record["ticket_id"] == "TKT-100")
+        self.assertEqual(ticket["ticket_created_at"], "2026-05-01T08:00:00")
+        self.assertEqual(ticket["evidence_started_at"], "2026-05-01T08:00:00")
+        self.assertEqual(ticket["evidence_time_basis"], "ticket_created_at")
+        self.assertEqual(ticket["first_comment_at"], "2026-05-01T08:20:00")
+        self.assertEqual(ticket["last_comment_at"], "2026-06-01T09:05:00")
+        self.assertEqual(ticket["last_activity_at"], "2026-06-01T09:10:00")
+        self.assertEqual(ticket["partition_months"], ["2026-05", "2026-06"])
+        self.assertEqual(
+            ticket["source_files"], ["tickets_2026_05.csv", "tickets_2026_06.csv"]
+        )
+        self.assertEqual(ticket["location_full_name"], "SOC - Hanoi")
+        self.assertEqual(ticket["office_display"], "VN > Hanoi > Capital Place")
+        self.assertEqual(ticket["subclassification"], "VPN")
+
     def test_zabbix_adapter_groups_metric_variants_but_preserves_raw_count(self):
         result = load_zabbix_alerts(FIXTURES / "zbx_problems_export.xlsx")
         self.assertEqual(result.input_rows, 6)
@@ -810,6 +873,8 @@ class ConverterTest(unittest.TestCase):
                 "03_recurrence_patterns.md",
                 "04_alert_patterns.md",
                 "05_ticket_impact.md",
+                "05_ticket_impact_2026_05.md",
+                "05_ticket_impact_index.md",
                 "06_data_quality.md",
                 "normalized_data.xlsx",
             }
@@ -862,6 +927,13 @@ class ConverterTest(unittest.TestCase):
             alert_patterns_text = (output_dir / "04_alert_patterns.md").read_text("utf-8")
             self.assertIn("Site Pattern Family Summary", alert_patterns_text)
             self.assertIn("Individual Alert Patterns", alert_patterns_text)
+            ticket_index_text = (output_dir / "05_ticket_impact_index.md").read_text("utf-8")
+            self.assertIn("Ticket Impact Partition Index", ticket_index_text)
+            self.assertIn("partition_basis: comment_activity_month", ticket_index_text)
+            self.assertIn("05_ticket_impact_2026_05.md", ticket_index_text)
+            monthly_ticket_text = (output_dir / "05_ticket_impact_2026_05.md").read_text("utf-8")
+            self.assertIn("Ticket Impact Evidence - 2026-05", monthly_ticket_text)
+            self.assertIn("Evidence time basis", monthly_ticket_text)
             self.assertIn("Incidents missing RCA", quality_text)
             self.assertIn("Sites without confirmed master-data mapping", quality_text)
 
@@ -898,6 +970,8 @@ class ConverterTest(unittest.TestCase):
                 "03_recurrence_patterns.md",
                 "04_alert_patterns.md",
                 "05_ticket_impact.md",
+                "05_ticket_impact_2026_05.md",
+                "05_ticket_impact_index.md",
                 "06_data_quality.md",
             ]:
                 self.assertEqual(
@@ -916,7 +990,7 @@ class SuppliedRawDataIntegrationTest(unittest.TestCase):
             / "SEA - Corp IT- ILL- Incident Report   (Responses).xlsx"
         )
         alerts = load_zabbix_alerts(raw_dir / "Export zabbix")
-        tickets = load_issue_tickets(raw_dir / "Ticket" / "IssueReport.xlsx")
+        tickets = load_issue_tickets(raw_dir / "Ticket")
         recurrence = group_incident_recurrence(incidents.records)
         alert_patterns = group_alert_patterns(alerts.records)
         timeline = build_operational_timeline(
@@ -927,9 +1001,13 @@ class SuppliedRawDataIntegrationTest(unittest.TestCase):
         )
 
         self.assertEqual(len(incidents.records), 52)
-        self.assertEqual(len(alerts.records), 10425)
-        self.assertEqual(len(tickets.records), 923)
-        self.assertEqual(sum(ticket["comment_count"] for ticket in tickets.records), 2652)
+        self.assertEqual(len(alerts.records), 5199)
+        self.assertEqual(len(tickets.records), 2681)
+        self.assertEqual(sum(ticket["comment_count"] for ticket in tickets.records), 9525)
+        self.assertEqual(
+            sorted({month for ticket in tickets.records for month in ticket["partition_months"]}),
+            ["2026-04", "2026-05", "2026-06"],
+        )
 
         ms2 = next(
             pattern
@@ -947,15 +1025,15 @@ class SuppliedRawDataIntegrationTest(unittest.TestCase):
         )
         self.assertEqual(ms2["incident_count"], 16)
         self.assertEqual(xas["incident_count"], 4)
-        self.assertEqual(len(alert_patterns), 352)
-        self.assertEqual(len(timeline), 404)
+        self.assertEqual(len(alert_patterns), 365)
+        self.assertEqual(len(timeline), 417)
         self.assertEqual(
             sum(event["event_type"] == "CONFIRMED_INCIDENT" for event in timeline),
             52,
         )
         self.assertEqual(
             sum(event["event_type"] == "ZABBIX_ALERT_PATTERN" for event in timeline),
-            352,
+            365,
         )
         may_incidents = {
             event["event_id"]: event["related_alert_pattern_ids"]
@@ -971,7 +1049,12 @@ class SuppliedRawDataIntegrationTest(unittest.TestCase):
         self.assertEqual(may_incidents["EVT-INC-53"], ["ALP-21A98CCEA4A6"])
         self.assertEqual(
             may_incidents["EVT-INC-54"],
-            ["ALP-6E01E457377C", "ALP-C031A95EC809", "ALP-CDCB1323E9CB"],
+            [
+                "ALP-031BE4B5C2DB",
+                "ALP-6E01E457377C",
+                "ALP-C031A95EC809",
+                "ALP-CDCB1323E9CB",
+            ],
         )
 
 

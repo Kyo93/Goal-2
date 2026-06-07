@@ -40,7 +40,8 @@ Khong can API integration tu Alpha ve repo nay.
 He qua thuc te:
 
 - Copy code tu `docs/alpha-incident-processor-node.py` vao Alpha Code Executor cho ISP.
-- Copy code tu `docs/alpha-zabbix-processor-node.py` vao Alpha Code Executor cho Zabbix.
+- Copy code tu `04-Alpha workflow scripts/clean-rawdata-zabbix/alpha-zabbix-processor-node-lite.py` vao Alpha Code Executor cho Zabbix Knowledge upload.
+- `alpha-zabbix-processor-node.py` va `alpha-zabbix-merge-node.py` van giu cho huong full-record / multi-file merge neu can sau nay.
 - Workflow connector/query duoc tao truc tiep tren Alpha bang cac node va contract trong tai lieu nay.
 - Local scripts trong repo chi dung de test baseline, build thu, hoac tao file raw/processed mau.
 
@@ -53,7 +54,7 @@ Raw ISP Incident Report
 
 Zabbix export file pulled outside Alpha
   -> Workflow 2: Clean Rawdata - Zabbix
-  -> zabbix_alerts.json / alert_patterns.json / alert_patterns.md
+  -> alert_patterns.json / 04_alert_patterns.md / knowledge_file
 
 Raw ITcenter Ticket
   -> Workflow 3: Clean Rawdata - ITcenter
@@ -87,7 +88,7 @@ Co 3 workflow nho:
 | Workflow | Input | Output chinh | Vai tro |
 |---|---|---|---|
 | Clean Rawdata - ISP | Google Sheet, CSV, XLSX incident report | `confirmed_incidents.json`, `confirmed_incidents.md` | Xac dinh confirmed incident |
-| Clean Rawdata - Zabbix | Uploaded Zabbix CSV/XLSX export | `zabbix_alerts.json`, `alert_patterns.json`, `alert_patterns.md` | Chuan hoa raw alerts va group pattern |
+| Clean Rawdata - Zabbix | Uploaded Zabbix CSV/file body | `alert_patterns.json`, `04_alert_patterns.md`, `knowledge_file` | Group raw monitoring signals thanh alert patterns cho Knowledge |
 | Clean Rawdata - ITcenter | Ticket export | `ticket_evidence.json`, `ticket_evidence.md` | Chuan hoa ticket/user evidence |
 
 Input cua cac workflow nay la raw file hoac raw body.
@@ -115,6 +116,21 @@ python scripts\zabbix_data_pull_tool.py `
 ```
 
 Sau do upload file CSV nay vao Alpha workflow `Clean Rawdata - Zabbix`.
+
+Trang thai 2026-06-07:
+
+```text
+Clean Rawdata - Zabbix da pass tren Alpha Intelligent.
+Final Knowledge file: 04_alert_patterns.md
+input_rows = 5199
+record_count = 5199
+alert_pattern_count = 365
+site_family_sections = 50
+rejected_row_count = 0
+duplicate_rows = 0
+upload_ready = true
+validation_status = PASS
+```
 
 Vi du workflow ISP:
 
@@ -383,11 +399,12 @@ Ly do:
   "record_type": "TICKET_EVIDENCE",
   "ticket_id": "TICKET-123",
   "site_code": "CPL",
-  "created_at": "2026-05-17T16:42:00",
+  "ticket_created_at": "2026-05-17T16:42:00",
+  "first_comment_at": "2026-05-17T16:45:00",
   "symptom": "Users report intermittent access issue",
   "affected_scope": "UNKNOWN",
   "evidence_label": "SOURCE FACT",
-  "source_ref": "IssueReport.xlsx#row:123"
+  "source_ref": "Goal2- Ticket Issue raw 05-2026.csv:row-123"
 }
 ```
 
@@ -649,11 +666,12 @@ Expected behavior:
 
 ```text
 [ ] ISP processor workflow da pass
-[ ] Zabbix processor workflow da pass
+[x] Zabbix processor workflow da pass
 [ ] ITcenter processor workflow da pass
 [ ] Connector workflow tao duoc operational_timeline.json
 [ ] Markdown package validation PASS
-[ ] Markdown files da upload Knowledge
+[x] Zabbix 04_alert_patterns.md da upload Knowledge
+[ ] Full Markdown package da upload Knowledge
 [ ] Query IT Ops Timeline workflow nhan site_code/from_at/to_at/source_scope
 [ ] Query workflow tra monitoring_family_summary cho Zabbix questions
 [ ] SuperAgent prompt bat buoc call query workflow cho site/time-range questions

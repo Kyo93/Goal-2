@@ -22,7 +22,7 @@ ZABBIX_EXPORT_DIRNAME = "Export zabbix"
 INCIDENT_REPORT_DIRNAME = "ISP Incident Report"
 ISSUE_REPORT_DIRNAME = "Ticket"
 
-ISSUE_REQUIRED_COLUMNS = {
+ISSUE_LEGACY_REQUIRED_COLUMNS = {
     "itcenter.ticket.comment.created_at",
     "itcenter.ticket.id",
     "itcenter.ticket.category_en_name",
@@ -35,6 +35,25 @@ ISSUE_REQUIRED_COLUMNS = {
     "itcenter.ticket.assignee.user.name",
     "itcenter.ticket.comment.text",
 }
+
+ISSUE_MONTHLY_REQUIRED_COLUMNS = {
+    "itcenter.ticket.id",
+    "itcenter.ticket.created_at",
+    "itcenter.ticket.full_title",
+    "itcenter.ticket.category_en_name",
+    "itcenter.ticket.classification_name",
+    "itcenter.ticket.service_recipient.user.business_unit",
+    "itcenter.ticket.service_recipient.user.entity_name",
+    "itcenter.ticket.location_full_name",
+    "itcenter.ticket.comment.created_by.user.email",
+    "itcenter.ticket.comment.text",
+    "itcenter.ticket.comment.updated_at",
+    "itcenter.ticket.comment.created_at",
+    "itcenter.ticket.service_recipient.user.office_display",
+    "itcenter.ticket.subclassification_name",
+}
+
+ISSUE_REQUIRED_COLUMNS = ISSUE_LEGACY_REQUIRED_COLUMNS
 
 INCIDENT_REQUIRED_COLUMNS = {
     "Timestamp",
@@ -94,6 +113,7 @@ MARKDOWN_FILENAMES = [
     "03_recurrence_patterns.md",
     "04_alert_patterns.md",
     "05_ticket_impact.md",
+    "05_ticket_impact_index.md",
     "06_data_quality.md",
 ]
 
@@ -241,6 +261,50 @@ def _row_dict(headers: list[str], values: Iterable[Any]) -> dict[str, Any]:
     return {header: padded[index] if index < len(padded) else "" for index, header in enumerate(headers)}
 
 
+def _load_issue_sources(path: Path) -> list[tuple[Path, str, list[str], list[Iterable[Any]]]]:
+    if path.is_dir():
+        sources = []
+        for csv_path in sorted(path.glob("*.csv")):
+            sheet_name, headers, rows = _load_csv_rows(csv_path)
+            sources.append((csv_path, sheet_name, headers, rows))
+        if not sources:
+            raise FileNotFoundError(f"No CSV files found in input directory: {path}")
+        return sources
+    if path.suffix.lower() == ".csv":
+        sheet_name, headers, rows = _load_csv_rows(path)
+        return [(path, sheet_name, headers, rows)]
+    sheet_name, headers, rows = _load_sheet(path)
+    return [(path, sheet_name, headers, rows)]
+
+
+def _issue_schema(headers: list[str]) -> tuple[str, set[str]]:
+    header_set = set(headers)
+    if ISSUE_MONTHLY_REQUIRED_COLUMNS <= header_set:
+        return "monthly_csv", ISSUE_MONTHLY_REQUIRED_COLUMNS
+    if ISSUE_LEGACY_REQUIRED_COLUMNS <= header_set:
+        return "legacy_xlsx", ISSUE_LEGACY_REQUIRED_COLUMNS
+    return "monthly_csv", ISSUE_MONTHLY_REQUIRED_COLUMNS
+
+
+def _row_value(row: dict[str, Any], name: str) -> Any:
+    return row.get(name, "")
+
+
+def _first_row_value(row: dict[str, Any], *names: str) -> Any:
+    for name in names:
+        value = row.get(name, "")
+        if clean_text(value):
+            return value
+    return ""
+
+
+def _email_domain(value: Any) -> str:
+    text = clean_text(value).lower()
+    if "@" not in text:
+        return "UNKNOWN"
+    return text.rsplit("@", 1)[1] or "UNKNOWN"
+
+
 def derive_site_code(site_name: Any) -> str:
     text = clean_text(site_name)
     if not text:
@@ -329,72 +393,154 @@ def load_incidents(path: Path) -> AdapterResult:
 
 
 def load_issue_tickets(path: Path) -> AdapterResult:
-    sheet_name, headers, rows = _load_sheet(path)
-    _validate_columns(path, sheet_name, headers, ISSUE_REQUIRED_COLUMNS)
     grouped: dict[str, dict[str, Any]] = {}
     rejected_rows: list[dict[str, Any]] = []
+    warnings: list[str] = []
     skipped_blank_rows = 0
     input_rows = 0
 
-    for row_number, values in enumerate(rows, start=2):
-        if _is_blank_row(values):
-            skipped_blank_rows += 1
-            continue
-        input_rows += 1
-        row = _row_dict(headers, values)
-        reference = source_ref(path.name, sheet_name, row_number)
-        try:
-            comment_at = parse_datetime(row["itcenter.ticket.comment.created_at"])
-        except ValueError as error:
-            rejected_rows.append({"source_ref": reference, "reason": str(error)})
-            continue
-        ticket_id = clean_text(row["itcenter.ticket.id"])
-        if not ticket_id:
-            rejected_rows.append({"source_ref": reference, "reason": "empty ticket id"})
-            continue
-        comment_text = clean_multiline_text(row["itcenter.ticket.comment.text"])
-        ticket = grouped.setdefault(
-            ticket_id,
-            {
-                "ticket_id": ticket_id,
-                "source_refs": [],
-                "comment_times": [],
-                "comments": [],
-                "category": clean_text(row["itcenter.ticket.category_en_name"]) or "UNKNOWN",
-                "classification": clean_text(row["itcenter.ticket.classification_name"])
-                or "UNKNOWN",
-                "title": clean_text(row["itcenter.ticket.full_title"]) or "UNKNOWN",
-                "business_unit": clean_text(
-                    row["itcenter.ticket.service_recipient.user.business_unit"]
+    for source_path, sheet_name, headers, rows in _load_issue_sources(path):
+        schema_name, required_columns = _issue_schema(headers)
+        _validate_columns(source_path, sheet_name, headers, required_columns)
+        for row_number, values in enumerate(rows, start=2):
+            if _is_blank_row(values):
+                skipped_blank_rows += 1
+                continue
+            input_rows += 1
+            row = _row_dict(headers, values)
+            reference = source_ref(source_path.name, sheet_name, row_number)
+            try:
+                comment_at = parse_datetime(row["itcenter.ticket.comment.created_at"])
+                ticket_created_at = (
+                    parse_datetime(row["itcenter.ticket.created_at"])
+                    if schema_name == "monthly_csv"
+                    else None
                 )
-                or "UNKNOWN",
-                "department": clean_text(
-                    row["itcenter.ticket.service_recipient.user.department_name"]
+                comment_updated_at = (
+                    parse_datetime(row["itcenter.ticket.comment.updated_at"])
+                    if clean_text(row.get("itcenter.ticket.comment.updated_at"))
+                    else comment_at
                 )
-                or "UNKNOWN",
-                "user_name": clean_text(row["itcenter.ticket.service_recipient.user.name"])
-                or "UNKNOWN",
-                "user_email": clean_text(row["itcenter.ticket.service_recipient.user.email"])
-                or "UNKNOWN",
-                "assignee": clean_text(row["itcenter.ticket.assignee.user.name"]) or "UNKNOWN",
-            },
-        )
-        ticket["source_refs"].append(reference)
-        ticket["comment_times"].append(comment_at)
-        ticket["comments"].append(comment_text)
+            except ValueError as error:
+                rejected_rows.append({"source_ref": reference, "reason": str(error)})
+                continue
+            ticket_id = clean_text(row["itcenter.ticket.id"])
+            if not ticket_id:
+                rejected_rows.append({"source_ref": reference, "reason": "empty ticket id"})
+                continue
+            comment_text = clean_multiline_text(row["itcenter.ticket.comment.text"])
+            ticket = grouped.setdefault(
+                ticket_id,
+                {
+                    "ticket_id": ticket_id,
+                    "source_refs": [],
+                    "source_files": set(),
+                    "partition_months": set(),
+                    "partition_comment_counts": defaultdict(int),
+                    "ticket_created_times": [],
+                    "comment_times": [],
+                    "comment_updated_times": [],
+                    "comments": [],
+                    "comment_author_domains": set(),
+                    "category": clean_text(row["itcenter.ticket.category_en_name"])
+                    or "UNKNOWN",
+                    "classification": clean_text(row["itcenter.ticket.classification_name"])
+                    or "UNKNOWN",
+                    "subclassification": clean_text(
+                        _row_value(row, "itcenter.ticket.subclassification_name")
+                    )
+                    or "UNKNOWN",
+                    "title": clean_text(row["itcenter.ticket.full_title"]) or "UNKNOWN",
+                    "business_unit": clean_text(
+                        row["itcenter.ticket.service_recipient.user.business_unit"]
+                    )
+                    or "UNKNOWN",
+                    "entity_name": clean_text(
+                        _row_value(row, "itcenter.ticket.service_recipient.user.entity_name")
+                    )
+                    or "UNKNOWN",
+                    "department": clean_text(
+                        _row_value(row, "itcenter.ticket.service_recipient.user.department_name")
+                    )
+                    or "UNKNOWN",
+                    "location_full_name": clean_text(
+                        _row_value(row, "itcenter.ticket.location_full_name")
+                    )
+                    or "UNKNOWN",
+                    "office_display": clean_text(
+                        _row_value(row, "itcenter.ticket.service_recipient.user.office_display")
+                    )
+                    or "UNKNOWN",
+                    "user_name": clean_text(_row_value(row, "itcenter.ticket.service_recipient.user.name"))
+                    or "UNKNOWN",
+                    "user_email": clean_text(_row_value(row, "itcenter.ticket.service_recipient.user.email"))
+                    or "UNKNOWN",
+                    "assignee": clean_text(_row_value(row, "itcenter.ticket.assignee.user.name"))
+                    or "UNKNOWN",
+                },
+            )
+            ticket["source_refs"].append(reference)
+            ticket["source_files"].add(source_path.name)
+            partition_month = comment_at.strftime("%Y-%m")
+            ticket["partition_months"].add(partition_month)
+            ticket["partition_comment_counts"][partition_month] += 1
+            if ticket_created_at is not None:
+                ticket["ticket_created_times"].append(ticket_created_at)
+            ticket["comment_times"].append(comment_at)
+            ticket["comment_updated_times"].append(comment_updated_at)
+            ticket["comments"].append(comment_text)
+            comment_author = _first_row_value(
+                row,
+                "itcenter.ticket.comment.created_by.user.email",
+                "itcenter.ticket.service_recipient.user.email",
+            )
+            if comment_author:
+                ticket["comment_author_domains"].add(_email_domain(comment_author))
 
     records = []
     for ticket_id in sorted(grouped):
         ticket = grouped[ticket_id]
         comments = [comment for comment in ticket.pop("comments") if comment]
         comment_times = ticket.pop("comment_times")
+        comment_updated_times = ticket.pop("comment_updated_times")
+        ticket_created_times = ticket.pop("ticket_created_times")
+        source_files = sorted(ticket.pop("source_files"))
+        partition_months = sorted(ticket.pop("partition_months"))
+        partition_comment_counts = dict(sorted(ticket.pop("partition_comment_counts").items()))
+        comment_author_domains = sorted(ticket.pop("comment_author_domains"))
+        if ticket_created_times:
+            unique_created_values = {
+                iso_datetime(created_at) for created_at in ticket_created_times
+            }
+            if len(unique_created_values) > 1:
+                warnings.append(
+                    f"Ticket {ticket_id} has multiple ticket_created_at values; using earliest"
+                )
+            ticket_created_at = min(ticket_created_times)
+            evidence_time_basis = "ticket_created_at"
+        else:
+            ticket_created_at = min(comment_times)
+            evidence_time_basis = "first_comment_at_fallback"
+        first_comment_at = min(comment_times)
+        last_comment_at = max(comment_times)
+        last_activity_at = max(comment_updated_times or comment_times)
+        evidence_last_seen_at = max(last_comment_at, last_activity_at)
         ticket.update(
             {
-                "first_comment_at": iso_datetime(min(comment_times)),
-                "last_comment_at": iso_datetime(max(comment_times)),
+                "ticket_created_at": iso_datetime(ticket_created_at),
+                "first_comment_at": iso_datetime(first_comment_at),
+                "last_comment_at": iso_datetime(last_comment_at),
+                "last_activity_at": iso_datetime(last_activity_at),
+                "evidence_started_at": iso_datetime(ticket_created_at),
+                "evidence_last_seen_at": iso_datetime(evidence_last_seen_at),
+                "evidence_time_basis": evidence_time_basis,
                 "comment_count": len(comment_times),
                 "comments_summary": " | ".join(comments[:3]) or "UNKNOWN",
                 "impact_evidence": ticket["title"],
+                "source_files": source_files,
+                "partition_months": partition_months,
+                "partition_comment_counts": partition_comment_counts,
+                "comment_author_domains": comment_author_domains,
                 "evidence_label": "SOURCE FACT",
             }
         )
@@ -404,6 +550,7 @@ def load_issue_tickets(path: Path) -> AdapterResult:
         input_rows=input_rows,
         skipped_blank_rows=skipped_blank_rows,
         rejected_rows=rejected_rows,
+        warnings=warnings,
     )
 
 
@@ -1007,7 +1154,13 @@ def _text_contains_site_code(record: dict[str, Any], site_code: str) -> bool:
         return False
     text = " ".join(
         clean_text(record.get(field))
-        for field in ["title", "comments_summary", "impact_evidence"]
+        for field in [
+            "title",
+            "comments_summary",
+            "impact_evidence",
+            "location_full_name",
+            "office_display",
+        ]
     )
     return bool(
         re.search(
@@ -1015,6 +1168,23 @@ def _text_contains_site_code(record: dict[str, Any], site_code: str) -> bool:
             text,
             flags=re.IGNORECASE,
         )
+    )
+
+
+def _ticket_window_start(ticket: dict[str, Any]) -> str:
+    return (
+        clean_text(ticket.get("evidence_started_at"))
+        or clean_text(ticket.get("ticket_created_at"))
+        or clean_text(ticket.get("first_comment_at"))
+    )
+
+
+def _ticket_window_end(ticket: dict[str, Any]) -> str:
+    return (
+        clean_text(ticket.get("evidence_last_seen_at"))
+        or clean_text(ticket.get("last_activity_at"))
+        or clean_text(ticket.get("last_comment_at"))
+        or _ticket_window_start(ticket)
     )
 
 
@@ -1057,8 +1227,8 @@ def build_operational_timeline(
             and _time_windows_overlap(
                 incident["started_at"],
                 incident["resolved_at"],
-                ticket["first_comment_at"],
-                ticket["last_comment_at"],
+                _ticket_window_start(ticket),
+                _ticket_window_end(ticket),
                 buffer_minutes,
             )
         ]
@@ -1222,8 +1392,8 @@ def _related_tickets(
         and _time_windows_overlap(
             started_at,
             ended_at,
-            ticket["first_comment_at"],
-            ticket["last_comment_at"],
+            _ticket_window_start(ticket),
+            _ticket_window_end(ticket),
             buffer_minutes,
         )
     ]
@@ -1425,7 +1595,7 @@ def build_operational_stories(
         for ticket in related_tickets:
             milestones.append(
                 {
-                    "at": ticket["first_comment_at"],
+                    "at": _ticket_window_start(ticket),
                     "type": "USER_TICKET",
                     "message": (
                         f"Ticket {ticket['ticket_id']} provided direct site-explicit "
@@ -1576,7 +1746,7 @@ def build_operational_stories(
         for ticket in related_tickets:
             milestones.append(
                 {
-                    "at": ticket["first_comment_at"],
+                    "at": _ticket_window_start(ticket),
                     "type": "USER_TICKET",
                     "message": (
                         f"Ticket {ticket['ticket_id']} provided direct site-explicit "
@@ -2194,9 +2364,11 @@ def _render_context(profile: dict[str, int], warnings: list[str]) -> str:
 - Operational stories: `{profile['operational_timeline_events']}`
 - Unique tickets: `{profile['normalized_tickets']}`
 - Issue-report comment rows: `{profile['aggregated_ticket_comment_count']}`
+- Ticket monthly partitions: `{profile.get('ticket_partition_count', 0)}`
 - Confirmed incident period: `{profile['incident_period_start']}` to `{profile['incident_period_end']}`
 - Raw alert period: `{profile['alert_period_start']}` to `{profile['alert_period_end']}`
 - Ticket evidence period: `{profile['ticket_period_start']}` to `{profile['ticket_period_end']}`
+- Ticket activity period: `{profile.get('ticket_activity_period_start', 'UNKNOWN')}` to `{profile.get('ticket_activity_period_end', 'UNKNOWN')}`
 
 ## Data Quality Warnings
 
@@ -2218,6 +2390,7 @@ def _render_executive_summary(
         f"- Operational stories: `{profile['operational_timeline_events']}`",
         f"- Unique tickets: `{profile['normalized_tickets']}`",
         f"- Issue-report comment rows: `{profile['aggregated_ticket_comment_count']}`",
+        f"- Ticket monthly partitions: `{profile.get('ticket_partition_count', 0)}`",
         "",
         "## Operational Story Coverage",
         "",
@@ -2643,8 +2816,12 @@ def _render_alert_patterns(patterns: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def _render_ticket_impact(tickets: list[dict[str, Any]]) -> str:
-    lines = ["# Ticket Impact Evidence", "", "> Tickets provide direct user evidence but are not automatically incidents.", ""]
+def _render_ticket_impact(
+    tickets: list[dict[str, Any]],
+    title: str = "Ticket Impact Evidence",
+    note: str = "Tickets provide direct user evidence but are not automatically incidents.",
+) -> str:
+    lines = [f"# {title}", "", f"> {note}", ""]
     for ticket in tickets:
         lines.extend(
             [
@@ -2652,19 +2829,134 @@ def _render_ticket_impact(tickets: list[dict[str, Any]]) -> str:
                 "",
                 f"- Evidence label: `{ticket['evidence_label']}`",
                 f"- Ticket ID: `{ticket['ticket_id']}`",
+                f"- Ticket created at: `{ticket.get('ticket_created_at', 'UNKNOWN')}`",
+                f"- Evidence started at: `{ticket.get('evidence_started_at', ticket.get('first_comment_at', 'UNKNOWN'))}`",
+                f"- Evidence last seen at: `{ticket.get('evidence_last_seen_at', ticket.get('last_comment_at', 'UNKNOWN'))}`",
+                f"- Evidence time basis: `{ticket.get('evidence_time_basis', 'UNKNOWN')}`",
+                f"- First comment at: `{ticket.get('first_comment_at', 'UNKNOWN')}`",
+                f"- Last comment at: `{ticket.get('last_comment_at', 'UNKNOWN')}`",
+                f"- Last activity at: `{ticket.get('last_activity_at', ticket.get('last_comment_at', 'UNKNOWN'))}`",
                 f"- Title: {_escape_markdown(ticket['title'])}",
                 f"- Classification: `{ticket['classification']}`",
+                f"- Subclassification: `{ticket.get('subclassification', 'UNKNOWN')}`",
                 f"- Business unit: `{ticket['business_unit']}`",
-                f"- Department: `{ticket['department']}`",
-                f"- User: `{ticket['user_name']}`",
-                f"- Email: `{ticket['user_email']}`",
+                f"- Entity: `{ticket.get('entity_name', 'UNKNOWN')}`",
+                f"- Location: `{ticket.get('location_full_name', 'UNKNOWN')}`",
+                f"- Office display: `{ticket.get('office_display', 'UNKNOWN')}`",
+                f"- Department: `{ticket.get('department', 'UNKNOWN')}`",
+                f"- User: `{ticket.get('user_name', 'UNKNOWN')}`",
+                f"- Email: `{ticket.get('user_email', 'UNKNOWN')}`",
+                f"- Assignee: `{ticket.get('assignee', 'UNKNOWN')}`",
                 f"- Comment count: `{ticket['comment_count']}`",
+                f"- Partition months: `{', '.join(ticket.get('partition_months', [])) or 'UNKNOWN'}`",
+                f"- Source files: `{', '.join(ticket.get('source_files', [])) or 'UNKNOWN'}`",
+                f"- Comment author domains: `{', '.join(ticket.get('comment_author_domains', [])) or 'UNKNOWN'}`",
                 f"- Comment summary: {_escape_markdown(ticket['comments_summary'])}",
                 f"- Source references: `{'; '.join(ticket['source_refs'])}`",
                 "",
             ]
         )
     return "\n".join(lines)
+
+
+def _ticket_partition_filename(partition_month: str) -> str:
+    return f"05_ticket_impact_{partition_month.replace('-', '_')}.md"
+
+
+def _ticket_partition_months(tickets: list[dict[str, Any]]) -> list[str]:
+    return sorted(
+        {
+            month
+            for ticket in tickets
+            for month in ticket.get("partition_months", [])
+            if clean_text(month)
+        }
+    )
+
+
+def _ticket_partition_records(
+    tickets: list[dict[str, Any]], partition_month: str
+) -> list[dict[str, Any]]:
+    return [
+        ticket
+        for ticket in tickets
+        if partition_month in ticket.get("partition_months", [])
+    ]
+
+
+def _render_ticket_partition_index(tickets: list[dict[str, Any]]) -> str:
+    lines = [
+        "# Ticket Impact Partition Index",
+        "",
+        "> Use this file to choose the monthly ticket partition before reading ticket details.",
+        "",
+        "```yaml",
+        "record_type: TICKET_IMPACT_PARTITION_INDEX",
+        "partition_basis: comment_activity_month",
+        "dedupe_key: ticket_id",
+        "primary_impact_time: ticket_created_at",
+        "activity_time: comment_created_at/comment_updated_at",
+        "```",
+        "",
+        "## Query Rules",
+        "",
+        "- Select partitions by requested activity window, then dedupe by `ticket_id`.",
+        "- For user/business impact timing, prefer `ticket_created_at` / `evidence_started_at`.",
+        "- For ongoing evidence, use `evidence_last_seen_at` and comment activity fields.",
+        "- A ticket may appear in multiple month partitions when comments span months.",
+        "",
+        "## Available Partitions",
+        "",
+    ]
+    for month in _ticket_partition_months(tickets):
+        partition_tickets = _ticket_partition_records(tickets, month)
+        comment_count = sum(
+            int(ticket.get("partition_comment_counts", {}).get(month, 0))
+            for ticket in partition_tickets
+        )
+        source_files = sorted(
+            {
+                source_file
+                for ticket in partition_tickets
+                for source_file in ticket.get("source_files", [])
+            }
+        )
+        classifications = Counter(
+            clean_text(ticket.get("classification")) or "UNKNOWN"
+            for ticket in partition_tickets
+        )
+        locations = Counter(
+            clean_text(ticket.get("location_full_name")) or "UNKNOWN"
+            for ticket in partition_tickets
+        )
+        lines.extend(
+            [
+                f"### {month}",
+                "",
+                "```yaml",
+                f"partition_month: {month}",
+                f"knowledge_filename: {_ticket_partition_filename(month)}",
+                f"ticket_count: {len(partition_tickets)}",
+                f"comment_row_count: {comment_count}",
+                f"source_files: {', '.join(source_files) or 'UNKNOWN'}",
+                f"ticket_created_at_min: {min((_ticket_window_start(ticket) for ticket in partition_tickets), default='UNKNOWN')}",
+                f"evidence_last_seen_at_max: {max((_ticket_window_end(ticket) for ticket in partition_tickets), default='UNKNOWN')}",
+                "```",
+                "",
+                f"- Top classifications: {_counter_summary(classifications, 8)}",
+                f"- Top locations: {_counter_summary(locations, 8)}",
+                "",
+            ]
+        )
+    return "\n".join(lines)
+
+
+def _counter_summary(counter: Counter, limit: int) -> str:
+    if not counter:
+        return "`UNKNOWN`"
+    return ", ".join(
+        f"`{key}` ({value})" for key, value in counter.most_common(limit)
+    )
 
 
 def _render_data_quality(
@@ -2776,7 +3068,8 @@ def build_knowledge_package(
                 return candidate
         return candidates[0]
 
-    issue_path = resolve_raw_path(ISSUE_REPORT_FILENAME, ISSUE_REPORT_DIRNAME)
+    issue_dir = raw_dir / ISSUE_REPORT_DIRNAME
+    issue_path = issue_dir if issue_dir.exists() else resolve_raw_path(ISSUE_REPORT_FILENAME, ISSUE_REPORT_DIRNAME)
     incident_path = resolve_raw_path(INCIDENT_REPORT_FILENAME, INCIDENT_REPORT_DIRNAME)
     zabbix_file_path = raw_dir / ZABBIX_FILENAME
     zabbix_export_dir = raw_dir / ZABBIX_EXPORT_DIRNAME
@@ -2867,6 +3160,7 @@ def build_knowledge_package(
         ),
         "rejected_comment_rows": len(tickets.rejected_rows),
         "normalized_tickets": len(tickets.records),
+        "ticket_partition_count": len(_ticket_partition_months(tickets.records)),
         "alert_patterns": len(alert_patterns),
         "recurrence_patterns": len(recurrence),
         "operational_timeline_events": len(operational_stories),
@@ -2930,10 +3224,20 @@ def build_knowledge_package(
             (record["seen_at"] for record in alerts.records), default="UNKNOWN"
         ),
         "ticket_period_start": min(
-            (record["first_comment_at"] for record in tickets.records), default="UNKNOWN"
+            (_ticket_window_start(record) for record in tickets.records), default="UNKNOWN"
         ),
         "ticket_period_end": max(
-            (record["last_comment_at"] for record in tickets.records), default="UNKNOWN"
+            (_ticket_window_end(record) for record in tickets.records), default="UNKNOWN"
+        ),
+        "ticket_activity_period_start": min(
+            (record["first_comment_at"] for record in tickets.records), default="UNKNOWN"
+        ),
+        "ticket_activity_period_end": max(
+            (
+                clean_text(record.get("last_activity_at")) or record["last_comment_at"]
+                for record in tickets.records
+            ),
+            default="UNKNOWN",
         ),
     }
     known_checks = _known_sample_checks(source_profile, recurrence)
@@ -2967,6 +3271,15 @@ def build_knowledge_package(
                 "sha256": sha256_file(path),
             }
             for path in sorted(zabbix_path.glob("*.csv"), key=lambda item: item.name.lower())
+        )
+    if issue_path.is_dir():
+        manifest_inputs.extend(
+            {
+                "filename": f"{issue_path.name}/{path.name}",
+                "input_type": "raw_export",
+                "sha256": sha256_file(path),
+            }
+            for path in sorted(issue_path.glob("*.csv"), key=lambda item: item.name.lower())
         )
     manifest = {
         "package_version": PACKAGE_VERSION,
@@ -3008,6 +3321,22 @@ def build_knowledge_package(
     (output_dir / "05_ticket_impact.md").write_text(
         _render_ticket_impact(tickets.records), encoding="utf-8"
     )
+    (output_dir / "05_ticket_impact_index.md").write_text(
+        _render_ticket_partition_index(tickets.records), encoding="utf-8"
+    )
+    for partition_month in _ticket_partition_months(tickets.records):
+        partition_tickets = _ticket_partition_records(tickets.records, partition_month)
+        (output_dir / _ticket_partition_filename(partition_month)).write_text(
+            _render_ticket_impact(
+                partition_tickets,
+                title=f"Ticket Impact Evidence - {partition_month}",
+                note=(
+                    "Monthly ticket partition. Select by activity month, then dedupe by "
+                    "`ticket_id` in the query workflow."
+                ),
+            ),
+            encoding="utf-8",
+        )
     (output_dir / "06_data_quality.md").write_text(
         _render_data_quality(incidents.records, master_data, rejected_rows, warnings),
         encoding="utf-8",

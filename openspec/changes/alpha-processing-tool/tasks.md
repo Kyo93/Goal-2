@@ -30,11 +30,13 @@ Build mode: manual Alpha build. This repository is the source of processor code,
 
 - [x] 2.1 Keep local converter baseline.
   - Verify: `scripts/build_alpha_knowledge_package.py` and `src/itops_alpha/converter.py` still build the validated package locally.
+  - Verify 2026-06-07: ITcenter local converter supports `01-RawData/Ticket/*.csv` monthly partitions, preserves `ticket_created_at`, and emits ticket aggregate/index/monthly Markdown files.
   - Purpose: local verification baseline, not an API service for Alpha.
 
 - [x] 2.2 Keep Alpha processor-node code as copy source.
   - Verify: `docs/alpha-incident-processor-node.py` is the ISP Code Executor source.
-  - Verify: `docs/alpha-zabbix-processor-node.py` is the Zabbix Code Executor source.
+  - Verify: `04-Alpha workflow scripts/clean-rawdata-zabbix/alpha-zabbix-processor-node-lite.py` is the completed Alpha Zabbix Knowledge-file Code Executor source.
+  - Note: `alpha-zabbix-processor-node.py` and `alpha-zabbix-merge-node.py` remain available for future full-record / multi-file merge workflows.
 
 - [x] 2.3 Keep deterministic package validation.
   - Verify: local package response includes `validation_status`, `upload_allowed`, and `source_profile`.
@@ -63,20 +65,24 @@ Build mode: manual Alpha build. This repository is the source of processor code,
   - Local verify: XLSX sample returns `record_type=CONFIRMED_INCIDENT`, `duration_minutes=8`, `responsibility_domain=ISP` for `INC-3`; Markdown/file payload size both equal `57405` bytes.
   - Alpha verify: pass. One sample incident record contains all required downstream query fields and `02_confirmed_incidents.md` generation still works.
 
-- [ ] 3.3 Build `Clean Rawdata - Zabbix` workflow on Alpha.
+- [x] 3.3 Build `Clean Rawdata - Zabbix` workflow on Alpha.
   - Input: uploaded Zabbix CSV/XLSX export or file body. Alpha does not connect to internal Zabbix directly.
   - Local/VPN pull: use `scripts/zabbix_data_pull_tool.py` to export normalized CSV from Zabbix API, then upload that file to Alpha.
-  - Output: `zabbix_alerts.json`, `alert_patterns.json`, Markdown summary, processing summary.
+  - Output: compact alert pattern collection, Markdown summary, processing summary, and uploadable `knowledge_file`.
   - Verify: output includes `pattern_family`, `problem_signature`, `host`, `site_code`, `first_seen_at`, `last_seen_at`, `last_recovered_at`, `investigation_priority`, and `signal_assessment`.
+  - Alpha verify 2026-06-07: bundled May-to-June impact-only CSV generated `04_alert_patterns.md`; `record_count = 5199`, `alert_pattern_count = 365`, `rejected_row_count = 0`, `duplicate_rows = 0`, `reconciliation_passed = true`, `upload_ready = true`.
+  - Alpha upload verify 2026-06-07: Upload AK Knowledge used `knowledge_file` with `knowledge_filename = 04_alert_patterns.md`.
 
-- [ ] 3.4 Validate Zabbix processor with CPL data.
+- [x] 3.4 Validate Zabbix processor with CPL data.
   - Verify: CPL has pattern families including Network reachability, HTTP monitoring, Host restart/uptime, and Zabbix agent/active check.
   - Verify: Zabbix-only records are not marked as confirmed incidents.
+  - Alpha verify 2026-06-07: generated file contains `Site Pattern Family Summary`, `alert_pattern_headings = 365`, and `site_family_sections = 50`.
+  - CPL combined May-to-June counts: HTTP monitoring `21 patterns / 1167 alerts`; Network reachability `25 patterns / 29 alerts`; Zabbix agent/active check `2 patterns / 5 alerts`; Host restart/uptime `2 patterns / 4 alerts`.
 
 - [ ] 3.5 Build `Clean Rawdata - ITcenter` workflow on Alpha.
-  - Input: ITcenter ticket export.
-  - Output: `ticket_evidence.json`, Markdown summary, processing summary.
-  - Verify: ticket records include `ticket_id`, `site_code`, `created_at`, `symptom`, `affected_scope`, `evidence_label`, and `source_ref`.
+  - Input: ITcenter monthly CSV exports, or a single CSV body/file when testing one month.
+  - Output: ticket evidence JSON, aggregate Markdown, partition index Markdown, monthly partition Markdown, processing summary.
+  - Verify: ticket records include `ticket_id`, `ticket_created_at`, `evidence_started_at`, `evidence_time_basis`, `first_comment_at`, `last_comment_at`, `last_activity_at`, `business_unit`, `entity_name`, `location_full_name`, `office_display`, `subclassification`, `source_files`, `partition_months`, `evidence_label`, and `source_refs`.
 
 ## 4. Alpha Connector Workflow
 
@@ -102,9 +108,12 @@ Build mode: manual Alpha build. This repository is the source of processor code,
     - `01_executive_summary.md`
     - `02_operational_timeline.md`
     - `02_confirmed_incidents.md`
-    - `03_ticket_evidence.md`
+    - `03_recurrence_patterns.md`
     - `04_alert_patterns.md`
-    - site/summary/data-quality files used by the current package contract
+    - `05_ticket_impact.md`
+    - `05_ticket_impact_index.md`
+    - `05_ticket_impact_YYYY_MM.md`
+    - `06_data_quality.md`
 
 ## 5. Alpha Query Workflow / Tool
 

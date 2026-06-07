@@ -36,7 +36,7 @@ Nguyên tắc xử lý quan trọng:
   -> load_zabbix_alerts()
   -> group_alert_patterns()
 
-01-RawData/Ticket/IssueReport.xlsx
+01-RawData/Ticket/*.csv
   -> load_issue_tickets()
   -> ticket_evidence
 
@@ -56,7 +56,9 @@ Các output chính:
 | `02_confirmed_incidents.md` | Incident đã xác nhận từ incident form |
 | `03_recurrence_patterns.md` | Nhóm incident lặp lại |
 | `04_alert_patterns.md` | Nhóm alert Zabbix theo host và signature |
-| `05_ticket_impact.md` | Ticket evidence đã gộp comment |
+| `05_ticket_impact.md` | Ticket evidence da gop comment |
+| `05_ticket_impact_index.md` | Index ticket partitions theo thang |
+| `05_ticket_impact_YYYY_MM.md` | Ticket evidence theo monthly partition |
 | `06_data_quality.md` | Warning, rejected rows, coverage gaps |
 | `normalized_data.xlsx` | Audit workbook gồm các sheet normalized |
 | `manifest.json` | Version, input hashes, source profile, warnings |
@@ -396,14 +398,14 @@ Top alert patterns hiện tại:
 | `VNMSNT-VSSPM02` | `SNT` | 240 | `Disaster` | `UNKNOWN` | `UNKNOWN` | `git http monitoring` |
 | `VNMSNT-VSSPM01` | `SNT` | 237 | `Disaster` | `UNKNOWN` | `UNKNOWN` | `git http monitoring` |
 
-## 6. Raw file: Issue Report
+## 6. Raw source: ITcenter Ticket monthly CSV
 
 ### 6.1 File và sheet
 
 Raw file:
 
 ```text
-01-RawData/Ticket/IssueReport.xlsx
+01-RawData/Ticket/*.csv
 ```
 
 Adapter:
@@ -412,28 +414,31 @@ Adapter:
 load_issue_tickets()
 ```
 
-Converter đọc worksheet đầu tiên, hiện là:
+Converter đọc tất cả CSV trong thư mục Ticket:
 
 ```text
-Untitled Discover session (1) (
+monthly CSV partition files
 ```
 
-Workbook hiện có thêm `Sheet1` trống; converter không đọc sheet này.
+Converter group cùng một `itcenter.ticket.id` xuyên nhiều file tháng, và giữ source file/partition month trong output.
 
 ### 6.2 Cột bắt buộc
 
 ```text
-itcenter.ticket.comment.created_at
 itcenter.ticket.id
+itcenter.ticket.created_at
+itcenter.ticket.full_title
 itcenter.ticket.category_en_name
 itcenter.ticket.classification_name
-itcenter.ticket.full_title
 itcenter.ticket.service_recipient.user.business_unit
-itcenter.ticket.service_recipient.user.department_name
-itcenter.ticket.service_recipient.user.name
-itcenter.ticket.service_recipient.user.email
-itcenter.ticket.assignee.user.name
+itcenter.ticket.service_recipient.user.entity_name
+itcenter.ticket.location_full_name
+itcenter.ticket.comment.created_by.user.email
 itcenter.ticket.comment.text
+itcenter.ticket.comment.updated_at
+itcenter.ticket.comment.created_at
+itcenter.ticket.service_recipient.user.office_display
+itcenter.ticket.subclassification_name
 ```
 
 ### 6.3 Chuẩn hóa và gộp ticket
@@ -444,10 +449,11 @@ là một comment. Adapter gom theo `itcenter.ticket.id`.
 Trong lúc đọc từng comment row:
 
 - Parse `itcenter.ticket.comment.created_at`.
+- Parse `itcenter.ticket.created_at` làm mốc user/business impact khi có.
 - Reject row nếu timestamp không parse được.
 - Reject row nếu ticket id trống.
-- Lưu `source_refs`, `comment_times`, và `comments`.
-- Metadata ticket như category, classification, title, user, assignee lấy từ
+- Lưu `source_refs`, `comment_times`, `comment_updated_times`, `source_files`, `partition_months`, và `comments`.
+- Metadata ticket như category, classification, title, entity, location, office, subclassification lấy từ
   row đầu tiên gặp theo ticket id.
 
 Sau khi đọc xong, mỗi ticket record có:
@@ -455,12 +461,18 @@ Sau khi đọc xong, mỗi ticket record có:
 | Output field | Cách tạo |
 | --- | --- |
 | `ticket_id` | Raw ticket id |
-| `source_refs` | Tất cả comment row thuộc ticket |
+| `source_refs` | Tat ca comment row thuoc ticket |
+| `ticket_created_at` | Earliest raw ticket created timestamp |
+| `evidence_started_at` | `ticket_created_at` neu co, fallback `first_comment_at` |
+| `evidence_time_basis` | `ticket_created_at` hoac `first_comment_at_fallback` |
 | `first_comment_at` | Min comment timestamp |
 | `last_comment_at` | Max comment timestamp |
-| `comment_count` | Số comment rows đã đọc |
-| `comments_summary` | Join tối đa 3 comment đầu tiên bằng `" | "` |
-| `impact_evidence` | Bằng `title` |
+| `last_activity_at` | Max comment created/updated timestamp |
+| `comment_count` | So comment rows da doc |
+| `source_files` | CSV files co comment cua ticket |
+| `partition_months` | Comment activity months cua ticket |
+| `comments_summary` | Join toi da 3 comment dau tien bang `" | "` |
+| `impact_evidence` | Bang `title` |
 | `evidence_label` | `SOURCE FACT` |
 
 Records được sort theo `ticket_id`.
@@ -468,13 +480,16 @@ Records được sort theo `ticket_id`.
 Với raw snapshot hiện tại:
 
 ```text
-input_rows = 2652
-normalized_tickets = 923
-aggregated_ticket_comment_count = 2652
+input_rows = 9525
+normalized_tickets = 2681
+aggregated_ticket_comment_count = 9525
 rejected_comment_rows = 0
 skipped_blank_rows = 0
-ticket_period_start = 2026-05-01T06:35:37
-ticket_period_end = 2026-05-19T17:54:47
+ticket_partition_count = 3
+ticket_period_start = 2025-07-31T04:43:41
+ticket_period_end = 2026-06-07T10:30:16
+ticket_activity_period_start = 2026-04-01T10:48:19
+ticket_activity_period_end = 2026-06-07T10:30:16
 ```
 
 ## 7. Master data workbook
@@ -658,8 +673,8 @@ Ngoài ra `_known_sample_checks()` chạy khi raw snapshot match sample baseline
 
 ```text
 normalized_incidents = 52
-normalized_alert_rows = 1000
-normalized_tickets = 923
+normalized_alert_rows = 5199
+normalized_tickets = 2681
 ```
 
 Khi match baseline, hai recurrence check bắt buộc là:
@@ -695,12 +710,12 @@ file đã đổi giữa các lần build.
 
 ## 11. Các giới hạn kỹ thuật hiện tại
 
-- Converter chỉ đọc đúng tên file hardcoded:
-  - `IssueReport.xlsx`
+- Converter đọc các source theo contract:
+  - `01-RawData/Ticket/*.csv`, hoặc fallback legacy `IssueReport.xlsx`
   - `SEA - Corp IT- ILL- Incident Report   (Responses).xlsx`
   - `zbx_problems_export.xlsx`
 - Incident workbook chỉ đọc sheet `Form Responses 1`.
-- Issue và Zabbix workbook chỉ đọc worksheet đầu tiên.
+- Legacy Issue workbook và Zabbix workbook chỉ đọc worksheet đầu tiên; monthly Ticket CSV đọc theo từng file trong thư mục.
 - Không có timezone-aware normalization; timezone bị bỏ khi parse datetime.
 - Master data chưa `CONFIRMED` sẽ không enrichment output.
 - Correlation không chứng minh RCA, chỉ tạo investigation context.

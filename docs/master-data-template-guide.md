@@ -6,7 +6,7 @@ Use `03-Data clean logic/reference doc/it-operations-master-data-template.xlsx`.
 
 The workbook was seeded from:
 
-- `01-RawData/Ticket/IssueReport.xlsx`
+- `01-RawData/Ticket/*.csv`
 - `01-RawData/ISP Incident Report/SEA - Corp IT- ILL- Incident Report   (Responses).xlsx`
 - `01-RawData/zbx_problems_export.xlsx`
 
