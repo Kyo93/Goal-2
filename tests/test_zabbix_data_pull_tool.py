@@ -1,6 +1,8 @@
 import importlib.util
+import os
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 import requests
 
@@ -44,7 +46,9 @@ class ZabbixDataPullToolTest(unittest.TestCase):
         self.assertIn("increase retry_total", message)
 
     def test_main_returns_structured_error_for_missing_token(self):
-        result = zabbix_tool.main(api_token="", payload={})
+        with patch.dict(os.environ, {"ZABBIX_TOKEN": ""}, clear=False):
+            with patch.object(zabbix_tool, "DEFAULT_API_TOKEN", ""):
+                result = zabbix_tool.main(api_token="", payload={})
 
         self.assertFalse(result["ok"])
         self.assertEqual(result["error"], "zabbix_tool_error")

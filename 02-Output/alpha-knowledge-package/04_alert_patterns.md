@@ -8,80 +8,116 @@
 
 ### CCW | Network reachability
 
-- Pattern count: `5`
-- Raw alert count across full export: `10`
+- Pattern count: `8`
+- Raw alert count across full export: `12`
 - Investigation priorities: `HIGH, MEDIUM`
-- Sample signatures: `cisco ios: unavailable by icmp ping, unavailable by icmp ping`
-- Sample hosts: `VNMCCW-FPT-GoogleDNS, VNMCCW-FPT-wms.ssc.shopee.vn, VNMCCW-PE-FPT-58.186.223.217, VNMCCW-PE-VNPT-wms.ssc.shopee.vn, VNMCCW-PNASW04`
-- Example alert pattern IDs: `ALP-A035897B33D7, ALP-169E6406F728, ALP-2627FC49476B`
+- Sample signatures: `cisco ios: unavailable by icmp ping, unavailable by icmp ping, zabbix proxy: utilization of icmp pinger processes over 75%`
+- Sample hosts: `VNMCCW-FPT-GoogleDNS, VNMCCW-FPT-wms.ssc.shopee.vn, VNMCCW-PE-FPT-58.186.223.217, VNMCCW-PE-VNPT-14.238.87.209, VNMCCW-PE-VNPT-wms.ssc.shopee.vn, VNMCCW-PNASW04, VNMCCW-VNPT-GoogleDNS, VNMCCW-VSSPM02`
+- Example alert pattern IDs: `ALP-169E6406F728, ALP-2627FC49476B, ALP-A7A009EBB0BA, ALP-D22E642D2402, ALP-A035897B33D7`
+
+### CCW | Other
+
+- Pattern count: `7`
+- Raw alert count across full export: `16`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface gi1/0/1(vnpt): link down, interface gi2/0/3(fpt): link down, interface gi2/0/9(backoffice): link down, interface po18(hub-w4): link down, interface te1/1/1(vnpt): link down, interface te1/1/2(hub-w4): link down, interface te2/1/2(hub-w4): link down`
+- Sample hosts: `VNMCCW-PNASW-OFFICE, VNMCCW-PNCSW01, VNMCCW-PNWSW01`
+- Example alert pattern IDs: `ALP-FE978C1E0C20, ALP-19E27B689C58, ALP-4B2D9244DF77, ALP-EF2FC71AF04A, ALP-37ECD17812E6, ALP-6330A778B101, ALP-A4089FD15772`
 
 ### CCW | HTTP monitoring
 
 - Pattern count: `3`
-- Raw alert count across full export: `12`
+- Raw alert count across full export: `11`
 - Investigation priorities: `LOW`
 - Sample signatures: `http monitoring`
 - Sample hosts: `VNMCCW-VSEMS01, VNMCCW-VSSPM01, VNMCCW-VSSPM02`
-- Example alert pattern IDs: `ALP-6D1757618413, ALP-8C989B803A73, ALP-7A23D4CE212F`
+- Example alert pattern IDs: `ALP-6D1757618413, ALP-7A23D4CE212F, ALP-8C989B803A73`
 
 ### CPL | Network reachability
 
-- Pattern count: `17`
-- Raw alert count across full export: `21`
-- Investigation priorities: `HIGH, MEDIUM`
+- Pattern count: `12`
+- Raw alert count across full export: `16`
+- Investigation priorities: `HIGH`
 - Sample signatures: `cisco ios: unavailable by icmp ping, unavailable by icmp ping, vnmcpl-pnwfw01 is down!, vnmcpl-pnwfw02 is down!`
-- Sample hosts: `VNMCPL-FPT-GoogleDNS, VNMCPL-FPT-spx.shopee.vn, VNMCPL-GNL-HRIS, VNMCPL-GNL-ITCenter, VNMCPL-PNASW0401, VNMCPL-PNASW0402, VNMCPL-PNASW0501, VNMCPL-PNASW0502, VNMCPL-PNASW0503, VNMCPL-PNASW0504, VNMCPL-PNASW0601, VNMCPL-PNSSW01`
+- Sample hosts: `VNMCPL-FPT-GoogleDNS, VNMCPL-PNASW0401, VNMCPL-PNASW0402, VNMCPL-PNASW0501, VNMCPL-PNASW0502, VNMCPL-PNASW0503, VNMCPL-PNASW0504, VNMCPL-PNASW0601, VNMCPL-PNSSW01, VNMCPL-PNWFW01, VNMCPL-PNWFW02, VNMCPL-VTHL-GoogleDNS`
 - Example alert pattern IDs: `ALP-AD0FEAB4CF54, ALP-BF6FF8E976BE, ALP-1D167D124B85, ALP-685FDC71F87F, ALP-8BA568D15E14, ALP-93A5CD8B721E, ALP-AC5823A356F9, ALP-BB3EEB369423`
 
 ### CPL | HTTP monitoring
 
-- Pattern count: `29`
-- Raw alert count across full export: `1909`
+- Pattern count: `21`
+- Raw alert count across full export: `1167`
 - Investigation priorities: `MEDIUM, LOW`
-- Sample signatures: `confluence http monitoring, git http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
+- Sample signatures: `confluence http monitoring, git http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring`
 - Sample hosts: `VNMCPL-VSSPM01, VNMCPL-VSSPM02, VNMCPL-VSSPM03, VNMCPL-VSSPM04`
-- Example alert pattern IDs: `ALP-9D95052D0965, ALP-7B851AF85826, ALP-E08CEB52B684, ALP-460C038618E4, ALP-6F2F9F50A046, ALP-744043C0F1DE, ALP-D05FEF044AE4, ALP-FDC327088884`
+- Example alert pattern IDs: `ALP-7B851AF85826, ALP-E08CEB52B684, ALP-9D95052D0965, ALP-460C038618E4, ALP-6F2F9F50A046, ALP-744043C0F1DE, ALP-D05FEF044AE4, ALP-FDC327088884`
+
+### CPL | Other
+
+- Pattern count: `13`
+- Raw alert count across full export: `13`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface gi1/0/1(host<value>-gi1-vmnic0): link down, interface gi1/0/2(host<value>-gi2-vmnic0): link down, interface gi1/0/3(host<value>-gi6): link down, interface gi1/0/4(vmotion): link down, interface gi1/0/47(host8o-idrac): link down, interface gi2/0/1(host<value>-gi2-vmnic1): link down, interface gi2/0/2(host<value>-gi2-vmnic1): link down, interface gi2/0/3(host<value>-gi6): link down, interface gi2/0/4(vmotion): link down, interface gi2/0/47(host<value>-idrac): link down`
+- Sample hosts: `VNMCPL-PNSSW01, VNMCPL-PNWSW01`
+- Example alert pattern IDs: `ALP-5A159D9F292E, ALP-90723BD1730B, ALP-A9E721DBF400, ALP-B331868ACD35, ALP-BACB26822D0F, ALP-C6A753AA8DAF, ALP-DDAF4871FEF9, ALP-E45DD97FFD35`
+
+### CPL | Zabbix agent/active check
+
+- Pattern count: `2`
+- Raw alert count across full export: `5`
+- Investigation priorities: `LOW`
+- Sample signatures: `windows: active checks are not available`
+- Sample hosts: `VNMCPL-VSDHC01, VNMCPL-VSDHC02`
+- Example alert pattern IDs: `ALP-981B0724F60D, ALP-47027752FDAD`
 
 ### CPL | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `5`
+- Raw alert count across full export: `4`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMCPL-VSDHC01, VNMCPL-VSDHC02`
 - Example alert pattern IDs: `ALP-C3F11E8E54C2, ALP-A37DF63F13A8`
 
-### CPL | Zabbix agent/active check
-
-- Pattern count: `2`
-- Raw alert count across full export: `3`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: active checks are not available`
-- Sample hosts: `VNMCPL-VSDHC01, VNMCPL-VSDHC02`
-- Example alert pattern IDs: `ALP-47027752FDAD, ALP-981B0724F60D`
-
 ### MBD | Network reachability
 
-- Pattern count: `7`
-- Raw alert count across full export: `38`
+- Pattern count: `4`
+- Raw alert count across full export: `31`
 - Investigation priorities: `HIGH, MEDIUM`
-- Sample signatures: `huawei vrp: unavailable by icmp ping, unavailable by icmp ping`
-- Sample hosts: `VNMMBD-FPT-FMS-143.92.82.164, VNMMBD-NETNAM-FMS-143.92.82.164, VNMMBD-NETNAM-FMS-143.92.88.13, VNMMBD-NETNAM-spx.shopee.vn, VNMMBD-PE-FPT-42.116.48.97, VNMMBD-PNWLC01, VNMMBD-VNPT-FTTH-FMS-143.92.82.164`
-- Example alert pattern IDs: `ALP-17B01F3BB308, ALP-300E3E1681E3, ALP-8512B88F2512, ALP-DC9D3BB56688`
+- Sample signatures: `unavailable by icmp ping`
+- Sample hosts: `VNMMBD-FPT-FMS-143.92.82.164, VNMMBD-NETNAM-FMS-143.92.82.164, VNMMBD-NETNAM-spx.shopee.vn, VNMMBD-PE-FPT-42.116.48.97`
+- Example alert pattern IDs: `ALP-17B01F3BB308, ALP-300E3E1681E3`
+
+### MBD | Power/UPS
+
+- Pattern count: `2`
+- Raw alert count across full export: `4`
+- Investigation priorities: `HIGH`
+- Sample signatures: `apc ups: ups is on battery`
+- Sample hosts: `VNMMBD-UPS01, VNMMBD-UPS02`
+- Example alert pattern IDs: `ALP-8CD6ED07FBD2, ALP-AA4ADE38C413`
 
 ### MBD | HTTP monitoring
 
 - Pattern count: `4`
-- Raw alert count across full export: `15`
+- Raw alert count across full export: `10`
 - Investigation priorities: `LOW`
 - Sample signatures: `http monitoring`
 - Sample hosts: `VNMMBD-VSEMS01, VNMMBD-VSSPM01, VNMMBD-VSSPM02, VNMMBD-VSSPM03`
 - Example alert pattern IDs: `ALP-30B215136C84, ALP-8022BF11F7B8, ALP-8C1FAECDB82B, ALP-C8F733B66B3A`
 
+### MBD | Other
+
+- Pattern count: `7`
+- Raw alert count across full export: `9`
+- Investigation priorities: `LOW`
+- Sample signatures: `dell idrac: nic [nic.embedded.1-1-1/ac:b4:80:4f:b9:cc]: link down, interface te2/1/8(ul-fpt): link down, interface xgigabitethernet1/0/1(): link down, interface xgigabitethernet1/0/17(vnmmbd-pnasw17): link down, interface xgigabitethernet1/0/18(vnmmbd-pnasw18): link down, interface xgigabitethernet1/0/23(asm-b): link down, interface xgigabitethernet1/0/47(vnmmbd-pndsw01): link down`
+- Sample hosts: `VNMMBD-PNCSW01, VNMMBD-PNDSW01-B, VNMMBD-PNWSW01, VNMMBD-psesx01`
+- Example alert pattern IDs: `ALP-8D8DBC00B238, ALP-E4A386D887F2, ALP-031BE4B5C2DB, ALP-40578C2A8D55, ALP-42399D834774, ALP-42F4BF748BE6, ALP-EC47E5EBE854`
+
 ### MBD | Host restart/uptime
 
 - Pattern count: `4`
-- Raw alert count across full export: `8`
+- Raw alert count across full export: `4`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMMBD-PSSJP1, VNMMBD-PSSJP2, VNMMBD-VSDHC01, VNMMBD-VSDHC02`
@@ -89,170 +125,179 @@
 
 ### MBD | Zabbix agent/active check
 
-- Pattern count: `8`
-- Raw alert count across full export: `8`
+- Pattern count: `4`
+- Raw alert count across full export: `4`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: active checks are not available, windows: zabbix agent is not available (or nodata for <value>)`
-- Sample hosts: `VNMMBD-PSSJP2, VNMMBD-VSDHC01, VNMMBD-VSDHC02, VNMMBD-VSSJC1`
-- Example alert pattern IDs: `ALP-4B29B0B74364, ALP-6E01E457377C, ALP-7834E29B7C40, ALP-7DD186E93674, ALP-C031A95EC809, ALP-C5EE5E1156A2, ALP-D29D0CE77EA6, ALP-F00DBD58B8BB`
+- Sample hosts: `VNMMBD-VSDHC02, VNMMBD-VSSJC1`
+- Example alert pattern IDs: `ALP-4B29B0B74364, ALP-6E01E457377C, ALP-C031A95EC809, ALP-F00DBD58B8BB`
+
+### MDN | Power/UPS
+
+- Pattern count: `2`
+- Raw alert count across full export: `2`
+- Investigation priorities: `HIGH`
+- Sample signatures: `apc ups: ups is on battery`
+- Sample hosts: `VNMMDN-UPS01, VNMMDN-UPS02`
+- Example alert pattern IDs: `ALP-2CDF8339EE29, ALP-CFD7410A0332`
 
 ### MDN | Network reachability
 
-- Pattern count: `12`
-- Raw alert count across full export: `27`
-- Investigation priorities: `HIGH, MEDIUM`
+- Pattern count: `3`
+- Raw alert count across full export: `3`
+- Investigation priorities: `MEDIUM`
 - Sample signatures: `unavailable by icmp ping`
-- Sample hosts: `VNMMDN-FPT-210.245.97.132, VNMMDN-FPT-FMS-143.92.82.164, VNMMDN-FPT-FMS-143.92.88.13, VNMMDN-FPT-Google, VNMMDN-FPT-GoogleDNS, VNMMDN-FPT-spx.shopee.vn, VNMMDN-Netnam-119.17.213.166, VNMMDN-Netnam-FMS-143.92.82.164, VNMMDN-Netnam-FMS-143.92.88.13, VNMMDN-Netnam-FMS-Google, VNMMDN-Netnam-FMS-GoogleDNS, VNMMDN-Netnam-FMS-spx.shopee.vn`
-- Example alert pattern IDs: `ALP-6B66EDD4D5A6, ALP-3A350A82A881, ALP-9E76E02BF1B3, ALP-04992EA5ACE4, ALP-214F7282186B, ALP-3D44EE916699, ALP-556C5581035F, ALP-88CA4CE44C96`
+- Sample hosts: `VNMMDN-FPT-210.245.97.132, VNMMDN-FPT-Google, VNMMDN-Netnam-FMS-Google`
+- Example alert pattern IDs: `ALP-556C5581035F, ALP-6B66EDD4D5A6, ALP-9E76E02BF1B3`
 
 ### MDN | HTTP monitoring
 
 - Pattern count: `3`
-- Raw alert count across full export: `346`
-- Investigation priorities: `MEDIUM`
+- Raw alert count across full export: `11`
+- Investigation priorities: `LOW`
 - Sample signatures: `http monitoring`
 - Sample hosts: `VNMMDN-VSEMS01, VNMMDN-VSSPM01, VNMMDN-VSSPM02`
 - Example alert pattern IDs: `ALP-F5572970729B, ALP-A0947B93EBA0, ALP-B8C29BDC1FFA`
 
 ### MDN | Host restart/uptime
 
-- Pattern count: `4`
-- Raw alert count across full export: `14`
+- Pattern count: `3`
+- Raw alert count across full export: `6`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
-- Sample hosts: `VNMMDN-PSSJP1, VNMMDN-PSSJP2, VNMMDN-VSDHC01, VNMMDN-VSDHC02`
-- Example alert pattern IDs: `ALP-7637E316BAF5, ALP-6A54DDB78966, ALP-B56ED1112D8F, ALP-E97AD6C8AC63`
+- Sample hosts: `VNMMDN-PSSJP1, VNMMDN-VSDHC01, VNMMDN-VSDHC02`
+- Example alert pattern IDs: `ALP-7637E316BAF5, ALP-6A54DDB78966, ALP-E97AD6C8AC63`
+
+### MDN | Other
+
+- Pattern count: `1`
+- Raw alert count across full export: `1`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface 50:00:e0:4f:9b:80/1/c9300x-nm-8y/1: link down`
+- Sample hosts: `VNMMDN-PNCSW01-1-2`
+- Example alert pattern IDs: `ALP-95C8531458B4`
 
 ### MS2 | Network reachability
 
-- Pattern count: `10`
-- Raw alert count across full export: `102`
+- Pattern count: `9`
+- Raw alert count across full export: `97`
 - Investigation priorities: `HIGH, MEDIUM`
 - Sample signatures: `unavailable by icmp ping`
-- Sample hosts: `VNMMS2-FPT-FMS-143.92.82.164, VNMMS2-FPT-FMS-143.92.88.13, VNMMS2-FPT-FMS-34.8.101.13, VNMMS2-FPT-FMS-45.119.218.130, VNMMS2-FPT-FMS-45.119.218.141, VNMMS2-FPT-Google, VNMMS2-FPT-GoogleDNS, VNMMS2-FPT-spx.shopee.vn, VNMMS2-NetNam-spx.shopee.vn, VNMMS2-VNPT-GoogleDNS`
-- Example alert pattern IDs: `ALP-D0FCFBCBA8AA, ALP-CAD1A664558A, ALP-1CBDABDA59C1, ALP-50D1D2232E0A, ALP-7C0331E2C3F9, ALP-AB38560C5F2E, ALP-D8D267F610B0, ALP-EB009B8995C2`
+- Sample hosts: `VNMMS2-FPT-FMS-143.92.82.164, VNMMS2-FPT-FMS-143.92.88.13, VNMMS2-FPT-FMS-34.8.101.13, VNMMS2-FPT-FMS-45.119.218.130, VNMMS2-FPT-FMS-45.119.218.141, VNMMS2-FPT-Google, VNMMS2-FPT-GoogleDNS, VNMMS2-NetNam-spx.shopee.vn, VNMMS2-VNPT-GoogleDNS`
+- Example alert pattern IDs: `ALP-D0FCFBCBA8AA, ALP-CAD1A664558A, ALP-1CBDABDA59C1, ALP-50D1D2232E0A, ALP-EB009B8995C2`
 
 ### MS2 | HTTP monitoring
 
 - Pattern count: `5`
-- Raw alert count across full export: `48`
-- Investigation priorities: `MEDIUM, LOW`
+- Raw alert count across full export: `16`
+- Investigation priorities: `LOW`
 - Sample signatures: `http monitoring`
 - Sample hosts: `VNMMS2-VSEMS01, VNMMS2-VSSPM01, VNMMS2-VSSPM02, VNMMS2-VSSPM03, VNMMS2-VSSPM04`
-- Example alert pattern IDs: `ALP-7FEC14B7A1CA, ALP-13B43D07AA25, ALP-F21C496048BA, ALP-8343732F4E8F, ALP-4C656B6E6B0E`
+- Example alert pattern IDs: `ALP-7FEC14B7A1CA, ALP-13B43D07AA25, ALP-F21C496048BA, ALP-4C656B6E6B0E, ALP-8343732F4E8F`
 
 ### MS2 | Host restart/uptime
 
 - Pattern count: `4`
-- Raw alert count across full export: `11`
+- Raw alert count across full export: `4`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMMS2-PSSJP1, VNMMS2-PSSJP2, VNMMS2-VSDHC01, VNMMS2-VSDHC02`
-- Example alert pattern IDs: `ALP-8502BDAE29F6, ALP-DDC89EABBC6F, ALP-F78AB4D74642, ALP-2BE3251B74A9`
-
-### MS2 | Zabbix agent/active check
-
-- Pattern count: `2`
-- Raw alert count across full export: `2`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: active checks are not available, windows: zabbix agent is not available (or nodata for <value>)`
-- Sample hosts: `VNMMS2-VSDHC02`
-- Example alert pattern IDs: `ALP-2D2F403D00DF, ALP-8B4020640506`
+- Example alert pattern IDs: `ALP-2BE3251B74A9, ALP-8502BDAE29F6, ALP-DDC89EABBC6F, ALP-F78AB4D74642`
 
 ### MS2 | Other
 
 - Pattern count: `1`
 - Raw alert count across full export: `1`
 - Investigation priorities: `LOW`
-- Sample signatures: `mpu board 1: temperature is above critical threshold: >60`
-- Sample hosts: `VNMMS2-PNASW01`
-- Example alert pattern IDs: `ALP-65F3394BD3E4`
+- Sample signatures: `interface xgigabitethernet0/0/22(*** asm ***): link down`
+- Sample hosts: `VNMMS2-PNCSW01`
+- Example alert pattern IDs: `ALP-DDC053EAD407`
 
 ### MSB | Network reachability
 
-- Pattern count: `23`
-- Raw alert count across full export: `95`
+- Pattern count: `19`
+- Raw alert count across full export: `73`
 - Investigation priorities: `HIGH, MEDIUM`
-- Sample signatures: `cisco ios: unavailable by icmp ping, unavailable by icmp ping`
-- Sample hosts: `VNMMSB-FPT-FMS-143.92.82.164, VNMMSB-FPT-FMS-143.92.88.13, VNMMSB-FPT-FMS-34.8.101.13, VNMMSB-FPT-FMS-45.119.218.130, VNMMSB-FPT-FMS-45.119.218.141, VNMMSB-FPT-Google, VNMMSB-FPT-GoogleDNS, VNMMSB-FPT-spx.shopee.vn, VNMMSB-PE-FPT-42.115.45.57, VNMMSB-PE-VNPT-14.238.34.169, VNMMSB-PNASW-Hub22, VNMMSB-VNPT-FMS-143.92.82.164`
-- Example alert pattern IDs: `ALP-E2A7575F1806, ALP-9966AD21D215, ALP-C6ED613558DD, ALP-34774A67A59C, ALP-30B3DE0E9A38, ALP-740A41E15833, ALP-A7B1C779DB26, ALP-B5D5D69DC10D`
+- Sample signatures: `cisco ios: unavailable by icmp ping, unavailable by icmp ping, zabbix proxy: utilization of icmp pinger processes over 75%`
+- Sample hosts: `VNMMSB-FPT-FMS-143.92.82.164, VNMMSB-FPT-FMS-143.92.88.13, VNMMSB-FPT-FMS-34.8.101.13, VNMMSB-FPT-FMS-45.119.218.130, VNMMSB-FPT-FMS-45.119.218.141, VNMMSB-FPT-Google, VNMMSB-FPT-GoogleDNS, VNMMSB-FPT-spx.shopee.vn, VNMMSB-PE-FPT-42.115.45.57, VNMMSB-PNASW-Hub22, VNMMSB-VNPT-FMS-45.119.218.130, VNMMSB-VNPT-FTTH-143.92.82.164`
+- Example alert pattern IDs: `ALP-E2A7575F1806, ALP-9966AD21D215, ALP-C6ED613558DD, ALP-740A41E15833`
 
 ### MSB | Other
 
-- Pattern count: `7`
-- Raw alert count across full export: `92`
+- Pattern count: `14`
+- Raw alert count across full export: `58`
 - Investigation priorities: `LOW`
-- Sample signatures: `mpu board 0: temperature is above critical threshold: >60, mpu board 1: temperature is above critical threshold: >60, mpu board 2: temperature is above critical threshold: >60, service dhcp server stopped, windows: high memory utilization (>90% for <value>)`
-- Sample hosts: `VNMMSB-PNASW-Hub13, VNMMSB-PNASW-Hub20, VNMMSB-PNASW-Hub21, VNMMSB-VSCDC01, VNMMSB-VSCDC02, VNMMSB-VSDHC02`
-- Example alert pattern IDs: `ALP-6C309587E8D5, ALP-4BF58F585699, ALP-18AD8F1B0C9B, ALP-6B5B3A6498D2, ALP-7BD7623DE9E2, ALP-CF4381A80F45, ALP-DE4D1C3A8368`
+- Sample signatures: `interface eth-trunk35(sw30b-hub12-poe-sw): link down, interface eth-trunk4(san3-bond): link down, interface gigabitethernet0/0/25(ap-lab2-server): link down, interface gigabitethernet0/0/26(ap-lab1-server): link down, interface gigabitethernet0/0/27(w-testing-802.1x): link down, interface gigabitethernet0/0/28(thangdv-wifi-test): link down, interface gigabitethernet1/0/27(): link down, interface gigabitethernet1/0/28(): link down, interface te1/1/7(fpt<value>/<value>-uplink): link down, interface te2/1/7(vnpt-ftth-<value>/<value>-uplink): link down`
+- Sample hosts: `VNMMSB-PNCSW01, VNMMSB-PNSSW01, VNMMSB-PNWSW01, VNMMSB-VSCDC01, VNMMSB-VSCDC02`
+- Example alert pattern IDs: `ALP-2D3FBB654BE3, ALP-4BF58F585699, ALP-E3F1CEF16485, ALP-6C309587E8D5, ALP-176B73406A1D, ALP-3F151F71EFF2, ALP-408776FCDC35, ALP-EC07B63B6BF1`
 
 ### MSB | Host restart/uptime
 
-- Pattern count: `9`
-- Raw alert count across full export: `24`
+- Pattern count: `7`
+- Raw alert count across full export: `9`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
-- Sample hosts: `VNMMSB-PSSJP1, VNMMSB-PSSJP2, VNMMSB-VSCDC01, VNMMSB-VSCDC02, VNMMSB-VSDHC01, VNMMSB-VSDHC02, VNMMSB-VSNPS01, VNMMSB-VSSJC1, VNMMSB-VSSJP1`
-- Example alert pattern IDs: `ALP-12E1592973B6, ALP-FCB38E8F143B, ALP-1ACCDDA4E22B, ALP-943BE1CC9684, ALP-C0D0547A5EB2, ALP-D3800D122BE2, ALP-6F75CFE0BFF3, ALP-52146A39BFDF`
-
-### MSB | Zabbix agent/active check
-
-- Pattern count: `12`
-- Raw alert count across full export: `16`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: active checks are not available, windows: zabbix agent is not available (or nodata for <value>)`
-- Sample hosts: `VNMMSB-PSSJP1, VNMMSB-PSSJP2, VNMMSB-VSCDC01, VNMMSB-VSCDC02, VNMMSB-VSDHC02, VNMMSB-VSSJC1, VNMMSB-VSSJP1`
-- Example alert pattern IDs: `ALP-5081189920F7, ALP-9D1DC3A5A925, ALP-DC34A037CC91, ALP-EE35CFAF0367, ALP-0816A541C7FE, ALP-B0472F3ECDF7, ALP-C1E3DF3315EB, ALP-CAB2F5E7A578`
+- Sample hosts: `VNMMSB-PSSJP1, VNMMSB-PSSJP2, VNMMSB-VSCDC01, VNMMSB-VSCDC02, VNMMSB-VSDHC01, VNMMSB-VSDHC02, VNMMSB-VSNPS01`
+- Example alert pattern IDs: `ALP-12E1592973B6, ALP-FCB38E8F143B, ALP-1ACCDDA4E22B, ALP-6F75CFE0BFF3, ALP-943BE1CC9684, ALP-C0D0547A5EB2, ALP-D3800D122BE2`
 
 ### MSB | HTTP monitoring
 
-- Pattern count: `9`
-- Raw alert count across full export: `12`
+- Pattern count: `7`
+- Raw alert count across full export: `8`
 - Investigation priorities: `LOW`
 - Sample signatures: `google http monitoring, hris http monitoring, itcenter http monitoring`
 - Sample hosts: `VNMMSB-VSSPM01, VNMMSB-VSSPM02, VNMMSB-VSSPM03`
-- Example alert pattern IDs: `ALP-3AC1169C6979, ALP-64B121F6A433, ALP-83F3E80812B5, ALP-3A3CD95E1262, ALP-784607BD3933, ALP-9D2E009811DF, ALP-A090C47934DD, ALP-ADB14EE9325B`
+- Example alert pattern IDs: `ALP-64B121F6A433, ALP-3A3CD95E1262, ALP-784607BD3933, ALP-83F3E80812B5, ALP-A090C47934DD, ALP-ADB14EE9325B, ALP-C57961CC104D`
+
+### MSB | Zabbix agent/active check
+
+- Pattern count: `6`
+- Raw alert count across full export: `6`
+- Investigation priorities: `LOW`
+- Sample signatures: `windows: active checks are not available, windows: zabbix agent is not available (or nodata for <value>)`
+- Sample hosts: `VNMMSB-PSSJP2, VNMMSB-VSCDC01, VNMMSB-VSCDC02, VNMMSB-VSDHC02`
+- Example alert pattern IDs: `ALP-5081189920F7, ALP-9D1DC3A5A925, ALP-B0472F3ECDF7, ALP-DC34A037CC91, ALP-EE35CFAF0367, ALP-F6D0BF16C98C`
 
 ### MSH | HTTP monitoring
 
-- Pattern count: `14`
-- Raw alert count across full export: `153`
+- Pattern count: `11`
+- Raw alert count across full export: `54`
 - Investigation priorities: `MEDIUM, LOW`
-- Sample signatures: `confluence http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
+- Sample signatures: `google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
 - Sample hosts: `VNMMSH-VSSPM01, VNMMSH-VSSPM02`
-- Example alert pattern IDs: `ALP-8E6AC4150C80, ALP-FC8A681995B1, ALP-3EB6409BA309, ALP-01E4CBEDDEBE, ALP-7F7A2D2BCBD0, ALP-9E2AEE42C23D, ALP-C292F7633781, ALP-BB890BC9C9F8`
+- Example alert pattern IDs: `ALP-8E6AC4150C80, ALP-FC8A681995B1, ALP-3EB6409BA309, ALP-01E4CBEDDEBE, ALP-9E2AEE42C23D, ALP-BB890BC9C9F8, ALP-5B5E5BD02F39, ALP-7F7A2D2BCBD0`
 
 ### MSH | Other
 
-- Pattern count: `6`
-- Raw alert count across full export: `1718`
+- Pattern count: `22`
+- Raw alert count across full export: `175`
 - Investigation priorities: `LOW`
-- Sample signatures: `linux: load average is too high (per cpu load over 0.75 for <value>), service dhcp server stopped, windows: high cpu utilization (over 90% for <value>), windows: high memory utilization (>90% for <value>)`
-- Sample hosts: `VNMMSH-VSDHC01, VNMMSH-VSDHC02, VNMMSH-VSSPM01, VNMMSH-VSSPM02`
-- Example alert pattern IDs: `ALP-24B71D258D3E, ALP-B1488C926411, ALP-3172CA16FB1B, ALP-9089098A65A0, ALP-6F2A4DABA081, ALP-C17EE51D7024`
+- Sample signatures: `interface gi1/0/13(2f-d25): link down, interface gi1/0/14(2f-d26): link down, interface gi1/0/15(2f-d27): link down, interface gi1/0/16(2f-d28): link down, interface gi1/0/17(2f-d29): link down, interface gi1/0/22(2f-d34): link down, interface gi1/0/29(wired-users): link down, interface gi1/0/4(wired-users): link down, interface gi1/0/8(): link down, interface gi1/0/9(): link down`
+- Sample hosts: `VNMMSH-PNCSW01, VNMMSH-PNSSW01, VNMMSH-PNWSW01, VNMMSH-VSDHC02, VNMMSH-VSSPM01`
+- Example alert pattern IDs: `ALP-E7E97D0E219A, ALP-B1488C926411, ALP-9449A45503C7, ALP-BC88B7D92FB9, ALP-0EAC2ABF80AC, ALP-AD5AA6FC1FB8, ALP-FDF85018772E, ALP-788ECF082C30`
+
+### MSH | Zabbix agent/active check
+
+- Pattern count: `3`
+- Raw alert count across full export: `6`
+- Investigation priorities: `LOW`
+- Sample signatures: `windows: active checks are not available, windows: zabbix agent is not available (or nodata for <value>)`
+- Sample hosts: `VNMMSH-VSDHC01, VNMMSH-VSDHC02`
+- Example alert pattern IDs: `ALP-63A681653D3E, ALP-C8D9E49F883D, ALP-E6D0338FF897`
 
 ### MSH | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `8`
+- Raw alert count across full export: `4`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMMSH-VSDHC01, VNMMSH-VSDHC02`
 - Example alert pattern IDs: `ALP-C380821D118B, ALP-A0899C9F3685`
 
-### MSH | Zabbix agent/active check
-
-- Pattern count: `2`
-- Raw alert count across full export: `8`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: active checks are not available`
-- Sample hosts: `VNMMSH-VSDHC01, VNMMSH-VSDHC02`
-- Example alert pattern IDs: `ALP-63A681653D3E, ALP-E6D0338FF897`
-
 ### RVF | Power/UPS
 
 - Pattern count: `2`
-- Raw alert count across full export: `123`
+- Raw alert count across full export: `97`
 - Investigation priorities: `HIGH`
 - Sample signatures: `apc ups: unacceptable input frequency (out of range <value> for <value>)`
 - Sample hosts: `VNMRVF-UPS01, VNMRVF-UPS02`
@@ -260,102 +305,102 @@
 
 ### RVF | HTTP monitoring
 
-- Pattern count: `28`
-- Raw alert count across full export: `201`
+- Pattern count: `19`
+- Raw alert count across full export: `102`
 - Investigation priorities: `MEDIUM, LOW`
-- Sample signatures: `confluence http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
+- Sample signatures: `confluence http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring`
 - Sample hosts: `VNMRVF-VSZABPRX-GNL1, VNMRVF-VSZABPRX-ISP1, VNMRVF-VSZABPRX-ISP2, VNMRVF-VSZABPRX-ISP3`
-- Example alert pattern IDs: `ALP-0956650F5A4C, ALP-43F27E19DD21, ALP-968676F48AAF, ALP-D8563BF0B2A5, ALP-7D5EB2CD1DDF, ALP-43AFF3060676, ALP-484B720DB953, ALP-A8B5D5531BA6`
-
-### RVF | Other
-
-- Pattern count: `2`
-- Raw alert count across full export: `61`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: high swap space usage (less than 20% free)`
-- Sample hosts: `VNMRVF-VSDHC01, VNMRVF-VSDHC02`
-- Example alert pattern IDs: `ALP-32100737CBFF, ALP-EEA4AF523138`
+- Example alert pattern IDs: `ALP-0956650F5A4C, ALP-43F27E19DD21, ALP-968676F48AAF, ALP-D8563BF0B2A5, ALP-43AFF3060676, ALP-484B720DB953, ALP-7D5EB2CD1DDF, ALP-A8B5D5531BA6`
 
 ### RVF | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `6`
+- Raw alert count across full export: `2`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMRVF-VSDHC01, VNMRVF-VSDHC02`
 - Example alert pattern IDs: `ALP-2EEB6A045E46, ALP-746BFE15BC81`
 
-### RVF | Zabbix agent/active check
-
-- Pattern count: `1`
-- Raw alert count across full export: `1`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: active checks are not available`
-- Sample hosts: `VNMRVF-VSDHC02`
-- Example alert pattern IDs: `ALP-9FCCB74AE7C9`
-
 ### SGN | HTTP monitoring
 
-- Pattern count: `27`
-- Raw alert count across full export: `1970`
+- Pattern count: `23`
+- Raw alert count across full export: `1169`
 - Investigation priorities: `MEDIUM, LOW`
-- Sample signatures: `confluence http monitoring, git http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
+- Sample signatures: `git http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
 - Sample hosts: `VNMSGN-VSEMS01, VNMSGN-VSSPM01, VNMSGN-VSSPM02, VNMSGN-VSSPM03`
-- Example alert pattern IDs: `ALP-77CAA12D786F, ALP-22F4B209BB36, ALP-FE28092FA2A4, ALP-550ED7DB3F47, ALP-5BA58770C8AF, ALP-161D4179FDA9, ALP-43E03B32158E, ALP-DB00D177E05F`
+- Example alert pattern IDs: `ALP-22F4B209BB36, ALP-77CAA12D786F, ALP-FE28092FA2A4, ALP-550ED7DB3F47, ALP-161D4179FDA9, ALP-43E03B32158E, ALP-5BA58770C8AF, ALP-DB00D177E05F`
+
+### SGN | Other
+
+- Pattern count: `12`
+- Raw alert count across full export: `67`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface gi1/0/11(data): link down, interface gi1/0/13(data): link down, interface gi1/0/14(data): link down, interface gi1/0/15(data): link down, interface gi1/0/16(data): link down, interface gi1/0/17(data): link down, interface gi1/0/18(data): link down, interface gi1/0/20(data): link down, interface gi1/0/24(data): link down, interface gi1/0/5(data): link down`
+- Sample hosts: `VNMSGN-F24-Studio-SW01, VNMSGN-PNWSW2501`
+- Example alert pattern IDs: `ALP-E508F0A30F14, ALP-A67C22A71598, ALP-3C94BCE98493, ALP-1A3F306FCB8F, ALP-115D48183243, ALP-8DB77EB6AD73, ALP-13C2484F33DF, ALP-C061A474B203`
 
 ### SGN | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `6`
+- Raw alert count across full export: `3`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMSGN-VSDHC01, VNMSGN-VSDHC02`
 - Example alert pattern IDs: `ALP-A1CD3F2D2972, ALP-E91C7BC7C5E8`
 
+### SGN | Zabbix agent/active check
+
+- Pattern count: `1`
+- Raw alert count across full export: `1`
+- Investigation priorities: `LOW`
+- Sample signatures: `windows: active checks are not available`
+- Sample hosts: `VNMSGN-VSDHC02`
+- Example alert pattern IDs: `ALP-7A7AC21E2062`
+
 ### SNT | Power/UPS
 
-- Pattern count: `6`
-- Raw alert count across full export: `668`
+- Pattern count: `12`
+- Raw alert count across full export: `440`
 - Investigation priorities: `HIGH`
-- Sample signatures: `2: unacceptable phase 2 input voltage (out of range 197-243v for <value>), 3.1: battery has high temperature (over 55℃ for <value>), 3.2: battery has high temperature (over 55℃ for <value>), 3: unacceptable phase 3 input voltage (out of range 197-243v for <value>), apc ups: battery has high temperature (over 55℃ for <value>), apc ups: unacceptable input frequency (out of range <value> for <value>)`
-- Sample hosts: `VNMSNT-UPSF2201`
-- Example alert pattern IDs: `ALP-079F1ABCD016, ALP-AB3C1A209D93, ALP-5E69C4448C78, ALP-40F5382B2C17, ALP-5DD89370D4CE, ALP-919D1DAA3ADF`
+- Sample signatures: `2: unacceptable phase 2 input voltage (out of range 197-243v for <value>), 3.1: battery has high temperature (over 55℃ for <value>), 3.2: battery has high temperature (over 55℃ for <value>), 3: unacceptable phase 3 input voltage (out of range 197-243v for <value>), apc ups: battery has high temperature (over 55℃ for <value>), apc ups: unacceptable input frequency (out of range <value> for <value>), apc ups: ups is hardware failure bypass, apc ups: ups is on battery, switch 2 - power supply b, normal: power supply is in critical state, switch 3 - power supply a, normal: power supply is in critical state`
+- Sample hosts: `VNMSNT-PNASW0901, VNMSNT-PNASW0902, VNMSNT-UPSF2201`
+- Example alert pattern IDs: `ALP-079F1ABCD016, ALP-AB3C1A209D93, ALP-5E69C4448C78, ALP-40F5382B2C17, ALP-ADA6C918C671, ALP-577879E16B1D, ALP-5DD89370D4CE, ALP-919D1DAA3ADF`
 
 ### SNT | Network reachability
 
-- Pattern count: `7`
-- Raw alert count across full export: `7`
+- Pattern count: `4`
+- Raw alert count across full export: `4`
 - Investigation priorities: `HIGH`
-- Sample signatures: `cisco ios: unavailable by icmp ping, vnmsnt-pnwfw2201 is down!, vnmsnt-pnwfw2202 is down!`
-- Sample hosts: `VNMSNT-PNASW0801, VNMSNT-PNASW0802, VNMSNT-PNASW0803, VNMSNT-PNASW0804, VNMSNT-PNASW1004, VNMSNT-PNWFW2201, VNMSNT-PNWFW2202`
-- Example alert pattern IDs: `ALP-41CA8678AFD7, ALP-773FF6B91B85, ALP-9CE6810D8C7E, ALP-A24FE3830B4B, ALP-B259C1B104BD, ALP-B8846D1E4DB8, ALP-DC9DF58BFCDA`
+- Sample signatures: `cisco ios: unavailable by icmp ping`
+- Sample hosts: `VNMSNT-PNASW0801, VNMSNT-PNASW0802, VNMSNT-PNASW0803, VNMSNT-PNASW0804`
+- Example alert pattern IDs: `ALP-773FF6B91B85, ALP-A24FE3830B4B, ALP-B259C1B104BD, ALP-B8846D1E4DB8`
 
 ### SNT | HTTP monitoring
 
-- Pattern count: `40`
-- Raw alert count across full export: `2556`
+- Pattern count: `29`
+- Raw alert count across full export: `1376`
 - Investigation priorities: `MEDIUM, LOW`
 - Sample signatures: `confluence http monitoring, git http monitoring, google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring, space http monitoring`
 - Sample hosts: `VNMSNT-VSEMS01, VNMSNT-VSSPM01, VNMSNT-VSSPM02, VNMSNT-VSSPM03, VNMSNT-VSSPM04`
-- Example alert pattern IDs: `ALP-8C45EBECE8B9, ALP-1DA83526E8C0, ALP-551CCB8820FE, ALP-557802E2665D, ALP-80599BC38B81, ALP-4C0ACA243192, ALP-7259165E30FF, ALP-B272469C4059`
+- Example alert pattern IDs: `ALP-1DA83526E8C0, ALP-8C45EBECE8B9, ALP-557802E2665D, ALP-551CCB8820FE, ALP-80599BC38B81, ALP-4C0ACA243192, ALP-7259165E30FF, ALP-B272469C4059`
+
+### SNT | Other
+
+- Pattern count: `13`
+- Raw alert count across full export: `13`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface gi1/0/34(cctv): link down, interface gi2/0/17(genesys): link down, interface po24(8data2): link down, interface po25(8poe1): link down, interface po26(8poe2): link down, interface te1/0/23(8data1): link down, interface te1/0/24(8data2): link down, interface te1/0/25(8poe1): link down, interface te1/0/26(8poe2): link down, interface te1/0/30(7poe2): link down`
+- Sample hosts: `VNMSNT-PNCSW2201, VNMSNT-PNSSW2201, VNMSNT-PNWSW2201, VNMSNT-VSDHC01`
+- Example alert pattern IDs: `ALP-0AD00BFAE5B7, ALP-0E065BD2D502, ALP-29F27FAA81CA, ALP-2CA2E82FFCE3, ALP-32DAF214489F, ALP-701EB4EAF3E4, ALP-93544488C14D, ALP-C8F1CFFBCC61`
 
 ### SNT | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `5`
+- Raw alert count across full export: `2`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMSNT-VSDHC01, VNMSNT-VSDHC02`
-- Example alert pattern IDs: `ALP-7A327195B442, ALP-65018137D406`
-
-### SNT | Other
-
-- Pattern count: `1`
-- Raw alert count across full export: `2`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: high swap space usage (less than 20% free)`
-- Sample hosts: `VNMSNT-VSDHC01`
-- Example alert pattern IDs: `ALP-701EB4EAF3E4`
+- Example alert pattern IDs: `ALP-65018137D406, ALP-7A327195B442`
 
 ### SNT | Zabbix agent/active check
 
@@ -366,55 +411,82 @@
 - Sample hosts: `VNMSNT-VSDHC01`
 - Example alert pattern IDs: `ALP-591C77AE607B, ALP-86345183DF87`
 
-### SWS | Host restart/uptime
+### SWS | Power/UPS
 
-- Pattern count: `4`
-- Raw alert count across full export: `13`
-- Investigation priorities: `LOW`
-- Sample signatures: `windows: host has been restarted (uptime < <value>)`
-- Sample hosts: `VNMSWS-PSSJP1, VNMSWS-PSSJP2, VNMSWS-VSDHC01, VNMSWS-VSDHC02`
-- Example alert pattern IDs: `ALP-6C98DB159A7E, ALP-21A98CCEA4A6, ALP-C05AD23FBDDF, ALP-13911D374776`
+- Pattern count: `2`
+- Raw alert count across full export: `4`
+- Investigation priorities: `HIGH`
+- Sample signatures: `apc ups: ups is on battery`
+- Sample hosts: `VNMSWS-UPS01, VNMSWS-UPS02`
+- Example alert pattern IDs: `ALP-438E82AC906B, ALP-BEB9E5C2842C`
+
+### SWS | Network reachability
+
+- Pattern count: `1`
+- Raw alert count across full export: `1`
+- Investigation priorities: `HIGH`
+- Sample signatures: `zabbix proxy: utilization of icmp pinger processes over 75%`
+- Sample hosts: `VNMSWS-VSSPM01`
+- Example alert pattern IDs: `ALP-A0A7C8335F8A`
 
 ### SWS | HTTP monitoring
 
 - Pattern count: `1`
-- Raw alert count across full export: `8`
+- Raw alert count across full export: `5`
 - Investigation priorities: `LOW`
 - Sample signatures: `http monitoring`
 - Sample hosts: `VNMSWS-VSEMS01`
 - Example alert pattern IDs: `ALP-F43B329C01A5`
 
+### SWS | Host restart/uptime
+
+- Pattern count: `4`
+- Raw alert count across full export: `5`
+- Investigation priorities: `LOW`
+- Sample signatures: `windows: host has been restarted (uptime < <value>)`
+- Sample hosts: `VNMSWS-PSSJP1, VNMSWS-PSSJP2, VNMSWS-VSDHC01, VNMSWS-VSDHC02`
+- Example alert pattern IDs: `ALP-21A98CCEA4A6, ALP-13911D374776, ALP-6C98DB159A7E, ALP-C05AD23FBDDF`
+
+### SWS | Other
+
+- Pattern count: `2`
+- Raw alert count across full export: `4`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface ethernet1/10(): link down, interface twe2/0/4(ul-pa02): link down`
+- Sample hosts: `VNMSWS-PNCSW01, VNMSWS-PNWFW02`
+- Example alert pattern IDs: `ALP-9EC6DA7FB4A6, ALP-A68F358A138F`
+
 ### UNKNOWN | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `6`
+- Raw alert count across full export: `2`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNW3-VSDHC01, VNW3-VSDHC02`
 - Example alert pattern IDs: `ALP-978DF6D26A6B, ALP-E89923DA4A76`
 
-### WBN | Network reachability
-
-- Pattern count: `5`
-- Raw alert count across full export: `5`
-- Investigation priorities: `HIGH`
-- Sample signatures: `cisco ios: unavailable by icmp ping`
-- Sample hosts: `VNMWBN-PNASW06-Hub01, VNMWBN-PNASW07-Hub02, VNMWBN-PNASW08-Hub03, VNMWBN-PNASW09-Hub04, VNMWBN-PNASW10-Hub05`
-- Example alert pattern IDs: `ALP-0F51A0274824, ALP-A743E985E368, ALP-ACFBE8C976BB, ALP-D33607C36FCF, ALP-F4E395D790DD`
-
 ### WBN | HTTP monitoring
 
-- Pattern count: `9`
-- Raw alert count across full export: `72`
+- Pattern count: `10`
+- Raw alert count across full export: `52`
 - Investigation priorities: `MEDIUM, LOW`
 - Sample signatures: `google http monitoring, hris http monitoring, itcenter http monitoring, jira http monitoring, shopee confluence http monitoring`
 - Sample hosts: `VNMWBN-VSSPM01, VNMWBN-VSSPM02`
-- Example alert pattern IDs: `ALP-AB43BE0559B5, ALP-F49D6521EF17, ALP-7488F88C19DF, ALP-99E67BCA8B6A, ALP-1B829EB90695, ALP-84056644F10D, ALP-BFDF2113B363, ALP-E98E242414FE`
+- Example alert pattern IDs: `ALP-AB43BE0559B5, ALP-F49D6521EF17, ALP-7488F88C19DF, ALP-99E67BCA8B6A, ALP-E98E242414FE, ALP-FF594A117625, ALP-1B829EB90695, ALP-79E5CF0FEB8B`
+
+### WBN | Other
+
+- Pattern count: `2`
+- Raw alert count across full export: `5`
+- Investigation priorities: `LOW`
+- Sample signatures: `interface gi2/1/4(fpt-300/<value>-uplink): link down, interface tunnel.36(to-cp-fpt): link down`
+- Sample hosts: `VNMWBN-PNWFW01, VNMWBN-PNWSW01`
+- Example alert pattern IDs: `ALP-6543D8B05E3C, ALP-FA0CAF592E23`
 
 ### WBN | Host restart/uptime
 
 - Pattern count: `2`
-- Raw alert count across full export: `6`
+- Raw alert count across full export: `2`
 - Investigation priorities: `LOW`
 - Sample signatures: `windows: host has been restarted (uptime < <value>)`
 - Sample hosts: `VNMWBN-VSDHC01, VNMWBN-VSDHC02`
@@ -431,23 +503,6 @@
 
 ## Individual Alert Patterns
 
-## ALP-24B71D258D3E | VNMMSH-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high cpu utilization (over 90% for <value>)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC01 reported `windows: high cpu utilization (over 90% for <value>)`. Treat as monitoring context until corroborated.
-- Raw alert count: `1525`
-- Resolved alerts: `1525`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `os`
-- Component: `cpu`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4290; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1118; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-832; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-825; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-816; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-805; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-798; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-795; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-792; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-782; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-776; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-770; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-761; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-753; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-748; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-744; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-740; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-737; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-731; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-727`
-- Source reference count: `1525`
-
 ## ALP-079F1ABCD016 | VNMSNT-UPSF2201
 
 - Evidence label: `COMPUTED FACT`
@@ -456,65 +511,14 @@
 - Pattern family: `Power/UPS`
 - Investigation priority: `HIGH`
 - Why it matters: VNMSNT-UPSF2201 reported `apc ups: unacceptable input frequency (out of range <value> for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
-- Raw alert count: `536`
-- Resolved alerts: `536`
+- Raw alert count: `347`
+- Resolved alerts: `347`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `power`
 - Component: `power`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4756; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4746; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4739; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4728; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4716; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4713; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4684; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4674; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4669; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4668; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4662; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4645; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4643; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4593; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4584; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4583; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4582; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4581; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4580; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4579`
-- Source reference count: `536`
-
-## ALP-8C45EBECE8B9 | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `git http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `521`
-- Resolved alerts: `521`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4757; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4754; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4752; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4743; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4741; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4740; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4723; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4722; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4712; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4710; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4677; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4675; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4672; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4671; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4654; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4613; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4588; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4570; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4550; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4527`
-- Source reference count: `521`
-
-## ALP-9D95052D0965 | VNMCPL-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `git http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM04 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `499`
-- Resolved alerts: `499`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4681; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4676; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4673; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4636; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4609; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4604; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4591; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4557; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4549; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4540; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4538; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4529; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4520; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4516; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4500; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4487; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4483; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4439; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4430; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4423`
-- Source reference count: `499`
-
-## ALP-77CAA12D786F | VNMSGN-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `git http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM02 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `494`
-- Resolved alerts: `494`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4758; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4747; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4733; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4729; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4717; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4680; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4679; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4635; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4628; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4627; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4602; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4598; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4569; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4568; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4537; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4512; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4507; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4498; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4491; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4460`
-- Source reference count: `494`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4392; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4387; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4368; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4343; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4342; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4152; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4142; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4030; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4009; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3995; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3876; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3871; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3865; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3844; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3840; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3806; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3792; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3791; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3788; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3785`
+- Source reference count: `347`
 
 ## ALP-7B851AF85826 | VNMCPL-VSSPM03
 
@@ -524,31 +528,14 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMCPL-VSSPM03 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `483`
-- Resolved alerts: `483`
+- Raw alert count: `321`
+- Resolved alerts: `321`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4737; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4708; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4682; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4641; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4630; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4624; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4611; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4594; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4592; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4589; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4552; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4544; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4536; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4526; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4519; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4515; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4476; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4470; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4445; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4410`
-- Source reference count: `483`
-
-## ALP-E08CEB52B684 | VNMCPL-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `git http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM02 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `472`
-- Resolved alerts: `472`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4718; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4678; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4637; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4612; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4607; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4596; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4595; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4586; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4572; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4559; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4532; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4501; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4482; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4473; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4463; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4427; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4412; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4399; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4381; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4380`
-- Source reference count: `472`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4428; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4423; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4389; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4388; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4383; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4370; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4324; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4302; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4301; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4293; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4277; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4265; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4246; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4174; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4173; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4145; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4118; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4110; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4109; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4067`
+- Source reference count: `321`
 
 ## ALP-1DA83526E8C0 | VNMSNT-VSSPM02
 
@@ -558,14 +545,31 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMSNT-VSSPM02 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `468`
-- Resolved alerts: `468`
+- Raw alert count: `307`
+- Resolved alerts: `307`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4745; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4719; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4715; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4653; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4629; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4615; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4610; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4590; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4587; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4561; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4556; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4555; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4543; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4489; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4477; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4459; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4455; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4442; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4431; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4425`
-- Source reference count: `468`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4475; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4469; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4434; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4421; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4416; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4391; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4382; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4378; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4376; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4371; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4328; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4278; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4271; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4270; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4235; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4230; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4194; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4178; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4160; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4113`
+- Source reference count: `307`
+
+## ALP-E08CEB52B684 | VNMCPL-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `git http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCPL-VSSPM02 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `301`
+- Resolved alerts: `301`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4467; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4438; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4412; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4377; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4369; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4311; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4309; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4306; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4299; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4298; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4247; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4245; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4233; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4187; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4163; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4147; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4134; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4132; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4119; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4115`
+- Source reference count: `301`
 
 ## ALP-22F4B209BB36 | VNMSGN-VSEMS01
 
@@ -575,14 +579,65 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMSGN-VSEMS01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `460`
-- Resolved alerts: `460`
+- Raw alert count: `292`
+- Resolved alerts: `292`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4760; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4748; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4735; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4731; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4725; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4720; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4714; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4670; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4567; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4551; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4548; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4539; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4525; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4496; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4472; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4462; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4456; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4435; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4414; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4408`
-- Source reference count: `460`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4463; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4432; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4431; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4425; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4415; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4407; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4355; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4335; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4326; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4305; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4266; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4255; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4250; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4240; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4196; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4189; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4177; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4159; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4151; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4143`
+- Source reference count: `292`
+
+## ALP-8C45EBECE8B9 | VNMSNT-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `git http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSNT-VSSPM01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `289`
+- Resolved alerts: `289`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4470; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4288; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4284; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4279; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4275; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4242; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4232; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4198; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4185; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4149; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4146; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4137; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4127; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4116; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4111; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4094; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4090; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4058; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4035; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4017`
+- Source reference count: `289`
+
+## ALP-9D95052D0965 | VNMCPL-VSSPM04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `git http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCPL-VSSPM04 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `289`
+- Resolved alerts: `289`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4460; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4441; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4440; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4433; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4429; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4420; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4418; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4401; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4393; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4364; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4330; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4296; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4291; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4200; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4193; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4190; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4170; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4168; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4158; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4156`
+- Source reference count: `289`
+
+## ALP-77CAA12D786F | VNMSGN-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `git http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSGN-VSSPM02 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `284`
+- Resolved alerts: `284`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4439; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4427; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4424; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4403; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4399; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4386; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4385; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4374; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4372; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4332; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4331; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4329; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4295; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4273; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4272; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4257; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4256; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4239; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4236; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4231`
+- Source reference count: `284`
 
 ## ALP-FE28092FA2A4 | VNMSGN-VSSPM03
 
@@ -592,31 +647,14 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMSGN-VSSPM03 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `455`
-- Resolved alerts: `455`
+- Raw alert count: `282`
+- Resolved alerts: `282`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4749; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4744; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4634; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4603; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4565; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4564; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4542; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4497; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4493; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4486; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4481; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4454; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4452; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4447; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4443; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4433; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4390; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4387; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4383; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4367`
-- Source reference count: `455`
-
-## ALP-551CCB8820FE | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `git http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSEMS01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `413`
-- Resolved alerts: `413`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4753; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4751; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4736; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4726; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4655; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4599; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4597; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4492; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4485; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4480; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4471; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4451; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4429; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4422; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4418; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4413; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4404; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4400; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4376; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4373`
-- Source reference count: `413`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4414; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4410; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4402; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4390; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4375; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4344; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4308; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4294; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4292; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4253; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4234; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4228; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4195; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4191; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4188; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4176; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4141; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4140; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4133; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4129`
+- Source reference count: `282`
 
 ## ALP-557802E2665D | VNMSNT-VSSPM03
 
@@ -626,14 +664,31 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMSNT-VSSPM03 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `389`
-- Resolved alerts: `389`
+- Raw alert count: `248`
+- Resolved alerts: `248`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4732; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4646; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4606; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4574; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4546; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4545; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4530; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4495; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4494; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4458; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4448; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4440; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4438; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4436; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4432; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4382; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4335; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4326; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4314; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4214`
-- Source reference count: `389`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4468; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4465; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4442; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4430; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4408; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4406; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4404; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4394; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4384; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4363; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4333; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4310; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4248; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4238; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4201; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4197; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4172; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4165; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4139; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4076`
+- Source reference count: `248`
+
+## ALP-551CCB8820FE | VNMSNT-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `git http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSNT-VSEMS01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `228`
+- Resolved alerts: `228`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4473; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4471; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4464; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4436; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4435; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4422; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4413; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4398; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4381; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4337; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4319; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4289; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4287; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4281; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4276; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4249; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4244; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4229; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4171; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4169`
+- Source reference count: `228`
 
 ## ALP-550ED7DB3F47 | VNMSGN-VSSPM01
 
@@ -643,14 +698,14 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMSGN-VSSPM01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `347`
-- Resolved alerts: `347`
+- Raw alert count: `204`
+- Resolved alerts: `204`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4750; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4742; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4738; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4707; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4683; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4608; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4605; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4600; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4563; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4560; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4554; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4541; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4533; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4518; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4513; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4453; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4426; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4415; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4402; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4377`
-- Source reference count: `347`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4466; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4437; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4426; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4417; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4400; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4380; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4307; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4303; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4283; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4274; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4267; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4251; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4243; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4241; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4186; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4175; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4164; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4101; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4100; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4099`
+- Source reference count: `204`
 
 ## ALP-460C038618E4 | VNMCPL-VSSPM01
 
@@ -660,14 +715,14 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMCPL-VSSPM01 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `265`
-- Resolved alerts: `265`
+- Raw alert count: `164`
+- Resolved alerts: `164`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4721; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4709; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4685; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4585; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4573; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4547; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4475; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4464; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4394; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4385; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4348; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4306; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4303; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4200; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4192; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4165; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4070; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4030; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4015; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4002`
-- Source reference count: `265`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4478; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4327; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4297; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4290; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4268; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4237; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4166; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4154; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4114; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4060; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4053; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4013; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3951; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3931; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3867; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3859; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3848; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3831; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3822; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3816`
+- Source reference count: `164`
 
 ## ALP-80599BC38B81 | VNMSNT-VSSPM04
 
@@ -677,82 +732,14 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMSNT-VSSPM04 reported `git http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `232`
-- Resolved alerts: `232`
+- Raw alert count: `155`
+- Resolved alerts: `155`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4759; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4755; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4727; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4724; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4647; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4614; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4558; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4531; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4528; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4514; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4421; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4407; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4397; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4311; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4308; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4209; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4143; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4069; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4054; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4001`
-- Source reference count: `232`
-
-## ALP-B1488C926411 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `linux: load average is too high (per cpu load over 0.75 for <value>)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM01 reported `linux: load average is too high (per cpu load over 0.75 for <value>)`. Treat as monitoring context until corroborated.
-- Raw alert count: `156`
-- Resolved alerts: `156`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `os`
-- Component: `cpu`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4734; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4711; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4601; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4535; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4450; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4286; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4267; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4004; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3974; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3893; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3693; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3676; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3584; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3565; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3525; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3467; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3433; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3372; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3363; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3120`
-- Source reference count: `156`
-
-## ALP-F5572970729B | VNMMDN-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMDN-VSSPM01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `123`
-- Resolved alerts: `123`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3494; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3487; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3485; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3480; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3472; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3470; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3446; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3441; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3429; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3421; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3414; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3370; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3362; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3339; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3322; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3317; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3310; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3303; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3293; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3273`
-- Source reference count: `123`
-
-## ALP-A0947B93EBA0 | VNMMDN-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMDN-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `122`
-- Resolved alerts: `122`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3493; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3488; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3484; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3481; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3474; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3471; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3465; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3447; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3443; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3430; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3422; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3415; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3371; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3358; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3341; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3323; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3318; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3312; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3301; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3298`
-- Source reference count: `122`
-
-## ALP-B8C29BDC1FFA | VNMMDN-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMDN-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `101`
-- Resolved alerts: `101`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3502; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3486; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3479; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3473; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3469; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3464; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3440; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3428; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3420; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3413; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3369; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3361; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3340; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3338; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3337; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3324; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3316; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3311; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3302; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3292`
-- Source reference count: `101`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4472; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4411; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4409; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4405; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4379; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4373; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4365; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4254; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4252; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4161; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4136; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4128; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4050; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4038; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4008; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3929; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3928; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3885; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3875; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3854`
+- Source reference count: `155`
 
 ## ALP-AE10DD3DBB85 | VNMRVF-UPS01
 
@@ -762,14 +749,31 @@
 - Pattern family: `Power/UPS`
 - Investigation priority: `HIGH`
 - Why it matters: VNMRVF-UPS01 reported `apc ups: unacceptable input frequency (out of range <value> for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
-- Raw alert count: `67`
-- Resolved alerts: `67`
+- Raw alert count: `55`
+- Resolved alerts: `55`
 - Open alerts: `0`
 - Site code: `RVF`
 - Domain: `power`
 - Component: `power`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4578; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4523; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4461; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4100; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3927; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3924; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3607; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3514; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2640; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2631; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2262; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1709; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-483; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-120; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5547; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4970; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4834; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4801; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4552; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4389`
-- Source reference count: `67`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4367; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3870; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3769; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3740; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3559; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3442; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3411; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3331; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2996; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2973; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2872; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2870; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2859; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2553; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2503; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2207; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2197; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2124; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2112; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2032`
+- Source reference count: `55`
+
+## ALP-E7E97D0E219A | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/17(2f-d29): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/17(2f-d29): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `44`
+- Resolved alerts: `44`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4336; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4334; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4304; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4300; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4286; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4280; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4199; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4153; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3947; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3934; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3902; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3652; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3472; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3470; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3469; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3002; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2879; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2765; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2666; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2255`
+- Source reference count: `44`
 
 ## ALP-46174DEDA3A4 | VNMRVF-UPS02
 
@@ -779,82 +783,31 @@
 - Pattern family: `Power/UPS`
 - Investigation priority: `HIGH`
 - Why it matters: VNMRVF-UPS02 reported `apc ups: unacceptable input frequency (out of range <value> for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
-- Raw alert count: `56`
-- Resolved alerts: `56`
+- Raw alert count: `42`
+- Resolved alerts: `42`
 - Open alerts: `0`
 - Site code: `RVF`
 - Domain: `power`
 - Component: `power`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4577; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4524; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4284; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3937; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3926; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3606; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3513; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2912; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2641; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2431; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2329; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2263; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1870; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1708; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1596; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-484; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-119; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5546; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4833; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4684`
-- Source reference count: `56`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4366; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3768; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3655; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3558; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3416; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3330; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2995; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2972; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2871; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2858; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2552; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2500; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2206; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1940; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1921; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1893; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1849; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1844; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1822; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1817`
+- Source reference count: `42`
 
-## ALP-6C309587E8D5 | VNMMSB-VSCDC01
+## ALP-B1488C926411 | VNMMSH-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high memory utilization (>90% for <value>)`
+- Problem signature: `linux: load average is too high (per cpu load over 0.75 for <value>)`
 - Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSCDC01 reported `windows: high memory utilization (>90% for <value>)`. Treat as monitoring context until corroborated.
-- Raw alert count: `55`
-- Resolved alerts: `55`
+- Why it matters: VNMMSH-VSSPM01 reported `linux: load average is too high (per cpu load over 0.75 for <value>)`. Treat as monitoring context until corroborated.
+- Raw alert count: `41`
+- Resolved alerts: `41`
 - Open alerts: `0`
-- Site code: `MSB`
+- Site code: `MSH`
 - Domain: `os`
-- Component: `memory`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3969; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3968; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3967; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3929; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3914; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3912; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-538; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-511; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-509; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-506; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-491; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-465; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-462; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3717; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3710; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3709; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3703; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3702; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3698; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3694`
-- Source reference count: `55`
-
-## ALP-AB3C1A209D93 | VNMSNT-UPSF2201
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `3.1: battery has high temperature (over 55℃ for <value>)`
-- Pattern family: `Power/UPS`
-- Investigation priority: `HIGH`
-- Why it matters: VNMSNT-UPSF2201 reported `3.1: battery has high temperature (over 55℃ for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
-- Raw alert count: `47`
-- Resolved alerts: `47`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `power`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4639; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4633; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4622; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4180; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4167; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3972; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3596; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2813; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2802; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2800; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2612; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2608; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2603; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2266; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1502; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1232; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-680; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-493; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-243; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-235`
-- Source reference count: `47`
-
-## ALP-5E69C4448C78 | VNMSNT-UPSF2201
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `3.2: battery has high temperature (over 55℃ for <value>)`
-- Pattern family: `Power/UPS`
-- Investigation priority: `HIGH`
-- Why it matters: VNMSNT-UPSF2201 reported `3.2: battery has high temperature (over 55℃ for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
-- Raw alert count: `45`
-- Resolved alerts: `45`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `power`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4638; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4632; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4621; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4179; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4166; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3971; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3595; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2812; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2801; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2799; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2613; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2609; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2604; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2268; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1501; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-679; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-492; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-242; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-234; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-18`
-- Source reference count: `45`
-
-## ALP-40F5382B2C17 | VNMSNT-UPSF2201
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `apc ups: battery has high temperature (over 55℃ for <value>)`
-- Pattern family: `Power/UPS`
-- Investigation priority: `HIGH`
-- Why it matters: VNMSNT-UPSF2201 reported `apc ups: battery has high temperature (over 55℃ for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
-- Raw alert count: `38`
-- Resolved alerts: `38`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `power`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4640; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4631; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4623; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4181; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4168; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3597; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2811; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2803; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2614; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2610; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2602; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2267; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1500; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1231; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-681; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-494; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-244; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-236; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-8; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4`
-- Source reference count: `38`
+- Component: `cpu`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4419; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4184; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4006; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3811; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3703; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3593; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3524; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3423; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3360; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3263; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3022; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2939; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2914; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2813; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2711; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2589; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2565; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2558; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2509; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2391`
+- Source reference count: `41`
 
 ## ALP-D0FCFBCBA8AA | VNMMS2-NetNam-spx.shopee.vn
 
@@ -870,195 +823,8 @@
 - Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5503; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5502; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5500; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5496; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5495; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5493; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5492; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4018; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4016; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4015; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4012; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4008; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4006; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4004; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4002; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4000; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3995; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3991; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3990; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3987`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4322; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4321; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4320; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4316; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4315; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4313; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4312; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3176; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3174; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3173; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3170; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3167; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3165; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3163; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3161; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3159; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3155; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3151; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3150; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3148`
 - Source reference count: `38`
-
-## ALP-32100737CBFF | VNMRVF-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high swap space usage (less than 20% free)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSDHC02 reported `windows: high swap space usage (less than 20% free)`. Treat as monitoring context until corroborated.
-- Raw alert count: `34`
-- Resolved alerts: `34`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `os`
-- Component: `memory,storage`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1494; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1492; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1491; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1490; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1489; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1487; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1463; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1461; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1459; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1455; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1454; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1453; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1452; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1451; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1447; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1445; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1438; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1435; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1432; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-992`
-- Source reference count: `34`
-
-## ALP-4C0ACA243192 | VNMSNT-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM04 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `34`
-- Resolved alerts: `34`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4696; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4648; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4222; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4064; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3665; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3406; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3153; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3108; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2542; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2276; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2212; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2023; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1958; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1531; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1296; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-978; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-888; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-367; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-309; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5381`
-- Source reference count: `34`
-
-## ALP-7259165E30FF | VNMSNT-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `34`
-- Resolved alerts: `34`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4698; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4650; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4219; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4048; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3653; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3402; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3160; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3074; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2535; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2283; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2218; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2014; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1922; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1524; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1298; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-962; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-872; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-369; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-323; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5383`
-- Source reference count: `34`
-
-## ALP-B272469C4059 | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `34`
-- Resolved alerts: `34`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4699; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4651; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4246; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4055; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3654; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3385; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3159; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3075; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2536; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2285; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2210; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2002; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1924; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1513; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1310; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-963; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-874; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-358; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-324; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5379`
-- Source reference count: `34`
-
-## ALP-CB87DC54115C | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSEMS01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `34`
-- Resolved alerts: `34`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4691; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4652; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4247; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4056; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3650; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3393; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3161; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3076; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2523; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2278; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2200; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2001; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1926; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1518; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1311; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-976; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-892; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-360; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-325; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5388`
-- Source reference count: `34`
-
-## ALP-7C9CD18C7FC5 | VNMSNT-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM03 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `33`
-- Resolved alerts: `33`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4690; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4649; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4224; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4066; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3666; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3400; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3166; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3072; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2524; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2273; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2207; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2010; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1920; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1512; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1297; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-979; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-871; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-356; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-322; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5382`
-- Source reference count: `33`
-
-## ALP-4BF58F585699 | VNMMSB-VSCDC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high memory utilization (>90% for <value>)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSCDC02 reported `windows: high memory utilization (>90% for <value>)`. Treat as monitoring context until corroborated.
-- Raw alert count: `32`
-- Resolved alerts: `32`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `memory`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3891; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3886; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3882; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3874; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3867; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3864; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1450; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1444; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1428; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1422; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1419; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1409; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1404; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1371; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1369; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1368; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1367; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1366; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1365; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1364`
-- Source reference count: `32`
-
-## ALP-8E6AC4150C80 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSH-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `31`
-- Resolved alerts: `31`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4704; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4238; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4086; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3662; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3453; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3070; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2531; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2295; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2280; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1952; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1528; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1472; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1321; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-938; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-884; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-373; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-266; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-108; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4493; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4108`
-- Source reference count: `31`
-
-## ALP-FC8A681995B1 | VNMMSH-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSH-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `29`
-- Resolved alerts: `29`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4695; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4236; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4084; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3661; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3452; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3084; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2529; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2272; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1950; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1526; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1470; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1320; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-937; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-881; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-363; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-275; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4475; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4107; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3536; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3403`
-- Source reference count: `29`
-
-## ALP-5BA58770C8AF | VNMSGN-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `28`
-- Resolved alerts: `28`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4703; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4254; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4083; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3660; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3106; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2530; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2294; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2279; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1937; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1527; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1471; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1319; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-882; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-365; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-259; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4492; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4088; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3537; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3404; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2954`
-- Source reference count: `28`
-
-## ALP-161D4179FDA9 | VNMSGN-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM03 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `27`
-- Resolved alerts: `27`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4694; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4235; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4096; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3659; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3083; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2540; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2293; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2291; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1936; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1525; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1479; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-880; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-364; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-264; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4491; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4072; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3545; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3395; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2953; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2328`
-- Source reference count: `27`
 
 ## ALP-17B01F3BB308 | VNMMBD-NETNAM-spx.shopee.vn
 
@@ -1068,81 +834,13 @@
 - Pattern family: `Network reachability`
 - Investigation priority: `HIGH`
 - Why it matters: VNMMBD-NETNAM-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `27`
-- Resolved alerts: `27`
+- Raw alert count: `26`
+- Resolved alerts: `26`
 - Open alerts: `0`
 - Site code: `MBD`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2352; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5498; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5494; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4019; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4017; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4014; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4010; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4007; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4005; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4003; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3999; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3996; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3994; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3993; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3992; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3989; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3986; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3982; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3981; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3978`
-- Source reference count: `27`
-
-## ALP-EEA4AF523138 | VNMRVF-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high swap space usage (less than 20% free)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSDHC01 reported `windows: high swap space usage (less than 20% free)`. Treat as monitoring context until corroborated.
-- Raw alert count: `27`
-- Resolved alerts: `27`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `os`
-- Component: `memory,storage`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1449; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1440; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1430; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1427; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1426; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1421; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-820; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-812; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-808; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-793; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-790; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-784; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-781; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-780; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-774; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-772; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-768; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-760; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-756; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-752`
-- Source reference count: `27`
-
-## ALP-3172CA16FB1B | VNMMSH-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `linux: load average is too high (per cpu load over 0.75 for <value>)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM02 reported `linux: load average is too high (per cpu load over 0.75 for <value>)`. Treat as monitoring context until corroborated.
-- Raw alert count: `26`
-- Resolved alerts: `25`
-- Open alerts: `1`
-- Site code: `MSH`
-- Domain: `os`
-- Component: `cpu`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4534; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4449; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4268; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4003; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3973; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3894; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3675; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3524; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3466; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3434; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3121; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2548; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2379; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1966; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1248; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1135; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1120; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1113; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1079; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1072`
-- Source reference count: `26`
-
-## ALP-43E03B32158E | VNMSGN-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `26`
-- Resolved alerts: `26`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4688; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4239; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4085; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3663; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3087; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2532; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2281; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1954; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1529; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1473; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-901; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-366; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-265; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4480; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4092; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3526; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3389; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2958; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2332; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2168`
-- Source reference count: `26`
-
-## ALP-6F2F9F50A046 | VNMCPL-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `26`
-- Resolved alerts: `26`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4702; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4252; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3658; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3104; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2539; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2292; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2290; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1947; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1635; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1522; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1194; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-896; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-372; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4490; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4106; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3535; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3394; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2951; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2327; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2163`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4318; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4314; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3177; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3175; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3172; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3169; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3166; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3164; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3162; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3158; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3156; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3154; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3153; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3152; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3149; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3147; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3144; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3143; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3140; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3139`
 - Source reference count: `26`
 
 ## ALP-CAD1A664558A | VNMMS2-FPT-FMS-45.119.218.141
@@ -1159,41 +857,41 @@
 - Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4311; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2656; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2651; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2640; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2638; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2631; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2623; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2616; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2611; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2604; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2576; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2569; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2561; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2551; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2536; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2527; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2519; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2504; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2497; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2472`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3397; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2127; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2123; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2113; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2111; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2104; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2100; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2093; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2089; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2083; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2061; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2055; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2049; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2040; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2026; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2018; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2010; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1996; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1990; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1972`
 - Source reference count: `26`
 
-## ALP-DB00D177E05F | VNMSGN-VSEMS01
+## ALP-1CBDABDA59C1 | VNMMS2-FPT-FMS-45.119.218.130
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSEMS01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `26`
-- Resolved alerts: `26`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4705; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4257; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3670; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3089; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2533; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2282; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1955; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1523; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1467; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1322; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-885; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-374; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-278; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4481; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4109; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3546; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3406; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2959; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2334; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2169`
-- Source reference count: `26`
-
-## ALP-0956650F5A4C | VNMRVF-VSZABPRX-GNL1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `HIGH`
+- Why it matters: VNMMS2-FPT-FMS-45.119.218.130 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `25`
 - Resolved alerts: `25`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4692; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4227; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3655; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3099; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2526; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2274; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1927; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1571; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1519; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-865; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-361; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4477; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4080; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3532; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3387; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2943; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2339; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2159; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2001; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1629`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2126; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2122; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2110; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2103; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2099; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2096; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2088; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2082; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2068; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2064; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2058; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2046; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2039; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2029; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2017; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2009; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1999; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1989; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1975; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1970`
+- Source reference count: `25`
+
+## ALP-AB3C1A209D93 | VNMSNT-UPSF2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `3.1: battery has high temperature (over 55℃ for <value>)`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-UPSF2201 reported `3.1: battery has high temperature (over 55℃ for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `25`
+- Resolved alerts: `25`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `power`
+- Component: `temperature`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4477; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4462; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4340; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4262; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4260; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4123; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4097; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4082; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4023; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3826; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3824; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3124; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2990; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2982; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2979; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2949; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2670; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2664; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2545; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2185`
 - Source reference count: `25`
 
 ## ALP-E2A7575F1806 | VNMMSB-FPT-FMS-45.119.218.130
@@ -1210,75 +908,24 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3744; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3219; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2648; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2641; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2635; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2632; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2620; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2617; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2612; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2605; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2585; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2577; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2570; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2559; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2552; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2537; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2528; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2520; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2505; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2473`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2557; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2120; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2114; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2108; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2105; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2097; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2094; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2090; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2084; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2069; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2062; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2056; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2047; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2041; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2027; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2019; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2011; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1997; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1973; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1966`
 - Source reference count: `25`
 
-## ALP-1CBDABDA59C1 | VNMMS2-FPT-FMS-45.119.218.130
+## ALP-5E69C4448C78 | VNMSNT-UPSF2201
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
+- Problem signature: `3.2: battery has high temperature (over 55℃ for <value>)`
+- Pattern family: `Power/UPS`
 - Investigation priority: `HIGH`
-- Why it matters: VNMMS2-FPT-FMS-45.119.218.130 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMSNT-UPSF2201 reported `3.2: battery has high temperature (over 55℃ for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
 - Raw alert count: `24`
 - Resolved alerts: `24`
 - Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2655; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2650; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2637; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2630; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2622; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2619; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2610; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2603; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2584; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2579; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2572; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2558; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2550; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2539; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2526; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2518; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2507; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2496; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2475; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2470`
-- Source reference count: `24`
-
-## ALP-43F27E19DD21 | VNMRVF-VSZABPRX-ISP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `24`
-- Resolved alerts: `24`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4700; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4226; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3668; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3098; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2537; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2286; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1925; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1575; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1517; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-875; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-359; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4487; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4102; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3528; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3393; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2941; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2337; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2156; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1643; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1562`
-- Source reference count: `24`
-
-## ALP-744043C0F1DE | VNMCPL-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM04 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `24`
-- Resolved alerts: `24`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4686; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4228; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3656; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3100; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2527; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2287; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1929; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1630; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1514; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1201; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-876; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-362; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4489; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4082; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3534; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3388; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2968; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2326; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2160; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1645`
-- Source reference count: `24`
-
-## ALP-968676F48AAF | VNMRVF-VSZABPRX-ISP3
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `jira http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `24`
-- Resolved alerts: `24`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4697; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4225; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3652; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3097; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2525; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2277; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1921; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1565; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1511; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-864; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-368; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4484; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4069; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3530; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3391; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2934; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2324; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2152; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1640; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1561`
+- Site code: `SNT`
+- Domain: `power`
+- Component: `temperature`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4476; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4461; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4339; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4261; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4259; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4125; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4096; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4081; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3827; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3823; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3123; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2989; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2981; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2978; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2948; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2669; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2663; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2548; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2184; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2117`
 - Source reference count: `24`
 
 ## ALP-9966AD21D215 | VNMMSB-FPT-FMS-45.119.218.141
@@ -1295,25 +942,314 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3745; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2649; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2642; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2636; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2633; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2621; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2618; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2613; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2606; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2586; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2578; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2571; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2560; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2553; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2538; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2529; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2521; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2506; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2474; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2465`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2121; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2115; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2109; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2106; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2098; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2095; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2091; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2085; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2070; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2063; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2057; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2048; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2042; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2028; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2020; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2012; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1998; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1974; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1967; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1963`
 - Source reference count: `24`
 
-## ALP-D05FEF044AE4 | VNMCPL-VSSPM02
+## ALP-40F5382B2C17 | VNMSNT-UPSF2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `apc ups: battery has high temperature (over 55℃ for <value>)`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-UPSF2201 reported `apc ups: battery has high temperature (over 55℃ for <value>)`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `20`
+- Resolved alerts: `20`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `power`
+- Component: `temperature`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4474; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4264; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4258; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4124; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4083; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3830; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3486; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3121; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2987; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2980; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2951; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2668; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2665; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2547; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2187; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2116; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1931; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1670; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5062; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5003`
+- Source reference count: `20`
+
+## ALP-E508F0A30F14 | VNMSGN-F24-Studio-SW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/24(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/24(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `18`
+- Resolved alerts: `18`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3308; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3134; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3064; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2876; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2756; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1687; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1685; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-914; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-707; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-692; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-659; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-528; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-518; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-413; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-288; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-243; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-29; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4616`
+- Source reference count: `18`
+
+## ALP-4C0ACA243192 | VNMSNT-VSSPM04
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `jira http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `24`
-- Resolved alerts: `24`
+- Why it matters: VNMSNT-VSSPM04 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4218; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4208; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3500; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3220; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2800; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2695; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2373; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1885; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1757; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1330; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1250; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1026; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-745; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-558; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-130; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4893; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4769`
+- Source reference count: `17`
+
+## ALP-7259165E30FF | VNMSNT-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSNT-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4220; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4211; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3512; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3224; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2802; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2690; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2347; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1865; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1741; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1334; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1246; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1015; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-732; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-557; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-129; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4885; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4753`
+- Source reference count: `17`
+
+## ALP-9449A45503C7 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/13(2f-d25): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/13(2f-d25): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3781; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3666; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3662; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3661; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3630; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2650; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2645; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2550; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1082; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-929; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-618; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-612; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-553; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5095; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4957; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4709; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4606`
+- Source reference count: `17`
+
+## ALP-ADA6C918C671 | VNMSNT-UPSF2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `apc ups: ups is hardware failure bypass`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-UPSF2201 reported `apc ups: ups is hardware failure bypass`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4338; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4263; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4126; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4103; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3829; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3485; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3118; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2988; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2950; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2667; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2546; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2186; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2119; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1669; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5061; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5002; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4723`
+- Source reference count: `17`
+
+## ALP-B272469C4059 | VNMSNT-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSNT-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4216; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4210; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3513; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3247; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2791; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2697; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2349; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1879; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1737; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1320; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1220; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1016; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-735; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-562; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-161; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4878; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4755`
+- Source reference count: `17`
+
+## ALP-BC88B7D92FB9 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/16(2f-d28): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/16(2f-d28): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4323; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4285; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4162; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4157; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4080; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3901; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3783; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2661; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2647; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1537; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1373; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-46; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4958; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4837; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4707; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4624; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4612`
+- Source reference count: `17`
+
+## ALP-CB87DC54115C | VNMSNT-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSNT-VSEMS01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `17`
+- Resolved alerts: `17`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4224; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4221; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4212; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3515; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3225; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2793; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2698; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2351; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1881; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1739; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1337; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1222; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-737; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-563; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-138; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4887; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4765`
+- Source reference count: `17`
+
+## ALP-0956650F5A4C | VNMRVF-VSZABPRX-GNL1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `16`
+- Resolved alerts: `16`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3504; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3226; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2792; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2685; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2352; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1882; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1745; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1617; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1321; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1263; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1247; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-738; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-564; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-139; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4874; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4749`
+- Source reference count: `16`
+
+## ALP-7C9CD18C7FC5 | VNMSNT-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSNT-VSSPM03 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `16`
+- Resolved alerts: `16`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4219; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4209; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3501; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3222; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2801; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2688; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2346; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1866; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1740; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1331; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1218; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-746; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-559; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-160; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4884; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4748`
+- Source reference count: `16`
+
+## ALP-161D4179FDA9 | VNMSGN-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSGN-VSSPM03 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3518; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3218; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2805; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2693; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2362; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1871; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1750; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1691; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1322; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1232; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-742; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-567; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-149; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4890; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4750`
+- Source reference count: `15`
+
+## ALP-43E03B32158E | VNMSGN-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSGN-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3507; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3238; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2786; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2687; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2367; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1875; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1754; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1706; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1326; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1236; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-750; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-569; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-135; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4882; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4751`
+- Source reference count: `15`
+
+## ALP-43F27E19DD21 | VNMRVF-VSZABPRX-ISP1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3514; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3248; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2788; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2691; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2350; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1880; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1742; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1336; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1262; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1221; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-736; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-571; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-162; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4879; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4764`
+- Source reference count: `15`
+
+## ALP-5BA58770C8AF | VNMSGN-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMSGN-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3519; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3234; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2797; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2702; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2363; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1873; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1752; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1693; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1324; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1234; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-749; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-568; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-132; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4881; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4759`
+- Source reference count: `15`
+
+## ALP-6F2F9F50A046 | VNMCPL-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCPL-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4701; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4230; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3657; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3103; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2528; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2289; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1931; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1617; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1521; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1193; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-877; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-371; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4479; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4070; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3529; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3402; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2946; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2341; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2162; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1647`
-- Source reference count: `24`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3517; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3252; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2795; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2692; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2360; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1870; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1749; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1341; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1229; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-741; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-645; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-566; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-146; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4880; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4766`
+- Source reference count: `15`
+
+## ALP-8E6AC4150C80 | VNMMSH-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSH-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3520; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3254; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2798; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2703; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2364; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1874; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1753; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1705; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1325; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1235; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-743; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-575; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-168; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4892; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4768`
+- Source reference count: `15`
+
+## ALP-968676F48AAF | VNMRVF-VSZABPRX-ISP3
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3511; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3215; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2790; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2689; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2343; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1867; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1738; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1332; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1261; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1219; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-733; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-560; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-128; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4877; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4763`
+- Source reference count: `15`
 
 ## ALP-D8563BF0B2A5 | VNMRVF-VSZABPRX-ISP2
 
@@ -1323,65 +1259,82 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMRVF-VSZABPRX-ISP2 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `24`
-- Resolved alerts: `24`
+- Raw alert count: `15`
+- Resolved alerts: `15`
 - Open alerts: `0`
 - Site code: `RVF`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4687; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4220; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3667; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3073; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2522; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2284; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1923; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1567; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1516; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-873; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-357; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4476; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4077; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3543; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3398; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2939; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2325; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2158; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1642; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1564`
-- Source reference count: `24`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3503; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3223; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2803; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2696; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2348; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1868; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1744; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1335; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1264; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1211; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-734; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-561; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-137; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4886; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4754`
+- Source reference count: `15`
 
-## ALP-02E68BDBC9C9 | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSEMS01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `23`
-- Resolved alerts: `23`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4232; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4053; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3387; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3163; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3080; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2435; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2222; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1996; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1948; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1302; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1150; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-967; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-897; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-319; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5390; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5378; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5367; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5100; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4085; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2949`
-- Source reference count: `23`
-
-## ALP-FDC327088884 | VNMCPL-VSSPM03
+## ALP-DB00D177E05F | VNMSGN-VSEMS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `jira http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM03 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `23`
-- Resolved alerts: `23`
+- Why it matters: VNMSGN-VSEMS01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3508; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3255; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2806; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2704; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2368; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1877; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1755; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1707; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1328; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1217; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-744; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-570; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-152; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4883; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4761`
+- Source reference count: `15`
+
+## ALP-FC8A681995B1 | VNMMSH-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSH-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `15`
+- Resolved alerts: `15`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3502; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3253; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2796; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2701; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2380; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1872; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1751; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1692; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1323; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1233; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-748; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-574; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-150; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4891; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4767`
+- Source reference count: `15`
+
+## ALP-744043C0F1DE | VNMCPL-VSSPM04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCPL-VSSPM04 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `14`
+- Resolved alerts: `14`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4693; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4229; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3669; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3102; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2538; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2288; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1930; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1520; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1202; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-894; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-370; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4478; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4083; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3544; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3401; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2945; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2340; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2161; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1646; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1522`
-- Source reference count: `23`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3516; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3228; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2794; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2686; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2377; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1869; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1746; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1338; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1224; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-739; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-572; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-140; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4875; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4756`
+- Source reference count: `14`
 
-## ALP-087E56F6D62B | VNMSNT-VSSPM02
+## ALP-A67C22A71598 | VNMSGN-F24-Studio-SW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `22`
-- Resolved alerts: `22`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4231; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4051; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3386; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3154; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3078; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2442; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2202; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2006; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1933; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1300; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1152; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-965; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-866; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-318; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5377; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5366; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5116; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4084; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2969; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1509`
-- Source reference count: `22`
+- Problem signature: `interface gi1/0/20(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/20(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `14`
+- Resolved alerts: `13`
+- Open alerts: `1`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3771; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3567; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3563; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3306; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3130; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3065; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1681; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-927; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-835; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-677; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-519; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-414; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-244; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-31`
+- Source reference count: `14`
 
 ## ALP-AB43BE0559B5 | VNMWBN-VSSPM01
 
@@ -1391,31 +1344,31 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMWBN-VSSPM01 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `22`
-- Resolved alerts: `22`
+- Raw alert count: `14`
+- Resolved alerts: `14`
 - Open alerts: `0`
 - Site code: `WBN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4689; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4243; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3651; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3090; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2534; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2275; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1942; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1515; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-869; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-376; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4483; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4110; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3527; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3386; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2961; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2335; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2170; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1637; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1535; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-940`
-- Source reference count: `22`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3510; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3256; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2787; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2684; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2370; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1878; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1756; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1329; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1238; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-751; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-577; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-154; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4876; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4762`
+- Source reference count: `14`
 
-## ALP-B98F56ADD27C | VNMSNT-VSSPM01
+## ALP-D05FEF044AE4 | VNMCPL-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
+- Problem signature: `jira http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `22`
-- Resolved alerts: `22`
+- Why it matters: VNMCPL-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `14`
+- Resolved alerts: `14`
 - Open alerts: `0`
-- Site code: `SNT`
+- Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4250; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4052; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3380; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3155; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3079; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2443; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2203; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1995; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1946; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1301; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1154; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-966; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-878; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-310; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5389; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5368; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5106; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4104; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2948; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1525`
-- Source reference count: `22`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3506; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3216; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2789; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2700; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2355; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1884; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1748; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1340; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1226; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-740; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-573; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-141; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4889; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4758`
+- Source reference count: `14`
 
 ## ALP-F49D6521EF17 | VNMWBN-VSSPM02
 
@@ -1425,48 +1378,235 @@
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `MEDIUM`
 - Why it matters: VNMWBN-VSSPM02 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `22`
-- Resolved alerts: `22`
+- Raw alert count: `14`
+- Resolved alerts: `14`
 - Open alerts: `0`
 - Site code: `WBN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4706; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4241; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3664; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3088; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2541; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2271; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1939; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1530; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-886; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-375; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4482; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4093; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3539; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3396; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2973; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2333; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2157; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1635; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1546; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-941`
-- Source reference count: `22`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3509; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3239; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2799; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2694; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2382; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1876; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1743; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1327; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1249; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-752; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-576; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-151; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4894; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4760`
+- Source reference count: `14`
 
-## ALP-6CC3E76FFF18 | VNMSNT-VSSPM03
+## ALP-FDC327088884 | VNMCPL-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `jira http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCPL-VSSPM03 reported `jira http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `14`
+- Resolved alerts: `14`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3505; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3229; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2804; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2699; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2354; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1883; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1747; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1339; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1225; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-747; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-565; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-164; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4888; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4757`
+- Source reference count: `14`
+
+## ALP-0EAC2ABF80AC | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/9(2f-d23-tplink-16ports): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi2/0/9(2f-d23-tplink-16ports): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `13`
+- Resolved alerts: `13`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4325; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3948; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3888; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3440; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2977; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2566; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1835; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1363; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1057; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-938; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-419; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4706; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4609`
+- Source reference count: `13`
+
+## ALP-2D3FBB654BE3 | VNMMSB-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface xgigabitethernet1/0/27(sw30b-hub22-poe-sw-xge1/0/4): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNCSW01 reported `interface xgigabitethernet1/0/27(sw30b-hub22-poe-sw-xge1/0/4): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `13`
+- Resolved alerts: `13`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3569; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2748; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2658; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2654; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2639; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2561; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1318; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1314; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-945; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-944; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-942; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-933; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-697`
+- Source reference count: `13`
+
+## ALP-AD5AA6FC1FB8 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/15(2f-d27): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/15(2f-d27): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `10`
+- Resolved alerts: `10`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3404; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1834; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1081; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-930; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-841; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-418; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-269; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4956; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4705; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4608`
+- Source reference count: `10`
+
+## ALP-02E68BDBC9C9 | VNMSNT-VSEMS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM03 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `21`
-- Resolved alerts: `21`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSEMS01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `9`
+- Resolved alerts: `9`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4249; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4050; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3379; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3162; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3077; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2441; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2201; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2005; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1932; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1299; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1149; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-964; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-895; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-317; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5376; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5365; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5105; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4103; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2947; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1524`
-- Source reference count: `21`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4226; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4215; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4204; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3980; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3231; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2358; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1230; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1019; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-145`
+- Source reference count: `9`
 
-## ALP-99D165C7290A | VNMSNT-VSSPM04
+## ALP-3C94BCE98493 | VNMSGN-F24-Studio-SW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/15(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/15(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `9`
+- Resolved alerts: `9`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3190; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3061; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2900; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2892; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2130; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-425; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-30; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5128; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4611`
+- Source reference count: `9`
+
+## ALP-4BF58F585699 | VNMMSB-VSCDC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: high memory utilization (>90% for <value>)`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-VSCDC02 reported `windows: high memory utilization (>90% for <value>)`. Treat as monitoring context until corroborated.
+- Raw alert count: `9`
+- Resolved alerts: `8`
+- Open alerts: `1`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `memory`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3145; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3094; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3037; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3033; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4986; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4980; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4665; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4654; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4626`
+- Source reference count: `9`
+
+## ALP-E3F1CEF16485 | VNMMSB-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface xgigabitethernet0/0/27(sw30b-hub22-poe-sw-xge0/0/4): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNCSW01 reported `interface xgigabitethernet0/0/27(sw30b-hub22-poe-sw-xge0/0/4): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `9`
+- Resolved alerts: `9`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3568; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2659; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2657; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2653; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1333; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1319; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-943; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-934; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-698`
+- Source reference count: `9`
+
+## ALP-087E56F6D62B | VNMSNT-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM04 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `20`
-- Resolved alerts: `20`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `8`
+- Resolved alerts: `8`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4233; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4058; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3389; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3156; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3069; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2444; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2204; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2007; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1918; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1305; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1155; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-970; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-879; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-332; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5107; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4086; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2970; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1510; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1288; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-173`
-- Source reference count: `20`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4214; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4203; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3996; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3230; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2378; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1212; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1017; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-143`
+- Source reference count: `8`
+
+## ALP-6C309587E8D5 | VNMMSB-VSCDC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: high memory utilization (>90% for <value>)`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-VSCDC01 reported `windows: high memory utilization (>90% for <value>)`. Treat as monitoring context until corroborated.
+- Raw alert count: `8`
+- Resolved alerts: `8`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `memory`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2926; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2919; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2881; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2874; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2660; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2649; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-480; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-321`
+- Source reference count: `8`
+
+## ALP-B98F56ADD27C | VNMSNT-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `8`
+- Resolved alerts: `8`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4225; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4205; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3986; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3250; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2357; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1228; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1018; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-165`
+- Source reference count: `8`
+
+## ALP-FDF85018772E | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/22(2f-d34): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/22(2f-d34): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `8`
+- Resolved alerts: `8`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3949; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3408; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1660; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-661; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5102; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4959; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4704; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4610`
+- Source reference count: `8`
+
+## ALP-176B73406A1D | VNMMSB-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface eth-trunk35(sw30b-hub12-poe-sw): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNCSW01 reported `interface eth-trunk35(sw30b-hub12-poe-sw): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `7`
+- Resolved alerts: `7`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2656; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2652; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2562; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1317; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-941; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-932; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-699`
+- Source reference count: `7`
 
 ## ALP-3EB6409BA309 | VNMMSH-VSSPM01
 
@@ -1474,50 +1614,33 @@
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
+- Investigation priority: `LOW`
 - Why it matters: VNMMSH-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `19`
-- Resolved alerts: `19`
+- Raw alert count: `7`
+- Resolved alerts: `7`
 - Open alerts: `0`
 - Site code: `MSH`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4260; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4091; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3449; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3094; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2452; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1959; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1474; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1326; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-932; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-890; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-279; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-115; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5118; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4096; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2963; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2102; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1536; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-881; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-195`
-- Source reference count: `19`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3998; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3242; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2372; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1696; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1239; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-696; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-169`
+- Source reference count: `7`
 
-## ALP-01E4CBEDDEBE | VNMMSH-VSSPM02
+## ALP-6CC3E76FFF18 | VNMSNT-VSSPM03
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSH-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `18`
-- Resolved alerts: `18`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4223; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4079; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3459; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3110; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2439; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1919; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1468; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1328; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-931; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-891; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-277; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-113; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5103; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4098; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2975; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2103; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1542; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-182`
-- Source reference count: `18`
-
-## ALP-F46BBBBA3D24 | VNMSNT-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM03 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `18`
-- Resolved alerts: `18`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM03 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `7`
+- Resolved alerts: `7`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4045; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3852; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3846; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3841; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3806; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3796; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3790; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3783; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3764; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3762; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3755; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3397; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2215; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2012; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1288; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-329; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3300; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1419`
-- Source reference count: `18`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4213; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4202; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3985; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3249; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2356; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1227; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-142`
+- Source reference count: `7`
 
 ## ALP-7FEC14B7A1CA | VNMMS2-VSSPM01
 
@@ -1525,746 +1648,15 @@
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `http monitoring`
 - Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
+- Investigation priority: `LOW`
 - Why it matters: VNMMS2-VSSPM01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `17`
-- Resolved alerts: `17`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4730; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4666; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4295; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3041; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1645; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1640; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1433; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1413; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1358; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-91; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4733; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4709; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4428; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4317; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3484; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2178; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1914`
-- Source reference count: `17`
-
-## ALP-0389BEF33E3C | VNMSNT-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM02 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `16`
-- Resolved alerts: `16`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4046; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3853; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3839; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3822; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3816; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3808; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3773; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3769; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3752; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3489; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3394; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2221; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2017; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1289; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-328; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1283`
-- Source reference count: `16`
-
-## ALP-2BF8F51D3C34 | VNMSGN-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM03 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `15`
-- Resolved alerts: `15`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4242; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4088; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3093; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2451; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1957; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1466; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1324; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-889; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-281; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5120; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4097; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2965; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2100; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1548; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-181`
-- Source reference count: `15`
-
-## ALP-5222B2692D5C | VNMSGN-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `15`
-- Resolved alerts: `15`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4245; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4090; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3095; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2454; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1956; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1464; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1325; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-904; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-268; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5114; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4099; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2974; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2101; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1540; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-184`
-- Source reference count: `15`
-
-## ALP-5AAEBF45DE41 | VNMSGN-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `15`
-- Resolved alerts: `15`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4261; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4078; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3096; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2455; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1945; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1469; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1327; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-905; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-260; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5121; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4100; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2967; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2104; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1541; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-185`
-- Source reference count: `15`
-
-## ALP-9F5684E55F8F | VNMSGN-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSGN-VSEMS01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `15`
-- Resolved alerts: `15`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4258; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4087; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3092; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2453; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1943; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1465; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1323; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-887; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-267; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5119; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4095; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2962; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2114; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1537; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-162`
-- Source reference count: `15`
-
-## ALP-DAA1EB558801 | VNMSNT-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM04 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `15`
-- Resolved alerts: `15`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3834; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3825; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3818; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3812; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3798; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3780; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3767; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3757; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3395; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2219; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2013; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1290; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-327; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4582; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1286`
-- Source reference count: `15`
-
-## ALP-3DAA28DDB22C | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `14`
-- Resolved alerts: `14`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4047; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3859; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3827; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3823; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3811; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3785; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3778; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3768; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3756; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3378; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2216; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2004; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-326; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1285`
-- Source reference count: `14`
-
-## ALP-7D5EB2CD1DDF | VNMRVF-VSZABPRX-ISP3
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `14`
-- Resolved alerts: `14`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4251; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3081; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2436; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1934; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1563; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-867; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-336; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-303; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5117; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4105; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2950; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1996; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1507; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-170`
-- Source reference count: `14`
-
-## ALP-9472E3130DB1 | VNMSNT-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM04 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `14`
-- Resolved alerts: `14`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4302; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4063; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3405; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3152; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2211; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2022; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1292; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1153; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-977; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-308; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5380; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5370; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5341; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1302`
-- Source reference count: `14`
-
-## ALP-30992FCAC4B8 | VNMCPL-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4248; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3101; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2440; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1928; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1631; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1200; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-893; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-122; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5104; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4081; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2944; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1520; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-189`
-- Source reference count: `13`
-
-## ALP-43AFF3060676 | VNMRVF-VSZABPRX-ISP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4255; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3086; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2448; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1938; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1569; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-868; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-342; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5110; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4090; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2957; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1998; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1545; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-159`
-- Source reference count: `13`
-
-## ALP-484B720DB953 | VNMRVF-VSZABPRX-ISP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4237; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3085; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2447; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1951; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1566; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-883; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-341; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5101; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4089; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2956; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1997; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1512; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-193`
-- Source reference count: `13`
-
-## ALP-5E7AD2B3F5CD | VNMSNT-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4301; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4061; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3401; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3165; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2213; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2021; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1294; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1157; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-973; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-315; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5387; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5342; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1300`
-- Source reference count: `13`
-
-## ALP-7039E6E4C1A5 | VNMSNT-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM03 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4297; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4065; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3399; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3164; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2205; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2020; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1293; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1156; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-972; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-320; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5386; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5369; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5339`
-- Source reference count: `13`
-
-## ALP-75F370D51820 | VNMCPL-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM04 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4259; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3091; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2450; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1940; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1624; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1213; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-903; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-121; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5112; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4094; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2936; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1538; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-196`
-- Source reference count: `13`
-
-## ALP-9FEAFFFBD7D9 | VNMSNT-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM03 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4042; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3858; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3854; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3849; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3840; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3821; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3809; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3805; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3802; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3789; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3760; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1285; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3658`
-- Source reference count: `13`
-
-## ALP-A8B5D5531BA6 | VNMRVF-VSZABPRX-GNL1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `13`
-- Resolved alerts: `13`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4256; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3107; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2449; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1953; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1568; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-900; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-343; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5111; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4091; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2972; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2000; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1513; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-160`
-- Source reference count: `13`
-
-## ALP-4C3768F55AC8 | VNMCPL-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `12`
-- Resolved alerts: `12`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4244; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3109; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2438; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1944; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1626; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1216; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-870; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5113; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4075; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2966; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1539; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-183`
-- Source reference count: `12`
-
-## ALP-B3579C4A769F | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSEMS01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `12`
-- Resolved alerts: `12`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4299; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4067; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3398; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3158; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2198; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1999; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1309; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1151; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-975; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-321; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5340; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1291`
-- Source reference count: `12`
-
-## ALP-E72A76EFC4A3 | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `12`
-- Resolved alerts: `12`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4298; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4062; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3383; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3157; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2208; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2024; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1295; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1158; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-974; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-316; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5338; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1301`
-- Source reference count: `12`
-
-## ALP-FF8D34DADB81 | VNMCPL-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VSSPM03 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `12`
-- Resolved alerts: `12`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4253; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3082; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2446; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1949; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1211; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-899; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5109; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4071; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2935; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1511; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-816; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-192`
-- Source reference count: `12`
-
-## ALP-13B43D07AA25 | VNMMS2-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMS2-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `11`
-- Resolved alerts: `11`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4665; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3627; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1707; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1644; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1642; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1357; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-684; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-377; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5039; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1913; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-947`
-- Source reference count: `11`
-
-## ALP-158FC3370766 | VNMSNT-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `11`
-- Resolved alerts: `11`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4043; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3829; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3803; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3795; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3786; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3776; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3765; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3491; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1891; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1286; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3659`
-- Source reference count: `11`
-
-## ALP-7488F88C19DF | VNMWBN-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMWBN-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `11`
-- Resolved alerts: `11`
-- Open alerts: `0`
-- Site code: `WBN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4234; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3105; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2445; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1935; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-898; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-104; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5108; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4087; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2952; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1528; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-174`
-- Source reference count: `11`
-
-## ALP-99E67BCA8B6A | VNMWBN-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `shopee confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMWBN-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `11`
-- Resolved alerts: `11`
-- Open alerts: `0`
-- Site code: `WBN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4221; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3071; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2437; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1941; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-902; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-106; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5102; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4073; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2960; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1534; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-179`
-- Source reference count: `11`
-
-## ALP-C46391AE9ECA | VNMSNT-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM02 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `11`
-- Resolved alerts: `11`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3848; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3843; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3837; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3824; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3817; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3804; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3794; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3759; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3490; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2484; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1278`
-- Source reference count: `11`
-
-## ALP-CF4130F57BCE | VNMSNT-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSSPM04 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `11`
-- Resolved alerts: `11`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4041; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3851; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3832; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3826; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3819; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3797; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3793; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3779; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3771; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3754; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1284`
-- Source reference count: `11`
-
-## ALP-5ACEF1B84127 | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMSNT-VSEMS01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `10`
-- Resolved alerts: `10`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3845; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3838; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3815; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3788; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3775; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3751; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3392; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2199; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2000; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1279`
-- Source reference count: `10`
-
-## ALP-7F7A2D2BCBD0 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSH-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `10`
-- Resolved alerts: `10`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4553; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4467; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2260; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1774; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1476; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1318; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-934; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-282; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-117; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2095`
-- Source reference count: `10`
-
-## ALP-0CC55237067A | VNMSNT-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM03 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3857; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3831; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3813; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3800; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3787; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3758; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3749; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3299; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1426`
-- Source reference count: `9`
-
-## ALP-6A5FF8ECA0C3 | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4044; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3855; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3844; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3836; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3820; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3814; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3784; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3777; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-59`
-- Source reference count: `9`
-
-## ALP-9089098A65A0 | VNMMSH-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high memory utilization (>90% for <value>)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC02 reported `windows: high memory utilization (>90% for <value>)`. Treat as monitoring context until corroborated.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `os`
-- Component: `memory`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3561; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3557; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3549; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3547; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3522; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3510; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3508; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3497; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3496`
-- Source reference count: `9`
-
-## ALP-9E2AEE42C23D | VNMMSH-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4076; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3458; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-943; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-276; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-112; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3657; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2233; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2196; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1218`
-- Source reference count: `9`
-
-## ALP-A4AD09D79E19 | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSEMS01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3860; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3833; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3799; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3774; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3763; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3753; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1291; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3668; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1287`
-- Source reference count: `9`
-
-## ALP-C292F7633781 | VNMMSH-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3450; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2239; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1771; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1481; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1331; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-933; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-280; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-116; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2094`
-- Source reference count: `9`
-
-## ALP-F21C496048BA | VNMMS2-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSSPM03 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `9`
-- Resolved alerts: `9`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4664; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4658; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1647; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1643; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1639; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1356; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4447; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1755; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-508`
-- Source reference count: `9`
-
-## ALP-6702E654A8B6 | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `8`
-- Resolved alerts: `8`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3842; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3828; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3791; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3782; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3766; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3750; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2486; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-56`
-- Source reference count: `8`
-
-## ALP-BE9323D857D9 | VNMSNT-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM04 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `8`
-- Resolved alerts: `8`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3850; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3835; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3807; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3801; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3792; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3781; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3770; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1277`
-- Source reference count: `8`
-
-## ALP-F43B329C01A5 | VNMSWS-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSWS-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `8`
-- Resolved alerts: `8`
-- Open alerts: `0`
-- Site code: `SWS`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4644; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3628; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2461; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1486; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4420; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3312; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2056; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-960`
-- Source reference count: `8`
-
-## ALP-40930FB82BF2 | VNMSNT-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSEMS01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `7`
-- Resolved alerts: `7`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3856; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3847; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3830; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3810; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3772; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3761; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1283`
-- Source reference count: `7`
-
-## ALP-63A681653D3E | VNMMSH-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `7`
-- Resolved alerts: `7`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2766; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2433; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1457; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1114; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3474; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3473; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1851`
-- Source reference count: `7`
-
-## ALP-8343732F4E8F | VNMMS2-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSSPM04 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `7`
 - Resolved alerts: `7`
 - Open alerts: `0`
 - Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4667; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1846; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1648; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1646; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1641; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1355; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1912`
-- Source reference count: `7`
-
-## ALP-BB890BC9C9F8 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `7`
-- Resolved alerts: `7`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4077; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3448; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1314; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-944; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-114; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2234; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2199`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3688; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3671; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3468; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3403; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2753; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1763; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1548`
 - Source reference count: `7`
 
 ## ALP-C6ED613558DD | VNMMSB-PNASW-Hub22
@@ -2281,177 +1673,279 @@
 - Site code: `MSB`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3345; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3344; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3222; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1627; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1201; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1192; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-880`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2655; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2651; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2560; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1316; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-940; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-931; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-695`
 - Source reference count: `7`
 
-## ALP-27677A872C3F | VNMSNT-VSEMS01
+## ALP-FE978C1E0C20 | VNMCCW-PNASW-OFFICE
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
+- Problem signature: `interface gi2/0/9(backoffice): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCCW-PNASW-OFFICE reported `interface gi2/0/9(backoffice): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `7`
+- Resolved alerts: `7`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3884; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3882; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3048; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1369; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1350; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-946; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-711`
+- Source reference count: `7`
+
+## ALP-01E4CBEDDEBE | VNMMSH-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSEMS01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `6`
-- Resolved alerts: `6`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3396; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2220; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2016; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1287; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-330; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1284`
-- Source reference count: `6`
-
-## ALP-7637E316BAF5 | VNMMDN-PSSJP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMDN-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `6`
-- Resolved alerts: `6`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3335; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2789; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-228; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5444; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1907; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-917`
-- Source reference count: `6`
-
-## ALP-C380821D118B | VNMMSH-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMSH-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `6`
 - Resolved alerts: `6`
 - Open alerts: `0`
 - Site code: `MSH`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2763; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2762; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2432; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1456; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3470; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1845`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3983; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3244; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2384; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1697; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1245; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-156`
 - Source reference count: `6`
 
-## ALP-E0910AC65DBF | VNMSGN-VSSPM02
+## ALP-1A3F306FCB8F | VNMSGN-F24-Studio-SW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
+- Problem signature: `interface gi1/0/5(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/5(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3565; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3132; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3062; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1682; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4619; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4615`
+- Source reference count: `6`
+
+## ALP-2BF8F51D3C34 | VNMSGN-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSGN-VSSPM03 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `6`
 - Resolved alerts: `6`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4095; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1775; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1477; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1317; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-262; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2096`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4000; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3243; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2374; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1694; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1251; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-155`
 - Source reference count: `6`
 
-## ALP-09155739FD0E | VNMSGN-VSEMS01
+## ALP-43AFF3060676 | VNMRVF-VSZABPRX-ISP1
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSEMS01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `5`
-- Resolved alerts: `5`
+- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3990; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3236; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2366; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1614; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1248; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-133`
+- Source reference count: `6`
+
+## ALP-484B720DB953 | VNMRVF-VSZABPRX-ISP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3981; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3235; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2365; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1613; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1215; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-167`
+- Source reference count: `6`
+
+## ALP-5222B2692D5C | VNMSGN-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4071; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3298; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1450; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1442; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1425`
-- Source reference count: `5`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3994; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3245; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2383; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1695; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1243; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-158`
+- Source reference count: `6`
 
-## ALP-0E415E2C8384 | VNMSGN-VSSPM01
+## ALP-5AAEBF45DE41 | VNMSGN-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `5`
-- Resolved alerts: `5`
+- Why it matters: VNMSGN-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4094; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1768; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1480; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-274; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2115`
-- Source reference count: `5`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4001; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3246; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2376; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1698; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1244; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-159`
+- Source reference count: `6`
 
-## ALP-3B54AD57B8BE | VNMSNT-VSSPM04
+## ALP-7D5EB2CD1DDF | VNMRVF-VSZABPRX-ISP3
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM04 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `5`
-- Resolved alerts: `5`
+- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3997; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3251; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2359; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1612; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1210; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-144`
+- Source reference count: `6`
+
+## ALP-99D165C7290A | VNMSNT-VSSPM04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM04 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4040; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3407; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2214; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2011; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1280`
-- Source reference count: `5`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3987; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3232; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2379; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1213; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1011; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-147`
+- Source reference count: `6`
 
-## ALP-3C7E97F05B37 | VNMCPL-VSSPM02
+## ALP-9F5684E55F8F | VNMSGN-VSEMS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSGN-VSEMS01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3999; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3241; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2371; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1708; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1240; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-136`
+- Source reference count: `6`
+
+## ALP-A8B5D5531BA6 | VNMRVF-VSZABPRX-GNL1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3991; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3237; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2381; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1616; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1216; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-134`
+- Source reference count: `6`
+
+## ALP-F5572970729B | VNMMDN-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMDN-VSSPM01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3673; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3395; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3391; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-498; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-496; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-286`
+- Source reference count: `6`
+
+## ALP-FF8D34DADB81 | VNMCPL-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM03 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `6`
+- Resolved alerts: `6`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3989; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3217; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2344; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1214; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-652; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-166`
+- Source reference count: `6`
+
+## ALP-30992FCAC4B8 | VNMCPL-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `5`
 - Resolved alerts: `5`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1210; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3669; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3661; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2238; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-815`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3984; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3227; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2353; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1223; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-163`
 - Source reference count: `5`
 
-## ALP-41D0E9EB88B7 | VNMSNT-VSSPM02
+## ALP-4C3768F55AC8 | VNMCPL-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM02 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `5`
 - Resolved alerts: `5`
 - Open alerts: `0`
-- Site code: `SNT`
+- Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4039; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3404; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2217; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2015; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1282`
-- Source reference count: `5`
-
-## ALP-6C98DB159A7E | VNMSWS-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMSWS-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `5`
-- Resolved alerts: `5`
-- Open alerts: `0`
-- Site code: `SWS`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4663; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4660; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4659; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1488; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2062`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3993; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3221; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2375; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1242; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-157`
 - Source reference count: `5`
 
 ## ALP-6D1757618413 | VNMCCW-VSSPM01
@@ -2468,364 +1962,262 @@
 - Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1424; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1406; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-90; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4315; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1988`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3401; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1605; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5153; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5145; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5143`
 - Source reference count: `5`
 
-## ALP-8E2A248C8ADD | VNMSGN-VSSPM03
+## ALP-7488F88C19DF | VNMWBN-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
+- Problem signature: `shopee confluence http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSSPM03 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMWBN-VSSPM02 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `5`
 - Resolved alerts: `5`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3988; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3233; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2361; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1231; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-148`
+- Source reference count: `5`
+
+## ALP-75F370D51820 | VNMCPL-VSSPM04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM04 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `5`
+- Resolved alerts: `5`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3992; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3240; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2345; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1241; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-170`
+- Source reference count: `5`
+
+## ALP-99E67BCA8B6A | VNMWBN-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `shopee confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMWBN-VSSPM01 reported `shopee confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `5`
+- Resolved alerts: `5`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3982; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3219; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2369; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1237; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-153`
+- Source reference count: `5`
+
+## ALP-F43B329C01A5 | VNMSWS-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `5`
+- Resolved alerts: `5`
+- Open alerts: `0`
+- Site code: `SWS`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3462; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2632; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1659; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-769; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4941`
+- Source reference count: `5`
+
+## ALP-09155739FD0E | VNMSGN-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSEMS01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `4`
+- Resolved alerts: `4`
 - Open alerts: `0`
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4093; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1770; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1478; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-273; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2110`
-- Source reference count: `5`
-
-## ALP-BDBD2015F837 | VNMRVF-VSZABPRX-GNL1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `5`
-- Resolved alerts: `5`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-339; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-306; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-131; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1995; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1421`
-- Source reference count: `5`
-
-## ALP-BE5E0A226603 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `5`
-- Resolved alerts: `5`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4073; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3457; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1312; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-942; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-111`
-- Source reference count: `5`
-
-## ALP-FE3C38E2DC07 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `5`
-- Resolved alerts: `5`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4072; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3455; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-940; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-110; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2198`
-- Source reference count: `5`
-
-## ALP-12E1592973B6 | VNMMSB-VSCDC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSCDC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3863; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1345; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2279; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1843`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2621; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1160; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1152; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1136`
 - Source reference count: `4`
 
-## ALP-1A953F4706CD | VNMRVF-VSZABPRX-ISP2
+## ALP-115D48183243 | VNMSGN-F24-Studio-SW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
+- Problem signature: `interface gi1/0/11(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/11(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `4`
+- Resolved alerts: `3`
+- Open alerts: `1`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2882; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2878; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2877; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2757`
+- Source reference count: `4`
+
+## ALP-3C7E97F05B37 | VNMCPL-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-337; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-304; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1993; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1698`
-- Source reference count: `4`
-
-## ALP-215907792A0E | VNMRVF-VSZABPRX-ISP3
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4618; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1581; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-61; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1418`
-- Source reference count: `4`
-
-## ALP-30B215136C84 | VNMMBD-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3635; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1585; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1363; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-886`
-- Source reference count: `4`
-
-## ALP-34774A67A59C | VNMMSB-VNPT-FTTH-143.92.82.164
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-VNPT-FTTH-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3734; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1712; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-479; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5531`
-- Source reference count: `4`
-
-## ALP-4C656B6E6B0E | VNMMS2-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3492; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2907; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1915; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1065`
-- Source reference count: `4`
-
-## ALP-50D1D2232E0A | VNMMS2-FPT-FMS-143.92.82.164
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMS2-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1224; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-74; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4312; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4232`
-- Source reference count: `4`
-
-## ALP-6B66EDD4D5A6 | VNMMDN-Netnam-FMS-Google
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-Netnam-FMS-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3498; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1096; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-81; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4708`
-- Source reference count: `4`
-
-## ALP-6D8FB8F22DF8 | VNMRVF-VSZABPRX-GNL1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1577; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-334; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-129; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2002`
-- Source reference count: `4`
-
-## ALP-7A6A6B2F3886 | VNMCPL-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM02 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `4`
 - Resolved alerts: `4`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1620; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1206; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-63; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-810`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2894; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2889; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1814; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-651`
 - Source reference count: `4`
 
-## ALP-8022BF11F7B8 | VNMMBD-VSSPM03
+## ALP-63A681653D3E | VNMMSH-VSDHC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `windows: active checks are not available`
+- Pattern family: `Zabbix agent/active check`
 - Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSSPM03 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMSH-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
 - Raw alert count: `4`
 - Resolved alerts: `4`
 - Open alerts: `0`
-- Site code: `MBD`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3632; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2889; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1360; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3874`
-- Source reference count: `4`
-
-## ALP-8C1FAECDB82B | VNMMBD-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4328; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3633; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1361; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2662`
-- Source reference count: `4`
-
-## ALP-8C989B803A73 | VNMCCW-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCCW-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `CCW`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1408; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-995; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4443; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1987`
-- Source reference count: `4`
-
-## ALP-A035897B33D7 | VNMCCW-PNASW04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMCCW-PNASW04 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `CCW`
-- Domain: `network`
+- Site code: `MSH`
+- Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2644; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1179; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-213; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-897`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2751; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2750; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1508; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4722`
 - Source reference count: `4`
 
-## ALP-A8AC346B8ED6 | VNMSGN-VSEMS01
+## ALP-788ECF082C30 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/4(wired-users): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/4(wired-users): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `4`
+- Resolved alerts: `4`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1192; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1083; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5090; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5087`
+- Source reference count: `4`
+
+## ALP-8DB77EB6AD73 | VNMSGN-F24-Studio-SW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/17(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/17(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `4`
+- Resolved alerts: `3`
+- Open alerts: `1`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3063; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-705; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-527; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5129`
+- Source reference count: `4`
+
+## ALP-9472E3130DB1 | VNMSNT-VSSPM04
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `space http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSEMS01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1773; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1475; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-272; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2109`
-- Source reference count: `4`
-
-## ALP-B42B72FA2793 | VNMSNT-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM03 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSSPM04 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `4`
 - Resolved alerts: `4`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3403; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2206; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2009; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1281`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4217; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4207; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4182; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1025`
 - Source reference count: `4`
 
-## ALP-DBAC421A5888 | VNMRVF-VSZABPRX-ISP1
+## ALP-981B0724F60D | VNMCPL-VSDHC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
+- Problem signature: `windows: active checks are not available`
+- Pattern family: `Zabbix agent/active check`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Raw alert count: `4`
+- Resolved alerts: `3`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `os`
+- Component: `health,network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1493; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4507; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4496; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4480`
+- Source reference count: `4`
+
+## ALP-9E2AEE42C23D | VNMMSH-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMSH-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `4`
 - Resolved alerts: `4`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `MSH`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1562; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-338; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-305; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1994`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2885; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1809; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1776; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-957`
+- Source reference count: `4`
+
+## ALP-A0947B93EBA0 | VNMMDN-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMDN-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `4`
+- Resolved alerts: `4`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3674; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1956; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-499; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5038`
+- Source reference count: `4`
+
+## ALP-E27238F0A5A8 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/6(new-ap): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi2/0/6(new-ap): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `4`
+- Resolved alerts: `4`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4622; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4621; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4620; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4535`
 - Source reference count: `4`
 
 ## ALP-E3B1DE2AC12E | VNMSGN-VSEMS01
@@ -2842,126 +2234,41 @@
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3293; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1430; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1424; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1396`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2616; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1141; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1135; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1111`
 - Source reference count: `4`
 
-## ALP-E73E2E9B79D8 | VNMCPL-VSSPM01
+## ALP-13B43D07AA25 | VNMMS2-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
+- Problem signature: `http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1619; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1196; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-66; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-812`
-- Source reference count: `4`
-
-## ALP-E93FF7A65BE9 | VNMCPL-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1212; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-452; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3670; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-817`
-- Source reference count: `4`
-
-## ALP-F1C41227391E | VNMRVF-VSZABPRX-ISP3
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4617; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1579; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-60; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2677`
-- Source reference count: `4`
-
-## ALP-FB1AE7107599 | VNMRVF-VSZABPRX-ISP3
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-57; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4262; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2676; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1417`
-- Source reference count: `4`
-
-## ALP-FCB38E8F143B | VNMMSB-VSCDC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSCDC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `4`
-- Resolved alerts: `4`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2757; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-459; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2281; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-364`
-- Source reference count: `4`
-
-## ALP-1ACCDDA4E22B | VNMMSB-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMS2-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3625; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3567; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5460`
+- Site code: `MS2`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3930; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1547; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-757`
 - Source reference count: `3`
 
-## ALP-21A98CCEA4A6 | VNMSWS-PSSJP1
+## ALP-13C2484F33DF | VNMSGN-F24-Studio-SW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
+- Problem signature: `interface gi1/0/14(data): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMSWS-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/14(data): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `SWS`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-232; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3818; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1001`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3572; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3562; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-62`
 - Source reference count: `3`
 
 ## ALP-21C6B54A3E59 | VNMSGN-VSSPM03
@@ -2978,41 +2285,7 @@
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1441; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1427; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1414`
-- Source reference count: `3`
-
-## ALP-2AB4588032FC | VNMWBN-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMWBN-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `WBN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3563; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1344; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1850`
-- Source reference count: `3`
-
-## ALP-2EEB6A045E46 | VNMRVF-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4626; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1415; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1990`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1151; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1138; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1125`
 - Source reference count: `3`
 
 ## ALP-300E3E1681E3 | VNMMBD-NETNAM-FMS-143.92.82.164
@@ -3029,109 +2302,58 @@
 - Site code: `MBD`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5497; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4020; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3681`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4317; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3178; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2906`
 - Source reference count: `3`
 
-## ALP-30B3DE0E9A38 | VNMMSB-FPT-FMS-143.92.82.164
+## ALP-30B215136C84 | VNMMBD-VSEMS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3742; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-78; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2228`
-- Source reference count: `3`
-
-## ALP-395C9A3167B7 | VNMCPL-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
+- Problem signature: `http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMBD-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `CPL`
+- Site code: `MBD`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1623; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1214; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-804`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-703; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4969; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4838`
 - Source reference count: `3`
 
-## ALP-3A350A82A881 | VNMMDN-Netnam-FMS-spx.shopee.vn
+## ALP-5E7AD2B3F5CD | VNMSNT-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-Netnam-FMS-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3496; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1095; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-79`
-- Source reference count: `3`
-
-## ALP-40136BE0DE3B | VNMCPL-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
+- Problem signature: `space http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM04 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `CPL`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2412; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1621; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1209`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4223; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4183; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1023`
 - Source reference count: `3`
 
-## ALP-5B5E5BD02F39 | VNMMSH-VSSPM02
+## ALP-6543D8B05E3C | VNMWBN-PNWFW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface tunnel.36(to-cp-fpt): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM02 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMWBN-PNWFW01 reported `interface tunnel.36(to-cp-fpt): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `MSH`
+- Site code: `WBN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3451; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-935; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2197`
-- Source reference count: `3`
-
-## ALP-6A54DDB78966 | VNMMDN-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMDN-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1217; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-616; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-335`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1798; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4860; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4848`
 - Source reference count: `3`
 
 ## ALP-6F1E089FBF4D | VNMSGN-VSSPM03
@@ -3148,58 +2370,41 @@
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3301; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1451; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1385`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2624; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1161; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1101`
 - Source reference count: `3`
 
-## ALP-740A41E15833 | VNMMSB-FPT-Google
+## ALP-7039E6E4C1A5 | VNMSNT-VSSPM03
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-FPT-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3747; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2224; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2221`
-- Source reference count: `3`
-
-## ALP-741B9E5DD901 | VNMSGN-VSEMS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
+- Problem signature: `space http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSEMS01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSSPM03 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `SGN`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4089; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1316; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3673`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4222; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4206; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4180`
 - Source reference count: `3`
 
-## ALP-746BFE15BC81 | VNMRVF-VSDHC02
+## ALP-7637E316BAF5 | VNMMDN-PSSJP1
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: host has been restarted (uptime < <value>)`
 - Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMDN-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `MDN`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4625; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1418; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1991`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4269; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1542; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-729`
 - Source reference count: `3`
 
 ## ALP-7A23D4CE212F | VNMCCW-VSEMS01
@@ -3216,245 +2421,58 @@
 - Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1407; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4442; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1989`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3476; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1606; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5146`
 - Source reference count: `3`
 
-## ALP-7A327195B442 | VNMSNT-VSDHC02
+## ALP-8022BF11F7B8 | VNMMBD-VSSPM03
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4656; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1460; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2053`
-- Source reference count: `3`
-
-## ALP-8431FCD99A93 | VNMMSH-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
+- Problem signature: `http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3435; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-936; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2200`
-- Source reference count: `3`
-
-## ALP-8502BDAE29F6 | VNMMS2-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4505; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1353; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1911`
-- Source reference count: `3`
-
-## ALP-8512B88F2512 | VNMMBD-FPT-FMS-143.92.82.164
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMBD-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMBD-VSSPM03 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
 - Site code: `MBD`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1776; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1223; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4233`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3041; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4970; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4966`
 - Source reference count: `3`
 
-## ALP-8D3FF145AFC5 | VNMMSH-VSSPM02
+## ALP-8C989B803A73 | VNMCCW-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
+- Problem signature: `http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM02 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCCW-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `3`
+- Resolved alerts: `3`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3477; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1604; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5150`
+- Source reference count: `3`
+
+## ALP-9089098A65A0 | VNMMSH-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: high memory utilization (>90% for <value>)`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-VSDHC02 reported `windows: high memory utilization (>90% for <value>)`. Treat as monitoring context until corroborated.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
 - Site code: `MSH`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3456; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-941; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-109`
-- Source reference count: `3`
-
-## ALP-8EF68489B665 | VNMCPL-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM02 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1628; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1199; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-58`
-- Source reference count: `3`
-
-## ALP-943BE1CC9684 | VNMMSB-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
 - Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2758; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1229; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-368`
-- Source reference count: `3`
-
-## ALP-978DF6D26A6B | VNW3-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNW3-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `UNKNOWN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4657; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1484; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2060`
-- Source reference count: `3`
-
-## ALP-97B938A73B4B | VNMWBN-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMWBN-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `WBN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3562; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1191; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-366`
-- Source reference count: `3`
-
-## ALP-9E76E02BF1B3 | VNMMDN-FPT-Google
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-FPT-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3507; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-89; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4707`
-- Source reference count: `3`
-
-## ALP-A1CD3F2D2972 | VNMSGN-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4642; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1187; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1278`
-- Source reference count: `3`
-
-## ALP-A68C8A77BBA7 | VNMSNT-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSSPM01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3384; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2209; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2003`
-- Source reference count: `3`
-
-## ALP-A7B1C779DB26 | VNMMSB-FPT-FMS-143.92.88.13
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-FPT-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3741; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-64; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2227`
-- Source reference count: `3`
-
-## ALP-AAFB8AF740C8 | VNMCPL-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM03 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1207; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3660; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-811`
+- Component: `memory`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2807; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2782; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2771`
 - Source reference count: `3`
 
 ## ALP-AD0FEAB4CF54 | VNMCPL-FPT-GoogleDNS
@@ -3471,41 +2489,7 @@
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5541; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5539; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2239`
-- Source reference count: `3`
-
-## ALP-B56ED1112D8F | VNMMDN-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMDN-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3334; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3309; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2785`
-- Source reference count: `3`
-
-## ALP-B5D5D69DC10D | VNMMSB-VNPT-FTTH-spx.shopee.vn
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-VNPT-FTTH-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1711; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-480; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5533`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4361; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4359; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1815`
 - Source reference count: `3`
 
 ## ALP-BF6FF8E976BE | VNMCPL-VTHL-GoogleDNS
@@ -3522,41 +2506,41 @@
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5542; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5537; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2229`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4362; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4357; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1805`
 - Source reference count: `3`
 
-## ALP-C05AD23FBDDF | VNMSWS-VSDHC01
+## ALP-C061A474B203 | VNMSGN-F24-Studio-SW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/16(data): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/16(data): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `3`
+- Resolved alerts: `3`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-937; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-936; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-928`
+- Source reference count: `3`
+
+## ALP-C380821D118B | VNMMSH-VSDHC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: host has been restarted (uptime < <value>)`
 - Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMSWS-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMSH-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `SWS`
+- Site code: `MSH`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4502; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1485; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2057`
-- Source reference count: `3`
-
-## ALP-C0D0547A5EB2 | VNMMSB-VSNPS01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSNPS01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2759; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1230; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-370`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2749; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1503; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4720`
 - Source reference count: `3`
 
 ## ALP-C3F11E8E54C2 | VNMCPL-VSDHC02
@@ -3573,143 +2557,126 @@
 - Site code: `CPL`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1637; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1349; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1832`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1492; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4506; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4495`
 - Source reference count: `3`
 
-## ALP-C8F733B66B3A | VNMMBD-VSSPM01
+## ALP-E98E242414FE | VNMWBN-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMWBN-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `3`
+- Resolved alerts: `3`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1808; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5104; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5097`
+- Source reference count: `3`
+
+## ALP-F21C496048BA | VNMMS2-VSSPM03
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSSPM01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3634; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1362; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4710`
-- Source reference count: `3`
-
-## ALP-D3800D122BE2 | VNMMSB-PSSJP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3626; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3566; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1496`
-- Source reference count: `3`
-
-## ALP-DDC89EABBC6F | VNMMS2-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMS2-VSSPM03 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
 - Site code: `MS2`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4506; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1351; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1909`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3482; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1433; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-420`
 - Source reference count: `3`
 
-## ALP-E89923DA4A76 | VNW3-VSDHC01
+## ALP-F35DA0E7A925 | VNMSGN-F24-Studio-SW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
+- Problem signature: `interface gi1/0/18(data): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNW3-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `3`
-- Resolved alerts: `3`
-- Open alerts: `0`
-- Site code: `UNKNOWN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4661; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1493; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2075`
-- Source reference count: `3`
-
-## ALP-E91C7BC7C5E8 | VNMSGN-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/18(data): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
 - Site code: `SGN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4503; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1483; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2061`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3570; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3566; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3561`
 - Source reference count: `3`
 
-## ALP-F78AB4D74642 | VNMMS2-PSSJP1
+## ALP-FB1AE7107599 | VNMRVF-VSZABPRX-ISP3
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMS2-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `3`
 - Resolved alerts: `3`
 - Open alerts: `0`
-- Site code: `MS2`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-233; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-47; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-951`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3366; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2133; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1128`
 - Source reference count: `3`
 
-## ALP-04992EA5ACE4 | VNMMDN-FPT-spx.shopee.vn
+## ALP-FF594A117625 | VNMWBN-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-FPT-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMWBN-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `3`
+- Resolved alerts: `3`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2897; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5108; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5099`
+- Source reference count: `3`
+
+## ALP-0CC55237067A | VNMSNT-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM03 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MDN`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3505; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-87`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2622; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1137`
 - Source reference count: `2`
 
-## ALP-13911D374776 | VNMSWS-PSSJP2
+## ALP-12E1592973B6 | VNMMSB-VSCDC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: host has been restarted (uptime < <value>)`
 - Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMSWS-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMSB-VSCDC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `SWS`
+- Site code: `MSB`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-48; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-856`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1839; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1501`
 - Source reference count: `2`
 
 ## ALP-169E6406F728 | VNMCCW-FPT-GoogleDNS
@@ -3726,24 +2693,58 @@
 - Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4705; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4439`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3667; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3473`
 - Source reference count: `2`
 
-## ALP-19D4AB8A870A | VNMSGN-VSEMS01
+## ALP-1924544ABA94 | VNMMSH-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface gi2/0/47(2f-d07-printer): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSEMS01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi2/0/47(2f-d07-printer): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `SGN`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1191; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1080`
+- Source reference count: `2`
+
+## ALP-19E27B689C58 | VNMCCW-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te2/1/2(hub-w4): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCCW-PNCSW01 reported `interface te2/1/2(hub-w4): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3051; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-713`
+- Source reference count: `2`
+
+## ALP-1A953F4706CD | VNMRVF-VSZABPRX-ISP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `RVF`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4074; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1313`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1609; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1386`
 - Source reference count: `2`
 
 ## ALP-1B829EB90695 | VNMWBN-VSSPM02
@@ -3760,41 +2761,24 @@
 - Site code: `WBN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-103; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-62`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5107; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5101`
 - Source reference count: `2`
 
-## ALP-1EBDC53DA16E | VNMMSB-FPT-FMS-34.8.101.13
+## ALP-21A98CCEA4A6 | VNMSWS-PSSJP1
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-FPT-FMS-34.8.101.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3746; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2230`
-- Source reference count: `2`
-
-## ALP-214F7282186B | VNMMDN-FPT-GoogleDNS
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-FPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3506; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-88`
+- Site code: `SWS`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3001; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-802`
 - Source reference count: `2`
 
 ## ALP-2627FC49476B | VNMCCW-FPT-wms.ssc.shopee.vn
@@ -3811,41 +2795,7 @@
 - Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4440; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4310`
-- Source reference count: `2`
-
-## ALP-2762F10D0530 | VNMCPL-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM03 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1208; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-814`
-- Source reference count: `2`
-
-## ALP-2BE3251B74A9 | VNMMS2-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-215; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-999`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3474; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3396`
 - Source reference count: `2`
 
 ## ALP-2BE6CD64345B | VNMRVF-VSZABPRX-ISP2
@@ -3862,58 +2812,7 @@
 - Site code: `RVF`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5583; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2997`
-- Source reference count: `2`
-
-## ALP-2C985DC126EE | VNMMSB-VNPT-FTTH-GoogleDNS
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-VNPT-FTTH-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3735; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5532`
-- Source reference count: `2`
-
-## ALP-32F434F90DB7 | VNMMBD-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3629; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1192`
-- Source reference count: `2`
-
-## ALP-3899CD2333EC | VNMMBD-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3631; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1359`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4397; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2402`
 - Source reference count: `2`
 
 ## ALP-3A858B63EFD9 | VNMSGN-VSSPM02
@@ -3930,160 +2829,109 @@
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5582; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1700`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4396; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1388`
 - Source reference count: `2`
 
-## ALP-3AC1169C6979 | VNMMSB-VSSPM01
+## ALP-3F151F71EFF2 | VNMMSB-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `hris http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface gigabitethernet0/0/28(thangdv-wifi-test): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMSB-PNSSW01 reported `interface gigabitethernet0/0/28(thangdv-wifi-test): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `1`
+- Open alerts: `1`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4965; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4856`
+- Source reference count: `2`
+
+## ALP-408776FCDC35 | VNMMSB-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gigabitethernet0/0/27(w-testing-802.1x): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNSSW01 reported `interface gigabitethernet0/0/27(w-testing-802.1x): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `1`
+- Open alerts: `1`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4859; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4858`
+- Source reference count: `2`
+
+## ALP-438E82AC906B | VNMSWS-UPS02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSWS-UPS02 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3728; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-460`
+- Site code: `SWS`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2766; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2764`
 - Source reference count: `2`
 
-## ALP-3D44EE916699 | VNMMDN-FPT-FMS-143.92.88.13
+## ALP-4B2D9244DF77 | VNMCCW-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po18(hub-w4): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCCW-PNCSW01 reported `interface po18(hub-w4): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3049; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-712`
+- Source reference count: `2`
+
+## ALP-4C656B6E6B0E | VNMMS2-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMS2-VSEMS01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1549; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-844`
+- Source reference count: `2`
+
+## ALP-50D1D2232E0A | VNMMS2-FPT-FMS-143.92.82.164
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `unavailable by icmp ping`
 - Pattern family: `Network reachability`
 - Investigation priority: `HIGH`
-- Why it matters: VNMMDN-FPT-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMS2-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MDN`
+- Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3495; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-84`
-- Source reference count: `2`
-
-## ALP-46A8BD1878A3 | VNMRVF-VSZABPRX-ISP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4620; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1583`
-- Source reference count: `2`
-
-## ALP-47027752FDAD | VNMCPL-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSDHC01 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1225; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-806`
-- Source reference count: `2`
-
-## ALP-506890DD3166 | VNMMSB-VNPT-GoogleDNS
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-VNPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3738; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5536`
-- Source reference count: `2`
-
-## ALP-5081189920F7 | VNMMSB-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSDHC02 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-575; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4726`
-- Source reference count: `2`
-
-## ALP-556C5581035F | VNMMDN-FPT-210.245.97.132
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-FPT-210.245.97.132 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3503; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3696`
-- Source reference count: `2`
-
-## ALP-5E2F23C33812 | VNMCPL-VSSPM04
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM04 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1195; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-813`
-- Source reference count: `2`
-
-## ALP-5ECC3E6AF6C3 | VNMRVF-VSZABPRX-ISP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1574; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-335`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3398; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3342`
 - Source reference count: `2`
 
 ## ALP-64B121F6A433 | VNMMSB-VSSPM01
@@ -4100,296 +2948,262 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3671; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3656`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2896; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2884`
 - Source reference count: `2`
 
-## ALP-65018137D406 | VNMSNT-VSDHC01
+## ALP-6A54DDB78966 | VNMMDN-VSDHC01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: host has been restarted (uptime < <value>)`
 - Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMDN-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `SNT`
+- Site code: `MDN`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1458; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2043`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-494; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-285`
 - Source reference count: `2`
 
-## ALP-6F75CFE0BFF3 | VNMMSB-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1346; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1852`
-- Source reference count: `2`
-
-## ALP-701EB4EAF3E4 | VNMSNT-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high swap space usage (less than 20% free)`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMSNT-VSDHC01 reported `windows: high swap space usage (less than 20% free)`. Treat as monitoring context until corroborated.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `os`
-- Component: `memory,storage`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1462; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2077`
-- Source reference count: `2`
-
-## ALP-715B814B3F78 | VNMMSB-FPT-GoogleDNS
+## ALP-740A41E15833 | VNMMSB-FPT-Google
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `unavailable by icmp ping`
 - Pattern family: `Network reachability`
 - Investigation priority: `HIGH`
-- Why it matters: VNMMSB-FPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMSB-FPT-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3743; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2235`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1800; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1796`
 - Source reference count: `2`
 
-## ALP-7BEA8E6CB5D2 | VNMRVF-VSZABPRX-GNL1
+## ALP-79E5CF0FEB8B | VNMWBN-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMWBN-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `WBN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-130; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1999`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5105; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5100`
 - Source reference count: `2`
 
-## ALP-7C0331E2C3F9 | VNMMS2-FPT-FMS-143.92.88.13
+## ALP-84056644F10D | VNMWBN-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMS2-FPT-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-73; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4313`
-- Source reference count: `2`
-
-## ALP-83F3E80812B5 | VNMMSB-VSSPM03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
+- Problem signature: `hris http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSPM03 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMWBN-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSB`
+- Site code: `WBN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3727; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5526`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5103; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5096`
 - Source reference count: `2`
 
-## ALP-88CA4CE44C96 | VNMMDN-FPT-FMS-143.92.82.164
+## ALP-8C1FAECDB82B | VNMMBD-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3504; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-86`
-- Source reference count: `2`
-
-## ALP-89C840DB890F | VNMMDN-Netnam-FMS-143.92.82.164
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-Netnam-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3501; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-85`
-- Source reference count: `2`
-
-## ALP-90793ED28AF7 | VNMMBD-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMBD-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMBD-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
 - Site code: `MBD`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-231; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-825`
-- Source reference count: `2`
-
-## ALP-9576674AA3D1 | VNMMSB-PE-FPT-42.115.45.57
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-PE-FPT-42.115.45.57 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3740; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2225`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2129; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4967`
 - Source reference count: `2`
 
-## ALP-9D1DC3A5A925 | VNMMSB-VSDHC02
+## ALP-8CD6ED07FBD2 | VNMMBD-UPS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMMBD-UPS01 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-576; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4731`
+- Site code: `MBD`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1202; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1060`
 - Source reference count: `2`
 
-## ALP-A0899C9F3685 | VNMMSH-VSDHC01
+## ALP-8D8DBC00B238 | VNMMBD-psesx01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `dell idrac: nic [nic.embedded.1-1-1/ac:b4:80:4f:b9:cc]: link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-psesx01 reported `dell idrac: nic [nic.embedded.1-1-1/ac:b4:80:4f:b9:cc]: link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `hardware`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2340; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2331`
+- Source reference count: `2`
+
+## ALP-9EC6DA7FB4A6 | VNMSWS-PNWFW02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface ethernet1/10(): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-PNWFW02 reported `interface ethernet1/10(): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `SWS`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3376; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2999`
+- Source reference count: `2`
+
+## ALP-A1CD3F2D2972 | VNMSGN-VSDHC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: host has been restarted (uptime < <value>)`
 - Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMSGN-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSH`
+- Site code: `SGN`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1227; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1119`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1002; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4511`
 - Source reference count: `2`
 
-## ALP-A37DF63F13A8 | VNMCPL-VSDHC01
+## ALP-A4AD09D79E19 | VNMSNT-VSEMS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMSNT-VSEMS01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `CPL`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1222; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-805`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2893; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1010`
 - Source reference count: `2`
 
-## ALP-AB38560C5F2E | VNMMS2-FPT-GoogleDNS
+## ALP-A68F358A138F | VNMSWS-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface twe2/0/4(ul-pa02): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-PNCSW01 reported `interface twe2/0/4(ul-pa02): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `SWS`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3377; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2998`
+- Source reference count: `2`
+
+## ALP-A7A009EBB0BA | VNMCCW-PE-FPT-58.186.223.217
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `unavailable by icmp ping`
 - Pattern family: `Network reachability`
 - Investigation priority: `HIGH`
-- Why it matters: VNMMS2-FPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMCCW-PE-FPT-58.186.223.217 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MS2`
+- Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-77; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4314`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3480; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5152`
 - Source reference count: `2`
 
-## ALP-AC8507BBDABE | VNMCPL-VSSPM04
+## ALP-AA4ADE38C413 | VNMMBD-UPS02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMMBD-UPS02 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1204; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1061`
+- Source reference count: `2`
+
+## ALP-AAFB8AF740C8 | VNMCPL-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM04 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-VSSPM03 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1616; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1204`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2888; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-647`
 - Source reference count: `2`
 
-## ALP-B44376FA10B7 | VNMCPL-VSSPM03
+## ALP-B3579C4A769F | VNMSNT-VSEMS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
+- Problem signature: `space http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM03 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSEMS01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `CPL`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2414; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1205`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4181; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1014`
 - Source reference count: `2`
 
 ## ALP-B59E873F2699 | VNMSGN-VSSPM02
@@ -4406,75 +3220,109 @@
 - Site code: `SGN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5581; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1699`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4395; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1387`
 - Source reference count: `2`
 
-## ALP-BB5483F45134 | VNMMSB-VNPT-FTTH-Google
+## ALP-BB890BC9C9F8 | VNMMSH-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-VNPT-FTTH-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSB`
+- Site code: `MSH`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3748; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5529`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1810; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1779`
 - Source reference count: `2`
 
-## ALP-BF5DA33D73AD | VNMRVF-VSZABPRX-ISP2
+## ALP-BDBD2015F837 | VNMRVF-VSZABPRX-GNL1
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
+- Problem signature: `hris http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
 - Site code: `RVF`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4619; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1582`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1611; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1132`
 - Source reference count: `2`
 
-## ALP-D05553CC376F | VNMMBD-PSSJP1
+## ALP-BEB9E5C2842C | VNMSWS-UPS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSWS-UPS01 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `SWS`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2762; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-260`
+- Source reference count: `2`
+
+## ALP-BFDF2113B363 | VNMWBN-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMBD-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMWBN-VSSPM02 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5106; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5098`
+- Source reference count: `2`
+
+## ALP-C8F733B66B3A | VNMMBD-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-VSSPM01 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
 - Site code: `MBD`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-160; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-855`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3672; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4968`
 - Source reference count: `2`
 
-## ALP-D2A196A56419 | VNMMDN-Netnam-FMS-143.92.88.13
+## ALP-D22E642D2402 | VNMCCW-PE-VNPT-wms.ssc.shopee.vn
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `unavailable by icmp ping`
 - Pattern family: `Network reachability`
 - Investigation priority: `HIGH`
-- Why it matters: VNMMDN-Netnam-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMCCW-PE-VNPT-wms.ssc.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MDN`
+- Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3500; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-83`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3475; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5147`
 - Source reference count: `2`
 
 ## ALP-D3970D0F19CF | VNMRVF-VSZABPRX-GNL1
@@ -4491,160 +3339,92 @@
 - Site code: `RVF`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5391; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2003`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4227; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1619`
 - Source reference count: `2`
 
-## ALP-D6DE51104164 | VNMMSH-VSSPM02
+## ALP-DAA1EB558801 | VNMSNT-VSSPM04
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
+- Problem signature: `hris http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSSPM02 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSSPM04 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `MSH`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3454; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-939`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3576; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1009`
 - Source reference count: `2`
 
-## ALP-D8D267F610B0 | VNMMS2-FPT-FMS-34.8.101.13
+## ALP-E4A386D887F2 | VNMMBD-PNCSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMS2-FPT-FMS-34.8.101.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-72; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4706`
-- Source reference count: `2`
-
-## ALP-D8D97AF05ACC | VNMMSB-VNPT-FTTH-143.92.88.13
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-VNPT-FTTH-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3733; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5530`
-- Source reference count: `2`
-
-## ALP-DA7A900CE711 | VNMMDN-Netnam-FMS-GoogleDNS
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMDN-Netnam-FMS-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3499; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-82`
-- Source reference count: `2`
-
-## ALP-DC34A037CC91 | VNMMSB-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `interface xgigabitethernet1/0/17(vnmmbd-pnasw17): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-PSSJP2 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `2`
-- Resolved alerts: `1`
-- Open alerts: `1`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-158; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-533`
-- Source reference count: `2`
-
-## ALP-DC9D3BB56688 | VNMMBD-NETNAM-FMS-143.92.88.13
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMBD-NETNAM-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMBD-PNCSW01 reported `interface xgigabitethernet1/0/17(vnmmbd-pnasw17): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
 - Site code: `MBD`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2415; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2413`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2984; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2899`
 - Source reference count: `2`
 
-## ALP-E33E91887CD6 | VNMRVF-VSZABPRX-ISP1
+## ALP-E544765B0602 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/29(wired-users): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/29(wired-users): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1539; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1193`
+- Source reference count: `2`
+
+## ALP-E72A76EFC4A3 | VNMSNT-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `space http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4616; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1572`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4179; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1024`
 - Source reference count: `2`
 
-## ALP-E97AD6C8AC63 | VNMMDN-VSDHC02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMDN-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MDN`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1343; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1849`
-- Source reference count: `2`
-
-## ALP-EAC35F59F3C7 | VNMRVF-VSZABPRX-ISP2
+## ALP-E93FF7A65BE9 | VNMCPL-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1580; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3662`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2895; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-653`
 - Source reference count: `2`
 
 ## ALP-EB009B8995C2 | VNMMS2-VNPT-GoogleDNS
@@ -4661,92 +3441,211 @@
 - Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5540; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5538`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4360; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4358`
 - Source reference count: `2`
 
-## ALP-EDE4F54B9DA5 | VNMMSB-FPT-spx.shopee.vn
+## ALP-EC07B63B6BF1 | VNMMSB-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMMSB-FPT-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-67; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2226`
-- Source reference count: `2`
-
-## ALP-EE35CFAF0367 | VNMMSB-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `interface gigabitethernet1/0/27(): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-PSSJP2 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSB-PNSSW01 reported `interface gigabitethernet1/0/27(): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `2`
 - Resolved alerts: `1`
 - Open alerts: `1`
 - Site code: `MSB`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-162; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-535`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4862; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4857`
 - Source reference count: `2`
 
-## ALP-F9EB35FEEFE0 | VNMCPL-VSSPM04
+## ALP-EF2FC71AF04A | VNMCCW-PNCSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface te1/1/2(hub-w4): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM04 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCCW-PNCSW01 reported `interface te1/1/2(hub-w4): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `2`
 - Resolved alerts: `2`
 - Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1618; zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3489`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3050; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-714`
 - Source reference count: `2`
 
-## ALP-FB2772FCF190 | VNMRVF-VSZABPRX-ISP3
+## ALP-F46BBBBA3D24 | VNMSNT-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM03 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2623; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1130`
+- Source reference count: `2`
+
+## ALP-FA0CAF592E23 | VNMWBN-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/1/4(fpt-300/<value>-uplink): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMWBN-PNWSW01 reported `interface gi2/1/4(fpt-300/<value>-uplink): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4861; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4849`
+- Source reference count: `2`
+
+## ALP-FCB38E8F143B | VNMMSB-VSCDC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-VSCDC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `2`
+- Resolved alerts: `2`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1840; zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-308`
+- Source reference count: `2`
+
+## ALP-031BE4B5C2DB | VNMMBD-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te2/1/8(ul-fpt): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-PNWSW01 reported `interface te2/1/8(ul-fpt): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-433`
+- Source reference count: `1`
+
+## ALP-0389BEF33E3C | VNMSNT-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM02 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1006`
+- Source reference count: `1`
+
+## ALP-0A71C29255C5 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/6(): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi2/0/6(): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4985`
+- Source reference count: `1`
+
+## ALP-0AD00BFAE5B7 | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po24(8data2): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface po24(8data2): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4449`
+- Source reference count: `1`
+
+## ALP-0BC7939B7CD7 | VNMMSH-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po101(sw1z-serverroom-dist-sw): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNCSW01 reported `interface po101(sw1z-serverroom-dist-sw): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2866`
+- Source reference count: `1`
+
+## ALP-0E065BD2D502 | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po26(8poe2): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface po26(8poe2): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4455`
+- Source reference count: `1`
+
+## ALP-0E415E2C8384 | VNMSGN-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `space http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `2`
-- Resolved alerts: `2`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1564; zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-340`
-- Source reference count: `2`
-
-## ALP-0816A541C7FE | VNMMSB-PSSJP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-PSSJP1 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMSGN-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-163`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1709`
 - Source reference count: `1`
 
 ## ALP-0F4DA46294A9 | VNMMS2-FPT-Google
@@ -4763,92 +3662,75 @@
 - Site code: `MS2`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4316`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3402`
 - Source reference count: `1`
 
-## ALP-0F51A0274824 | VNMWBN-PNASW06-Hub01
+## ALP-13911D374776 | VNMSWS-PSSJP2
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMWBN-PNASW06-Hub01 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
-- Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1661`
+- Site code: `SWS`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-684`
 - Source reference count: `1`
 
-## ALP-128397EE8486 | VNMCPL-VSSPM04
+## ALP-158FC3370766 | VNMSNT-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
+- Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM04 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSNT-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `CPL`
+- Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1633`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2887`
 - Source reference count: `1`
 
-## ALP-13D519ADF9F7 | VNMRVF-VSZABPRX-ISP1
+## ALP-17C98F8C50FA | VNMMSB-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1578`
-- Source reference count: `1`
-
-## ALP-18AD8F1B0C9B | VNMMSB-PNASW-Hub20
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `mpu board 0: temperature is above critical threshold: >60`
+- Problem signature: `interface eth-trunk4(san3-bond): link down`
 - Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-PNASW-Hub20 reported `mpu board 0: temperature is above critical threshold: >60`. Treat as monitoring context until corroborated.
-- Raw alert count: `1`
-- Resolved alerts: `0`
-- Open alerts: `1`
-- Site code: `MSB`
-- Domain: `network`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2090`
-- Source reference count: `1`
-
-## ALP-1BF38849BA68 | VNMRVF-VSZABPRX-ISP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMSB-PNSSW01 reported `interface eth-trunk4(san3-bond): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `RVF`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1576`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3571`
+- Source reference count: `1`
+
+## ALP-1ACCDDA4E22B | VNMMSB-PSSJP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4282`
 - Source reference count: `1`
 
 ## ALP-1D167D124B85 | VNMCPL-PNWFW01
@@ -4865,24 +3747,126 @@
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2838`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2265`
 - Source reference count: `1`
 
-## ALP-292DCE89AE1D | VNMSGN-VSSPM01
+## ALP-1EBDC53DA16E | VNMMSB-FPT-FMS-34.8.101.13
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSSPM01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-FPT-FMS-34.8.101.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `SGN`
+- Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1315`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1806`
+- Source reference count: `1`
+
+## ALP-215907792A0E | VNMRVF-VSZABPRX-ISP3
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1129`
+- Source reference count: `1`
+
+## ALP-2762F10D0530 | VNMCPL-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM03 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-650`
+- Source reference count: `1`
+
+## ALP-27677A872C3F | VNMSNT-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSEMS01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1007`
+- Source reference count: `1`
+
+## ALP-29D8B173B21D | VNMMSB-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gigabitethernet0/0/26(ap-lab1-server): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNSSW01 reported `interface gigabitethernet0/0/26(ap-lab1-server): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4851`
+- Source reference count: `1`
+
+## ALP-29F27FAA81CA | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te1/0/25(8poe1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te1/0/25(8poe1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4452`
+- Source reference count: `1`
+
+## ALP-2AB4588032FC | VNMWBN-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMWBN-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1507`
 - Source reference count: `1`
 
 ## ALP-2B540009008E | VNMMSB-VNPT-FMS-45.119.218.130
@@ -4899,24 +3883,245 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3730`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4703`
 - Source reference count: `1`
 
-## ALP-2D2F403D00DF | VNMMS2-VSDHC02
+## ALP-2BE3251B74A9 | VNMMS2-PSSJP2
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSDHC02 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMS2-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MS2`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-457`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-800`
+- Source reference count: `1`
+
+## ALP-2C985DC126EE | VNMMSB-VNPT-FTTH-GoogleDNS
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VNPT-FTTH-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4352`
+- Source reference count: `1`
+
+## ALP-2CA2E82FFCE3 | VNMSNT-PNWSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/17(genesys): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNWSW2201 reported `interface gi2/0/17(genesys): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2411`
+- Source reference count: `1`
+
+## ALP-2CDF8339EE29 | VNMMDN-UPS02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMMDN-UPS02 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-120`
+- Source reference count: `1`
+
+## ALP-2EEB6A045E46 | VNMRVF-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1607`
+- Source reference count: `1`
+
+## ALP-30B3DE0E9A38 | VNMMSB-FPT-FMS-143.92.82.164
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1804`
+- Source reference count: `1`
+
+## ALP-32DAF214489F | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te2/0/26(8poe2): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te2/0/26(8poe2): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4456`
+- Source reference count: `1`
+
+## ALP-32F434F90DB7 | VNMMBD-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4964`
+- Source reference count: `1`
+
+## ALP-33AB508A8035 | VNMMSB-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `zabbix proxy: utilization of icmp pinger processes over 75%`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VSSPM03 reported `zabbix proxy: utilization of icmp pinger processes over 75%`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `software`
+- Component: `data-collector`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4345`
+- Source reference count: `1`
+
+## ALP-34774A67A59C | VNMMSB-VNPT-FTTH-143.92.82.164
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VNPT-FTTH-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4351`
+- Source reference count: `1`
+
+## ALP-378E5E671857 | VNMMSH-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/9(): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNWSW01 reported `interface gi1/0/9(): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4982`
+- Source reference count: `1`
+
+## ALP-37ECD17812E6 | VNMCCW-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/1(vnpt): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCCW-PNWSW01 reported `interface gi1/0/1(vnpt): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3479`
+- Source reference count: `1`
+
+## ALP-3899CD2333EC | VNMMBD-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4853`
+- Source reference count: `1`
+
+## ALP-395C9A3167B7 | VNMCPL-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-640`
 - Source reference count: `1`
 
 ## ALP-3A3CD95E1262 | VNMMSB-VSSPM02
@@ -4933,75 +4138,92 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2231`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1807`
 - Source reference count: `1`
 
-## ALP-3E776F5941EB | VNMSGN-VSSPM02
+## ALP-3DAA28DDB22C | VNMSNT-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
+- Problem signature: `hris http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-4075`
-- Source reference count: `1`
-
-## ALP-41CA8678AFD7 | VNMSNT-PNWFW2201
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `vnmsnt-pnwfw2201 is down!`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMSNT-PNWFW2201 reported `vnmsnt-pnwfw2201 is down!`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMSNT-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `SNT`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1903`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1008`
 - Source reference count: `1`
 
-## ALP-484A8BFAA71C | VNMMDN-Netnam-119.17.213.166
+## ALP-40578C2A8D55 | VNMMBD-PNCSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMDN-Netnam-119.17.213.166 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `interface xgigabitethernet1/0/47(vnmmbd-pndsw01): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-PNCSW01 reported `interface xgigabitethernet1/0/47(vnmmbd-pndsw01): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MDN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3497`
+- Site code: `MBD`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2986`
 - Source reference count: `1`
 
-## ALP-49297ACFFA1D | VNMCPL-VTHL-spx.shopee.vn
+## ALP-42399D834774 | VNMMBD-PNDSW01-B
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VTHL-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `interface xgigabitethernet1/0/1(): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-PNDSW01-B reported `interface xgigabitethernet1/0/1(): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2985`
+- Source reference count: `1`
+
+## ALP-42F4BF748BE6 | VNMMBD-PNDSW01-B
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface xgigabitethernet1/0/23(asm-b): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-PNDSW01-B reported `interface xgigabitethernet1/0/23(asm-b): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4341`
+- Source reference count: `1`
+
+## ALP-47027752FDAD | VNMCPL-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: active checks are not available`
+- Pattern family: `Zabbix agent/active check`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSDHC01 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-65`
+- Domain: `os`
+- Component: `health,network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-642`
 - Source reference count: `1`
 
 ## ALP-4B29B0B74364 | VNMMBD-VSSJC1
@@ -5018,92 +4240,92 @@
 - Site code: `MBD`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3429`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2721`
 - Source reference count: `1`
 
-## ALP-4EE0B22C2E22 | VNMCPL-VSSPM01
+## ALP-4E324F9319C9 | VNMSGN-F24-Studio-SW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface gi1/0/13(data): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMSGN-F24-Studio-SW01 reported `interface gi1/0/13(data): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1622`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1671`
 - Source reference count: `1`
 
-## ALP-5004935E2145 | VNMCPL-GNL-HRIS
+## ALP-506890DD3166 | VNMMSB-VNPT-GoogleDNS
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `unavailable by icmp ping`
 - Pattern family: `Network reachability`
 - Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-GNL-HRIS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMSB-VNPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `CPL`
+- Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-75`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4356`
 - Source reference count: `1`
 
-## ALP-51007F680640 | VNMCPL-VSSPM01
+## ALP-5081189920F7 | VNMMSB-VSDHC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
+- Pattern family: `Zabbix agent/active check`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1632`
-- Source reference count: `1`
-
-## ALP-52146A39BFDF | VNMMSB-VSSJC1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: host has been restarted (uptime < <value>)`
-- Pattern family: `Host restart/uptime`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSJC1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMSB-VSDHC02 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MSB`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-288`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3683`
 - Source reference count: `1`
 
-## ALP-58A538479B50 | VNMRVF-VSZABPRX-GNL1
+## ALP-556C5581035F | VNMMDN-FPT-210.245.97.132
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMDN-FPT-210.245.97.132 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `MDN`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1570`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2911`
+- Source reference count: `1`
+
+## ALP-577879E16B1D | VNMSNT-PNASW0901
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `switch 2 - power supply b, normal: power supply is in critical state`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-PNASW0901 reported `switch 2 - power supply b, normal: power supply is in critical state`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3465`
 - Source reference count: `1`
 
 ## ALP-591C77AE607B | VNMSNT-VSDHC01
@@ -5120,7 +4342,75 @@
 - Site code: `SNT`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2049`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1654`
+- Source reference count: `1`
+
+## ALP-5977C8EFB475 | VNMMSB-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te1/1/7(fpt<value>/<value>-uplink): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNWSW01 reported `interface te1/1/7(fpt<value>/<value>-uplink): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1403`
+- Source reference count: `1`
+
+## ALP-5A159D9F292E | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po2(host<value>-vswitch0): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface po2(host<value>-vswitch0): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5110`
+- Source reference count: `1`
+
+## ALP-5B5E5BD02F39 | VNMMSH-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-VSSPM02 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1777`
+- Source reference count: `1`
+
+## ALP-5D25CF3F9C92 | VNMCCW-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `zabbix proxy: utilization of icmp pinger processes over 75%`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCCW-VSSPM02 reported `zabbix proxy: utilization of icmp pinger processes over 75%`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `software`
+- Component: `data-collector`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5144`
 - Source reference count: `1`
 
 ## ALP-5DD89370D4CE | VNMSNT-UPSF2201
@@ -5137,92 +4427,75 @@
 - Site code: `SNT`
 - Domain: `power`
 - Component: `power`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5641`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4457`
 - Source reference count: `1`
 
-## ALP-5EDF3B16F44E | VNMCPL-GNL-ITCenter
+## ALP-5E2F23C33812 | VNMCPL-VSSPM04
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-GNL-ITCenter reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-80`
-- Source reference count: `1`
-
-## ALP-61720CFA48E2 | VNMMS2-FPT-spx.shopee.vn
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMS2-FPT-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-76`
-- Source reference count: `1`
-
-## ALP-659A93672416 | VNMMSB-VNPT-FMS-34.8.101.13
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSB-VNPT-FMS-34.8.101.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3732`
-- Source reference count: `1`
-
-## ALP-65F3394BD3E4 | VNMMS2-PNASW01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `mpu board 1: temperature is above critical threshold: >60`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMS2-PNASW01 reported `mpu board 1: temperature is above critical threshold: >60`. Treat as monitoring context until corroborated.
-- Raw alert count: `1`
-- Resolved alerts: `0`
-- Open alerts: `1`
-- Site code: `MS2`
-- Domain: `network`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2458`
-- Source reference count: `1`
-
-## ALP-66621F0EB777 | VNMCPL-VSSPM02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `space http monitoring`
+- Problem signature: `google http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-VSSPM04 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1625`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-649`
+- Source reference count: `1`
+
+## ALP-6330A778B101 | VNMCCW-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te1/1/1(vnpt): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCCW-PNWSW01 reported `interface te1/1/1(vnpt): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5151`
+- Source reference count: `1`
+
+## ALP-65018137D406 | VNMSNT-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1649`
+- Source reference count: `1`
+
+## ALP-6800C5E0DF8A | VNMCCW-VNPT-GoogleDNS
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCCW-VNPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5148`
 - Source reference count: `1`
 
 ## ALP-685FDC71F87F | VNMCPL-PNASW0504
@@ -5239,24 +4512,75 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2832`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2259`
 - Source reference count: `1`
 
-## ALP-6B5B3A6498D2 | VNMMSB-PNASW-Hub21
+## ALP-69B703E5D70F | VNMSGN-PNWSW2501
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `mpu board 2: temperature is above critical threshold: >60`
+- Problem signature: `interface gi1/1/1(viettelidc-grn): link down`
 - Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-PNASW-Hub21 reported `mpu board 2: temperature is above critical threshold: >60`. Treat as monitoring context until corroborated.
+- Why it matters: VNMSGN-PNWSW2501 reported `interface gi1/1/1(viettelidc-grn): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MSB`
+- Site code: `SGN`
 - Domain: `network`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2292`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4854`
+- Source reference count: `1`
+
+## ALP-6B66EDD4D5A6 | VNMMDN-Netnam-FMS-Google
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMDN-Netnam-FMS-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3670`
+- Source reference count: `1`
+
+## ALP-6C98DB159A7E | VNMSWS-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SWS`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1665`
+- Source reference count: `1`
+
+## ALP-6D8FB8F22DF8 | VNMRVF-VSZABPRX-GNL1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1618`
 - Source reference count: `1`
 
 ## ALP-6E01E457377C | VNMMBD-VSDHC02
@@ -5273,24 +4597,109 @@
 - Site code: `MBD`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2346`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1888`
 - Source reference count: `1`
 
-## ALP-6F2A4DABA081 | VNMMSH-VSDHC02
+## ALP-6ECC84A13DA9 | VNMCCW-PE-VNPT-14.238.87.209
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `service dhcp server stopped`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC02 reported `service dhcp server stopped`. Treat as monitoring context until corroborated.
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMCCW-PE-VNPT-14.238.87.209 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MSH`
+- Site code: `CCW`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2434`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5149`
+- Source reference count: `1`
+
+## ALP-6F75CFE0BFF3 | VNMMSB-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1509`
+- Source reference count: `1`
+
+## ALP-701EB4EAF3E4 | VNMSNT-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: high swap space usage (less than 20% free)`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSDHC01 reported `windows: high swap space usage (less than 20% free)`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `os`
+- Component: `memory,storage`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1677`
+- Source reference count: `1`
+
+## ALP-715B814B3F78 | VNMMSB-FPT-GoogleDNS
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-FPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1811`
+- Source reference count: `1`
+
+## ALP-741B9E5DD901 | VNMSGN-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSEMS01 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2898`
+- Source reference count: `1`
+
+## ALP-746BFE15BC81 | VNMRVF-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1608`
 - Source reference count: `1`
 
 ## ALP-773FF6B91B85 | VNMSNT-PNASW0801
@@ -5307,24 +4716,7 @@
 - Site code: `SNT`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5639`
-- Source reference count: `1`
-
-## ALP-7834E29B7C40 | VNMMBD-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSDHC01 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1342`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4445`
 - Source reference count: `1`
 
 ## ALP-784607BD3933 | VNMMSB-VSSPM02
@@ -5341,58 +4733,245 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2222`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1797`
 - Source reference count: `1`
 
-## ALP-7BD7623DE9E2 | VNMMSB-VSDHC02
+## ALP-79F64BE83962 | VNMMSH-PNWSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `service dhcp server stopped`
+- Problem signature: `interface gi1/0/8(): link down`
 - Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSDHC02 reported `service dhcp server stopped`. Treat as monitoring context until corroborated.
+- Why it matters: VNMMSH-PNWSW01 reported `interface gi1/0/8(): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4984`
+- Source reference count: `1`
+
+## ALP-7A327195B442 | VNMSNT-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1657`
+- Source reference count: `1`
+
+## ALP-7A6A6B2F3886 | VNMCPL-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM02 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CPL`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-646`
+- Source reference count: `1`
+
+## ALP-7A7AC21E2062 | VNMSGN-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: active checks are not available`
+- Pattern family: `Zabbix agent/active check`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `os`
+- Component: `health,network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4512`
+- Source reference count: `1`
+
+## ALP-7BEA8E6CB5D2 | VNMRVF-VSZABPRX-GNL1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-GNL1 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1615`
+- Source reference count: `1`
+
+## ALP-7C0331E2C3F9 | VNMMS2-FPT-FMS-143.92.88.13
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMS2-FPT-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3399`
+- Source reference count: `1`
+
+## ALP-7F7A2D2BCBD0 | VNMMSH-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `space http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-VSSPM01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1689`
+- Source reference count: `1`
+
+## ALP-828108BA1BC0 | VNMSGN-PNWSW2501
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/1/2(cmc-grn): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-PNWSW2501 reported `interface gi2/1/2(cmc-grn): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `SGN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1297`
+- Source reference count: `1`
+
+## ALP-8338B49EE2A0 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/11(host5d-idrac-temp): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi2/0/11(host5d-idrac-temp): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3483`
+- Source reference count: `1`
+
+## ALP-8343732F4E8F | VNMMS2-VSSPM04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMS2-VSSPM04 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1546`
+- Source reference count: `1`
+
+## ALP-83F3E80812B5 | VNMMSB-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-VSSPM03 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1348`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4346`
 - Source reference count: `1`
 
-## ALP-7DD186E93674 | VNMMBD-PSSJP2
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-PSSJP2 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3706`
-- Source reference count: `1`
-
-## ALP-84056644F10D | VNMWBN-VSSPM01
+## ALP-8431FCD99A93 | VNMMSH-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `hris http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMWBN-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMSH-VSSPM01 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
+- Site code: `MSH`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-105`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1780`
+- Source reference count: `1`
+
+## ALP-8502BDAE29F6 | VNMMS2-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMS2-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1545`
+- Source reference count: `1`
+
+## ALP-8512B88F2512 | VNMMBD-FPT-FMS-143.92.82.164
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMBD-FPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3343`
 - Source reference count: `1`
 
 ## ALP-86345183DF87 | VNMSNT-VSDHC01
@@ -5409,24 +4988,24 @@
 - Site code: `SNT`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2045`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1650`
 - Source reference count: `1`
 
-## ALP-8B4020640506 | VNMMS2-VSDHC02
+## ALP-8640D0A99E69 | VNMMSB-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `interface gigabitethernet1/0/28(): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMS2-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSB-PNSSW01 reported `interface gigabitethernet1/0/28(): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MS2`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-458`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4855`
 - Source reference count: `1`
 
 ## ALP-8BA568D15E14 | VNMCPL-PNASW0402
@@ -5443,24 +5022,58 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2837`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2264`
 - Source reference count: `1`
 
-## ALP-8BECC3227606 | VNMMBD-PNWLC01
+## ALP-8E2A248C8ADD | VNMSGN-VSSPM03
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `huawei vrp: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMBD-PNWLC01 reported `huawei vrp: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `space http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSSPM03 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1704`
+- Source reference count: `1`
+
+## ALP-90723BD1730B | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/47(host<value>-idrac): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi2/0/47(host<value>-idrac): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5111`
+- Source reference count: `1`
+
+## ALP-90793ED28AF7 | VNMMBD-PSSJP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-PSSJP2 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MBD`
-- Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2457`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-660`
 - Source reference count: `1`
 
 ## ALP-919D1DAA3ADF | VNMSNT-UPSF2201
@@ -5477,7 +5090,24 @@
 - Site code: `SNT`
 - Domain: `power`
 - Component: `power`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5642`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4458`
+- Source reference count: `1`
+
+## ALP-93544488C14D | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po25(8poe1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface po25(8poe1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4448`
 - Source reference count: `1`
 
 ## ALP-93A5CD8B721E | VNMCPL-PNASW0601
@@ -5494,92 +5124,211 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2831`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2258`
 - Source reference count: `1`
 
-## ALP-981B0724F60D | VNMCPL-VSDHC02
+## ALP-943BE1CC9684 | VNMMSB-VSDHC01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMCPL-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSB-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `CPL`
+- Site code: `MSB`
 - Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1833`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-313`
 - Source reference count: `1`
 
-## ALP-990AC5B0ABCB | VNMMSB-PE-VNPT-14.238.34.169
+## ALP-9576674AA3D1 | VNMMSB-PE-FPT-42.115.45.57
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `unavailable by icmp ping`
 - Pattern family: `Network reachability`
 - Investigation priority: `MEDIUM`
-- Why it matters: VNMMSB-PE-VNPT-14.238.34.169 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMSB-PE-FPT-42.115.45.57 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3736`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1801`
 - Source reference count: `1`
 
-## ALP-9CE6810D8C7E | VNMSNT-PNWFW2202
+## ALP-95C8531458B4 | VNMMDN-PNCSW01-1-2
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `vnmsnt-pnwfw2202 is down!`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMSNT-PNWFW2202 reported `vnmsnt-pnwfw2202 is down!`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1889`
-- Source reference count: `1`
-
-## ALP-9D2E009811DF | VNMMSB-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface 50:00:e0:4f:9b:80/1/c9300x-nm-8y/1: link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMDN-PNCSW01-1-2 reported `interface 50:00:e0:4f:9b:80/1/c9300x-nm-8y/1: link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-461`
+- Site code: `MDN`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2912`
 - Source reference count: `1`
 
-## ALP-9FCCB74AE7C9 | VNMRVF-VSDHC02
+## ALP-978DF6D26A6B | VNW3-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNW3-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `UNKNOWN`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1663`
+- Source reference count: `1`
+
+## ALP-97B938A73B4B | VNMWBN-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMWBN-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `WBN`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-310`
+- Source reference count: `1`
+
+## ALP-9D1DC3A5A925 | VNMMSB-VSDHC02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: active checks are not available`
 - Pattern family: `Zabbix agent/active check`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSB-VSDHC02 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `MSB`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1420`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3687`
+- Source reference count: `1`
+
+## ALP-9D6FB01CB240 | VNMMSH-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po6(host6d-vswitch1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNWSW01 reported `interface po6(host6d-vswitch1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4981`
+- Source reference count: `1`
+
+## ALP-9E76E02BF1B3 | VNMMDN-FPT-Google
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMDN-FPT-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3669`
+- Source reference count: `1`
+
+## ALP-9F30948925E8 | VNMMSB-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gigabitethernet0/0/25(ap-lab2-server): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNSSW01 reported `interface gigabitethernet0/0/25(ap-lab2-server): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4852`
+- Source reference count: `1`
+
+## ALP-9FEAFFFBD7D9 | VNMSNT-VSSPM03
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-VSSPM03 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2886`
+- Source reference count: `1`
+
+## ALP-A035897B33D7 | VNMCCW-PNASW04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `cisco ios: unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `HIGH`
+- Why it matters: VNMCCW-PNASW04 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `health,network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-710`
+- Source reference count: `1`
+
+## ALP-A0899C9F3685 | VNMMSH-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4835`
 - Source reference count: `1`
 
 ## ALP-A090C47934DD | VNMMSB-VSSPM03
@@ -5596,7 +5345,41 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5528`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4348`
+- Source reference count: `1`
+
+## ALP-A0A7C8335F8A | VNMSWS-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `zabbix proxy: utilization of icmp pinger processes over 75%`
+- Pattern family: `Network reachability`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSWS-VSSPM01 reported `zabbix proxy: utilization of icmp pinger processes over 75%`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `SWS`
+- Domain: `software`
+- Component: `data-collector`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-768`
+- Source reference count: `1`
+
+## ALP-A214305CA9E3 | VNMSNT-PNASW0902
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `switch 4 - power supply a, normal: power supply is in critical state`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-PNASW0902 reported `switch 4 - power supply a, normal: power supply is in critical state`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3463`
 - Source reference count: `1`
 
 ## ALP-A24FE3830B4B | VNMSNT-PNASW0802
@@ -5613,58 +5396,126 @@
 - Site code: `SNT`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5640`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4446`
 - Source reference count: `1`
 
-## ALP-A743E985E368 | VNMWBN-PNASW10-Hub05
+## ALP-A37DF63F13A8 | VNMCPL-VSDHC01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMWBN-PNASW10-Hub05 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `WBN`
-- Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1657`
-- Source reference count: `1`
-
-## ALP-A7A009EBB0BA | VNMCCW-PE-FPT-58.186.223.217
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCCW-PE-FPT-58.186.223.217 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `CCW`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4446`
-- Source reference count: `1`
-
-## ALP-A7D8DD729776 | VNMCPL-VTHL-Google
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-VTHL-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `CPL`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-641`
+- Source reference count: `1`
+
+## ALP-A4089FD15772 | VNMCCW-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/3(fpt): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCCW-PNWSW01 reported `interface gi2/0/3(fpt): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CCW`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3481`
+- Source reference count: `1`
+
+## ALP-A4BA48DD3E68 | VNMSNT-PNASW0902
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `switch 6 - power supply a, normal: power supply is in critical state`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-PNASW0902 reported `switch 6 - power supply a, normal: power supply is in critical state`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3464`
+- Source reference count: `1`
+
+## ALP-A7B1C779DB26 | VNMMSB-FPT-FMS-143.92.88.13
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-FPT-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1706`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1803`
+- Source reference count: `1`
+
+## ALP-A8AC346B8ED6 | VNMSGN-VSEMS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `space http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSEMS01 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1703`
+- Source reference count: `1`
+
+## ALP-A9E721DBF400 | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/1(host<value>-gi2-vmnic1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi2/0/1(host<value>-gi2-vmnic1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5113`
+- Source reference count: `1`
+
+## ALP-AB38560C5F2E | VNMMS2-FPT-GoogleDNS
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMS2-FPT-GoogleDNS reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3400`
 - Source reference count: `1`
 
 ## ALP-AC5823A356F9 | VNMCPL-PNASW0503
@@ -5681,24 +5532,7 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2836`
-- Source reference count: `1`
-
-## ALP-ACFBE8C976BB | VNMWBN-PNASW08-Hub03
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMWBN-PNASW08-Hub03 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `WBN`
-- Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1656`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2263`
 - Source reference count: `1`
 
 ## ALP-ADB14EE9325B | VNMMSB-VSSPM02
@@ -5715,41 +5549,7 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2223`
-- Source reference count: `1`
-
-## ALP-ADDF88A630D1 | VNMSGN-VSSPM01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMSGN-VSSPM01 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `SGN`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1482`
-- Source reference count: `1`
-
-## ALP-AF1DCE83F9D9 | VNMMSB-VNPT-FMS-143.92.88.13
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSB-VNPT-FMS-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3739`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1799`
 - Source reference count: `1`
 
 ## ALP-B0472F3ECDF7 | VNMMSB-VSCDC01
@@ -5766,7 +5566,7 @@
 - Site code: `MSB`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-363`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-307`
 - Source reference count: `1`
 
 ## ALP-B259C1B104BD | VNMSNT-PNASW0804
@@ -5783,24 +5583,41 @@
 - Site code: `SNT`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5637`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4443`
 - Source reference count: `1`
 
-## ALP-B53482DF4744 | VNMRVF-VSZABPRX-ISP3
+## ALP-B331868ACD35 | VNMCPL-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `confluence http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `interface gi1/0/4(vmotion): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi1/0/4(vmotion): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5120`
+- Source reference count: `1`
+
+## ALP-B5D5D69DC10D | VNMMSB-VNPT-FTTH-spx.shopee.vn
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VNPT-FTTH-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `RVF`
+- Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1573`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4353`
 - Source reference count: `1`
 
 ## ALP-B8846D1E4DB8 | VNMSNT-PNASW0803
@@ -5817,7 +5634,41 @@
 - Site code: `SNT`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5638`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4444`
+- Source reference count: `1`
+
+## ALP-B8C29BDC1FFA | VNMMDN-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMDN-VSSPM02 reported `http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-495`
+- Source reference count: `1`
+
+## ALP-BACB26822D0F | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/1(host<value>-gi1-vmnic0): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi1/0/1(host<value>-gi1-vmnic0): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5112`
 - Source reference count: `1`
 
 ## ALP-BB3EEB369423 | VNMCPL-PNASW0501
@@ -5834,24 +5685,24 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2833`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2260`
 - Source reference count: `1`
 
-## ALP-BFDF2113B363 | VNMWBN-VSSPM02
+## ALP-BB5483F45134 | VNMMSB-VNPT-FTTH-Google
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `itcenter http monitoring`
-- Pattern family: `HTTP monitoring`
-- Investigation priority: `LOW`
-- Why it matters: VNMWBN-VSSPM02 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VNPT-FTTH-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
+- Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-55`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4349`
 - Source reference count: `1`
 
 ## ALP-C031A95EC809 | VNMMBD-VSDHC02
@@ -5868,7 +5719,58 @@
 - Site code: `MBD`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2343`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1886`
+- Source reference count: `1`
+
+## ALP-C05AD23FBDDF | VNMSWS-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSWS-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SWS`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1661`
+- Source reference count: `1`
+
+## ALP-C0D0547A5EB2 | VNMMSB-VSNPS01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-VSNPS01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-314`
+- Source reference count: `1`
+
+## ALP-C11640894E54 | VNMMSB-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te2/1/7(vnpt-ftth-<value>/<value>-uplink): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PNWSW01 reported `interface te2/1/7(vnpt-ftth-<value>/<value>-uplink): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4354`
 - Source reference count: `1`
 
 ## ALP-C16BA6A2D932 | VNMCPL-PNASW0502
@@ -5885,41 +5787,41 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2835`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2262`
 - Source reference count: `1`
 
-## ALP-C17EE51D7024 | VNMMSH-VSDHC02
+## ALP-C292F7633781 | VNMMSH-VSSPM02
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: high cpu utilization (over 90% for <value>)`
-- Pattern family: `Other`
+- Problem signature: `space http monitoring`
+- Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSH-VSDHC02 reported `windows: high cpu utilization (over 90% for <value>)`. Treat as monitoring context until corroborated.
+- Why it matters: VNMMSH-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MSH`
-- Domain: `os`
-- Component: `cpu`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3471`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1688`
 - Source reference count: `1`
 
-## ALP-C1E3DF3315EB | VNMMSB-VSSJC1
+## ALP-C5593B47AC08 | VNMMSH-PNWSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `interface te1/1/7(fpt<value>/<value>-uplink): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSJC1 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSH-PNWSW01 reported `interface te1/1/7(fpt<value>/<value>-uplink): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1610`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2869`
 - Source reference count: `1`
 
 ## ALP-C57961CC104D | VNMMSB-VSSPM03
@@ -5936,58 +5838,58 @@
 - Site code: `MSB`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-5527`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4347`
 - Source reference count: `1`
 
-## ALP-C5EE5E1156A2 | VNMMBD-PSSJP2
+## ALP-C6A753AA8DAF | VNMCPL-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
+- Problem signature: `interface gi2/0/48(host<value>-idrac): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi2/0/48(host<value>-idrac): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5117`
+- Source reference count: `1`
+
+## ALP-C8D9E49F883D | VNMMSH-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
 - Pattern family: `Zabbix agent/active check`
 - Investigation priority: `LOW`
-- Why it matters: VNMMBD-PSSJP2 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSH-VSDHC02 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MBD`
+- Site code: `MSH`
 - Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3709`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4721`
 - Source reference count: `1`
 
-## ALP-C96EE6281479 | VNMMSB-VNPT-FMS-143.92.82.164
+## ALP-C8F1CFFBCC61 | VNMSNT-PNCSW2201
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSB-VNPT-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3729`
-- Source reference count: `1`
-
-## ALP-CAB2F5E7A578 | VNMMSB-VSSJC1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
+- Problem signature: `interface te2/0/25(8poe1): link down`
+- Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSJC1 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te2/0/25(8poe1): link down`. Treat as monitoring context until corroborated.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1614`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4454`
 - Source reference count: `1`
 
 ## ALP-CCD676EF5C72 | VNMWBN-VSDHC01
@@ -6004,7 +5906,7 @@
 - Site code: `WBN`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-367`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-312`
 - Source reference count: `1`
 
 ## ALP-CDCB1323E9CB | VNMMBD-PE-FPT-42.116.48.97
@@ -6021,211 +5923,279 @@
 - Site code: `MBD`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-531`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-432`
 - Source reference count: `1`
 
-## ALP-CF4381A80F45 | VNMMSB-PNASW-Hub13
+## ALP-CFD7410A0332 | VNMMDN-UPS01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `mpu board 0: temperature is above critical threshold: >60`
-- Pattern family: `Other`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-PNASW-Hub13 reported `mpu board 0: temperature is above critical threshold: >60`. Treat as monitoring context until corroborated.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `network`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1726`
-- Source reference count: `1`
-
-## ALP-CFE628686373 | VNMMSB-VNPT-FMS-45.119.218.141
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSB-VNPT-FMS-45.119.218.141 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3731`
-- Source reference count: `1`
-
-## ALP-D22E642D2402 | VNMCCW-PE-VNPT-wms.ssc.shopee.vn
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCCW-PE-VNPT-wms.ssc.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `CCW`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-4441`
-- Source reference count: `1`
-
-## ALP-D29D0CE77EA6 | VNMMBD-VSDHC01
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMBD-VSDHC01 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1341`
-- Source reference count: `1`
-
-## ALP-D2A271B113CE | VNMMBD-VNPT-FTTH-FMS-143.92.82.164
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMBD-VNPT-FTTH-FMS-143.92.82.164 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MBD`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-2411`
-- Source reference count: `1`
-
-## ALP-D33607C36FCF | VNMWBN-PNASW07-Hub02
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
 - Investigation priority: `HIGH`
-- Why it matters: VNMWBN-PNASW07-Hub02 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Why it matters: VNMMDN-UPS01 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
-- Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1658`
+- Site code: `MDN`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-121`
 - Source reference count: `1`
 
-## ALP-D4E6D543B8FF | VNMMSB-VSSJP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: active checks are not available`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSJP1 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1613`
-- Source reference count: `1`
-
-## ALP-D57730FD8472 | VNMMSB-VSSJP1
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
-- Pattern family: `Zabbix agent/active check`
-- Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSJP1 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1611`
-- Source reference count: `1`
-
-## ALP-DC37D20900B5 | VNMCPL-FPT-spx.shopee.vn
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMCPL-FPT-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `CPL`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-70`
-- Source reference count: `1`
-
-## ALP-DC9DF58BFCDA | VNMSNT-PNASW1004
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMSNT-PNASW1004 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `SNT`
-- Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-588`
-- Source reference count: `1`
-
-## ALP-DD9CF753F672 | VNMMSB-VSSJP1
+## ALP-D05553CC376F | VNMMBD-PSSJP1
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `windows: host has been restarted (uptime < <value>)`
 - Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-VSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Why it matters: VNMMBD-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-683`
+- Source reference count: `1`
+
+## ALP-D1920754A7A0 | VNMSNT-UPSF2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `apc ups: ups is on battery`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-UPSF2201 reported `apc ups: ups is on battery`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `power`
+- Component: `health,power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4459`
+- Source reference count: `1`
+
+## ALP-D3800D122BE2 | VNMMSB-PSSJP1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
 - Site code: `MSB`
 - Domain: `os`
 - Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-287`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4617`
 - Source reference count: `1`
 
-## ALP-DE4D1C3A8368 | VNMMSB-PNASW-Hub21
+## ALP-D43B71C6DCFA | VNMSNT-PNCSW2201
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `mpu board 1: temperature is above critical threshold: >60`
+- Problem signature: `interface te1/0/30(7poe2): link down`
 - Pattern family: `Other`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-PNASW-Hub21 reported `mpu board 1: temperature is above critical threshold: >60`. Treat as monitoring context until corroborated.
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te1/0/30(7poe2): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2490`
+- Source reference count: `1`
+
+## ALP-D50C2032C859 | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te1/0/23(8data1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te1/0/23(8data1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4450`
+- Source reference count: `1`
+
+## ALP-D5C79ADBA448 | VNMMSB-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `zabbix proxy: utilization of icmp pinger processes over 75%`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VSSPM01 reported `zabbix proxy: utilization of icmp pinger processes over 75%`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
 - Raw alert count: `1`
 - Resolved alerts: `0`
 - Open alerts: `1`
 - Site code: `MSB`
+- Domain: `software`
+- Component: `data-collector`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-311`
+- Source reference count: `1`
+
+## ALP-D8D267F610B0 | VNMMS2-FPT-FMS-34.8.101.13
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMS2-FPT-FMS-34.8.101.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3668`
+- Source reference count: `1`
+
+## ALP-D8D97AF05ACC | VNMMSB-VNPT-FTTH-143.92.88.13
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-VNPT-FTTH-143.92.88.13 reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4350`
+- Source reference count: `1`
+
+## ALP-DBAC421A5888 | VNMRVF-VSZABPRX-ISP1
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `hris http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-ISP1 reported `hris http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1610`
+- Source reference count: `1`
+
+## ALP-DBD3239DB30B | VNMSNT-PNASW0902
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `switch 3 - power supply a, normal: power supply is in critical state`
+- Pattern family: `Power/UPS`
+- Investigation priority: `HIGH`
+- Why it matters: VNMSNT-PNASW0902 reported `switch 3 - power supply a, normal: power supply is in critical state`. This may indicate power/UPS instability and deserves facility or device-side verification.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
 - Domain: `network`
-- Component: `temperature`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1777`
+- Component: `power`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-3466`
+- Source reference count: `1`
+
+## ALP-DC34A037CC91 | VNMMSB-PSSJP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
+- Pattern family: `Zabbix agent/active check`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSB-PSSJP2 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `MSB`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-434`
+- Source reference count: `1`
+
+## ALP-DDAF4871FEF9 | VNMCPL-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/3(host<value>-gi6): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNWSW01 reported `interface gi1/0/3(host<value>-gi6): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5121`
+- Source reference count: `1`
+
+## ALP-DDC053EAD407 | VNMMS2-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface xgigabitethernet0/0/22(*** asm ***): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMS2-PNCSW01 reported `interface xgigabitethernet0/0/22(*** asm ***): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-709`
+- Source reference count: `1`
+
+## ALP-DDC89EABBC6F | VNMMS2-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMS2-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MS2`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1543`
+- Source reference count: `1`
+
+## ALP-E0910AC65DBF | VNMSGN-VSSPM02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `space http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSSPM02 reported `space http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1690`
 - Source reference count: `1`
 
 ## ALP-E0F3EC588E32 | VNMCPL-PNWFW02
@@ -6242,7 +6212,41 @@
 - Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2839`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2266`
+- Source reference count: `1`
+
+## ALP-E45DD97FFD35 | VNMCPL-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/3(host<value>-gi6): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNWSW01 reported `interface gi2/0/3(host<value>-gi6): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5114`
+- Source reference count: `1`
+
+## ALP-E4E93AA18409 | VNMSNT-PNSSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/34(cctv): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNSSW2201 reported `interface gi1/0/34(cctv): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4447`
 - Source reference count: `1`
 
 ## ALP-E5E787AEEC50 | VNMCPL-PNASW0401
@@ -6259,7 +6263,7 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2834`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2261`
 - Source reference count: `1`
 
 ## ALP-E6D0338FF897 | VNMMSH-VSDHC01
@@ -6276,41 +6280,126 @@
 - Site code: `MSH`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1228`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4836`
 - Source reference count: `1`
 
-## ALP-E90FD9F9F5AA | VNMMSB-VNPT-Google
-
-- Evidence label: `COMPUTED FACT`
-- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `MEDIUM`
-- Why it matters: VNMMSB-VNPT-Google reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
-- Raw alert count: `1`
-- Resolved alerts: `1`
-- Open alerts: `0`
-- Site code: `MSB`
-- Domain: `UNKNOWN`
-- Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-3737`
-- Source reference count: `1`
-
-## ALP-E98E242414FE | VNMWBN-VSSPM01
+## ALP-E73E2E9B79D8 | VNMCPL-VSSPM01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
 - Problem signature: `itcenter http monitoring`
 - Pattern family: `HTTP monitoring`
 - Investigation priority: `LOW`
-- Why it matters: VNMWBN-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMCPL-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
+- Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2232`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-648`
+- Source reference count: `1`
+
+## ALP-E89923DA4A76 | VNW3-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNW3-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `UNKNOWN`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1676`
+- Source reference count: `1`
+
+## ALP-E91C7BC7C5E8 | VNMSGN-VSDHC01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMSGN-VSDHC01 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SGN`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1664`
+- Source reference count: `1`
+
+## ALP-E97AD6C8AC63 | VNMMDN-VSDHC02
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
+- Investigation priority: `LOW`
+- Why it matters: VNMMDN-VSDHC02 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MDN`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1506`
+- Source reference count: `1`
+
+## ALP-EA2547CCB5B4 | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/2(host<value>-gi2-vmnic1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi2/0/2(host<value>-gi2-vmnic1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5118`
+- Source reference count: `1`
+
+## ALP-EAC35F59F3C7 | VNMRVF-VSZABPRX-ISP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-ISP2 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2890`
+- Source reference count: `1`
+
+## ALP-EB7AA52C976B | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te1/0/24(8data2): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te1/0/24(8data2): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4453`
 - Source reference count: `1`
 
 ## ALP-EC109E3B374B | VNMCPL-PNSSW01
@@ -6327,24 +6416,75 @@
 - Site code: `CPL`
 - Domain: `network`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-2830`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2257`
 - Source reference count: `1`
 
-## ALP-EF5EF1755A49 | VNMMSB-PSSJP1
+## ALP-EC47E5EBE854 | VNMMBD-PNCSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `windows: zabbix agent is not available (or nodata for <value>)`
+- Problem signature: `interface xgigabitethernet1/0/18(vnmmbd-pnasw18): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMBD-PNCSW01 reported `interface xgigabitethernet1/0/18(vnmmbd-pnasw18): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MBD`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2983`
+- Source reference count: `1`
+
+## ALP-EDE4F54B9DA5 | VNMMSB-FPT-spx.shopee.vn
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `unavailable by icmp ping`
+- Pattern family: `Network reachability`
+- Investigation priority: `MEDIUM`
+- Why it matters: VNMMSB-FPT-spx.shopee.vn reported `unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSB`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1802`
+- Source reference count: `1`
+
+## ALP-EE35CFAF0367 | VNMMSB-PSSJP2
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `windows: active checks are not available`
 - Pattern family: `Zabbix agent/active check`
 - Investigation priority: `LOW`
-- Why it matters: VNMMSB-PSSJP1 reported `windows: zabbix agent is not available (or nodata for <value>)`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
+- Why it matters: VNMMSB-PSSJP2 reported `windows: active checks are not available`. This points to monitoring-agent availability rather than confirmed user impact unless supported by ticket or incident evidence.
 - Raw alert count: `1`
-- Resolved alerts: `0`
-- Open alerts: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
 - Site code: `MSB`
 - Domain: `os`
-- Component: `system`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-157`
+- Component: `health,network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-435`
+- Source reference count: `1`
+
+## ALP-EECED11193F9 | VNMMSH-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/14(2f-d26): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNSSW01 reported `interface gi1/0/14(2f-d26): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4962`
 - Source reference count: `1`
 
 ## ALP-F00DBD58B8BB | VNMMBD-VSSJC1
@@ -6361,24 +6501,75 @@
 - Site code: `MBD`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3433`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2724`
 - Source reference count: `1`
 
-## ALP-F4E395D790DD | VNMWBN-PNASW09-Hub04
+## ALP-F03598513528 | VNMCPL-PNSSW01
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `cisco ios: unavailable by icmp ping`
-- Pattern family: `Network reachability`
-- Investigation priority: `HIGH`
-- Why it matters: VNMWBN-PNASW09-Hub04 reported `cisco ios: unavailable by icmp ping`. This can indicate short connectivity loss, device/path flap, or monitoring-path instability and should be checked before HTTP-only noise.
+- Problem signature: `interface po3(host<value>-vswitch0): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface po3(host<value>-vswitch0): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5115`
+- Source reference count: `1`
+
+## ALP-F1668F6EA566 | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi2/0/4(vmotion): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi2/0/4(vmotion): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5119`
+- Source reference count: `1`
+
+## ALP-F1C41227391E | VNMRVF-VSZABPRX-ISP3
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `google http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMRVF-VSZABPRX-ISP3 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
+- Site code: `RVF`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2134`
+- Source reference count: `1`
+
+## ALP-F4C168804DC2 | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/47(host8o-idrac): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi1/0/47(host8o-idrac): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CPL`
 - Domain: `network`
-- Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-04.csv#csv:row-1655`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2875`
 - Source reference count: `1`
 
 ## ALP-F6D0BF16C98C | VNMMSB-VSCDC02
@@ -6395,22 +6586,124 @@
 - Site code: `MSB`
 - Domain: `os`
 - Component: `health,network`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-1844`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1502`
 - Source reference count: `1`
 
-## ALP-FF594A117625 | VNMWBN-VSSPM02
+## ALP-F78AB4D74642 | VNMMS2-PSSJP1
 
 - Evidence label: `COMPUTED FACT`
 - Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
-- Problem signature: `google http monitoring`
-- Pattern family: `HTTP monitoring`
+- Problem signature: `windows: host has been restarted (uptime < <value>)`
+- Pattern family: `Host restart/uptime`
 - Investigation priority: `LOW`
-- Why it matters: VNMWBN-VSSPM02 reported `google http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Why it matters: VNMMS2-PSSJP1 reported `windows: host has been restarted (uptime < <value>)`. This is host-health context and should not be treated as service impact without another source.
 - Raw alert count: `1`
 - Resolved alerts: `1`
 - Open alerts: `0`
-- Site code: `WBN`
+- Site code: `MS2`
+- Domain: `os`
+- Component: `system`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-761`
+- Source reference count: `1`
+
+## ALP-F9EB35FEEFE0 | VNMCPL-VSSPM04
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `confluence http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-VSSPM04 reported `confluence http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `CPL`
 - Domain: `UNKNOWN`
 - Component: `UNKNOWN`
-- Source references: `zbx_problems_normalized_All_VNM_High_Disaster_2026-05.csv#csv:row-3672`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2758`
+- Source reference count: `1`
+
+## ALP-FB03B1D03422 | VNMCPL-PNSSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface gi1/0/2(host<value>-gi2-vmnic0): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMCPL-PNSSW01 reported `interface gi1/0/2(host<value>-gi2-vmnic0): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `0`
+- Open alerts: `1`
+- Site code: `CPL`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-5116`
+- Source reference count: `1`
+
+## ALP-FB055D5123B8 | VNMMSH-PNCSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface twe2/0/10(sw1z-serverroom-dist-sw-te2/1/8): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNCSW01 reported `interface twe2/0/10(sw1z-serverroom-dist-sw-te2/1/8): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-2867`
+- Source reference count: `1`
+
+## ALP-FBB608413C7B | VNMSNT-PNCSW2201
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface te1/0/26(8poe2): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMSNT-PNCSW2201 reported `interface te1/0/26(8poe2): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `SNT`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4451`
+- Source reference count: `1`
+
+## ALP-FE3C38E2DC07 | VNMMSH-VSSPM01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `itcenter http monitoring`
+- Pattern family: `HTTP monitoring`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-VSSPM01 reported `itcenter http monitoring`. This usually means application/service probe thresholds were crossed; investigate threshold sensitivity, maintenance windows, or repeated endpoint timeouts.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `UNKNOWN`
+- Component: `UNKNOWN`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-1778`
+- Source reference count: `1`
+
+## ALP-FF540929BD75 | VNMMSH-PNWSW01
+
+- Evidence label: `COMPUTED FACT`
+- Assessment: `RAW ALERT PATTERN - NOT A CONFIRMED INCIDENT`
+- Problem signature: `interface po5(host5d-vswitch1): link down`
+- Pattern family: `Other`
+- Investigation priority: `LOW`
+- Why it matters: VNMMSH-PNWSW01 reported `interface po5(host5d-vswitch1): link down`. Treat as monitoring context until corroborated.
+- Raw alert count: `1`
+- Resolved alerts: `1`
+- Open alerts: `0`
+- Site code: `MSH`
+- Domain: `network`
+- Component: `network`
+- Source references: `zbx_problems_impact_All_VNM_Average_High_Disaster_2026-05_to_2026-06.csv#csv:row-4983`
 - Source reference count: `1`

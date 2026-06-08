@@ -65,6 +65,12 @@ Các invariant incident, Zabbix, và issue-comment reconciliation đều `PASS`.
 
 Tất cả Markdown đọc được bằng UTF-8 và không phát hiện mojibake marker.
 
+Ticket Markdown now exposes deterministic comment intelligence:
+
+- `05_ticket_impact_index.md` includes `Top symptom families`, `Top resolution signals`, and `Top comment signals` per monthly partition.
+- Monthly ticket partitions include `symptom_family`, `resolution_signal`, `Comment summary strategy`, `Initial comment sample`, `Key comment sample`, and `Final comment sample`.
+- Long comment samples are excerpted with `[truncated; see source_refs]`; full audit still uses `source_refs` and `normalized_data.xlsx`.
+
 ## Operational Story Audit
 
 `02_operational_timeline.md` is now the primary date-range investigation entry point.

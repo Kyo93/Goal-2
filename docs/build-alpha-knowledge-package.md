@@ -78,7 +78,7 @@ python scripts\build_alpha_knowledge_package.py `
   normalized_data.xlsx
 ```
 
-Ticket detail co the upload theo tung monthly partition neu Alpha bi gioi han dung luong; dung `05_ticket_impact_index.md` de chon file thang lien quan.
+Ticket detail co the upload theo tung monthly partition neu Alpha bi gioi han dung luong; dung `05_ticket_impact_index.md` de chon file thang lien quan. Index co top symptom/resolution/comment-signal counters; monthly partition co lifecycle comment samples va deterministic `symptom_family` cho tung ticket.
 
 - Upload vào Alpha: bộ Markdown package, bao gồm `02_operational_timeline.md`, `05_ticket_impact_index.md`, và monthly ticket partitions cần cho retrieval.
 - Giữ để audit local: `manifest.json`, hai file `validation_report.*`, và `normalized_data.xlsx`.

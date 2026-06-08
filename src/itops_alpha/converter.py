@@ -55,6 +55,182 @@ ISSUE_MONTHLY_REQUIRED_COLUMNS = {
 
 ISSUE_REQUIRED_COLUMNS = ISSUE_LEGACY_REQUIRED_COLUMNS
 
+INITIAL_COMMENT_SAMPLE_LIMIT = 2
+FINAL_COMMENT_SAMPLE_LIMIT = 3
+KEY_COMMENT_SAMPLE_LIMIT = 3
+COMMENT_SAMPLE_MAX_CHARS = 700
+COMMENT_TRUNCATION_MARKER = "[truncated; see source_refs]"
+
+COMMENT_SIGNAL_RULES = {
+    "RESOLUTION_SIGNAL": [
+        "resolved",
+        "restore",
+        "restored",
+        "fixed",
+        "done",
+        "completed",
+        "closed",
+        "solved",
+        "finish",
+        "hoan tat",
+        "hoàn tất",
+        "da xu ly",
+        "đã xử lý",
+        "da fix",
+        "đã fix",
+        "khoi phuc",
+        "khôi phục",
+        "xong",
+    ],
+    "PENDING_SIGNAL": [
+        "pending",
+        "waiting",
+        "on hold",
+        "follow up",
+        "monitoring",
+        "dang cho",
+        "đang chờ",
+        "cho",
+        "chờ",
+        "theo doi",
+        "theo dõi",
+    ],
+    "ESCALATION_SIGNAL": [
+        "escalate",
+        "escalated",
+        "transfer",
+        "assigned",
+        "vendor",
+        "isp",
+        "supplier",
+        "network team",
+        "infra",
+        "helpdesk",
+        "chuyen",
+        "chuyển",
+        "nha mang",
+        "nhà mạng",
+    ],
+    "PROBLEM_SIGNAL": [
+        "cannot",
+        "can not",
+        "unable",
+        "failed",
+        "error",
+        "down",
+        "slow",
+        "timeout",
+        "disconnect",
+        "unreachable",
+        "issue",
+        "problem",
+        "khong",
+        "không",
+        "loi",
+        "lỗi",
+        "cham",
+        "chậm",
+        "mat ket noi",
+        "mất kết nối",
+    ],
+    "USER_CONFIRMATION_SIGNAL": [
+        "confirmed",
+        "confirm",
+        "user confirmed",
+        "customer confirmed",
+        "ok now",
+        "working now",
+        "xac nhan",
+        "xác nhận",
+        "duoc roi",
+        "được rồi",
+    ],
+}
+
+SYMPTOM_FAMILY_RULES = {
+    "vpn_or_remote_access": ["vpn", "remote", "forticlient"],
+    "network_slow_or_latency": [
+        "slow",
+        "latency",
+        "lag",
+        "network slow",
+        "internet slow",
+        "cham",
+        "chậm",
+        "high latency",
+    ],
+    "connection_down_or_unreachable": [
+        "down",
+        "disconnect",
+        "unreachable",
+        "offline",
+        "mat ket noi",
+        "mất kết nối",
+    ],
+    "cannot_access_service": [
+        "cannot access",
+        "can not access",
+        "unable to access",
+        "access issue",
+        "khong truy cap",
+        "không truy cập",
+    ],
+    "account_or_permission": [
+        "permission",
+        "access right",
+        "account",
+        "password",
+        "login",
+        "user id",
+        "reset pass",
+        "authorize",
+    ],
+    "application_error": [
+        "error",
+        "failed",
+        "bug",
+        "exception",
+        "not working",
+        "crash",
+        "loi",
+        "lỗi",
+    ],
+    "security_alert_or_malicious_domain": [
+        "malicious",
+        "phishing",
+        "captcha",
+        "unauthorized",
+        "suspicious",
+        "security",
+    ],
+    "hardware_or_device": [
+        "printer",
+        "laptop",
+        "pc",
+        "monitor",
+        "switch",
+        "firewall",
+        "device",
+        "hardware",
+        "pda",
+    ],
+    "power_or_ups": ["ups", "power", "battery", "electricity"],
+    "request_or_howto": [
+        "request",
+        "please help",
+        "support",
+        "how to",
+        "create",
+        "change",
+        "update",
+        "install",
+    ],
+}
+
+SYMPTOM_FAMILY_PRIORITY = {
+    family: index for index, family in enumerate(SYMPTOM_FAMILY_RULES)
+}
+
 INCIDENT_REQUIRED_COLUMNS = {
     "Timestamp",
     "ISP",
@@ -305,6 +481,168 @@ def _email_domain(value: Any) -> str:
     return text.rsplit("@", 1)[1] or "UNKNOWN"
 
 
+def _comment_signal_hits(text: str) -> set[str]:
+    lowered = clean_text(text).lower()
+    return {
+        signal
+        for signal, terms in COMMENT_SIGNAL_RULES.items()
+        if any(term in lowered for term in terms)
+    }
+
+
+def _unique_comment_samples(comments: Iterable[str]) -> list[str]:
+    samples: list[str] = []
+    seen = set()
+    for comment in comments:
+        text = clean_text(comment)
+        if not text:
+            continue
+        key = text.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        samples.append(text)
+    return samples
+
+
+def _comment_excerpt(comment: str) -> str:
+    text = clean_text(comment)
+    if len(text) <= COMMENT_SAMPLE_MAX_CHARS:
+        return text
+    max_body = max(0, COMMENT_SAMPLE_MAX_CHARS - len(COMMENT_TRUNCATION_MARKER) - 1)
+    return text[:max_body].rstrip() + " " + COMMENT_TRUNCATION_MARKER
+
+
+def _comment_lifecycle_samples(comments: list[str]) -> dict[str, Any]:
+    cleaned = _unique_comment_samples(comments)
+    if not cleaned:
+        return {
+            "comment_summary_strategy": "lifecycle_key_sample",
+            "initial_comments_sample": [],
+            "key_comments_sample": [],
+            "final_comments_sample": [],
+            "detected_comment_signals": [],
+            "comments_summary": "UNKNOWN",
+            "_full_comment_text": "",
+        }
+
+    initial_indexes = set(range(min(INITIAL_COMMENT_SAMPLE_LIMIT, len(cleaned))))
+    final_start = max(0, len(cleaned) - FINAL_COMMENT_SAMPLE_LIMIT)
+    final_indexes = set(range(final_start, len(cleaned)))
+    selected_indexes = initial_indexes | final_indexes
+    key_comments: list[str] = []
+    for index, comment in enumerate(cleaned):
+        if index in selected_indexes:
+            continue
+        if _comment_signal_hits(comment):
+            key_comments.append(comment)
+        if len(key_comments) >= KEY_COMMENT_SAMPLE_LIMIT:
+            break
+
+    detected_signals = sorted(
+        {
+            signal
+            for comment in cleaned
+            for signal in _comment_signal_hits(comment)
+        }
+    )
+    initial_comments = [_comment_excerpt(cleaned[index]) for index in sorted(initial_indexes)]
+    key_comment_excerpts = [_comment_excerpt(comment) for comment in key_comments]
+    final_comments = [_comment_excerpt(cleaned[index]) for index in sorted(final_indexes)]
+    summary_parts = [
+        "Initial comment sample: " + " | ".join(initial_comments),
+    ]
+    if key_comment_excerpts:
+        summary_parts.append("Key comment sample: " + " | ".join(key_comment_excerpts))
+    summary_parts.append("Final comment sample: " + " | ".join(final_comments))
+    return {
+        "comment_summary_strategy": "lifecycle_key_sample",
+        "initial_comments_sample": initial_comments,
+        "key_comments_sample": key_comment_excerpts,
+        "final_comments_sample": final_comments,
+        "detected_comment_signals": detected_signals,
+        "comments_summary": "\n".join(summary_parts),
+        "_full_comment_text": " ".join(cleaned),
+    }
+
+
+def _resolution_signal(detected_signals: Iterable[str]) -> tuple[str, str]:
+    signals = set(detected_signals)
+    if "USER_CONFIRMATION_SIGNAL" in signals or "RESOLUTION_SIGNAL" in signals:
+        return "RESOLVED", "resolution or user-confirmation terms found in ticket comments"
+    if "PENDING_SIGNAL" in signals:
+        return "PENDING", "pending or follow-up terms found in ticket comments"
+    if "ESCALATION_SIGNAL" in signals:
+        return "ESCALATED", "escalation/vendor/team-transfer terms found in ticket comments"
+    return "UNKNOWN", "no deterministic resolution terms found in ticket comments"
+
+
+def _family_term_hits(text: str, family: str) -> set[str]:
+    lowered = clean_text(text).lower()
+    return {
+        term
+        for term in SYMPTOM_FAMILY_RULES[family]
+        if term in lowered
+    }
+
+
+def _symptom_family(ticket: dict[str, Any], samples: dict[str, Any]) -> tuple[str, int, str]:
+    weighted_sources = [
+        (5, "title", clean_text(ticket.get("title"))),
+        (
+            4,
+            "classification",
+            " ".join(
+                [
+                    clean_text(ticket.get("classification")),
+                    clean_text(ticket.get("subclassification")),
+                    clean_text(ticket.get("category")),
+                ]
+            ),
+        ),
+        (
+            3,
+            "final/key comments",
+            " ".join(
+                samples.get("final_comments_sample", [])
+                + samples.get("key_comments_sample", [])
+            ),
+        ),
+        (2, "all comments", clean_text(samples.get("_full_comment_text"))),
+        (2, "initial comments", " ".join(samples.get("initial_comments_sample", []))),
+        (
+            1,
+            "location",
+            " ".join(
+                [
+                    clean_text(ticket.get("location_full_name")),
+                    clean_text(ticket.get("office_display")),
+                    clean_text(ticket.get("business_unit")),
+                ]
+            ),
+        ),
+    ]
+    scores: Counter[str] = Counter()
+    basis: defaultdict[str, list[str]] = defaultdict(list)
+    for weight, source_name, text in weighted_sources:
+        if not text:
+            continue
+        for family in SYMPTOM_FAMILY_RULES:
+            hits = _family_term_hits(text, family)
+            if not hits:
+                continue
+            scores[family] += weight * len(hits)
+            basis[family].append(f"{source_name}: {', '.join(sorted(hits)[:5])}")
+
+    if not scores:
+        return "other_or_unclear", 0, "no deterministic symptom-family terms found"
+    family = sorted(
+        scores,
+        key=lambda item: (-scores[item], SYMPTOM_FAMILY_PRIORITY.get(item, 999), item),
+    )[0]
+    return family, int(scores[family]), "; ".join(basis[family])
+
+
 def derive_site_code(site_name: Any) -> str:
     text = clean_text(site_name)
     if not text:
@@ -521,6 +859,13 @@ def load_issue_tickets(path: Path) -> AdapterResult:
         else:
             ticket_created_at = min(comment_times)
             evidence_time_basis = "first_comment_at_fallback"
+        comment_samples = _comment_lifecycle_samples(comments)
+        resolution_signal, resolution_signal_basis = _resolution_signal(
+            comment_samples["detected_comment_signals"]
+        )
+        symptom_family, symptom_family_score, symptom_family_basis = _symptom_family(
+            ticket, comment_samples
+        )
         first_comment_at = min(comment_times)
         last_comment_at = max(comment_times)
         last_activity_at = max(comment_updated_times or comment_times)
@@ -535,7 +880,17 @@ def load_issue_tickets(path: Path) -> AdapterResult:
                 "evidence_last_seen_at": iso_datetime(evidence_last_seen_at),
                 "evidence_time_basis": evidence_time_basis,
                 "comment_count": len(comment_times),
-                "comments_summary": " | ".join(comments[:3]) or "UNKNOWN",
+                "comment_summary_strategy": comment_samples["comment_summary_strategy"],
+                "initial_comments_sample": comment_samples["initial_comments_sample"],
+                "key_comments_sample": comment_samples["key_comments_sample"],
+                "final_comments_sample": comment_samples["final_comments_sample"],
+                "detected_comment_signals": comment_samples["detected_comment_signals"],
+                "comments_summary": comment_samples["comments_summary"],
+                "symptom_family": symptom_family,
+                "symptom_family_score": symptom_family_score,
+                "symptom_family_basis": symptom_family_basis,
+                "resolution_signal": resolution_signal,
+                "resolution_signal_basis": resolution_signal_basis,
                 "impact_evidence": ticket["title"],
                 "source_files": source_files,
                 "partition_months": partition_months,
@@ -2271,6 +2626,13 @@ def _escape_markdown(value: Any) -> str:
     return clean_multiline_text(value).replace("\n", "  \n")
 
 
+def _render_markdown_list(values: Iterable[Any]) -> str:
+    cleaned = [clean_multiline_text(value) for value in values if clean_text(value)]
+    if not cleaned:
+        return "  - `UNKNOWN`"
+    return "\n".join(f"  - {_escape_markdown(value)}" for value in cleaned)
+
+
 def _render_validation_markdown(report: dict[str, Any]) -> str:
     lines = [
         "# Validation Report",
@@ -2839,6 +3201,12 @@ def _render_ticket_impact(
                 f"- Title: {_escape_markdown(ticket['title'])}",
                 f"- Classification: `{ticket['classification']}`",
                 f"- Subclassification: `{ticket.get('subclassification', 'UNKNOWN')}`",
+                f"- Symptom family: `{ticket.get('symptom_family', 'other_or_unclear')}`",
+                f"- Symptom family score: `{ticket.get('symptom_family_score', 0)}`",
+                f"- Symptom family basis: {_escape_markdown(ticket.get('symptom_family_basis', 'UNKNOWN'))}",
+                f"- Resolution signal: `{ticket.get('resolution_signal', 'UNKNOWN')}`",
+                f"- Resolution signal basis: {_escape_markdown(ticket.get('resolution_signal_basis', 'UNKNOWN'))}",
+                f"- Detected comment signals: `{', '.join(ticket.get('detected_comment_signals', [])) or 'UNKNOWN'}`",
                 f"- Business unit: `{ticket['business_unit']}`",
                 f"- Entity: `{ticket.get('entity_name', 'UNKNOWN')}`",
                 f"- Location: `{ticket.get('location_full_name', 'UNKNOWN')}`",
@@ -2848,10 +3216,17 @@ def _render_ticket_impact(
                 f"- Email: `{ticket.get('user_email', 'UNKNOWN')}`",
                 f"- Assignee: `{ticket.get('assignee', 'UNKNOWN')}`",
                 f"- Comment count: `{ticket['comment_count']}`",
+                f"- Comment summary strategy: `{ticket.get('comment_summary_strategy', 'UNKNOWN')}`",
                 f"- Partition months: `{', '.join(ticket.get('partition_months', [])) or 'UNKNOWN'}`",
                 f"- Source files: `{', '.join(ticket.get('source_files', [])) or 'UNKNOWN'}`",
                 f"- Comment author domains: `{', '.join(ticket.get('comment_author_domains', [])) or 'UNKNOWN'}`",
-                f"- Comment summary: {_escape_markdown(ticket['comments_summary'])}",
+                "- Comment summary: See lifecycle samples below.",
+                "- Initial comment sample:",
+                _render_markdown_list(ticket.get("initial_comments_sample", [])),
+                "- Key comment sample:",
+                _render_markdown_list(ticket.get("key_comments_sample", [])),
+                "- Final comment sample:",
+                _render_markdown_list(ticket.get("final_comments_sample", [])),
                 f"- Source references: `{'; '.join(ticket['source_refs'])}`",
                 "",
             ]
@@ -2929,6 +3304,19 @@ def _render_ticket_partition_index(tickets: list[dict[str, Any]]) -> str:
             clean_text(ticket.get("location_full_name")) or "UNKNOWN"
             for ticket in partition_tickets
         )
+        symptom_families = Counter(
+            clean_text(ticket.get("symptom_family")) or "other_or_unclear"
+            for ticket in partition_tickets
+        )
+        resolution_signals = Counter(
+            clean_text(ticket.get("resolution_signal")) or "UNKNOWN"
+            for ticket in partition_tickets
+        )
+        comment_signals = Counter(
+            signal
+            for ticket in partition_tickets
+            for signal in ticket.get("detected_comment_signals", [])
+        )
         lines.extend(
             [
                 f"### {month}",
@@ -2945,6 +3333,9 @@ def _render_ticket_partition_index(tickets: list[dict[str, Any]]) -> str:
                 "",
                 f"- Top classifications: {_counter_summary(classifications, 8)}",
                 f"- Top locations: {_counter_summary(locations, 8)}",
+                f"- Top symptom families: {_counter_summary(symptom_families, 8)}",
+                f"- Top resolution signals: {_counter_summary(resolution_signals, 8)}",
+                f"- Top comment signals: {_counter_summary(comment_signals, 8)}",
                 "",
             ]
         )

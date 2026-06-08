@@ -471,11 +471,60 @@ Sau khi đọc xong, mỗi ticket record có:
 | `comment_count` | So comment rows da doc |
 | `source_files` | CSV files co comment cua ticket |
 | `partition_months` | Comment activity months cua ticket |
-| `comments_summary` | Join toi da 3 comment dau tien bang `" | "` |
+| `comment_summary_strategy` | `lifecycle_key_sample` |
+| `initial_comments_sample` | Toi da 2 comment dau tien, giu boi canh user khai bao ban dau |
+| `key_comments_sample` | Toi da 3 comment giua co signal nhu escalation, pending, problem, resolved, confirmation |
+| `final_comments_sample` | Toi da 3 comment cuoi, giu phan chot xu ly/confirm cua ticket |
+| `comments_summary` | Structured summary gom initial/key/final samples |
+| `detected_comment_signals` | Rule-based signals doc tu toan bo comment text |
+| `resolution_signal` | `RESOLVED`, `PENDING`, `ESCALATED`, hoac `UNKNOWN` |
+| `symptom_family` | Weighted rule classification tu title, classification/subclassification, location, va comment lifecycle |
+| `symptom_family_basis` | Ly do deterministic de audit tai sao ticket duoc gan family |
 | `impact_evidence` | Bang `title` |
 | `evidence_label` | `SOURCE FACT` |
 
 Records được sort theo `ticket_id`.
+
+### 6.4 Comment intelligence
+
+Truoc day converter chi dua toi da 3 comment dau vao `comments_summary`. Cach nay gon, nhung de mat thong tin vi phan cuoi ticket thuong moi co ket luan: da restore, user confirmed, escalate sang team nao, hoac van pending.
+
+Logic moi doc toan bo comment cua ticket, nhung chi dua sample co chu dich ra Markdown:
+
+- `initial_comments_sample`: 2 comment dau tien de giu symptom ban dau cua user.
+- `final_comments_sample`: 3 comment cuoi de giu resolution/confirmation.
+- `key_comments_sample`: 3 comment giua co signal manh, uu tien escalation, pending, problem, resolved, user confirmation.
+- `comments_summary`: text co nhan `Initial comment sample`, `Key comment sample`, `Final comment sample` de Alpha retrieve theo lifecycle.
+
+Converter khong dua full comment thread vao Markdown de tranh file qua lon, nhung van giu `source_refs`, `comment_count`, `source_files`, va workbook audit de quay lai raw row khi can.
+
+Trong Markdown upload len Alpha, `comments_summary` duoc ghi ngan la `See lifecycle samples below`; noi dung comment that su nam o cac list `Initial comment sample`, `Key comment sample`, va `Final comment sample` de tranh duplicate token.
+
+### 6.5 Ticket Symptom Family Summary
+
+Moi ticket duoc gan `symptom_family` bang rule scoring deterministic. Input scoring gom:
+
+- `title`, `category`, `classification`, `subclassification`.
+- `location_full_name`, `office_display`, `business_unit`.
+- `initial_comments_sample`, `key_comments_sample`, `final_comments_sample`.
+
+Family hien tai:
+
+```text
+vpn_or_remote_access
+network_slow_or_latency
+connection_down_or_unreachable
+cannot_access_service
+account_or_permission
+application_error
+security_alert_or_malicious_domain
+hardware_or_device
+power_or_ups
+request_or_howto
+other_or_unclear
+```
+
+Monthly index `05_ticket_impact_index.md` co them `Top symptom families`, `Top resolution signals`, va `Top comment signals`. Khi Super Agent hoi theo thang/site/business unit, dung index truoc de chon partition, sau do doc file `05_ticket_impact_YYYY_MM.md` lien quan.
 
 Với raw snapshot hiện tại:
 

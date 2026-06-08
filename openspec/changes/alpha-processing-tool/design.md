@@ -94,12 +94,25 @@ Output:
 
 Input:
 
-- `issue_report_file`
-- `processed_dir`
+- ITCenter monthly CSV files, or one CSV body/file for single-month Alpha testing
+- Optional legacy `IssueReport.xlsx` fallback for older local snapshots
 
 Output:
 
 - `ticket_evidence.json`
+- `05_ticket_impact.md`
+- `05_ticket_impact_index.md`
+- `05_ticket_impact_YYYY_MM.md`
+- processing summary with reconciliation counts
+
+Ticket processor contract:
+
+- Group comment-level raw rows by `itcenter.ticket.id`.
+- Preserve `ticket_created_at` as the primary user/business impact timestamp.
+- Preserve `first_comment_at`, `last_comment_at`, and `last_activity_at` for activity-window matching.
+- Emit lifecycle comment samples: `initial_comments_sample`, `key_comments_sample`, `final_comments_sample`.
+- Emit deterministic comment intelligence: `detected_comment_signals`, `resolution_signal`, `symptom_family`, `symptom_family_basis`.
+- Excerpt long comment samples with `[truncated; see source_refs]`; do not upload full raw comment transcript to Knowledge.
 
 ### Stage 4: Connector
 

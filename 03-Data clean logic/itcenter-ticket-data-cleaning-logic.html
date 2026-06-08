@@ -417,8 +417,13 @@ itcenter.ticket.subclassification_name</code></pre>
           </tr>
           <tr>
             <td><span class="tag keep">Summarize</span></td>
-            <td>Join tối đa 3 comment đầu tiên thành <code>comments_summary</code>.</td>
-            <td>Knowledge có context ngắn, không cần expose toàn bộ chat dài ở summary chính.</td>
+            <td>Build lifecycle comment samples: first 2 comments, up to 3 key middle comments, and last 3 comments.</td>
+            <td>Knowledge giữ được cả mô tả ban đầu và comment chốt/resolution cuối ticket.</td>
+          </tr>
+          <tr>
+            <td><span class="tag keep">Classify</span></td>
+            <td>Score <code>symptom_family</code>, <code>resolution_signal</code>, và <code>detected_comment_signals</code> từ title/classification/comment lifecycle.</td>
+            <td>Giúp Alpha trả lời theo nhóm triệu chứng, escalation, pending, resolved, user confirmation.</td>
           </tr>
         </tbody>
       </table>
@@ -451,7 +456,13 @@ for each ticket_id:
     evidence_started_at = ticket_created_at or first_comment_at
     partition_months = months from comment_times
     comment_count = len(comment_times)
-    comments_summary = " | ".join(first 3 non-empty comments)
+    initial_comments_sample = first 2 unique comments
+    final_comments_sample = last 3 unique comments
+    key_comments_sample = up to 3 middle comments with signal keywords
+    comments_summary = structured initial/key/final lifecycle summary
+    detected_comment_signals = rule_hits(all comments)
+    resolution_signal = RESOLVED/PENDING/ESCALATED/UNKNOWN
+    symptom_family = weighted_rule_score(title + metadata + lifecycle comments)
     impact_evidence = title
     evidence_label = "SOURCE FACT"</code></pre>
     </section>
@@ -514,8 +525,23 @@ for each ticket_id:
           </tr>
           <tr>
             <td><code>comments_summary</code></td>
-            <td>3 comment đầu tiên, nối bằng <code> | </code></td>
-            <td>Context ngắn cho Knowledge.</td>
+            <td>Structured summary gồm initial/key/final comment samples</td>
+            <td>Giữ đủ lifecycle trong JSON/workbook; Markdown upload chỉ ghi “See lifecycle samples below” để tránh duplicate token.</td>
+          </tr>
+          <tr>
+            <td><code>initial_comments_sample</code>, <code>key_comments_sample</code>, <code>final_comments_sample</code></td>
+            <td>2 comment đầu, tối đa 3 comment giữa có signal, và 3 comment cuối</td>
+            <td>Giữ cả symptom ban đầu, diễn biến quan trọng, và phần chốt/resolution cuối ticket.</td>
+          </tr>
+          <tr>
+            <td><code>detected_comment_signals</code>, <code>resolution_signal</code></td>
+            <td>Rule-based extraction từ toàn bộ comment text</td>
+            <td>Nhận biết escalation, pending, resolved, problem, user confirmation.</td>
+          </tr>
+          <tr>
+            <td><code>symptom_family</code>, <code>symptom_family_basis</code></td>
+            <td>Weighted rule scoring từ title, classification/subclassification, location, và comment lifecycle</td>
+            <td>Cho phép hỏi theo nhóm triệu chứng như VPN, network slow, cannot access service, app error, hardware/device.</td>
           </tr>
           <tr>
             <td><code>impact_evidence</code></td>

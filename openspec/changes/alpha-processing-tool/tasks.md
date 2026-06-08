@@ -83,6 +83,8 @@ Build mode: manual Alpha build. This repository is the source of processor code,
   - Input: ITcenter monthly CSV exports, or a single CSV body/file when testing one month.
   - Output: ticket evidence JSON, aggregate Markdown, partition index Markdown, monthly partition Markdown, processing summary.
   - Verify: ticket records include `ticket_id`, `ticket_created_at`, `evidence_started_at`, `evidence_time_basis`, `first_comment_at`, `last_comment_at`, `last_activity_at`, `business_unit`, `entity_name`, `location_full_name`, `office_display`, `subclassification`, `source_files`, `partition_months`, `evidence_label`, and `source_refs`.
+  - Verify 2026-06-07 local baseline: ticket records also include lifecycle comment intelligence fields `comment_summary_strategy`, `initial_comments_sample`, `key_comments_sample`, `final_comments_sample`, `detected_comment_signals`, `resolution_signal`, `symptom_family`, and `symptom_family_basis`.
+  - Verify 2026-06-07 local baseline: `05_ticket_impact_index.md` reports monthly `Top symptom families`, `Top resolution signals`, and `Top comment signals`; monthly `05_ticket_impact_YYYY_MM.md` exposes per-ticket lifecycle comment samples for Alpha retrieval.
 
 ## 4. Alpha Connector Workflow
 

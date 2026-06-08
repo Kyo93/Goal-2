@@ -120,6 +120,108 @@ class ConverterTest(unittest.TestCase):
         self.assertEqual(ticket["office_display"], "VN > Hanoi > Capital Place")
         self.assertEqual(ticket["subclassification"], "VPN")
 
+    def test_issue_adapter_builds_lifecycle_comment_intelligence(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            ticket_dir = Path(temporary) / "Ticket"
+            ticket_dir.mkdir()
+            header = ",".join(
+                [
+                    "itcenter.ticket.id",
+                    "itcenter.ticket.created_at",
+                    "itcenter.ticket.full_title",
+                    "itcenter.ticket.category_en_name",
+                    "itcenter.ticket.classification_name",
+                    "itcenter.ticket.service_recipient.user.business_unit",
+                    "itcenter.ticket.service_recipient.user.entity_name",
+                    "itcenter.ticket.location_full_name",
+                    "itcenter.ticket.comment.created_by.user.email",
+                    "itcenter.ticket.comment.text",
+                    "itcenter.ticket.comment.updated_at",
+                    "itcenter.ticket.comment.created_at",
+                    "itcenter.ticket.service_recipient.user.office_display",
+                    "itcenter.ticket.subclassification_name",
+                ]
+            )
+            rows = [
+                header,
+                '"TKT-900","May 3, 2026 @ 08:00:00.000","CPL VPN cannot access","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","user@example.com","User cannot access VPN from CPL","May 3, 2026 @ 08:05:00.000","May 3, 2026 @ 08:05:00.000","VN > Hanoi > Capital Place","VPN"',
+                '"TKT-900","May 3, 2026 @ 08:00:00.000","CPL VPN cannot access","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","agent@example.com","Helpdesk asked user to retry login","May 3, 2026 @ 08:10:00.000","May 3, 2026 @ 08:10:00.000","VN > Hanoi > Capital Place","VPN"',
+                '"TKT-900","May 3, 2026 @ 08:00:00.000","CPL VPN cannot access","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","agent@example.com","Escalated to network team for ISP routing check","May 3, 2026 @ 08:30:00.000","May 3, 2026 @ 08:30:00.000","VN > Hanoi > Capital Place","VPN"',
+                '"TKT-900","May 3, 2026 @ 08:00:00.000","CPL VPN cannot access","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","network@example.com","Network team found latency on path","May 3, 2026 @ 09:00:00.000","May 3, 2026 @ 09:00:00.000","VN > Hanoi > Capital Place","VPN"',
+                '"TKT-900","May 3, 2026 @ 08:00:00.000","CPL VPN cannot access","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","network@example.com","VPN restored after routing fix","May 3, 2026 @ 09:40:00.000","May 3, 2026 @ 09:40:00.000","VN > Hanoi > Capital Place","VPN"',
+                '"TKT-900","May 3, 2026 @ 08:00:00.000","CPL VPN cannot access","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","user@example.com","User confirmed working now","May 3, 2026 @ 10:00:00.000","May 3, 2026 @ 10:00:00.000","VN > Hanoi > Capital Place","VPN"',
+            ]
+            (ticket_dir / "tickets_2026_05.csv").write_text(
+                "\n".join(rows), encoding="utf-8"
+            )
+
+            result = load_issue_tickets(ticket_dir)
+
+        ticket = result.records[0]
+        self.assertEqual(
+            ticket["initial_comments_sample"],
+            ["User cannot access VPN from CPL", "Helpdesk asked user to retry login"],
+        )
+        self.assertEqual(
+            ticket["key_comments_sample"],
+            ["Escalated to network team for ISP routing check"],
+        )
+        self.assertEqual(
+            ticket["final_comments_sample"],
+            [
+                "Network team found latency on path",
+                "VPN restored after routing fix",
+                "User confirmed working now",
+            ],
+        )
+        self.assertIn("Final comment sample:", ticket["comments_summary"])
+        self.assertIn("User confirmed working now", ticket["comments_summary"])
+        self.assertEqual(ticket["comment_summary_strategy"], "lifecycle_key_sample")
+        self.assertEqual(ticket["symptom_family"], "vpn_or_remote_access")
+        self.assertEqual(ticket["resolution_signal"], "RESOLVED")
+        self.assertIn("ESCALATION_SIGNAL", ticket["detected_comment_signals"])
+        self.assertIn("USER_CONFIRMATION_SIGNAL", ticket["detected_comment_signals"])
+
+    def test_issue_adapter_truncates_long_comment_samples_but_keeps_source_refs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            ticket_dir = Path(temporary) / "Ticket"
+            ticket_dir.mkdir()
+            header = ",".join(
+                [
+                    "itcenter.ticket.id",
+                    "itcenter.ticket.created_at",
+                    "itcenter.ticket.full_title",
+                    "itcenter.ticket.category_en_name",
+                    "itcenter.ticket.classification_name",
+                    "itcenter.ticket.service_recipient.user.business_unit",
+                    "itcenter.ticket.service_recipient.user.entity_name",
+                    "itcenter.ticket.location_full_name",
+                    "itcenter.ticket.comment.created_by.user.email",
+                    "itcenter.ticket.comment.text",
+                    "itcenter.ticket.comment.updated_at",
+                    "itcenter.ticket.comment.created_at",
+                    "itcenter.ticket.service_recipient.user.office_display",
+                    "itcenter.ticket.subclassification_name",
+                ]
+            )
+            long_comment = "VPN restored and user confirmed. " + ("diagnostic detail " * 200)
+            rows = [
+                header,
+                f'"TKT-901","May 4, 2026 @ 08:00:00.000","VPN access fixed","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","user@example.com","Initial VPN issue","May 4, 2026 @ 08:05:00.000","May 4, 2026 @ 08:05:00.000","VN > Hanoi > Capital Place","VPN"',
+                f'"TKT-901","May 4, 2026 @ 08:00:00.000","VPN access fixed","Issue Report","General IT Inquiry","SPX","SPX Express","SOC - Hanoi","agent@example.com","{long_comment}","May 4, 2026 @ 09:00:00.000","May 4, 2026 @ 09:00:00.000","VN > Hanoi > Capital Place","VPN"',
+            ]
+            (ticket_dir / "tickets_2026_05.csv").write_text(
+                "\n".join(rows), encoding="utf-8"
+            )
+
+            result = load_issue_tickets(ticket_dir)
+
+        ticket = result.records[0]
+        self.assertIn("[truncated; see source_refs]", ticket["final_comments_sample"][-1])
+        self.assertLess(len(ticket["final_comments_sample"][-1]), len(long_comment))
+        self.assertEqual(len(ticket["source_refs"]), 2)
+        self.assertIn("tickets_2026_05.csv#csv:row-3", ticket["source_refs"])
+
     def test_zabbix_adapter_groups_metric_variants_but_preserves_raw_count(self):
         result = load_zabbix_alerts(FIXTURES / "zbx_problems_export.xlsx")
         self.assertEqual(result.input_rows, 6)
@@ -931,9 +1033,17 @@ class ConverterTest(unittest.TestCase):
             self.assertIn("Ticket Impact Partition Index", ticket_index_text)
             self.assertIn("partition_basis: comment_activity_month", ticket_index_text)
             self.assertIn("05_ticket_impact_2026_05.md", ticket_index_text)
+            self.assertIn("Top symptom families", ticket_index_text)
+            self.assertIn("Top resolution signals", ticket_index_text)
             monthly_ticket_text = (output_dir / "05_ticket_impact_2026_05.md").read_text("utf-8")
             self.assertIn("Ticket Impact Evidence - 2026-05", monthly_ticket_text)
             self.assertIn("Evidence time basis", monthly_ticket_text)
+            self.assertIn("Symptom family", monthly_ticket_text)
+            self.assertIn("Resolution signal", monthly_ticket_text)
+            self.assertIn("Initial comment sample", monthly_ticket_text)
+            self.assertIn("Final comment sample", monthly_ticket_text)
+            self.assertIn("Comment summary strategy", monthly_ticket_text)
+            self.assertIn("Comment summary: See lifecycle samples below.", monthly_ticket_text)
             self.assertIn("Incidents missing RCA", quality_text)
             self.assertIn("Sites without confirmed master-data mapping", quality_text)
 

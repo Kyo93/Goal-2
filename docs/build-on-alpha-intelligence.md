@@ -61,6 +61,8 @@ IT Operations Historical Intelligence
 
 Ưu tiên upload bộ summary/timeline/alert và `05_ticket_impact_index.md` trong cùng một lần refresh. Ticket detail có thể upload theo monthly partition liên quan đến câu hỏi nếu Alpha giới hạn dung lượng.
 
+`05_ticket_impact_index.md` dùng để chọn tháng theo activity window và có sẵn `Top symptom families`, `Top resolution signals`, `Top comment signals`. File `05_ticket_impact_YYYY_MM.md` mới là nơi chứa chi tiết từng ticket: `symptom_family`, `resolution_signal`, `initial_comments_sample`, `key_comments_sample`, `final_comments_sample`, và `comments_summary`. Khi test Super Agent về ITCenter, hãy upload ít nhất index và partition tháng đang hỏi.
+
 ## Bước 2: Tạo Super Agent
 
 1. Tạo một Super Agent mới.
@@ -195,6 +197,9 @@ Chạy lần lượt:
 | `How many Zabbix alerts are confirmed incidents?` | Phân biệt alert evidence với confirmed incident; không tự chuyển đổi alert thành incident. |
 | `Which conclusions are limited by missing data?` | Nêu thiếu RCA, preventive action, và master data chưa confirmed. |
 | `Show direct user impact evidence.` | Trích ticket ID và source reference, không suy diễn site impact nếu chưa có mapping confirmed. |
+| `For May 2026 ITCenter tickets, what are the top symptom families?` | Dùng `05_ticket_impact_index.md`, nêu `Top symptom families` của partition `2026-05`, không đếm lại từ fragments. |
+| `Show VPN-related ITCenter tickets in May 2026 and their resolution signals.` | Dùng `05_ticket_impact_2026_05.md`, trích ticket IDs, `symptom_family = vpn_or_remote_access`, `resolution_signal`, và source refs. |
+| `For a ticket with truncated comments, can you still audit the raw source?` | Giải thích marker `[truncated; see source_refs]` nghĩa là Markdown đã excerpt, audit bằng `source_refs`/workbook; không giả vờ có full transcript trong Knowledge. |
 
 Trong Inspect Mode, kiểm tra:
 

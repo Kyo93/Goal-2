@@ -18,10 +18,9 @@
 
 - Unconfirmed master-data rows ignored as facts: 102
 - Sites without confirmed master-data mapping: 14
-- Alert hosts without confirmed master-data mapping: 173
+- Alert hosts without confirmed master-data mapping: 170
 - Incidents missing RCA: 2
 - Incidents missing preventive action: 35
-- No direct site-explicit ticket correlations matched confirmed incidents
 
 ## Rejected Rows
 
